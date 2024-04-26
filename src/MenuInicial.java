@@ -65,13 +65,13 @@ public class MenuInicial extends JFrame {
         panel.add(rankingGoleadores);
 
         salir=new JButton("Salir");
-        /*salir.addActionListener(new ActionListener() {
+        salir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
         });
-         */
+
         salir.setFont(fuenteBoton);
         salir.setBackground(colorBoton);
         salir.setBounds(250,420,300,40);
