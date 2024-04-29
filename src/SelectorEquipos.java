@@ -7,6 +7,7 @@ public class SelectorEquipos extends JFrame{
     JButton jugar;
     JButton flechaIzquierda;
     JButton flechaDerecha;
+    JButton back;
     JPanel panel;
     JButton flechaIzquierda2;
     JButton flechaDerecha2;
@@ -41,8 +42,14 @@ public class SelectorEquipos extends JFrame{
         jugar = new JButton("Jugar");
         jugar.setFont(fuenteBoton);
         jugar.setBackground(colorBoton);
-        jugar.setBounds(300, 500, 200, 50);
+        jugar.setBounds(300, 450, 200, 50);
         panel.add(jugar);
+
+        back = new JButton("Atrás");
+        back.setFont(fuenteBoton);
+        back.setBackground(colorBoton);
+        back.setBounds(300, 500, 200, 50);
+        panel.add(back);
 
         flechaIzquierda = new JButton("<");
         flechaIzquierda.setFont(fuenteBoton);
