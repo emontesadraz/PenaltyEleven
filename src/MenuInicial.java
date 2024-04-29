@@ -1,8 +1,12 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class MenuInicial extends JFrame {
     private JPanel panel;
@@ -10,6 +14,8 @@ public class MenuInicial extends JFrame {
     private JButton multiPlayer;
     private JButton rankingGoleadores;
     private JButton salir;
+
+    private BufferedImage imagen;
 
     public MenuInicial() {
 
@@ -78,6 +84,13 @@ public class MenuInicial extends JFrame {
         panel.add(salir);
 
         getContentPane().add(panel);
+
+        // Cargar imagen de fondo
+        try {
+            imagen = ImageIO.read(new File("src/FondoSelectorEquipos.jpeg")); // Ruta de la imagen de fondo
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
