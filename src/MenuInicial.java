@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -87,9 +89,45 @@ public class MenuInicial extends JFrame {
 
         // Cargar imagen de fondo
         try {
-            imagen = ImageIO.read(new File("src/FondoSelectorEquipos.jpeg")); // Ruta de la imagen de fondo
+            imagen = ImageIO.read(new File("src/FondoMenuInicial.jpeg")); // Ruta de la imagen de fondo
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        soloPlayer.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                soloPlayer.setBackground(Color.WHITE);
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                soloPlayer.setBackground(Color.BLACK);
+            }
+        });
+
+        multiPlayer.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                multiPlayer.setBackground(Color.WHITE.brighter());
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                multiPlayer.setBackground(Color.BLACK);
+            }
+        });
+
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        // Dibujar la imagen de fondo en el JFrame
+        if (imagen != null) {
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
         }
     }
 
