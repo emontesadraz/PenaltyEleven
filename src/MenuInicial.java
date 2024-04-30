@@ -35,19 +35,19 @@ public class MenuInicial extends JFrame {
         Color colorBoton = new Color(214, 202, 42);
 
         soloPlayer=new JButton("Un Jugador");
-        soloPlayer.addActionListener(new ActionListener() {
+       /* soloPlayer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SelectorEquipos selectorEquipos = new SelectorEquipos();
-                selectorEquipos.setVisible(true);
-                dispose();
             }
         });
+        */
 
         soloPlayer.setFont(fuenteBoton);
         soloPlayer.setBackground(colorBoton);
         soloPlayer.setBounds(250,180,300,40);
         panel.add(soloPlayer);
+
+
         multiPlayer=new JButton("Multijugador");
         multiPlayer.addActionListener(new ActionListener() {
             @Override
