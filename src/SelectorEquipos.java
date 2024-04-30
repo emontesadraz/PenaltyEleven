@@ -19,15 +19,15 @@ public class SelectorEquipos extends JFrame{
 
     public SelectorEquipos(){
         super("Penalty Eleven");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(800, 600);
-        this.setVisible(true);
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 600);
+        setVisible(true);
+        setLocationRelativeTo(null);
+        setResizable(false);
 
         // Fuente y color de los botones
         Font fuenteBoton = new Font("Action Man", Font.BOLD, 15);
-        Color colorBoton = new Color(214, 202, 42);
+        Color colorBoton = new Color(209, 192, 9);
         Color colorTexto = new Color(4, 38, 193);
 
         // Panel
