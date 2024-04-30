@@ -96,7 +96,9 @@ public class SelectorEquipos extends JFrame{
         back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                dispose();
+                MenuInicial menuInicial = new MenuInicial();
+                menuInicial.setVisible(true);
             }
         });
         back.setBounds(300, 500, 200, 50);
