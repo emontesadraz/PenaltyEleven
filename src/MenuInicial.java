@@ -31,9 +31,7 @@ public class MenuInicial extends JFrame {
         //panel.setPreferredSize(new Dimension(800,600));
         panel.setLayout(null);
 
-        Font fuenteBoton = new Font("Action Man", Font.BOLD, 15);
-        Color colorBoton = new Color(214, 202, 42);
-
+        //Boton soloPlayer
         soloPlayer=new JButton("Un Jugador");
         /*soloPlayer.addActionListener(new ActionListener() {
             @Override
@@ -42,10 +40,10 @@ public class MenuInicial extends JFrame {
             }
         });
          */
-        soloPlayer.setFont(fuenteBoton);
-        soloPlayer.setBackground(colorBoton);
         soloPlayer.setBounds(250,180,300,40);
         panel.add(soloPlayer);
+
+        //Boton multiPlayer
         multiPlayer=new JButton("Multijugador");
         /*multiPlayer.addActionListener(new ActionListener() {
             @Override
@@ -54,11 +52,10 @@ public class MenuInicial extends JFrame {
             }
         });
          */
-        multiPlayer.setFont(fuenteBoton);
-        multiPlayer.setBackground(colorBoton);
         multiPlayer.setBounds(250,260,300,40);
         panel.add(multiPlayer);
 
+        //Boton rankingGoleadores
         rankingGoleadores=new JButton("Ranking de Goleadores");
         /*rankingGoleadores.addActionListener(new ActionListener() {
             @Override
@@ -67,11 +64,10 @@ public class MenuInicial extends JFrame {
             }
         });
          */
-        rankingGoleadores.setFont(fuenteBoton);
-        rankingGoleadores.setBackground(colorBoton);
         rankingGoleadores.setBounds(250,340,300,40);
         panel.add(rankingGoleadores);
 
+        //Boton salir
         salir=new JButton("Salir");
         salir.addActionListener(new ActionListener() {
             @Override
@@ -79,32 +75,48 @@ public class MenuInicial extends JFrame {
                 System.exit(0);
             }
         });
-
-        salir.setFont(fuenteBoton);
-        salir.setBackground(colorBoton);
         salir.setBounds(250,420,300,40);
         panel.add(salir);
+
+        //Cambiar la fuente de los botones
+        Font fuenteBoton = new Font("Action Man", Font.BOLD, 15);
+        soloPlayer.setFont(fuenteBoton);
+        multiPlayer.setFont(fuenteBoton);
+        rankingGoleadores.setFont(fuenteBoton);
+        salir.setFont(fuenteBoton);
+
+        //Cambiar color de fondo de los botones
+        Color colorBoton = new Color(24, 92, 195);
+        soloPlayer.setBackground(colorBoton);
+        multiPlayer.setBackground(colorBoton);
+        rankingGoleadores.setBackground(colorBoton);
+        salir.setBackground(colorBoton);
+
+        //Cambiar color de texto de los botones
+        Color colorTexto = new Color(255, 255, 255);
+        soloPlayer.setForeground(colorTexto);
+        multiPlayer.setForeground(colorTexto);
+        rankingGoleadores.setForeground(colorTexto);
+        salir.setForeground(colorTexto);
+
 
         getContentPane().add(panel);
 
         // Cargar imagen de fondo
         try {
-            imagen = ImageIO.read(new File("src/FondoMenuInicial.jpeg")); // Ruta de la imagen de fondo
+            imagen = ImageIO.read(new File("src/Imagenes/FondoMenuInicial.png")); // Ruta de la imagen de fondo
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        // Cambiar color de los botones al pasar el ratón por encima
         soloPlayer.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                soloPlayer.setBackground(Color.WHITE);
+                soloPlayer.setBackground(Color.BLUE.darker());
 
             }
 
-            @Override
-            public void mouseExited(MouseEvent e) {
-                soloPlayer.setBackground(Color.BLACK);
-            }
         });
 
         multiPlayer.addMouseListener(new MouseAdapter() {
@@ -117,6 +129,32 @@ public class MenuInicial extends JFrame {
             @Override
             public void mouseExited(MouseEvent e) {
                 multiPlayer.setBackground(Color.BLACK);
+            }
+        });
+
+        rankingGoleadores.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                rankingGoleadores.setBackground(Color.WHITE.brighter());
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                rankingGoleadores.setBackground(Color.BLACK);
+            }
+        });
+
+        salir.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                salir.setBackground(Color.WHITE.brighter());
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                salir.setBackground(Color.BLACK);
             }
         });
 
