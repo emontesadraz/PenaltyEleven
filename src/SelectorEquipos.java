@@ -1,6 +1,8 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -71,6 +73,12 @@ public class SelectorEquipos extends JFrame{
         back.setFont(fuenteBoton);
         back.setBackground(colorBoton);
         back.setForeground(colorTexto);
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
         back.setBounds(300, 500, 200, 50);
         panel.add(back);
 
