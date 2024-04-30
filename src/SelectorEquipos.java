@@ -1,4 +1,6 @@
 import javax.imageio.ImageIO;
+import javax.print.attribute.standard.Media;
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -6,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+
 
 public class SelectorEquipos extends JFrame{
     OperacionesEquipos oe = new OperacionesEquipos();
@@ -170,6 +174,8 @@ public class SelectorEquipos extends JFrame{
         });
         panel.add(flechaDerecha2);
 
+        playMusic("Musica/SelectorEquipos.wav");
+
     }
     @Override
     public void paint(Graphics g) {
@@ -179,4 +185,22 @@ public class SelectorEquipos extends JFrame{
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
         }
     }
+  public void playMusic(String musicFile) {
+    try {
+        // Abrir un audio input stream
+        URL url = this.getClass().getClassLoader().getResource(musicFile);
+        AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+
+        // Obtener un clip de sonido
+        Clip clip = AudioSystem.getClip();
+
+        // Abrir el clip de audio y cargar muestras de audio del audio input stream
+        clip.open(audioIn);
+
+        // Iniciar la reproducción
+        clip.start();
+    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+        e.printStackTrace();
+    }
+}
 }
