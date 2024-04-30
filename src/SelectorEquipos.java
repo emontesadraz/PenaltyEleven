@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class SelectorEquipos extends JFrame{
+    OperacionesEquipos oe = new OperacionesEquipos();
+    JLabel[] equipos = new JLabel[14];
     JButton seleccionarEqu1;
     JButton seleccionarEqu2;
     JButton jugar;
@@ -18,6 +20,10 @@ public class SelectorEquipos extends JFrame{
     JButton flechaIzquierda2;
     JButton flechaDerecha2;
     BufferedImage imagen;
+    JLabel labelEquipo1;
+    JLabel labelEquipo2;
+    int indiceEquipo1 = 0;
+    int indiceEquipo2 = 0;
 
     public SelectorEquipos(){
         super("Penalty Eleven");
@@ -39,10 +45,24 @@ public class SelectorEquipos extends JFrame{
 
         // Cargar imagen de fondo
         try {
-            imagen = ImageIO.read(new File("src/FondoSelectorEquipos.jpeg")); // Ruta de la imagen de fondo
+            imagen = ImageIO.read(new File("src/Imagenes/FondoSelectorEquipos.jpeg")); // Ruta de la imagen de fondo
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // JLabel para el equipo 1
+        labelEquipo1 = new JLabel(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
+        labelEquipo1.setFont(new Font("Action Man", Font.BOLD, 20));
+        labelEquipo1.setBounds(50, 110, 200, 30);
+        labelEquipo1.setHorizontalAlignment(JLabel.CENTER);
+        panel.add(labelEquipo1);
+
+        // JLabel para el equipo 2
+        labelEquipo2 = new JLabel(oe.getEquipos().get(indiceEquipo2).getNombreEquipo());
+        labelEquipo2.setFont(new Font("Action Man", Font.BOLD, 20));
+        labelEquipo2.setHorizontalAlignment(JLabel.CENTER);
+        labelEquipo2.setBounds(550, 110, 200, 30);
+        panel.add(labelEquipo2);
 
         // Botón seleccionar para el equipo 1
         seleccionarEqu1 = new JButton("Seleccionar");
@@ -76,9 +96,7 @@ public class SelectorEquipos extends JFrame{
         back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MenuInicial menuInicial = new MenuInicial();
-                menuInicial.setVisible(true);
-                dispose();
+
             }
         });
         back.setBounds(300, 500, 200, 50);
@@ -90,6 +108,15 @@ public class SelectorEquipos extends JFrame{
         flechaIzquierda.setBackground(colorBoton);
         flechaIzquierda.setForeground(colorTexto);
         flechaIzquierda.setBounds(600, 350, 50, 50);
+        flechaIzquierda.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (indiceEquipo2 > 0) {
+                    indiceEquipo2--;
+                    labelEquipo2.setText(oe.getEquipos().get(indiceEquipo2).getNombreEquipo());
+                }
+            }
+        });
         panel.add(flechaIzquierda);
 
         // Botón flecha derecha
@@ -98,6 +125,15 @@ public class SelectorEquipos extends JFrame{
         flechaDerecha.setBackground(colorBoton);
         flechaDerecha.setForeground(colorTexto);
         flechaDerecha.setBounds(650, 350, 50, 50);
+        flechaDerecha.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (indiceEquipo2 < oe.getEquipos().size() - 1) {
+                    indiceEquipo2++;
+                    labelEquipo2.setText(oe.getEquipos().get(indiceEquipo2).getNombreEquipo());
+                }
+            }
+        });
         panel.add(flechaDerecha);
 
         // Botón flecha izquierda 2
@@ -106,6 +142,15 @@ public class SelectorEquipos extends JFrame{
         flechaIzquierda2.setBackground(colorBoton);
         flechaIzquierda2.setForeground(colorTexto);
         flechaIzquierda2.setBounds(100, 350, 50, 50);
+        flechaIzquierda2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (indiceEquipo1 > 0) {
+                    indiceEquipo1--;
+                    labelEquipo1.setText(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
+                }
+            }
+        });
         panel.add(flechaIzquierda2);
 
         // Botón flecha derecha 2
@@ -114,6 +159,15 @@ public class SelectorEquipos extends JFrame{
         flechaDerecha2.setBackground(colorBoton);
         flechaDerecha2.setForeground(colorTexto);
         flechaDerecha2.setBounds(150, 350, 50, 50);
+        flechaDerecha2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (indiceEquipo1 < oe.getEquipos().size() - 1) {
+                    indiceEquipo1++;
+                    labelEquipo1.setText(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
+                }
+            }
+        });
         panel.add(flechaDerecha2);
 
     }
