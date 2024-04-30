@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class SelectorEquipos extends JFrame{
     OperacionesEquipos oe = new OperacionesEquipos();
-    JLabel[] labelEscudos = new JLabel[13];
+    JLabel[] equipos = new JLabel[14];
     JButton seleccionarEqu1;
     JButton seleccionarEqu2;
     JButton jugar;
@@ -42,17 +42,6 @@ public class SelectorEquipos extends JFrame{
         panel = new JPanel();
         panel.setLayout(null);
         this.add(panel);
-
-        for (int i = 0; i < labelEscudos.length; i++) {
-            try {
-                BufferedImage escudo = ImageIO.read(new File("src/Imagenes/EscudoRaimon" + (i + 1) + ".png")); // Reemplaza con la ruta a las imágenes de los escudos de los equipos
-                labelEscudos[i] = new JLabel(new ImageIcon(escudo));
-                labelEscudos[i].setBounds(50, 140, escudo.getWidth(), escudo.getHeight()); // Ajusta las coordenadas y el tamaño según sea necesario
-                panel.add(labelEscudos[i]);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
 
         // Cargar imagen de fondo
         try {
@@ -123,10 +112,8 @@ public class SelectorEquipos extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (indiceEquipo2 > 0) {
-                    labelEscudos[indiceEquipo2].setVisible(false); // Oculta la imagen del equipo anterior
                     indiceEquipo2--;
                     labelEquipo2.setText(oe.getEquipos().get(indiceEquipo2).getNombreEquipo());
-                    labelEscudos[indiceEquipo2].setVisible(true); // Muestra la imagen del equipo seleccionado
                 }
             }
         });
@@ -142,10 +129,8 @@ public class SelectorEquipos extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (indiceEquipo2 < oe.getEquipos().size() - 1) {
-                    labelEscudos[indiceEquipo2].setVisible(false); // Oculta la imagen del equipo anterior
                     indiceEquipo2++;
                     labelEquipo2.setText(oe.getEquipos().get(indiceEquipo2).getNombreEquipo());
-                    labelEscudos[indiceEquipo2].setVisible(true); // Muestra la imagen del equipo seleccionado
                 }
             }
         });
@@ -161,10 +146,8 @@ public class SelectorEquipos extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (indiceEquipo1 > 0) {
-                    labelEscudos[indiceEquipo1].setVisible(false); // Oculta la imagen del equipo anterior
                     indiceEquipo1--;
                     labelEquipo1.setText(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
-                    labelEscudos[indiceEquipo1].setVisible(true); // Muestra la imagen del equipo seleccionado
                 }
             }
         });
@@ -180,10 +163,8 @@ public class SelectorEquipos extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (indiceEquipo1 < oe.getEquipos().size() - 1) {
-                    labelEscudos[indiceEquipo1].setVisible(false); // Oculta la imagen del equipo anterior
                     indiceEquipo1++;
                     labelEquipo1.setText(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
-                    labelEscudos[indiceEquipo1].setVisible(true); // Muestra la imagen del equipo seleccionado
                 }
             }
         });
