@@ -1,6 +1,7 @@
 
 public class Main {
     public static void main(String[] args) {
-        new SelectorEquipos().setVisible(true);
+       Launcher launcher = new Launcher();
+       launcher.start();
     }
 }

@@ -77,8 +77,8 @@ public class SelectorEquipos extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 MenuInicial menuInicial = new MenuInicial();
-
                 menuInicial.setVisible(true);
+                dispose();
             }
         });
         back.setBounds(300, 500, 200, 50);
