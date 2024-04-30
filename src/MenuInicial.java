@@ -89,7 +89,7 @@ public class MenuInicial extends JFrame {
 
         // Cargar imagen de fondo
         try {
-            imagen = ImageIO.read(new File("src/FondoMenuInicial.jpeg")); // Ruta de la imagen de fondo
+            imagen = ImageIO.read(new File("src/Imagenes/FondoMenuInicial.jpeg")); // Ruta de la imagen de fondo
         } catch (IOException e) {
             e.printStackTrace();
         }
