@@ -197,8 +197,8 @@ public class SelectorEquipos extends JFrame{
         // Abrir el clip de audio y cargar muestras de audio del audio input stream
         clip.open(audioIn);
 
-        // Iniciar la reproducción
-        clip.start();
+        // Iniciar la reproducción en bucle
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
         e.printStackTrace();
     }
