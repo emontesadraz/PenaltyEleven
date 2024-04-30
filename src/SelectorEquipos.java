@@ -28,6 +28,7 @@ public class SelectorEquipos extends JFrame{
         // Fuente y color de los botones
         Font fuenteBoton = new Font("Action Man", Font.BOLD, 15);
         Color colorBoton = new Color(214, 202, 42);
+        Color colorTexto = new Color(4, 38, 193);
 
         // Panel
         panel = new JPanel();
@@ -45,6 +46,7 @@ public class SelectorEquipos extends JFrame{
         seleccionarEqu1 = new JButton("Seleccionar");
         seleccionarEqu1.setFont(fuenteBoton);
         seleccionarEqu1.setBackground(colorBoton);
+        seleccionarEqu1.setForeground(colorTexto);
         seleccionarEqu1.setBounds(50, 50, 200, 50);
         panel.add(seleccionarEqu1);
 
@@ -52,6 +54,7 @@ public class SelectorEquipos extends JFrame{
         seleccionarEqu2 = new JButton("Seleccionar");
         seleccionarEqu2.setFont(fuenteBoton);
         seleccionarEqu2.setBackground(colorBoton);
+        seleccionarEqu2.setForeground(colorTexto);
         seleccionarEqu2.setBounds(550, 50, 200, 50);
         panel.add(seleccionarEqu2);
 
@@ -59,6 +62,7 @@ public class SelectorEquipos extends JFrame{
         jugar = new JButton("Jugar");
         jugar.setFont(fuenteBoton);
         jugar.setBackground(colorBoton);
+        jugar.setForeground(colorTexto);
         jugar.setBounds(300, 450, 200, 50);
         panel.add(jugar);
 
@@ -66,6 +70,7 @@ public class SelectorEquipos extends JFrame{
         back = new JButton("Atrás");
         back.setFont(fuenteBoton);
         back.setBackground(colorBoton);
+        back.setForeground(colorTexto);
         back.setBounds(300, 500, 200, 50);
         panel.add(back);
 
@@ -73,6 +78,7 @@ public class SelectorEquipos extends JFrame{
         flechaIzquierda = new JButton("<");
         flechaIzquierda.setFont(fuenteBoton);
         flechaIzquierda.setBackground(colorBoton);
+        flechaIzquierda.setForeground(colorTexto);
         flechaIzquierda.setBounds(600, 350, 50, 50);
         panel.add(flechaIzquierda);
 
@@ -80,6 +86,7 @@ public class SelectorEquipos extends JFrame{
         flechaDerecha = new JButton(">");
         flechaDerecha.setFont(fuenteBoton);
         flechaDerecha.setBackground(colorBoton);
+        flechaDerecha.setForeground(colorTexto);
         flechaDerecha.setBounds(650, 350, 50, 50);
         panel.add(flechaDerecha);
 
@@ -87,6 +94,7 @@ public class SelectorEquipos extends JFrame{
         flechaIzquierda2 = new JButton("<");
         flechaIzquierda2.setFont(fuenteBoton);
         flechaIzquierda2.setBackground(colorBoton);
+        flechaIzquierda2.setForeground(colorTexto);
         flechaIzquierda2.setBounds(100, 350, 50, 50);
         panel.add(flechaIzquierda2);
 
@@ -94,6 +102,7 @@ public class SelectorEquipos extends JFrame{
         flechaDerecha2 = new JButton(">");
         flechaDerecha2.setFont(fuenteBoton);
         flechaDerecha2.setBackground(colorBoton);
+        flechaDerecha2.setForeground(colorTexto);
         flechaDerecha2.setBounds(150, 350, 50, 50);
         panel.add(flechaDerecha2);
 
