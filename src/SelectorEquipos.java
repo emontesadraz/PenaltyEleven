@@ -29,6 +29,8 @@ public class SelectorEquipos extends JFrame{
     JLabel labelEquipo2;
     int indiceEquipo1 = 0;
     int indiceEquipo2 = 0;
+    boolean eq1 = false;
+    boolean eq2 = false;
 
     public SelectorEquipos(){
         super("Penalty Eleven");
@@ -94,6 +96,7 @@ public class SelectorEquipos extends JFrame{
                 } else {
                     seleccionarEqu1.setText("Seleccionar");
                 }
+                eq1 = !eq1;
             }
         });
         seleccionarEqu1.setBounds(50, 50, 200, 50);
@@ -115,6 +118,7 @@ public class SelectorEquipos extends JFrame{
                 } else {
                     seleccionarEqu2.setText("Seleccionar");
                 }
+                eq2 = !eq2;
             }
         });
         seleccionarEqu2.setBounds(550, 50, 200, 50);
@@ -167,7 +171,7 @@ public class SelectorEquipos extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 playSound("Musica/SonidoFlechas.wav",0.2f);
-                if (indiceEquipo2 > 0) {
+                if (!eq2 && indiceEquipo2 > 0) {
                     indiceEquipo2--;
                     labelEquipo2.setText(oe.getEquipos().get(indiceEquipo2).getNombreEquipo());
                     imagenEquipo2.setIcon(imagenesEquipos[indiceEquipo2]);
@@ -186,7 +190,7 @@ public class SelectorEquipos extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 playSound("Musica/SonidoFlechas.wav",0.2f);
-                if (indiceEquipo2 < oe.getEquipos().size() - 1) {
+                if (!eq2 && indiceEquipo2 < oe.getEquipos().size() - 1) {
                     indiceEquipo2++;
                     labelEquipo2.setText(oe.getEquipos().get(indiceEquipo2).getNombreEquipo());
                     imagenEquipo2.setIcon(imagenesEquipos[indiceEquipo2]);
@@ -205,7 +209,7 @@ public class SelectorEquipos extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 playSound("Musica/SonidoFlechas.wav",0.2f);
-                if (indiceEquipo1 > 0) {
+                if (!eq1 && indiceEquipo1 > 0) {
                     indiceEquipo1--;
                     labelEquipo1.setText(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
                     imagenEquipo1.setIcon(imagenesEquipos[indiceEquipo1]);
@@ -224,7 +228,7 @@ public class SelectorEquipos extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 playSound("Musica/SonidoFlechas.wav",0.2f);
-                if (indiceEquipo1 < oe.getEquipos().size() - 1) {
+                if (!eq1 && indiceEquipo1 < oe.getEquipos().size() - 1) {
                     indiceEquipo1++;
                     labelEquipo1.setText(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
                     imagenEquipo1.setIcon(imagenesEquipos[indiceEquipo1]);
