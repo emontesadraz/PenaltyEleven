@@ -135,9 +135,14 @@ public class SelectorEquipos extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 // Reproducir sonido
                 playSound("Musica/SonidoJugar.wav",0.2f);
-                /*dispose();
-                new Juego().setVisible(true);
-                 */
+                if (eq1 && eq2) {
+                    // Aquí va el código para iniciar el juego
+                    // dispose();
+                    // new Juego().setVisible(true);
+                } else {
+                    // Mostrar un mensaje de error si los equipos no están seleccionados
+                    JOptionPane.showMessageDialog(null, "Debes seleccionar ambos equipos antes de jugar.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         panel.add(jugar);
