@@ -50,7 +50,7 @@ public class SelectorEquipos extends JFrame{
 
         // Cargar imagen de fondo
         try {
-            imagen = ImageIO.read(new File("src/Imagenes/FondoSelectorEquipos.jpeg")); // Ruta de la imagen de fondo
+            imagen = ImageIO.read(new File("src/Imagenes/FondoSelectorEquipos.png")); // Ruta de la imagen de fondo
         } catch (IOException e) {
             e.printStackTrace();
         }
