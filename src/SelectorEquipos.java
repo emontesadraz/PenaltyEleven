@@ -37,7 +37,7 @@ public class SelectorEquipos extends JFrame {
     public SelectorEquipos() {
         super("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1200, 800);
+        setSize(1280, 720);
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -80,12 +80,12 @@ public class SelectorEquipos extends JFrame {
         labelEquipo2.setOpaque(false);
         labelEquipo2.setForeground(Color.BLACK);
         labelEquipo2.setHorizontalAlignment(JLabel.CENTER);
-        labelEquipo2.setBounds(850, 200, 200, 30);
+        labelEquipo2.setBounds(950, 200, 200, 30);
         panel.add(labelEquipo2);
 
         // JLabel para la imagen del equipo 2
         JLabel imagenEquipo2 = new JLabel(imagenesEquipos[indiceEquipo2]);
-        imagenEquipo2.setBounds(850, 250, 200, 200);
+        imagenEquipo2.setBounds(950, 250, 200, 200);
         panel.add(imagenEquipo2);
 
         // Botón seleccionar para el equipo 1
@@ -128,7 +128,7 @@ public class SelectorEquipos extends JFrame {
                 eq2 = !eq2;
             }
         });
-        seleccionarEqu2.setBounds(850, 100, 200, 50);
+        seleccionarEqu2.setBounds(950, 100, 200, 50);
         panel.add(seleccionarEqu2);
 
         // Botón jugar
@@ -136,7 +136,7 @@ public class SelectorEquipos extends JFrame {
         jugar.setFont(fuenteBoton);
         jugar.setBackground(colorBoton);
         jugar.setForeground(colorTexto);
-        jugar.setBounds(500, 600, 200, 50);
+        jugar.setBounds(500, 500, 200, 50);
         jugar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -145,6 +145,7 @@ public class SelectorEquipos extends JFrame {
                 if (eq1 && eq2) {
                     // Aquí va el código para iniciar el juego
                     // dispose();
+                    // playMusic.stopMusic();
                     // new Juego().setVisible(true);
                 } else {
                     // Mostrar un mensaje de error si los equipos no están seleccionados
@@ -172,7 +173,7 @@ public class SelectorEquipos extends JFrame {
 
             }
         });
-        back.setBounds(500, 700, 200, 50);
+        back.setBounds(500, 600, 200, 50);
         panel.add(back);
 
         // Botón flecha izquierda
@@ -180,7 +181,7 @@ public class SelectorEquipos extends JFrame {
         flechaIzquierda.setFont(fuenteBoton);
         flechaIzquierda.setBackground(colorBoton);
         flechaIzquierda.setForeground(colorTexto);
-        flechaIzquierda.setBounds(800, 500, 50, 50);
+        flechaIzquierda.setBounds(900, 500, 50, 50);
         flechaIzquierda.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -199,7 +200,7 @@ public class SelectorEquipos extends JFrame {
         flechaDerecha.setFont(fuenteBoton);
         flechaDerecha.setBackground(colorBoton);
         flechaDerecha.setForeground(colorTexto);
-        flechaDerecha.setBounds(1050, 500, 50, 50);
+        flechaDerecha.setBounds(1150, 500, 50, 50);
         flechaDerecha.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
