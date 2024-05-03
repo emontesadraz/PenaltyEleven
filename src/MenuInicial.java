@@ -22,7 +22,7 @@ public class MenuInicial extends JFrame {
 
     public MenuInicial() {
 
-        setSize(800,600);
+        setSize(1200,800);
         setTitle("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -41,31 +41,33 @@ public class MenuInicial extends JFrame {
             }
         });
          */
-        soloPlayer.setBounds(250,180,300,40);
+        soloPlayer.setBounds(110,260,435,50);
         panel.add(soloPlayer);
 
         //Boton multiPlayer
         multiPlayer=new JButton("Multijugador");
-        /*multiPlayer.addActionListener(new ActionListener() {
+        multiPlayer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //poner enlace a pantalla de SelectorEquipos
+                SelectorEquipos selectorEquipos = new SelectorEquipos();
+                selectorEquipos.setVisible(true);
+                dispose();
             }
         });
-         */
-        multiPlayer.setBounds(250,260,300,40);
+
+        multiPlayer.setBounds(110,370,435,50);
         panel.add(multiPlayer);
 
         //Boton rankingGoleadores
         rankingGoleadores=new JButton("Ranking de Goleadores");
-        /*rankingGoleadores.addActionListener(new ActionListener() {
+        rankingGoleadores.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //poner enlace a pantalla de RankingGoleadores
             }
         });
-         */
-        rankingGoleadores.setBounds(250,340,300,40);
+
+        rankingGoleadores.setBounds(110,480,435,50);
         panel.add(rankingGoleadores);
 
         //Boton salir
@@ -76,7 +78,7 @@ public class MenuInicial extends JFrame {
                 System.exit(0);
             }
         });
-        salir.setBounds(250,420,300,40);
+        salir.setBounds(110,590,435,50);
         panel.add(salir);
 
         //Cambiar la fuente de los botones
