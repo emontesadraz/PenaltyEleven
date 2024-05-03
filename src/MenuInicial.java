@@ -19,8 +19,7 @@ public class MenuInicial extends JFrame {
 
     private BufferedImage imagen;
 
-    private Color colorBaseBotones = new Color(214, 202, 42);
-
+    public static final Color colorBaseBotones = new Color(2, 159, 255);
     public MenuInicial() {
 
         setSize(1200,800);
