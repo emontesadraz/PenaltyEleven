@@ -160,6 +160,7 @@ public class SelectorEquipos extends JFrame {
         back.setFont(fuenteBoton);
         back.setBackground(colorBoton);
         back.setForeground(colorTexto);
+
         back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
