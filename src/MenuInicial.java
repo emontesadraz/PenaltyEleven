@@ -1,4 +1,5 @@
 import javax.imageio.ImageIO;
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 public class MenuInicial extends JFrame {
     private JPanel panel;
@@ -16,7 +18,10 @@ public class MenuInicial extends JFrame {
     private JButton multiPlayer;
     private JButton rankingGoleadores;
     private JButton salir;
+    private Clip musicClip;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
+
+    private MusicManager musicManager = new MusicManager();
 
     private BufferedImage imagen;
 
@@ -33,13 +38,15 @@ public class MenuInicial extends JFrame {
 
         //Boton soloPlayer
         soloPlayer=new JButton("Un Jugador");
-        /*soloPlayer.addActionListener(new ActionListener() {
+        soloPlayer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //poner enlace a pantalla de SelectorEquipos
+
+                playSound("Musica/SonidoElegir1.wav", 0.7f);
+                musicManager.stopMusic();
             }
         });
-         */
+
         soloPlayer.setBounds(110,290,435,50);
         panel.add(soloPlayer);
 
@@ -51,6 +58,9 @@ public class MenuInicial extends JFrame {
                 SelectorEquipos selectorEquipos = new SelectorEquipos();
                 selectorEquipos.setVisible(true);
                 dispose();
+
+                playSound("Musica/SonidoElegir1.wav", 0.7f);
+                musicManager.stopMusic();
             }
         });
 
@@ -62,7 +72,9 @@ public class MenuInicial extends JFrame {
         rankingGoleadores.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //poner enlace a pantalla de RankingGoleadores
+                playSound("Musica/SonidoElegir1.wav", 0.7f);
+
+                musicManager.stopMusic();
             }
         });
 
@@ -75,24 +87,18 @@ public class MenuInicial extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
+                playSound("Musica/SonidoElegir1.wav", 0.7f);
             }
         });
         salir.setBounds(110,590,435,50);
         panel.add(salir);
 
         //Cambiar la fuente de los botones
-        Font fuenteBoton = new Font("Action Man", Font.BOLD, 15);
+        Font fuenteBoton = new Font("Action Man", Font.BOLD, 20);
         soloPlayer.setFont(fuenteBoton);
         multiPlayer.setFont(fuenteBoton);
         rankingGoleadores.setFont(fuenteBoton);
         salir.setFont(fuenteBoton);
-
-        //Cambiar color de fondo de los botones
-        Color colorBoton = new Color(25, 25, 25);
-        soloPlayer.setBackground(colorBoton);
-        multiPlayer.setBackground(colorBoton);
-        rankingGoleadores.setBackground(colorBoton);
-        salir.setBackground(colorBoton);
 
         //Cambiar color de texto de los botones
         Color colorTexto = new Color(255, 255, 255);
@@ -100,7 +106,6 @@ public class MenuInicial extends JFrame {
         multiPlayer.setForeground(colorTexto);
         rankingGoleadores.setForeground(colorTexto);
         salir.setForeground(colorTexto);
-
 
         getContentPane().add(panel);
 
@@ -115,6 +120,7 @@ public class MenuInicial extends JFrame {
         soloPlayer.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
+                playSound("Musica/SonidoSeleccion.wav", 0.7f);
                 soloPlayer.setBackground(colorBaseBotones.darker());
             }
             @Override
@@ -122,11 +128,14 @@ public class MenuInicial extends JFrame {
                 soloPlayer.setBackground(colorBaseBotones);
             }
 
+
+
         });
 
         multiPlayer.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
+                playSound("Musica/SonidoSeleccion.wav", 0.7f);
                 multiPlayer.setBackground(colorBaseBotones.darker());
             }
             @Override
@@ -139,6 +148,7 @@ public class MenuInicial extends JFrame {
         rankingGoleadores.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
+                playSound("Musica/SonidoSeleccion.wav", 0.7f);
                 rankingGoleadores.setBackground(colorBaseBotones.darker());
 
             }
@@ -152,6 +162,7 @@ public class MenuInicial extends JFrame {
         salir.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
+                playSound("Musica/SonidoSeleccion.wav", 0.7f);
                 salir.setBackground(colorBaseBotones.darker());
 
             }
@@ -163,6 +174,41 @@ public class MenuInicial extends JFrame {
             }
         });
 
+        // Controles de la música
+        musicManager.playMusic("Musica/MenuInicial.wav", 0.6f);
+
+    }
+
+    public void playSound(String soundFile, float volume) {
+        try {
+            // Abrir un audio input stream
+            URL url = this.getClass().getClassLoader().getResource(soundFile);
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+
+            // Obtener un clip de sonido
+            Clip clip = AudioSystem.getClip();
+
+            // Abrir el clip de audio y cargar muestras de audio del audio input stream
+            clip.open(audioIn);
+
+            // Obtener el control de volumen
+            FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+
+            // Convertir el volumen en decibelios
+            float dB = (float) (Math.log(volume) / Math.log(10.0) * 20.0);
+            volumeControl.setValue(dB);
+
+            // Iniciar la reproducción
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void stopMusic() {
+        if (musicClip != null && musicClip.isRunning()) {
+            musicClip.stop();
+        }
     }
 
     @Override
