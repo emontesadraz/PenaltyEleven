@@ -16,20 +16,19 @@ public class MenuInicial extends JFrame {
     private JButton multiPlayer;
     private JButton rankingGoleadores;
     private JButton salir;
-    public static final Color colorBaseBotones = new Color(2, 159, 255);
+    public static final Color colorBaseBotones = new Color(25, 25, 25);
 
     private BufferedImage imagen;
 
     public MenuInicial() {
 
-        setSize(1200,800);
+        setSize(1280,720);
         setTitle("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
 
         panel=new JPanel();
-        //panel.setPreferredSize(new Dimension(800,600));
         panel.setLayout(null);
 
         //Boton soloPlayer
@@ -41,7 +40,7 @@ public class MenuInicial extends JFrame {
             }
         });
          */
-        soloPlayer.setBounds(110,260,435,50);
+        soloPlayer.setBounds(110,290,435,50);
         panel.add(soloPlayer);
 
         //Boton multiPlayer
@@ -55,7 +54,7 @@ public class MenuInicial extends JFrame {
             }
         });
 
-        multiPlayer.setBounds(110,370,435,50);
+        multiPlayer.setBounds(110,390,435,50);
         panel.add(multiPlayer);
 
         //Boton rankingGoleadores
@@ -67,7 +66,7 @@ public class MenuInicial extends JFrame {
             }
         });
 
-        rankingGoleadores.setBounds(110,480,435,50);
+        rankingGoleadores.setBounds(110,490,435,50);
         panel.add(rankingGoleadores);
 
         //Boton salir
@@ -89,7 +88,7 @@ public class MenuInicial extends JFrame {
         salir.setFont(fuenteBoton);
 
         //Cambiar color de fondo de los botones
-        Color colorBoton = new Color(2, 159, 255);
+        Color colorBoton = new Color(25, 25, 25);
         soloPlayer.setBackground(colorBoton);
         multiPlayer.setBackground(colorBoton);
         rankingGoleadores.setBackground(colorBoton);
@@ -107,7 +106,7 @@ public class MenuInicial extends JFrame {
 
         // Cargar imagen de fondo
         try {
-            imagen = ImageIO.read(new File("src/Imagenes/FondoMenuInicial.jpeg")); // Ruta de la imagen de fondo
+            imagen = ImageIO.read(new File("src/Imagenes/FondoMenuInicial.png")); // Ruta de la imagen de fondo
         } catch (IOException e) {
             e.printStackTrace();
         }
