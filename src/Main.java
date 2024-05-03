@@ -1,6 +1,7 @@
 
-public class  Main {
+public class Main {
     public static void main(String[] args) {
-           new MenuInicial().setVisible(true);
+       Launcher launcher = new Launcher();
+       launcher.start();
     }
 }
