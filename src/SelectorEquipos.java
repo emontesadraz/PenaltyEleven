@@ -4,8 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -39,7 +37,7 @@ public class SelectorEquipos extends JFrame {
     public SelectorEquipos() {
         super("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 600);
+        setSize(1200, 800);
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -51,6 +49,7 @@ public class SelectorEquipos extends JFrame {
 
         // Panel
         panel = new JPanel();
+        panel.setOpaque(false);
         panel.setLayout(null);
         this.add(panel);
 
@@ -64,25 +63,29 @@ public class SelectorEquipos extends JFrame {
         // JLabel para el equipo 1
         labelEquipo1 = new JLabel(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
         labelEquipo1.setFont(new Font("Action Man", Font.BOLD, 20));
-        labelEquipo1.setBounds(50, 110, 200, 30);
+        labelEquipo1.setOpaque(false);
+        labelEquipo1.setForeground(Color.BLACK);
+        labelEquipo1.setBounds(150, 200, 200, 30);
         labelEquipo1.setHorizontalAlignment(JLabel.CENTER);
         panel.add(labelEquipo1);
 
         // JLabel para la imagen del equipo 1
         JLabel imagenEquipo1 = new JLabel(imagenesEquipos[indiceEquipo1]);
-        imagenEquipo1.setBounds(50, 150, 200, 200);
+        imagenEquipo1.setBounds(150, 250, 200, 200);
         panel.add(imagenEquipo1);
 
         // JLabel para el equipo 2
         labelEquipo2 = new JLabel(oe.getEquipos().get(indiceEquipo2).getNombreEquipo());
         labelEquipo2.setFont(new Font("Action Man", Font.BOLD, 20));
+        labelEquipo2.setOpaque(false);
+        labelEquipo2.setForeground(Color.BLACK);
         labelEquipo2.setHorizontalAlignment(JLabel.CENTER);
-        labelEquipo2.setBounds(550, 110, 200, 30);
+        labelEquipo2.setBounds(850, 200, 200, 30);
         panel.add(labelEquipo2);
 
         // JLabel para la imagen del equipo 2
         JLabel imagenEquipo2 = new JLabel(imagenesEquipos[indiceEquipo2]);
-        imagenEquipo2.setBounds(550, 150, 200, 200);
+        imagenEquipo2.setBounds(850, 250, 200, 200);
         panel.add(imagenEquipo2);
 
         // Botón seleccionar para el equipo 1
@@ -103,7 +106,7 @@ public class SelectorEquipos extends JFrame {
                 eq1 = !eq1;
             }
         });
-        seleccionarEqu1.setBounds(50, 50, 200, 50);
+        seleccionarEqu1.setBounds(150, 100, 200, 50);
 
         panel.add(seleccionarEqu1);
 
@@ -125,7 +128,7 @@ public class SelectorEquipos extends JFrame {
                 eq2 = !eq2;
             }
         });
-        seleccionarEqu2.setBounds(550, 50, 200, 50);
+        seleccionarEqu2.setBounds(850, 100, 200, 50);
         panel.add(seleccionarEqu2);
 
         // Botón jugar
@@ -133,7 +136,7 @@ public class SelectorEquipos extends JFrame {
         jugar.setFont(fuenteBoton);
         jugar.setBackground(colorBoton);
         jugar.setForeground(colorTexto);
-        jugar.setBounds(300, 450, 200, 50);
+        jugar.setBounds(500, 600, 200, 50);
         jugar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -169,7 +172,7 @@ public class SelectorEquipos extends JFrame {
 
             }
         });
-        back.setBounds(300, 500, 200, 50);
+        back.setBounds(500, 700, 200, 50);
         panel.add(back);
 
         // Botón flecha izquierda
@@ -177,7 +180,7 @@ public class SelectorEquipos extends JFrame {
         flechaIzquierda.setFont(fuenteBoton);
         flechaIzquierda.setBackground(colorBoton);
         flechaIzquierda.setForeground(colorTexto);
-        flechaIzquierda.setBounds(600, 350, 50, 50);
+        flechaIzquierda.setBounds(800, 500, 50, 50);
         flechaIzquierda.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -196,7 +199,7 @@ public class SelectorEquipos extends JFrame {
         flechaDerecha.setFont(fuenteBoton);
         flechaDerecha.setBackground(colorBoton);
         flechaDerecha.setForeground(colorTexto);
-        flechaDerecha.setBounds(650, 350, 50, 50);
+        flechaDerecha.setBounds(1050, 500, 50, 50);
         flechaDerecha.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -215,7 +218,7 @@ public class SelectorEquipos extends JFrame {
         flechaIzquierda2.setFont(fuenteBoton);
         flechaIzquierda2.setBackground(colorBoton);
         flechaIzquierda2.setForeground(colorTexto);
-        flechaIzquierda2.setBounds(100, 350, 50, 50);
+        flechaIzquierda2.setBounds(100, 500, 50, 50);
         flechaIzquierda2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -234,7 +237,7 @@ public class SelectorEquipos extends JFrame {
         flechaDerecha2.setFont(fuenteBoton);
         flechaDerecha2.setBackground(colorBoton);
         flechaDerecha2.setForeground(colorTexto);
-        flechaDerecha2.setBounds(150, 350, 50, 50);
+        flechaDerecha2.setBounds(350, 500, 50, 50);
         flechaDerecha2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -21,7 +21,7 @@ public class MenuInicial extends JFrame {
 
     public MenuInicial() {
 
-        setSize(800,600);
+        setSize(1200,800);
         setTitle("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -44,7 +44,7 @@ public class MenuInicial extends JFrame {
 
         soloPlayer.setFont(fuenteBoton);
         soloPlayer.setBackground(colorBoton);
-        soloPlayer.setBounds(250,180,300,40);
+        soloPlayer.setBounds(450,170,300,60);
         panel.add(soloPlayer);
 
 
@@ -60,7 +60,7 @@ public class MenuInicial extends JFrame {
 
         multiPlayer.setFont(fuenteBoton);
         multiPlayer.setBackground(colorBoton);
-        multiPlayer.setBounds(250,260,300,40);
+        multiPlayer.setBounds(450,270,300,60);
         panel.add(multiPlayer);
 
         rankingGoleadores=new JButton("Ranking de Goleadores");
@@ -73,7 +73,7 @@ public class MenuInicial extends JFrame {
          */
         rankingGoleadores.setFont(fuenteBoton);
         rankingGoleadores.setBackground(colorBoton);
-        rankingGoleadores.setBounds(250,340,300,40);
+        rankingGoleadores.setBounds(450,380,300,60);
         panel.add(rankingGoleadores);
 
         salir=new JButton("Salir");
@@ -86,7 +86,7 @@ public class MenuInicial extends JFrame {
 
         salir.setFont(fuenteBoton);
         salir.setBackground(colorBoton);
-        salir.setBounds(250,420,300,40);
+        salir.setBounds(450,490,300,60);
         panel.add(salir);
 
         getContentPane().add(panel);
