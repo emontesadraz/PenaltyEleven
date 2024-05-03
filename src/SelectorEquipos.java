@@ -4,14 +4,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
 
-public class SelectorEquipos extends JFrame{
+public class SelectorEquipos extends JFrame {
     OperacionesEquipos oe = new OperacionesEquipos();
+    MusicManager musicManager = new MusicManager();
     private ImageIcon[] imagenesEquipos = {new ImageIcon("src/Imagenes/EscudoRaimon.png"), new ImageIcon("src/Imagenes/EscudoZeus.png"), new ImageIcon("src/Imagenes/.png"), new ImageIcon("src/Imagenes/EscudoGenesis.png")
             , new ImageIcon("src/Imagenes/EscudoRoyal.png"), new ImageIcon("src/Imagenes/EscudoAlpino.png"), new ImageIcon("src/Imagenes/EscudoKirkwood.png"), new ImageIcon("src/Imagenes/EscudoOccult.png"), new ImageIcon("src/Imagenes/EscudoGigantes.png")
             , new ImageIcon("src/Imagenes/EscudoEpsilon.png"), new ImageIcon("src/Imagenes/EscudoOtaku.png"), new ImageIcon("src/Imagenes/EscudoFarm.png"), new ImageIcon("src/Imagenes/EscudoProminence.png"), new ImageIcon("src/Imagenes/EscudoCaos.png")};
@@ -31,8 +34,9 @@ public class SelectorEquipos extends JFrame{
     int indiceEquipo2 = 0;
     boolean eq1 = false;
     boolean eq2 = false;
+    private Clip musicClip;
 
-    public SelectorEquipos(){
+    public SelectorEquipos() {
         super("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
@@ -112,7 +116,7 @@ public class SelectorEquipos extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Reproducir sonido
-                playSound("Musica/SonidoBotones.wav",0.2f);
+                playSound("Musica/SonidoBotones.wav", 0.2f);
                 if (seleccionarEqu2.getText().equals("Seleccionar")) {
                     seleccionarEqu2.setText("Seleccionado");
                 } else {
@@ -134,7 +138,7 @@ public class SelectorEquipos extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Reproducir sonido
-                playSound("Musica/SonidoJugar.wav",0.2f);
+                playSound("Musica/SonidoJugar.wav", 0.2f);
                 if (eq1 && eq2) {
                     // Aquí va el código para iniciar el juego
                     // dispose();
@@ -156,10 +160,12 @@ public class SelectorEquipos extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Reproducir sonido
-                playSound("Musica/SonidoAtras.wav",0.2f);
-               /* dispose();
-                new MenuPrincipal().setVisible(true);
-                */
+                playSound("Musica/SonidoAtras.wav", 0.2f);
+                musicManager.stopMusic();
+                dispose();
+                MenuInicial menuInicial = new MenuInicial();
+                menuInicial.setVisible(true);
+
 
             }
         });
@@ -175,7 +181,7 @@ public class SelectorEquipos extends JFrame{
         flechaIzquierda.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                playSound("Musica/SonidoFlechas.wav",0.2f);
+                playSound("Musica/SonidoFlechas.wav", 0.2f);
                 if (!eq2 && indiceEquipo2 > 0) {
                     indiceEquipo2--;
                     labelEquipo2.setText(oe.getEquipos().get(indiceEquipo2).getNombreEquipo());
@@ -194,7 +200,7 @@ public class SelectorEquipos extends JFrame{
         flechaDerecha.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                playSound("Musica/SonidoFlechas.wav",0.2f);
+                playSound("Musica/SonidoFlechas.wav", 0.2f);
                 if (!eq2 && indiceEquipo2 < oe.getEquipos().size() - 1) {
                     indiceEquipo2++;
                     labelEquipo2.setText(oe.getEquipos().get(indiceEquipo2).getNombreEquipo());
@@ -213,7 +219,7 @@ public class SelectorEquipos extends JFrame{
         flechaIzquierda2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                playSound("Musica/SonidoFlechas.wav",0.2f);
+                playSound("Musica/SonidoFlechas.wav", 0.2f);
                 if (!eq1 && indiceEquipo1 > 0) {
                     indiceEquipo1--;
                     labelEquipo1.setText(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
@@ -232,7 +238,7 @@ public class SelectorEquipos extends JFrame{
         flechaDerecha2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                playSound("Musica/SonidoFlechas.wav",0.2f);
+                playSound("Musica/SonidoFlechas.wav", 0.2f);
                 if (!eq1 && indiceEquipo1 < oe.getEquipos().size() - 1) {
                     indiceEquipo1++;
                     labelEquipo1.setText(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
@@ -241,11 +247,12 @@ public class SelectorEquipos extends JFrame{
             }
         });
         panel.add(flechaDerecha2);
-
         // Controles de la música
-        playMusic("Musica/SelectorEquipos.wav", 0.6f);
+        musicManager.playMusic("Musica/SelectorEquipos.wav", 0.6f);
+
 
     }
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -254,54 +261,29 @@ public class SelectorEquipos extends JFrame{
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
         }
     }
-  public void playMusic(String musicFile, float volume) {
-    try {
-        // Abrir un audio input stream
-        URL url = this.getClass().getClassLoader().getResource(musicFile);
-        AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+    public void playSound(String soundFile, float volume) {
+        try {
+            // Abrir un audio input stream
+            URL url = this.getClass().getClassLoader().getResource(soundFile);
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
 
-        // Obtener un clip de sonido
-        Clip clip = AudioSystem.getClip();
+            // Obtener un clip de sonido
+            Clip clip = AudioSystem.getClip();
 
-        // Abrir el clip de audio y cargar muestras de audio del audio input stream
-        clip.open(audioIn);
+            // Abrir el clip de audio y cargar muestras de audio del audio input stream
+            clip.open(audioIn);
 
-        // Obtener el control de volumen
-        FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            // Obtener el control de volumen
+            FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 
-        // Convertir el volumen en decibelios
-        float dB = (float) (Math.log(volume) / Math.log(10.0) * 20.0);
-        volumeControl.setValue(dB);
+            // Convertir el volumen en decibelios
+            float dB = (float) (Math.log(volume) / Math.log(10.0) * 20.0);
+            volumeControl.setValue(dB);
 
-        // Iniciar la reproducción en bucle
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
-    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-        e.printStackTrace();
+            // Iniciar la reproducción
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
     }
-}
-public void playSound(String soundFile, float volume) {
-    try {
-        // Abrir un audio input stream
-        URL url = this.getClass().getClassLoader().getResource(soundFile);
-        AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-
-        // Obtener un clip de sonido
-        Clip clip = AudioSystem.getClip();
-
-        // Abrir el clip de audio y cargar muestras de audio del audio input stream
-        clip.open(audioIn);
-
-        // Obtener el control de volumen
-        FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-
-        // Convertir el volumen en decibelios
-        float dB = (float) (Math.log(volume) / Math.log(10.0) * 20.0);
-        volumeControl.setValue(dB);
-
-        // Iniciar la reproducción
-        clip.start();
-    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-        e.printStackTrace();
-    }
-}
 }
