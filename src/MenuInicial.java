@@ -35,12 +35,13 @@ public class MenuInicial extends JFrame {
         Color colorBoton = new Color(214, 202, 42);
 
         soloPlayer=new JButton("Un Jugador");
-       /* soloPlayer.addActionListener(new ActionListener() {
+       soloPlayer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                SelectorEquiposSolo selectorEquiposSolo = new SelectorEquiposSolo();
+                selectorEquiposSolo.setVisible(true);
             }
         });
-        */
 
         soloPlayer.setFont(fuenteBoton);
         soloPlayer.setBackground(colorBoton);
