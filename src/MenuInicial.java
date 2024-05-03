@@ -19,6 +19,8 @@ public class MenuInicial extends JFrame {
 
     private BufferedImage imagen;
 
+    private Color colorBaseBotones = new Color(214, 202, 42);
+
     public MenuInicial() {
 
         setSize(1200,800);
@@ -102,26 +104,51 @@ public class MenuInicial extends JFrame {
         soloPlayer.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                soloPlayer.setBackground(Color.WHITE);
-
+                soloPlayer.setBackground(colorBaseBotones.darker());
             }
-
             @Override
             public void mouseExited(MouseEvent e) {
-                soloPlayer.setBackground(Color.BLACK);
+                soloPlayer.setBackground(colorBaseBotones);
             }
+
         });
 
         multiPlayer.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                multiPlayer.setBackground(Color.WHITE.brighter());
+                multiPlayer.setBackground(colorBaseBotones.darker());
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                multiPlayer.setBackground(colorBaseBotones);
+            }
+
+        });
+
+        rankingGoleadores.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                rankingGoleadores.setBackground(colorBaseBotones.darker());
 
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                multiPlayer.setBackground(Color.BLACK);
+                rankingGoleadores.setBackground(colorBaseBotones);
+            }
+        });
+
+        salir.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                salir.setBackground(colorBaseBotones.darker());
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+                salir.setBackground(colorBaseBotones);
             }
         });
 
