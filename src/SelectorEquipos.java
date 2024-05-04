@@ -97,7 +97,7 @@ public class SelectorEquipos extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Reproducir sonido
-                playSound("Musica/SonidoBotones.wav", 0.2f);
+                playSound("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
                 if (seleccionarEqu1.getText().equals("Seleccionar")) {
                     seleccionarEqu1.setText("Seleccionado");
                 } else {
@@ -119,7 +119,7 @@ public class SelectorEquipos extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Reproducir sonido
-                playSound("Musica/SonidoBotones.wav", 0.2f);
+                playSound("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
                 if (seleccionarEqu2.getText().equals("Seleccionar")) {
                     seleccionarEqu2.setText("Seleccionado");
                 } else {
@@ -141,7 +141,7 @@ public class SelectorEquipos extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Reproducir sonido
-                playSound("Musica/SonidoJugar.wav", 0.2f);
+                playSound("Musica/SoundEffect/SonidoJugar.wav", 0.7f);
                 if (eq1 && eq2) {
                     // Aquí va el código para iniciar el juego
                     // dispose();
@@ -164,7 +164,7 @@ public class SelectorEquipos extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Reproducir sonido
-                playSound("Musica/SonidoAtras.wav", 0.2f);
+                playSound("Musica/SoundEffect/SonidoAtras.wav", 0.7f);
                 musicManager.stopMusic();
                 dispose();
                 MenuInicial menuInicial = new MenuInicial();
@@ -185,7 +185,7 @@ public class SelectorEquipos extends JFrame {
         flechaIzquierda.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                playSound("Musica/SonidoFlechas.wav", 0.2f);
+                playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
                 if (!eq2 && indiceEquipo2 > 0) {
                     indiceEquipo2--;
                     labelEquipo2.setText(oe.getEquipos().get(indiceEquipo2).getNombreEquipo());
@@ -204,7 +204,7 @@ public class SelectorEquipos extends JFrame {
         flechaDerecha.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                playSound("Musica/SonidoFlechas.wav", 0.2f);
+                playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
                 if (!eq2 && indiceEquipo2 < oe.getEquipos().size() - 1) {
                     indiceEquipo2++;
                     labelEquipo2.setText(oe.getEquipos().get(indiceEquipo2).getNombreEquipo());
@@ -223,7 +223,7 @@ public class SelectorEquipos extends JFrame {
         flechaIzquierda2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                playSound("Musica/SonidoFlechas.wav", 0.2f);
+                playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
                 if (!eq1 && indiceEquipo1 > 0) {
                     indiceEquipo1--;
                     labelEquipo1.setText(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
@@ -242,7 +242,7 @@ public class SelectorEquipos extends JFrame {
         flechaDerecha2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                playSound("Musica/SonidoFlechas.wav", 0.2f);
+                playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
                 if (!eq1 && indiceEquipo1 < oe.getEquipos().size() - 1) {
                     indiceEquipo1++;
                     labelEquipo1.setText(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
@@ -252,7 +252,7 @@ public class SelectorEquipos extends JFrame {
         });
         panel.add(flechaDerecha2);
         // Controles de la música
-        musicManager.playMusic("Musica/SelectorEquipos.wav", 0.6f);
+        musicManager.playMusic("Musica/Soundtrack/SelectorEquipos.wav", 0.7f);
 
 
     }
