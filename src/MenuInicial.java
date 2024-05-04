@@ -17,6 +17,8 @@ public class MenuInicial extends JFrame {
     private JButton soloPlayer;
     private JButton multiPlayer;
     private JButton rankingGoleadores;
+
+    private JButton creditos;
     private JButton salir;
     private Clip musicClip;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
@@ -36,7 +38,9 @@ public class MenuInicial extends JFrame {
         panel=new JPanel();
         panel.setLayout(null);
 
+
         //Boton soloPlayer
+
         soloPlayer=new JButton("Un Jugador");
         soloPlayer.addActionListener(new ActionListener() {
             @Override
@@ -47,10 +51,12 @@ public class MenuInicial extends JFrame {
             }
         });
 
-        soloPlayer.setBounds(110,290,435,50);
+        soloPlayer.setBounds(120,275,460,45);
         panel.add(soloPlayer);
 
+
         //Boton multiPlayer
+
         multiPlayer=new JButton("Multijugador");
         multiPlayer.addActionListener(new ActionListener() {
             @Override
@@ -64,10 +70,12 @@ public class MenuInicial extends JFrame {
             }
         });
 
-        multiPlayer.setBounds(110,390,435,50);
+        multiPlayer.setBounds(120,355,460,45);
         panel.add(multiPlayer);
 
+
         //Boton rankingGoleadores
+
         rankingGoleadores=new JButton("Ranking de Goleadores");
         rankingGoleadores.addActionListener(new ActionListener() {
             @Override
@@ -78,10 +86,27 @@ public class MenuInicial extends JFrame {
             }
         });
 
-        rankingGoleadores.setBounds(110,490,435,50);
+        rankingGoleadores.setBounds(120,435,460,45);
         panel.add(rankingGoleadores);
 
+
+        //Boton creditos
+
+        creditos = new JButton("Créditos");
+        creditos.addActionListener(e -> {
+            Creditos creditos = new Creditos();
+            creditos.setVisible(true);
+            dispose();
+
+            playSound("Musica/SonidoElegir1.wav", 0.7f);
+            musicManager.stopMusic();
+        });
+        creditos.setBounds(120, 515, 460, 45);
+        panel.add(creditos);
+
+
         //Boton salir
+
         salir=new JButton("Salir");
         salir.addActionListener(new ActionListener() {
             @Override
@@ -90,14 +115,16 @@ public class MenuInicial extends JFrame {
                 playSound("Musica/SonidoElegir1.wav", 0.7f);
             }
         });
-        salir.setBounds(110,590,435,50);
+        salir.setBounds(120,595,460,45);
         panel.add(salir);
+
 
         //Cambiar la fuente de los botones
         Font fuenteBoton = new Font("Action Man", Font.BOLD, 20);
         soloPlayer.setFont(fuenteBoton);
         multiPlayer.setFont(fuenteBoton);
         rankingGoleadores.setFont(fuenteBoton);
+        creditos.setFont(fuenteBoton);
         salir.setFont(fuenteBoton);
 
         //Cambiar color de texto de los botones
@@ -105,6 +132,7 @@ public class MenuInicial extends JFrame {
         soloPlayer.setForeground(colorTexto);
         multiPlayer.setForeground(colorTexto);
         rankingGoleadores.setForeground(colorTexto);
+        creditos.setForeground(colorTexto);
         salir.setForeground(colorTexto);
 
         getContentPane().add(panel);
@@ -159,6 +187,20 @@ public class MenuInicial extends JFrame {
             }
         });
 
+        creditos.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                playSound("Musica/SonidoSeleccion.wav", 0.7f);
+                creditos.setBackground(colorBaseBotones.darker());
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                creditos.setBackground(colorBaseBotones);
+            }
+        });
+
         salir.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -169,7 +211,6 @@ public class MenuInicial extends JFrame {
 
             @Override
             public void mouseExited(MouseEvent e) {
-
                 salir.setBackground(colorBaseBotones);
             }
         });
@@ -205,11 +246,6 @@ public class MenuInicial extends JFrame {
         }
     }
 
-    public void stopMusic() {
-        if (musicClip != null && musicClip.isRunning()) {
-            musicClip.stop();
-        }
-    }
 
     @Override
     public void paint(Graphics g) {
