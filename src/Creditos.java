@@ -16,7 +16,6 @@ public class Creditos extends JFrame {
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     private Clip musicClip;
     private BufferedImage imagen;
-
     private MusicManager musicManager = new MusicManager();
 
     public Creditos() {
@@ -86,20 +85,15 @@ public class Creditos extends JFrame {
             // Abrir un audio input stream
             URL url = this.getClass().getClassLoader().getResource(soundFile);
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-
             // Obtener un clip de sonido
             Clip clip = AudioSystem.getClip();
-
             // Abrir el clip de audio y cargar muestras de audio del audio input stream
             clip.open(audioIn);
-
             // Obtener el control de volumen
             FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-
             // Convertir el volumen en decibelios
             float dB = (float) (Math.log(volume) / Math.log(10.0) * 20.0);
             volumeControl.setValue(dB);
-
             // Iniciar la reproducción
             clip.start();
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {

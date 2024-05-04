@@ -144,32 +144,24 @@ public class MenuInicial extends JFrame {
             public void mouseExited(MouseEvent e) {
                 soloPlayer.setBackground(colorBaseBotones);
             }
-
-
-
         });
 
         multiPlayer.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                multiPlayer.setBackground(colorBaseBotones.darker());
-            }
+                multiPlayer.setBackground(colorBaseBotones.darker());}
             @Override
             public void mouseExited(MouseEvent e) {
                 multiPlayer.setBackground(colorBaseBotones);
             }
-
         });
 
         rankingGoleadores.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                rankingGoleadores.setBackground(colorBaseBotones.darker());
-
-            }
-
+                rankingGoleadores.setBackground(colorBaseBotones.darker());}
             @Override
             public void mouseExited(MouseEvent e) {
                 rankingGoleadores.setBackground(colorBaseBotones);
@@ -180,10 +172,7 @@ public class MenuInicial extends JFrame {
             @Override
             public void mouseEntered(MouseEvent e) {
                 playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                creditos.setBackground(colorBaseBotones.darker());
-
-            }
-
+                creditos.setBackground(colorBaseBotones.darker());}
             @Override
             public void mouseExited(MouseEvent e) {
                 creditos.setBackground(colorBaseBotones);
@@ -194,10 +183,7 @@ public class MenuInicial extends JFrame {
             @Override
             public void mouseEntered(MouseEvent e) {
                 playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                salir.setBackground(colorBaseBotones.darker());
-
-            }
-
+                salir.setBackground(colorBaseBotones.darker());}
             @Override
             public void mouseExited(MouseEvent e) {
                 salir.setBackground(colorBaseBotones);
