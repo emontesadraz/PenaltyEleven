@@ -242,7 +242,7 @@ public class SelectorEquipos extends JFrame {
         flechaDerecha2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                playSound("Musica/SonidoFlechas.wav", 0.2f);
+                playSound("Musica/SonidoSeleccion.wav", 0.2f);
                 if (!eq1 && indiceEquipo1 < oe.getEquipos().size() - 1) {
                     indiceEquipo1++;
                     labelEquipo1.setText(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
