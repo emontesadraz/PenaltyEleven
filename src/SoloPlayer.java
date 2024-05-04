@@ -1,10 +1,11 @@
+import com.modohistoria.ElegirTemporada;
+
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -12,13 +13,15 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
-public class MenuInicial extends JFrame {
-    private final JButton soloPlayer, multiPlayer, rankingGoleadores, creditos, salir;
+import static com.sun.java.accessibility.util.AWTEventMonitor.addActionListener;
+
+public class SoloPlayer extends JFrame {
+    private final JButton modoHistoria,juegoLibre,volver;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     private BufferedImage imagen;
     private final MusicManager musicManager = new MusicManager();
 
-    public MenuInicial() {
+    public SoloPlayer() {
 
         setSize(1280,720);
         setTitle("Penalty Eleven");
@@ -41,25 +44,21 @@ public class MenuInicial extends JFrame {
         add(panel);
 
         //Crear botones
-        soloPlayer=new JButton("Un Jugador");
-        multiPlayer=new JButton("Multijugador");
-        rankingGoleadores=new JButton("Ranking de Goleadores");
-        creditos=new JButton("Créditos");
-        salir=new JButton("Salir");
+        modoHistoria=new JButton("Modo Historia");
+        juegoLibre=new JButton("Juego Libre");
+        volver=new JButton("Volver");
 
         //Añadir botones al panel
-        panel.add(soloPlayer);
-        panel.add(multiPlayer);
-        panel.add(rankingGoleadores);
-        panel.add(creditos);
-        panel.add(salir);
+        panel.add(modoHistoria);
+        panel.add(juegoLibre);
+        panel.add(volver);
 
-        //Accion del boton soloPlayer
-        soloPlayer.addActionListener(new ActionListener() {
+        //Accion del boton modoHistoria
+        modoHistoria.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SoloPlayer soloPlayer = new SoloPlayer();
-                soloPlayer.setVisible(true);
+                ElegirTemporada elegirTemporada = new ElegirTemporada();
+                elegirTemporada.setVisible(true);
                 dispose();
 
                 playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
@@ -67,125 +66,79 @@ public class MenuInicial extends JFrame {
             }
         });
 
-        //Acción del botón multiPlayer
-        multiPlayer.addActionListener(new ActionListener() {
+        //Acción del botón juegoLibre
+        juegoLibre.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SelectorEquipos selectorEquipos = new SelectorEquipos();
-                selectorEquipos.setVisible(true);
+                //Abrir ventana de selector de equipos para soloplayer
+
+                playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
+                musicManager.stopMusic();
+            }
+        });
+
+        //Acción del botón volver
+        volver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MenuInicial menuInicial = new MenuInicial();
+                menuInicial.setVisible(true);
                 dispose();
-
-                playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
-                musicManager.stopMusic();
-            }
-        });
-
-        //Acción del botón rankingGoleadores
-        rankingGoleadores.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
                 playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
 
                 musicManager.stopMusic();
-            }
-        });
-
-        //Acción del botón creditos
-        creditos.addActionListener(e -> {
-            Creditos creditos = new Creditos();
-            creditos.setVisible(true);
-            dispose();
-
-            playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
-            musicManager.stopMusic();
-        });
-
-        //Acción del botón salir
-        salir.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-                playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
             }
         });
 
         //Cambiar tamaño y posición de los botones
-        soloPlayer.setBounds(120,275,460,45);
-        multiPlayer.setBounds(120,355,460,45);
-        rankingGoleadores.setBounds(120,435,460,45);
-        creditos.setBounds(120,515,460,45);
-        salir.setBounds(120,595,460,45);
+        modoHistoria.setBounds(120,275,460,45);
+        juegoLibre.setBounds(120,355,460,45);
+        volver.setBounds(120,435,460,45);
 
         //Cambiar la fuente de los botones
         Font fuenteBoton = new Font("Action Man", Font.BOLD, 20);
-        soloPlayer.setFont(fuenteBoton);
-        multiPlayer.setFont(fuenteBoton);
-        rankingGoleadores.setFont(fuenteBoton);
-        creditos.setFont(fuenteBoton);
-        salir.setFont(fuenteBoton);
+        modoHistoria.setFont(fuenteBoton);
+        juegoLibre.setFont(fuenteBoton);
+        volver.setFont(fuenteBoton);
 
         //Cambiar color de texto de los botones
         Color colorTexto = new Color(255, 255, 255);
-        soloPlayer.setForeground(colorTexto);
-        multiPlayer.setForeground(colorTexto);
-        rankingGoleadores.setForeground(colorTexto);
-        creditos.setForeground(colorTexto);
-        salir.setForeground(colorTexto);
+        modoHistoria.setForeground(colorTexto);
+        juegoLibre.setForeground(colorTexto);
+        volver.setForeground(colorTexto);
 
         // Cambiar color de los botones al pasar el ratón por encima
-        soloPlayer.addMouseListener(new MouseAdapter() {
+        modoHistoria.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                soloPlayer.setBackground(colorBaseBotones.darker());
+                modoHistoria.setBackground(colorBaseBotones.darker());
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                soloPlayer.setBackground(colorBaseBotones);
-            }
-        });
-
-        multiPlayer.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                multiPlayer.setBackground(colorBaseBotones.darker());}
-            @Override
-            public void mouseExited(MouseEvent e) {
-                multiPlayer.setBackground(colorBaseBotones);
+                modoHistoria.setBackground(colorBaseBotones);
             }
         });
 
-        rankingGoleadores.addMouseListener(new MouseAdapter() {
+        juegoLibre.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                rankingGoleadores.setBackground(colorBaseBotones.darker());}
+                juegoLibre.setBackground(colorBaseBotones.darker());}
             @Override
             public void mouseExited(MouseEvent e) {
-                rankingGoleadores.setBackground(colorBaseBotones);
+                juegoLibre.setBackground(colorBaseBotones);
             }
         });
 
-        creditos.addMouseListener(new MouseAdapter() {
+        volver.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                creditos.setBackground(colorBaseBotones.darker());}
+                volver.setBackground(colorBaseBotones.darker());}
             @Override
             public void mouseExited(MouseEvent e) {
-                creditos.setBackground(colorBaseBotones);
-            }
-        });
-
-        salir.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                salir.setBackground(colorBaseBotones.darker());}
-            @Override
-            public void mouseExited(MouseEvent e) {
-                salir.setBackground(colorBaseBotones);
+                volver.setBackground(colorBaseBotones);
             }
         });
 
