@@ -45,6 +45,9 @@ public class MenuInicial extends JFrame {
         soloPlayer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                SelectorEquiposSolo selectorEquiposSolo = new SelectorEquiposSolo();
+                selectorEquiposSolo.setVisible(true);
+                dispose();
 
                 playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 musicManager.stopMusic();
@@ -80,6 +83,9 @@ public class MenuInicial extends JFrame {
         rankingGoleadores.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Ranking ranking = new Ranking();
+                ranking.setVisible(true);
+                dispose();
                 playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
 
                 musicManager.stopMusic();
