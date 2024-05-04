@@ -7,6 +7,10 @@ public class MusicManager {
 
     public void playMusic(String musicFile, float volume) {
         try {
+            if (musicClip != null && musicClip.isRunning()) {
+                return; // Si la música ya está sonando, no inicia la reproducción
+            }
+
             URL url = this.getClass().getClassLoader().getResource(musicFile);
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
             musicClip = AudioSystem.getClip();

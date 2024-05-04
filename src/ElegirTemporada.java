@@ -11,13 +11,13 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
-public class SoloPlayer extends JFrame {
-    private final JButton modoHistoria,juegoLibre,volver;
+public class ElegirTemporada extends JFrame {
+    private final JButton temp1,temp2,temp3,volver;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     private BufferedImage imagen;
     private final MusicManager musicManager = new MusicManager();
 
-    public SoloPlayer() {
+    public ElegirTemporada() {
 
         setSize(1280,720);
         setTitle("Penalty Eleven");
@@ -31,7 +31,7 @@ public class SoloPlayer extends JFrame {
 
         // Cargar imagen de fondo
         try {
-            imagen = ImageIO.read(new File("src/Imagenes/Fondo/markevans.png")); // Ruta de la imagen de fondo
+            imagen = ImageIO.read(new File("src/Imagenes/Fondo/axelkevin.png")); // Ruta de la imagen de fondo
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -40,33 +40,44 @@ public class SoloPlayer extends JFrame {
         add(panel);
 
         //Crear botones
-        modoHistoria=new JButton("Modo Historia");
-        juegoLibre=new JButton("Juego Libre");
+        temp1=new JButton("Temporada 1");
+        temp2=new JButton("Temporada 2");
+        temp3=new JButton("Temporada 3");
         volver=new JButton("Volver");
 
         //Añadir botones al panel
-        panel.add(modoHistoria);
-        panel.add(juegoLibre);
+        panel.add(temp1);
+        panel.add(temp2);
+        panel.add(temp3);
         panel.add(volver);
 
-        //Accion del boton modoHistoria
-        modoHistoria.addActionListener(new ActionListener() {
+        //Accion del boton temp1
+        temp1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ElegirTemporada elegirTemporada = new ElegirTemporada();
-                elegirTemporada.setVisible(true);
-                dispose();
+                //Abrir ventana de Temporada1
 
                 playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 musicManager.stopMusic();
             }
         });
 
-        //Acción del botón juegoLibre
-        juegoLibre.addActionListener(new ActionListener() {
+        //Acción del botón temp2
+        temp2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Abrir ventana de selector de equipos para soloplayer
+                //Abrir ventana de Temporada2
+
+                playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
+                musicManager.stopMusic();
+            }
+        });
+
+        //Acción del botón temp3
+        temp3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //Abrir ventana de Temporada3
 
                 playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 musicManager.stopMusic();
@@ -77,53 +88,66 @@ public class SoloPlayer extends JFrame {
         volver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MenuInicial menuInicial = new MenuInicial();
-                menuInicial.setVisible(true);
+                SoloPlayer soloPlayer = new SoloPlayer();
+                soloPlayer.setVisible(true);
                 dispose();
                 playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
-
                 musicManager.stopMusic();
             }
         });
 
         //Cambiar tamaño y posición de los botones
-        modoHistoria.setBounds(120,275,460,45);
-        juegoLibre.setBounds(120,355,460,45);
-        volver.setBounds(120,435,460,45);
+        temp1.setBounds(120,275,460,45);
+        temp2.setBounds(120,355,460,45);
+        temp3.setBounds(120,435,460,45);
+        volver.setBounds(120,515,460,45);
 
         //Cambiar la fuente de los botones
         Font fuenteBoton = new Font("Action Man", Font.BOLD, 20);
-        modoHistoria.setFont(fuenteBoton);
-        juegoLibre.setFont(fuenteBoton);
+        temp1.setFont(fuenteBoton);
+        temp2.setFont(fuenteBoton);
+        temp3.setFont(fuenteBoton);
         volver.setFont(fuenteBoton);
 
         //Cambiar color de texto de los botones
         Color colorTexto = new Color(255, 255, 255);
-        modoHistoria.setForeground(colorTexto);
-        juegoLibre.setForeground(colorTexto);
+        temp1.setForeground(colorTexto);
+        temp2.setForeground(colorTexto);
+        temp3.setForeground(colorTexto);
         volver.setForeground(colorTexto);
 
         // Cambiar color de los botones al pasar el ratón por encima
-        modoHistoria.addMouseListener(new MouseAdapter() {
+        temp1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                modoHistoria.setBackground(colorBaseBotones.darker());
+                temp1.setBackground(colorBaseBotones.darker());
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                modoHistoria.setBackground(colorBaseBotones);
+                temp1.setBackground(colorBaseBotones);
             }
         });
 
-        juegoLibre.addMouseListener(new MouseAdapter() {
+        temp2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                juegoLibre.setBackground(colorBaseBotones.darker());}
+                temp2.setBackground(colorBaseBotones.darker());}
             @Override
             public void mouseExited(MouseEvent e) {
-                juegoLibre.setBackground(colorBaseBotones);
+                temp2.setBackground(colorBaseBotones);
+            }
+        });
+
+        temp3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
+                temp3.setBackground(colorBaseBotones.darker());}
+            @Override
+            public void mouseExited(MouseEvent e) {
+                temp3.setBackground(colorBaseBotones);
             }
         });
 
@@ -140,7 +164,6 @@ public class SoloPlayer extends JFrame {
 
         // Controles de la música
         musicManager.playMusic("Musica/Soundtrack/SoloPlayer1.wav", 0.5f);
-
 
     }
 
