@@ -1,8 +1,11 @@
+import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -12,6 +15,7 @@ public class Creditos extends JFrame {
     private JLabel creditos;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     private Clip musicClip;
+    private BufferedImage imagen;
 
     private MusicManager musicManager = new MusicManager();
 
@@ -69,6 +73,13 @@ public class Creditos extends JFrame {
 
         // Controles de la música
         musicManager.playMusic("Musica/Creditos.wav", 0.6f);
+
+        // Cargar imagen de fondo
+        try {
+            imagen = ImageIO.read(new File("src/Imagenes/FondoCreditos.jpeg")); // Ruta de la imagen de fondo
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public void playSound(String soundFile, float volume) {
         try {
@@ -93,6 +104,15 @@ public class Creditos extends JFrame {
             clip.start();
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        // Dibujar la imagen de fondo en el JFrame
+        if (imagen != null) {
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
         }
     }
 
