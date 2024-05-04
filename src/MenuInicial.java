@@ -13,14 +13,10 @@ import java.io.IOException;
 import java.net.URL;
 
 public class MenuInicial extends JFrame {
-    private final JButton soloPlayer;
-    private final JButton multiPlayer;
-    private final JButton rankingGoleadores;
-    private final JButton creditos;
-    private final JButton salir;
+    private final JButton soloPlayer, multiPlayer, rankingGoleadores, creditos, salir;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
-    private final MusicManager musicManager = new MusicManager();
     private BufferedImage imagen;
+    private final MusicManager musicManager = new MusicManager();
 
     public MenuInicial() {
 
