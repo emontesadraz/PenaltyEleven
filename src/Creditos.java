@@ -40,7 +40,7 @@ public class Creditos extends JFrame {
             menuInicial.setVisible(true);
             dispose();
 
-            playSound("Musica/SonidoElegir1.wav", 0.7f);
+            playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
             musicManager.stopMusic();
         });
 
@@ -53,7 +53,7 @@ public class Creditos extends JFrame {
         volver.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                playSound("Musica/SonidoSeleccion.wav", 0.7f);
+                playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
                 volver.setBackground(colorBaseBotones.darker());
 
             }
@@ -72,7 +72,7 @@ public class Creditos extends JFrame {
         panel.add(creditos);
 
         // Controles de la música
-        musicManager.playMusic("Musica/Creditos.wav", 0.6f);
+        musicManager.playMusic("Musica/Soundtrack/Creditos.wav", 0.6f);
 
         // Cargar imagen de fondo
         try {
