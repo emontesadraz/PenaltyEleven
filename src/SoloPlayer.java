@@ -35,7 +35,7 @@ public class SoloPlayer extends JFrame {
 
         // Cargar imagen de fondo
         try {
-            imagen = ImageIO.read(new File("src/Imagenes/FondoMenuInicial.png")); // Ruta de la imagen de fondo
+            imagen = ImageIO.read(new File("src/Imagenes/Fondo/axelkevin.png")); // Ruta de la imagen de fondo
         } catch (IOException e) {
             e.printStackTrace();
         }
