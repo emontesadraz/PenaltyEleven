@@ -46,7 +46,7 @@ public class MenuInicial extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                playSound("Musica/SonidoElegir1.wav", 0.7f);
+                playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 musicManager.stopMusic();
             }
         });
@@ -65,7 +65,7 @@ public class MenuInicial extends JFrame {
                 selectorEquipos.setVisible(true);
                 dispose();
 
-                playSound("Musica/SonidoElegir1.wav", 0.7f);
+                playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 musicManager.stopMusic();
             }
         });
@@ -80,7 +80,7 @@ public class MenuInicial extends JFrame {
         rankingGoleadores.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                playSound("Musica/SonidoElegir1.wav", 0.7f);
+                playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
 
                 musicManager.stopMusic();
             }
@@ -98,7 +98,7 @@ public class MenuInicial extends JFrame {
             creditos.setVisible(true);
             dispose();
 
-            playSound("Musica/SonidoElegir1.wav", 0.7f);
+            playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
             musicManager.stopMusic();
         });
         creditos.setBounds(120, 515, 460, 45);
@@ -112,7 +112,7 @@ public class MenuInicial extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
-                playSound("Musica/SonidoElegir1.wav", 0.7f);
+                playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
             }
         });
         salir.setBounds(120,595,460,45);
@@ -148,7 +148,7 @@ public class MenuInicial extends JFrame {
         soloPlayer.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                playSound("Musica/SonidoSeleccion.wav", 0.7f);
+                playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
                 soloPlayer.setBackground(colorBaseBotones.darker());
             }
             @Override
@@ -163,7 +163,7 @@ public class MenuInicial extends JFrame {
         multiPlayer.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                playSound("Musica/SonidoSeleccion.wav", 0.7f);
+                playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
                 multiPlayer.setBackground(colorBaseBotones.darker());
             }
             @Override
@@ -176,7 +176,7 @@ public class MenuInicial extends JFrame {
         rankingGoleadores.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                playSound("Musica/SonidoSeleccion.wav", 0.7f);
+                playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
                 rankingGoleadores.setBackground(colorBaseBotones.darker());
 
             }
@@ -190,7 +190,7 @@ public class MenuInicial extends JFrame {
         creditos.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                playSound("Musica/SonidoSeleccion.wav", 0.7f);
+                playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
                 creditos.setBackground(colorBaseBotones.darker());
 
             }
@@ -204,7 +204,7 @@ public class MenuInicial extends JFrame {
         salir.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                playSound("Musica/SonidoSeleccion.wav", 0.7f);
+                playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
                 salir.setBackground(colorBaseBotones.darker());
 
             }
@@ -216,7 +216,7 @@ public class MenuInicial extends JFrame {
         });
 
         // Controles de la música
-        musicManager.playMusic("Musica/MenuInicial.wav", 0.6f);
+        musicManager.playMusic("Musica/Soundtrack/MenuInicial.wav", 0.5f);
 
     }
 
