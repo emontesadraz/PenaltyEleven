@@ -76,7 +76,7 @@ public class SelectorEquiposSolo extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Reproducir sonido
-                playSound("Musica/SonidoBotones.wav", 0.2f);
+                playSound("Musica/SoundEffect/SonidoBotones.wav", 0.2f);
                 if (seleccionarEquipo.getText().equals("Seleccionar")) {
                     seleccionarEquipo.setText("Seleccionado");
                     jugar.setEnabled(true);
@@ -103,7 +103,7 @@ public class SelectorEquiposSolo extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Reproducir sonido
-                playSound("Musica/SonidoJugar.wav", 0.2f);
+                playSound("Musica/SoundEffect/SonidoJugar.wav", 0.2f);
                 if (eq1 ) {
                     // Aquí va el código para iniciar el juego
                     // dispose();
@@ -126,7 +126,7 @@ public class SelectorEquiposSolo extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Reproducir sonido
-                playSound("Musica/SonidoAtras.wav", 0.2f);
+                playSound("Musica/SoundEffect/SonidoAtras.wav", 0.2f);
                 musicManager.stopMusic();
                 dispose();
                 MenuInicial menuInicial = new MenuInicial();
@@ -147,7 +147,7 @@ public class SelectorEquiposSolo extends JFrame {
         flechaIzquierda.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                playSound("Musica/SonidoFlechas.wav", 0.2f);
+                playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.2f);
                 if (!eq1 && indiceEquipo1 > 0) {
                     indiceEquipo1--;
                     labelEquipo1.setText(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
@@ -166,7 +166,7 @@ public class SelectorEquiposSolo extends JFrame {
         flechaDerecha.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                playSound("Musica/SonidoFlechas.wav", 0.2f);
+                playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.2f);
                 if (!eq1 && indiceEquipo1 < oe.getEquipos().size() - 1) {
                     indiceEquipo1++;
                     labelEquipo1.setText(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
@@ -178,7 +178,7 @@ public class SelectorEquiposSolo extends JFrame {
 
 
         // Controles de la música
-        musicManager.playMusic("Musica/SelectorEquipos.wav", 0.6f);
+        musicManager.playMusic("Musica/Soundtrack/SelectorEquipos.wav", 0.6f);
 
 
     }
