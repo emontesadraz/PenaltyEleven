@@ -41,6 +41,7 @@ public class SelectorEquiposSolo extends JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
+        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
 
         // Fuente y color de los botones
         Font fuenteBoton = new Font("Action Man", Font.BOLD, 15);

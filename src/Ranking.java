@@ -21,6 +21,7 @@ public class Ranking extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
+        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
 
         // Cargar imagen de fondo
         try {

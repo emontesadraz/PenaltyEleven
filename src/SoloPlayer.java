@@ -24,6 +24,7 @@ public class SoloPlayer extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
+        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
 
         JPanel panel = new JPanel();
         panel.setOpaque(false);
@@ -66,7 +67,9 @@ public class SoloPlayer extends JFrame {
         juegoLibre.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Abrir ventana de selector de equipos para soloplayer
+                SelectorEquiposSolo selectorEquiposSolo = new SelectorEquiposSolo();
+                selectorEquiposSolo.setVisible(true);
+                dispose();
 
                 playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 musicManager.stopMusic();

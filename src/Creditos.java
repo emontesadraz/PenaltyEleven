@@ -26,6 +26,7 @@ public class Creditos extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
+        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
 
         panel=new JPanel();
         panel.setLayout(null);
