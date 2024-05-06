@@ -13,8 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 
 public class MenuInicial extends JFrame {
-    private final JButton soloPlayer, multiPlayer, rankingGoleadores, creditos, salir;
-    private JButton fondo;
+    private final JButton soloPlayer, multiPlayer, rankingGoleadores, creditos, salir, fondo;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     private BufferedImage imagen;
     private final MusicManager musicManager = new MusicManager();
@@ -38,8 +37,9 @@ public class MenuInicial extends JFrame {
         creditos=new JButton("Créditos");
         salir=new JButton("Salir");
 
+        // Crear un botón para el fondo
         fondo = new JButton();
-        fondo.setBounds(0, 0, 1280, 720); // Asegúrate de que el tamaño del botón sea el mismo que el del panel
+        fondo.setBounds(0, 0, 1280, 720);
         fondo.setOpaque(false);
         fondo.setContentAreaFilled(false);
         fondo.setBorderPainted(false);
@@ -58,7 +58,6 @@ public class MenuInicial extends JFrame {
         panel.add(creditos);
         panel.add(salir);
         panel.add(fondo);
-
 
         //Añadir panel al JFrame
         add(panel);
@@ -120,6 +119,13 @@ public class MenuInicial extends JFrame {
                 playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
             }
         });
+
+        //Cambiar color base de los botones
+        soloPlayer.setBackground(colorBaseBotones);
+        multiPlayer.setBackground(colorBaseBotones);
+        rankingGoleadores.setBackground(colorBaseBotones);
+        creditos.setBackground(colorBaseBotones);
+        salir.setBackground(colorBaseBotones);
 
         //Cambiar tamaño y posición de los botones
         soloPlayer.setBounds(120,275,460,45);
