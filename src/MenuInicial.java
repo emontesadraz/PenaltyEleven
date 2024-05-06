@@ -14,6 +14,7 @@ import java.net.URL;
 
 public class MenuInicial extends JFrame {
     private final JButton soloPlayer, multiPlayer, rankingGoleadores, creditos, salir;
+    private JButton fondo;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     private BufferedImage imagen;
     private final MusicManager musicManager = new MusicManager();
@@ -30,16 +31,6 @@ public class MenuInicial extends JFrame {
         panel.setOpaque(false);
         panel.setLayout(null);
 
-        // Cargar imagen de fondo
-        try {
-            imagen = ImageIO.read(new File("src/Imagenes/Fondo/FondoMenuInicial.png")); // Ruta de la imagen de fondo
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        //Añadir panel al JFrame
-        add(panel);
-
         //Crear botones
         soloPlayer=new JButton("Un Jugador");
         multiPlayer=new JButton("Multijugador");
@@ -47,12 +38,30 @@ public class MenuInicial extends JFrame {
         creditos=new JButton("Créditos");
         salir=new JButton("Salir");
 
-        //Añadir botones al panel
+        fondo = new JButton();
+        fondo.setBounds(0, 0, 1280, 720); // Asegúrate de que el tamaño del botón sea el mismo que el del panel
+        fondo.setOpaque(false);
+        fondo.setContentAreaFilled(false);
+        fondo.setBorderPainted(false);
+
+        // Cargar la imagen de fondo y establecerla como icono del botón
+        URL url = this.getClass().getClassLoader().getResource("Imagenes/Fondo/FondoMenuInicial.png");
+        ImageIcon icono = new ImageIcon(url);
+        Image imagen = icono.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH);
+        icono = new ImageIcon(imagen);
+        fondo.setIcon(icono);
+
+        // Añadir los otros botones al panel
         panel.add(soloPlayer);
         panel.add(multiPlayer);
         panel.add(rankingGoleadores);
         panel.add(creditos);
         panel.add(salir);
+        panel.add(fondo);
+
+
+        //Añadir panel al JFrame
+        add(panel);
 
         //Accion del boton soloPlayer
         soloPlayer.addActionListener(new ActionListener() {
@@ -84,6 +93,9 @@ public class MenuInicial extends JFrame {
         rankingGoleadores.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Ranking ranking = new Ranking();
+                ranking.setVisible(true);
+                dispose();
                 playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
 
                 musicManager.stopMusic();
@@ -219,12 +231,6 @@ public class MenuInicial extends JFrame {
             e.printStackTrace();
         }
 
-    }
-
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-        g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
     }
 
 }
