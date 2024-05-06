@@ -14,8 +14,6 @@ public class Creditos extends JFrame {
     private JButton volver;
     private JLabel creditos;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
-    private Clip musicClip;
-    private BufferedImage imagen;
     private MusicManager musicManager = new MusicManager();
 
     public Creditos() {
@@ -25,6 +23,9 @@ public class Creditos extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
+
+        //Poner icono de la aplicación
+        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
 
         panel=new JPanel();
         panel.setLayout(null);
@@ -47,6 +48,9 @@ public class Creditos extends JFrame {
         panel.add(volver);
 
         add(panel);
+
+        //Cambiar color base de los botones
+        volver.setBackground(colorBaseBotones);
 
         //Boton volver musica y color
         volver.addMouseListener(new MouseAdapter() {
@@ -73,12 +77,7 @@ public class Creditos extends JFrame {
         // Controles de la música
         musicManager.playMusic("Musica/Soundtrack/Creditos.wav", 0.6f);
 
-        // Cargar imagen de fondo
-        try {
-            imagen = ImageIO.read(new File("src/Imagenes/Fondo/FondoCreditos.png")); // Ruta de la imagen de fondo
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
     public void playSound(String soundFile, float volume) {
         try {
@@ -98,15 +97,6 @@ public class Creditos extends JFrame {
             clip.start();
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-        // Dibujar la imagen de fondo en el JFrame
-        if (imagen != null) {
-            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
         }
     }
 

@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.net.URL;
 
 public class ElegirTemporada extends JFrame {
-    private final JButton temp1,temp2,temp3,volver;
+    private final JButton temp1,temp2,temp3,volver,fondo;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     private BufferedImage imagen;
     private final MusicManager musicManager = new MusicManager();
@@ -24,6 +24,9 @@ public class ElegirTemporada extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
+
+        //Poner icono de la aplicación
+        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
 
         JPanel panel = new JPanel();
         panel.setOpaque(false);
@@ -45,11 +48,26 @@ public class ElegirTemporada extends JFrame {
         temp3=new JButton("Temporada 3");
         volver=new JButton("Volver");
 
+        // Crear un botón para el fondo
+        fondo = new JButton();
+        fondo.setBounds(0, 0, 1280, 720);
+        fondo.setOpaque(false);
+        fondo.setContentAreaFilled(false);
+        fondo.setBorderPainted(false);
+
+        // Cargar la imagen de fondo y establecerla como icono del botón
+        URL url = this.getClass().getClassLoader().getResource("Imagenes/Fondo/axelkevin.png");
+        ImageIcon icono = new ImageIcon(url);
+        Image imagen = icono.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH);
+        icono = new ImageIcon(imagen);
+        fondo.setIcon(icono);
+
         //Añadir botones al panel
         panel.add(temp1);
         panel.add(temp2);
         panel.add(temp3);
         panel.add(volver);
+        panel.add(fondo);
 
         //Accion del boton temp1
         temp1.addActionListener(new ActionListener() {
@@ -95,6 +113,13 @@ public class ElegirTemporada extends JFrame {
                 musicManager.stopMusic();
             }
         });
+
+        //Cambiar color base de los botones
+        temp1.setBackground(colorBaseBotones);
+        temp2.setBackground(colorBaseBotones);
+        temp3.setBackground(colorBaseBotones);
+        volver.setBackground(colorBaseBotones);
+        fondo.setBackground(colorBaseBotones);
 
         //Cambiar tamaño y posición de los botones
         temp1.setBounds(120,275,460,45);
@@ -192,12 +217,6 @@ public class ElegirTemporada extends JFrame {
             e.printStackTrace();
         }
 
-    }
-
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-        g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
     }
 
 }

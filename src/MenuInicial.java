@@ -15,7 +15,6 @@ import java.net.URL;
 public class MenuInicial extends JFrame {
     private final JButton soloPlayer, multiPlayer, rankingGoleadores, creditos, salir, fondo;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
-    private BufferedImage imagen;
     private final MusicManager musicManager = new MusicManager();
 
     public MenuInicial() {
@@ -26,6 +25,10 @@ public class MenuInicial extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
+        //Poner icono de la aplicación
+        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
+
+        //Crear panel
         JPanel panel = new JPanel();
         panel.setOpaque(false);
         panel.setLayout(null);
@@ -208,7 +211,7 @@ public class MenuInicial extends JFrame {
         });
 
         // Controles de la música
-        musicManager.playMusic("Musica/Soundtrack/MenuInicial.wav", 0.5f);
+        musicManager.playMusic("Musica/Soundtrack/MenuInicial.wav", 0.2f);
 
     }
 

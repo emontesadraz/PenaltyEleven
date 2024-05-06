@@ -4,28 +4,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-
 
 public class SelectorEquipos extends JFrame {
     OperacionesEquipos oe = new OperacionesEquipos();
     MusicManager musicManager = new MusicManager();
-    private ImageIcon[] imagenesEquipos = {new ImageIcon("src/Imagenes/Escudo/EscudoRaimon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoZeus.png"), new ImageIcon("src/Imagenes/Escudo/.png"), new ImageIcon("src/Imagenes/Escudo/EscudoGenesis.png")
-            , new ImageIcon("src/Imagenes/Escudo/EscudoRoyal.png"), new ImageIcon("src/Imagenes/Escudo/EscudoAlpino.png"), new ImageIcon("src/Imagenes/Escudo/EscudoKirkwood.png"), new ImageIcon("src/Imagenes/Escudo/EscudoOccult.png"), new ImageIcon("src/Imagenes/Escudo/EscudoGigantes.png")
-            , new ImageIcon("src/Imagenes/Escudo/EscudoEpsilon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoOtaku.png"), new ImageIcon("src/Imagenes/Escudo/EscudoFarm.png"), new ImageIcon("src/Imagenes/Escudo/EscudoProminence.png"), new ImageIcon("src/Imagenes/Escudo/EscudoCaos.png")};
-    JButton seleccionarEqu1;
-    JButton seleccionarEqu2;
-    JButton jugar;
-    JButton flechaIzquierda;
-    JButton flechaDerecha;
-    JButton back;
+    private ImageIcon[] imagenesEquipos = {new ImageIcon("src/Imagenes/Escudo/EscudoRaimon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoZeus.png"), new ImageIcon("src/Imagenes/Escudo/EscudoGenesis.png")
+            , new ImageIcon("src/Imagenes/Escudo/EscudoRoyal.png"), new ImageIcon("src/Imagenes/Escudo/EscudoAlpino.png"), new ImageIcon("src/Imagenes/Escudo/EscudoKirkwood.png"), new ImageIcon("src/Imagenes/Escudo/EscudoOccult.png"), new ImageIcon("src/Imagenes/Escudo/EscudoLittleGiants.png")
+            , new ImageIcon("src/Imagenes/Escudo/EscudoEpsilon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoOtaku.png"), new ImageIcon("src/Imagenes/Escudo/EscudoFarm.png"), new ImageIcon("src/Imagenes/Escudo/EscudoCaos.png")};
+    JButton seleccionarEqu1, seleccionarEqu2, jugar, back, flechaIzquierda, flechaDerecha, flechaIzquierda2, flechaDerecha2;
     JPanel panel;
-    JButton flechaIzquierda2;
-    JButton flechaDerecha2;
-    BufferedImage imagen;
     JLabel labelEquipo1;
     JLabel labelEquipo2;
     int indiceEquipo1 = 0;
@@ -42,10 +31,13 @@ public class SelectorEquipos extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
+        //Poner icono de la aplicación
+        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
+
         // Fuente y color de los botones
-        Font fuenteBoton = new Font("Action Man", Font.BOLD, 15);
-        Color colorBoton = new Color(209, 192, 9);
-        Color colorTexto = new Color(4, 38, 193);
+        Font fuenteBoton = new Font("Action Man", Font.BOLD, 20);
+        Color colorBoton = new Color(25,25,25);
+        Color colorTexto = new Color(255, 255, 255);
 
         // Panel
         panel = new JPanel();
@@ -53,19 +45,12 @@ public class SelectorEquipos extends JFrame {
         panel.setLayout(null);
         this.add(panel);
 
-        // Cargar imagen de fondo
-        try {
-            imagen = ImageIO.read(new File("src/Imagenes/Fondo/FondoSelectorEquipos.png")); // Ruta de la imagen de fondo
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         // JLabel para el equipo 1
         labelEquipo1 = new JLabel(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
-        labelEquipo1.setFont(new Font("Action Man", Font.BOLD, 20));
+        labelEquipo1.setFont(new Font("Action Man", Font.BOLD, 30));
         labelEquipo1.setOpaque(false);
         labelEquipo1.setForeground(Color.BLACK);
-        labelEquipo1.setBounds(150, 200, 200, 30);
+        labelEquipo1.setBounds(100, 200, 300, 40);
         labelEquipo1.setHorizontalAlignment(JLabel.CENTER);
         panel.add(labelEquipo1);
 
@@ -76,11 +61,11 @@ public class SelectorEquipos extends JFrame {
 
         // JLabel para el equipo 2
         labelEquipo2 = new JLabel(oe.getEquipos().get(indiceEquipo2).getNombreEquipo());
-        labelEquipo2.setFont(new Font("Action Man", Font.BOLD, 20));
+        labelEquipo2.setFont(new Font("Action Man", Font.BOLD, 30));
         labelEquipo2.setOpaque(false);
         labelEquipo2.setForeground(Color.BLACK);
         labelEquipo2.setHorizontalAlignment(JLabel.CENTER);
-        labelEquipo2.setBounds(950, 200, 200, 30);
+        labelEquipo2.setBounds(900, 200, 300, 40);
         panel.add(labelEquipo2);
 
         // JLabel para la imagen del equipo 2
@@ -136,7 +121,7 @@ public class SelectorEquipos extends JFrame {
         jugar.setFont(fuenteBoton);
         jugar.setBackground(colorBoton);
         jugar.setForeground(colorTexto);
-        jugar.setBounds(500, 500, 200, 50);
+        jugar.setBounds(550, 500, 200, 50);
         jugar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -173,7 +158,7 @@ public class SelectorEquipos extends JFrame {
 
             }
         });
-        back.setBounds(500, 600, 200, 50);
+        back.setBounds(550, 600, 200, 50);
         panel.add(back);
 
         // Botón flecha izquierda
@@ -251,20 +236,26 @@ public class SelectorEquipos extends JFrame {
             }
         });
         panel.add(flechaDerecha2);
+
+        // Crear un botón para el fondo
+        JButton fondo = new JButton();
+        fondo.setBounds(0, 0, 1280, 720);
+        fondo.setOpaque(false);
+        fondo.setContentAreaFilled(false);
+        fondo.setBorderPainted(false);
+        panel.add(fondo);
+
+        // Cargar la imagen de fondo y establecerla como icono del botón
+        URL url = this.getClass().getClassLoader().getResource("Imagenes/Fondo/SelectorEquipos.jpg");
+        ImageIcon icono = new ImageIcon(url);
+        Image imagen = icono.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH);
+        icono = new ImageIcon(imagen);
+        fondo.setIcon(icono);
+
         // Controles de la música
         musicManager.playMusic("Musica/Soundtrack/SelectorEquipos.wav", 0.7f);
-
-
     }
 
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-        // Dibujar la imagen de fondo en el JFrame
-        if (imagen != null) {
-            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
-        }
-    }
     public void playSound(String soundFile, float volume) {
         try {
             // Abrir un audio input stream
