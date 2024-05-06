@@ -44,6 +44,7 @@ public class MenuInicial extends JFrame {
         fondo.setContentAreaFilled(false);
         fondo.setBorderPainted(false);
 
+
         // Cargar la imagen de fondo y establecerla como icono del botón
         URL url = this.getClass().getClassLoader().getResource("Imagenes/Fondo/FondoMenuInicial.png");
         ImageIcon icono = new ImageIcon(url);
