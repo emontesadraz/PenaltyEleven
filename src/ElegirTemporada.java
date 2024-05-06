@@ -24,7 +24,6 @@ public class ElegirTemporada extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
-        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
 
         JPanel panel = new JPanel();
         panel.setOpaque(false);
