@@ -13,9 +13,9 @@ import java.net.URL;
 public class SelectorEquipos extends JFrame {
     OperacionesEquipos oe = new OperacionesEquipos();
     MusicManager musicManager = new MusicManager();
-    private ImageIcon[] imagenesEquipos = {new ImageIcon("src/Imagenes/EscudoRaimon.png"), new ImageIcon("src/Imagenes/EscudoZeus.png"), new ImageIcon("src/Imagenes/.png"), new ImageIcon("src/Imagenes/EscudoGenesis.png")
-            , new ImageIcon("src/Imagenes/EscudoRoyal.png"), new ImageIcon("src/Imagenes/EscudoAlpino.png"), new ImageIcon("src/Imagenes/EscudoKirkwood.png"), new ImageIcon("src/Imagenes/EscudoOccult.png"), new ImageIcon("src/Imagenes/EscudoGigantes.png")
-            , new ImageIcon("src/Imagenes/EscudoEpsilon.png"), new ImageIcon("src/Imagenes/EscudoOtaku.png"), new ImageIcon("src/Imagenes/EscudoFarm.png"), new ImageIcon("src/Imagenes/EscudoProminence.png"), new ImageIcon("src/Imagenes/EscudoCaos.png")};
+    private ImageIcon[] imagenesEquipos = {new ImageIcon("src/Imagenes/Escudo/EscudoRaimon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoZeus.png"), new ImageIcon("src/Imagenes/Escudo/.png"), new ImageIcon("src/Imagenes/Escudo/EscudoGenesis.png")
+            , new ImageIcon("src/Imagenes/Escudo/EscudoRoyal.png"), new ImageIcon("src/Imagenes/Escudo/EscudoAlpino.png"), new ImageIcon("src/Imagenes/Escudo/EscudoKirkwood.png"), new ImageIcon("src/Imagenes/Escudo/EscudoOccult.png"), new ImageIcon("src/Imagenes/Escudo/EscudoGigantes.png")
+            , new ImageIcon("src/Imagenes/Escudo/EscudoEpsilon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoOtaku.png"), new ImageIcon("src/Imagenes/Escudo/EscudoFarm.png"), new ImageIcon("src/Imagenes/Escudo/EscudoProminence.png"), new ImageIcon("src/Imagenes/Escudo/EscudoCaos.png")};
     JButton seleccionarEqu1;
     JButton seleccionarEqu2;
     JButton jugar;
@@ -55,7 +55,7 @@ public class SelectorEquipos extends JFrame {
 
         // Cargar imagen de fondo
         try {
-            imagen = ImageIO.read(new File("src/Imagenes/FondoSelectorEquipos.png")); // Ruta de la imagen de fondo
+            imagen = ImageIO.read(new File("src/Imagenes/Fondo/FondoSelectorEquipos.png")); // Ruta de la imagen de fondo
         } catch (IOException e) {
             e.printStackTrace();
         }
