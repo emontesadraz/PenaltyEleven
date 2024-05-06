@@ -168,8 +168,8 @@ public class SelectorEquiposSolo extends JFrame {
                 playSound("Musica/SoundEffect/SonidoAtras.wav", 0.7f);
                 musicManager.stopMusic();
                 dispose();
-                MenuInicial menuInicial = new MenuInicial();
-                menuInicial.setVisible(true);
+                SoloPlayer soloPlayer = new SoloPlayer();
+                soloPlayer.setVisible(true);
 
 
             }
