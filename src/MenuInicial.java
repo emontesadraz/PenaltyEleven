@@ -1,4 +1,3 @@
-import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
@@ -7,13 +6,11 @@ import java.awt.event.ActionListener;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
 public class MenuInicial extends JFrame {
-    private final JButton soloPlayer, multiPlayer, rankingGoleadores, creditos, salir, fondo;
+    private final JButton soloPlayer, multiPlayer, ranking, creditos, salir, fondo;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     private final MusicManager musicManager = new MusicManager();
 
@@ -36,7 +33,7 @@ public class MenuInicial extends JFrame {
         //Crear botones
         soloPlayer=new JButton("Un Jugador");
         multiPlayer=new JButton("Multijugador");
-        rankingGoleadores=new JButton("Ranking de Goleadores");
+        ranking =new JButton("Ranking de Goleadores");
         creditos=new JButton("Créditos");
         salir=new JButton("Salir");
 
@@ -57,7 +54,7 @@ public class MenuInicial extends JFrame {
         // Añadir los otros botones al panel
         panel.add(soloPlayer);
         panel.add(multiPlayer);
-        panel.add(rankingGoleadores);
+        panel.add(ranking);
         panel.add(creditos);
         panel.add(salir);
         panel.add(fondo);
@@ -85,21 +82,19 @@ public class MenuInicial extends JFrame {
                 SelectorEquipos selectorEquipos = new SelectorEquipos();
                 selectorEquipos.setVisible(true);
                 dispose();
-
                 playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 musicManager.stopMusic();
             }
         });
 
         //Acción del botón rankingGoleadores
-        rankingGoleadores.addActionListener(new ActionListener() {
+        ranking.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Ranking ranking = new Ranking();
                 ranking.setVisible(true);
                 dispose();
                 playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
-
                 musicManager.stopMusic();
             }
         });
@@ -128,14 +123,14 @@ public class MenuInicial extends JFrame {
         //Cambiar color base de los botones
         soloPlayer.setBackground(colorBaseBotones);
         multiPlayer.setBackground(colorBaseBotones);
-        rankingGoleadores.setBackground(colorBaseBotones);
+        ranking.setBackground(colorBaseBotones);
         creditos.setBackground(colorBaseBotones);
         salir.setBackground(colorBaseBotones);
 
         //Cambiar tamaño y posición de los botones
         soloPlayer.setBounds(120,275,460,45);
         multiPlayer.setBounds(120,355,460,45);
-        rankingGoleadores.setBounds(120,435,460,45);
+        ranking.setBounds(120,435,460,45);
         creditos.setBounds(120,515,460,45);
         salir.setBounds(120,595,460,45);
 
@@ -143,7 +138,7 @@ public class MenuInicial extends JFrame {
         Font fuenteBoton = new Font("Action Man", Font.BOLD, 20);
         soloPlayer.setFont(fuenteBoton);
         multiPlayer.setFont(fuenteBoton);
-        rankingGoleadores.setFont(fuenteBoton);
+        ranking.setFont(fuenteBoton);
         creditos.setFont(fuenteBoton);
         salir.setFont(fuenteBoton);
 
@@ -151,7 +146,7 @@ public class MenuInicial extends JFrame {
         Color colorTexto = new Color(255, 255, 255);
         soloPlayer.setForeground(colorTexto);
         multiPlayer.setForeground(colorTexto);
-        rankingGoleadores.setForeground(colorTexto);
+        ranking.setForeground(colorTexto);
         creditos.setForeground(colorTexto);
         salir.setForeground(colorTexto);
 
@@ -179,14 +174,14 @@ public class MenuInicial extends JFrame {
             }
         });
 
-        rankingGoleadores.addMouseListener(new MouseAdapter() {
+        ranking.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                rankingGoleadores.setBackground(colorBaseBotones.darker());}
+                ranking.setBackground(colorBaseBotones.darker());}
             @Override
             public void mouseExited(MouseEvent e) {
-                rankingGoleadores.setBackground(colorBaseBotones);
+                ranking.setBackground(colorBaseBotones);
             }
         });
 
