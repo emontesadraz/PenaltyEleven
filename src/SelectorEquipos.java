@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 
@@ -15,15 +17,14 @@ public class SelectorEquipos extends JFrame {
             , new ImageIcon("src/Imagenes/Escudo/EscudoEpsilon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoOtaku.png"), new ImageIcon("src/Imagenes/Escudo/EscudoFarm.png"), new ImageIcon("src/Imagenes/Escudo/EscudoCaos.png")};
     JButton seleccionarEqu1, seleccionarEqu2, jugar, back, flechaIzquierda, flechaDerecha, flechaIzquierda2, flechaDerecha2;
     JPanel panel;
-    JLabel labelEquipo1;
-    JLabel labelEquipo2;
-    int indiceEquipo1 = 0;
-    int indiceEquipo2 = 0;
-    boolean eq1 = false;
-    boolean eq2 = false;
-    private Clip musicClip;
+    JLabel labelEquipo1, labelEquipo2;
+    int indiceEquipo1, indiceEquipo2 = 0;
+    boolean eq1, eq2 = false;
+
 
     public SelectorEquipos() {
+
+        // Configuración de la ventana
         super("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1280, 720);
@@ -154,8 +155,6 @@ public class SelectorEquipos extends JFrame {
                 dispose();
                 MenuInicial menuInicial = new MenuInicial();
                 menuInicial.setVisible(true);
-
-
             }
         });
         back.setBounds(550, 600, 200, 50);
@@ -244,6 +243,112 @@ public class SelectorEquipos extends JFrame {
         fondo.setContentAreaFilled(false);
         fondo.setBorderPainted(false);
         panel.add(fondo);
+
+        //Crear el mouseListener de todos los botones
+        seleccionarEqu1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
+                seleccionarEqu1.setBackground(colorBoton.darker());
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                seleccionarEqu1.setBackground(colorBoton);
+            }
+        });
+        seleccionarEqu2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
+                seleccionarEqu2.setBackground(colorBoton.darker());
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                seleccionarEqu2.setBackground(colorBoton);
+            }
+        });
+
+        jugar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
+                jugar.setBackground(colorBoton.darker());
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                jugar.setBackground(colorBoton);
+            }
+        });
+
+        back.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
+                back.setBackground(colorBoton.darker());
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                back.setBackground(colorBoton);
+            }
+        });
+
+        flechaIzquierda.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
+                flechaIzquierda.setBackground(colorBoton.darker());
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                flechaIzquierda.setBackground(colorBoton);
+            }
+        });
+
+        flechaDerecha.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
+                flechaDerecha.setBackground(colorBoton.darker());
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                flechaDerecha.setBackground(colorBoton);
+            }
+        });
+
+        flechaIzquierda2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
+                flechaIzquierda2.setBackground(colorBoton.darker());
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                flechaIzquierda2.setBackground(colorBoton);
+            }
+        });
+
+        flechaDerecha2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
+                flechaDerecha2.setBackground(colorBoton.darker());
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                flechaDerecha2.setBackground(colorBoton);
+            }
+        });
+
+
 
         // Cargar la imagen de fondo y establecerla como icono del botón
         URL url = this.getClass().getClassLoader().getResource("Imagenes/Fondo/SelectorEquipos.jpg");

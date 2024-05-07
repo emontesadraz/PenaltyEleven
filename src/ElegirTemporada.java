@@ -14,7 +14,6 @@ import java.net.URL;
 public class ElegirTemporada extends JFrame {
     private final JButton temp1,temp2,temp3,volver,fondo;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
-    private BufferedImage imagen;
     private final MusicManager musicManager = new MusicManager();
 
     public ElegirTemporada() {
@@ -31,13 +30,6 @@ public class ElegirTemporada extends JFrame {
         JPanel panel = new JPanel();
         panel.setOpaque(false);
         panel.setLayout(null);
-
-        // Cargar imagen de fondo
-        try {
-            imagen = ImageIO.read(new File("src/Imagenes/Fondo/axelkevin.png")); // Ruta de la imagen de fondo
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         //Añadir panel al JFrame
         add(panel);
