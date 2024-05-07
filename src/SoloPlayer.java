@@ -6,15 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
 public class SoloPlayer extends JFrame {
-    private final JButton modoHistoria,juegoLibre,volver;
+    private final JButton modoHistoria,juegoLibre,volver, fondo;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
-    private BufferedImage imagen;
     private final MusicManager musicManager = new MusicManager();
 
     public SoloPlayer() {
@@ -25,16 +23,12 @@ public class SoloPlayer extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
+        //Poner icono de la aplicación
+        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
+
         JPanel panel = new JPanel();
         panel.setOpaque(false);
         panel.setLayout(null);
-
-        // Cargar imagen de fondo
-        try {
-            imagen = ImageIO.read(new File("src/Imagenes/Fondo/markevans.png")); // Ruta de la imagen de fondo
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         //Añadir panel al JFrame
         add(panel);
@@ -44,10 +38,25 @@ public class SoloPlayer extends JFrame {
         juegoLibre=new JButton("Juego Libre");
         volver=new JButton("Volver");
 
+        // Crear un botón para el fondo
+        fondo = new JButton();
+        fondo.setBounds(0, 0, 1280, 720);
+        fondo.setOpaque(false);
+        fondo.setContentAreaFilled(false);
+        fondo.setBorderPainted(false);
+
+        // Cargar la imagen de fondo y establecerla como icono del botón
+        URL url = this.getClass().getClassLoader().getResource("Imagenes/Fondo/markevans.png");
+        ImageIcon icono = new ImageIcon(url);
+        Image imagen = icono.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH);
+        icono = new ImageIcon(imagen);
+        fondo.setIcon(icono);
+
         //Añadir botones al panel
         panel.add(modoHistoria);
         panel.add(juegoLibre);
         panel.add(volver);
+        panel.add(fondo);
 
         //Accion del boton modoHistoria
         modoHistoria.addActionListener(new ActionListener() {
@@ -66,9 +75,7 @@ public class SoloPlayer extends JFrame {
         juegoLibre.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SelectorEquiposSolo selectorEquiposSolo = new SelectorEquiposSolo();
-                selectorEquiposSolo.setVisible(true);
-                dispose();
+                //Abrir ventana de selector de equipos para soloplayer
 
                 playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 musicManager.stopMusic();
@@ -87,6 +94,12 @@ public class SoloPlayer extends JFrame {
                 musicManager.stopMusic();
             }
         });
+
+        //Cambiar color base de los botones
+        modoHistoria.setBackground(colorBaseBotones);
+        juegoLibre.setBackground(colorBaseBotones);
+        volver.setBackground(colorBaseBotones);
+        fondo.setBackground(colorBaseBotones);
 
         //Cambiar tamaño y posición de los botones
         modoHistoria.setBounds(120,275,460,45);
@@ -171,12 +184,6 @@ public class SoloPlayer extends JFrame {
             e.printStackTrace();
         }
 
-    }
-
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-        g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
     }
 
 }

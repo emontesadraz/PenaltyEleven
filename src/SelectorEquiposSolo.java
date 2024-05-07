@@ -1,8 +1,11 @@
+import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -10,17 +13,17 @@ import java.net.URL;
 public class SelectorEquiposSolo extends JFrame {
     OperacionesEquipos oe = new OperacionesEquipos();
     MusicManager musicManager = new MusicManager();
-    JPanel panel;
-    private ImageIcon[] imagenesEquipos = {new ImageIcon("src/Imagenes/Escudo/EscudoRaimon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoZeus.png"),  new ImageIcon("src/Imagenes/Escudo/EscudoGenesis.png")
+    private ImageIcon[] imagenesEquipos = {new ImageIcon("src/Imagenes/Escudo/EscudoRaimon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoZeus.png"), new ImageIcon("src/Imagenes/Escudo/.png"), new ImageIcon("src/Imagenes/Escudo/EscudoGenesis.png")
             , new ImageIcon("src/Imagenes/Escudo/EscudoRoyal.png"), new ImageIcon("src/Imagenes/Escudo/EscudoAlpino.png"), new ImageIcon("src/Imagenes/Escudo/EscudoKirkwood.png"), new ImageIcon("src/Imagenes/Escudo/EscudoOccult.png"), new ImageIcon("src/Imagenes/Escudo/EscudoGigantes.png")
             , new ImageIcon("src/Imagenes/Escudo/EscudoEpsilon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoOtaku.png"), new ImageIcon("src/Imagenes/Escudo/EscudoFarm.png"), new ImageIcon("src/Imagenes/Escudo/EscudoProminence.png"), new ImageIcon("src/Imagenes/Escudo/EscudoCaos.png")};
-    JButton seleccionarEqu1, seleccionarEqu2, jugar, flechaIzquierda, flechaDerecha, back, flechaIzquierda2, flechaDerecha2, fondo;
-    JLabel labelEquipo1;
-    JLabel labelEquipo2;
+    JButton seleccionarEqu1, seleccionarEqu2, jugar, back, flechaIzquierda, flechaDerecha, flechaIzquierda2, flechaDerecha2;
+    BufferedImage imagen;
+    JLabel labelEquipo1, labelEquipo2;
     int indiceEquipo1 = 0;
     int indiceEquipo2 = 0;
     boolean eq1 = false;
     boolean eq2 = false;
+
 
     public SelectorEquiposSolo() {
         super("Penalty Eleven");
@@ -29,7 +32,6 @@ public class SelectorEquiposSolo extends JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
-        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
 
         // Fuente y color de los botones
         Font fuenteBoton = new Font("Action Man", Font.BOLD, 15);
@@ -37,16 +39,23 @@ public class SelectorEquiposSolo extends JFrame {
         Color colorTexto = new Color(4, 38, 193);
 
         // Panel
-        panel = new JPanel();
+        JPanel panel = new JPanel();
         panel.setOpaque(false);
         panel.setLayout(null);
-        add(panel);
+        this.add(panel);
+
+        // Cargar imagen de fondo
+        try {
+            imagen = ImageIO.read(new File("src/Imagenes/Fondo/FondoSelectorEquipos.png")); // Ruta de la imagen de fondo
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // JLabel para el equipo 1
         labelEquipo1 = new JLabel(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
         labelEquipo1.setFont(new Font("Action Man", Font.BOLD, 20));
         labelEquipo1.setOpaque(false);
-        labelEquipo1.setForeground(Color.WHITE);
+        labelEquipo1.setForeground(Color.BLACK);
         labelEquipo1.setBounds(150, 200, 200, 30);
         labelEquipo1.setHorizontalAlignment(JLabel.CENTER);
         panel.add(labelEquipo1);
@@ -60,7 +69,7 @@ public class SelectorEquiposSolo extends JFrame {
         labelEquipo2 = new JLabel(oe.getEquipos().get(indiceEquipo2).getNombreEquipo());
         labelEquipo2.setFont(new Font("Action Man", Font.BOLD, 20));
         labelEquipo2.setOpaque(false);
-        labelEquipo2.setForeground(Color.white);
+        labelEquipo2.setForeground(Color.BLACK);
         labelEquipo2.setHorizontalAlignment(JLabel.CENTER);
         labelEquipo2.setBounds(950, 200, 200, 30);
         panel.add(labelEquipo2);
@@ -233,26 +242,19 @@ public class SelectorEquiposSolo extends JFrame {
             }
         });
         panel.add(flechaDerecha2);
-
-        // Crear un botón para el fondo
-        fondo = new JButton();
-        fondo.setBounds(0, 0, 1280, 720);
-        fondo.setOpaque(false);
-        fondo.setContentAreaFilled(false);
-        fondo.setBorderPainted(false);
-        panel.add(fondo);
-
-        // Cargar la imagen de fondo y establecerla como icono del botón
-        URL url = this.getClass().getClassLoader().getResource("Imagenes/Fondo/FondoSelectorEquipos.png");
-        ImageIcon icono = new ImageIcon(url);
-        Image imagen = icono.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH);
-        icono = new ImageIcon(imagen);
-        fondo.setIcon(icono);
-
         // Controles de la música
         musicManager.playMusic("Musica/Soundtrack/SelectorEquipos.wav", 0.7f);
 
 
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        // Dibujar la imagen de fondo en el JFrame
+        if (imagen != null) {
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+        }
     }
     public void playSound(String soundFile, float volume) {
         try {
