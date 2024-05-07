@@ -18,8 +18,6 @@ public class Ranking extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
-
-        //Poner icono de la aplicación
         setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
 
         JPanel panel = new JPanel();
@@ -33,7 +31,7 @@ public class Ranking extends JFrame{
         fondo.setBorderPainted(false);
 
         // Cargar la imagen de fondo y establecerla como icono del botón
-        URL url = this.getClass().getClassLoader().getResource("Imagenes/Fondo/axel.png");
+        URL url = this.getClass().getClassLoader().getResource("Imagenes/Fondo/axelblaze.png");
         ImageIcon icono = new ImageIcon(url);
         Image imagen = icono.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH);
         icono = new ImageIcon(imagen);
@@ -41,7 +39,10 @@ public class Ranking extends JFrame{
 
         //Boton volver
         volver = new JButton("Volver");
-        volver.setBounds(620, 600, 460, 45);
+        volver.setBounds(40,600,220,50);
+        volver.setBackground(MenuInicial.colorBaseBotones);
+        volver.setForeground(Color.WHITE);
+        volver.setFont(new Font("Action Man", Font.BOLD, 20));
         volver.addActionListener(e -> {
             MenuInicial menuInicial = new MenuInicial();
             menuInicial.setVisible(true);
@@ -52,8 +53,8 @@ public class Ranking extends JFrame{
         });
 
         //Añadir botones al panel
-        panel.add(fondo);
         panel.add(volver);
+        panel.add(fondo);
         add(panel);
 
         //Controles música
