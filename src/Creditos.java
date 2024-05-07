@@ -10,8 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 
 public class Creditos extends JFrame {
-    private JPanel panel;
-    private JButton volver;
+    private final JButton volver;
     private JLabel creditos;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     private MusicManager musicManager = new MusicManager();
@@ -27,7 +26,7 @@ public class Creditos extends JFrame {
         //Poner icono de la aplicación
         setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
 
-        panel=new JPanel();
+        JPanel panel = new JPanel();
         panel.setLayout(null);
 
 
@@ -44,9 +43,7 @@ public class Creditos extends JFrame {
             playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
             musicManager.stopMusic();
         });
-
         volver.setBounds(40,600,220,50);
-        panel.add(volver);
 
         // Crear un botón para el fondo
         JButton fondo = new JButton();
@@ -63,7 +60,7 @@ public class Creditos extends JFrame {
         fondo.setIcon(icono);
 
         // Añadir botones al panel
-        panel.add(creditos);
+        panel.add(volver);
         panel.add(fondo);
 
         //Añadir panel al JFrame

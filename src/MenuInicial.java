@@ -105,13 +105,15 @@ public class MenuInicial extends JFrame {
         });
 
         //Acción del botón creditos
-        creditos.addActionListener(e -> {
-            Creditos creditos = new Creditos();
-            creditos.setVisible(true);
-            dispose();
-
-            playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
-            musicManager.stopMusic();
+        creditos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Creditos creditos = new Creditos();
+                creditos.setVisible(true);
+                dispose();
+                playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
+                musicManager.stopMusic();
+            }
         });
 
         //Acción del botón salir
