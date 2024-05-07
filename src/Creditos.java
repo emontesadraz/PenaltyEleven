@@ -30,6 +30,7 @@ public class Creditos extends JFrame {
         panel=new JPanel();
         panel.setLayout(null);
 
+
         //Boton volver
         volver=new JButton("Volver");
         volver.setBackground(colorBaseBotones);
@@ -47,10 +48,26 @@ public class Creditos extends JFrame {
         volver.setBounds(40,600,220,50);
         panel.add(volver);
 
-        add(panel);
+        // Crear un botón para el fondo
+        JButton fondo = new JButton();
+        fondo.setBounds(0, 0, 1280, 720);
+        fondo.setOpaque(false);
+        fondo.setContentAreaFilled(false);
+        fondo.setBorderPainted(false);
 
-        //Cambiar color base de los botones
-        volver.setBackground(colorBaseBotones);
+        // Cargar la imagen de fondo y establecerla como icono del botón
+        URL url = this.getClass().getClassLoader().getResource("Imagenes/Fondo/Creditos.png");
+        ImageIcon icono = new ImageIcon(url);
+        Image imagen = icono.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH);
+        icono = new ImageIcon(imagen);
+        fondo.setIcon(icono);
+
+        // Añadir botones al panel
+        panel.add(creditos);
+        panel.add(fondo);
+
+        //Añadir panel al JFrame
+        add(panel);
 
         //Boton volver musica y color
         volver.addMouseListener(new MouseAdapter() {
@@ -58,7 +75,6 @@ public class Creditos extends JFrame {
             public void mouseEntered(MouseEvent e) {
                 playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
                 volver.setBackground(colorBaseBotones.darker());
-
             }
 
             @Override

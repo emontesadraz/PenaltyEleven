@@ -118,8 +118,8 @@ public class MenuInicial extends JFrame {
         salir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
                 playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
+                System.exit(0);
             }
         });
 
