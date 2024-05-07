@@ -39,7 +39,7 @@ public class SelectorEquiposSolo extends JFrame {
         Color colorTexto = new Color(4, 38, 193);
 
         // Panel
-        panel = new JPanel();
+        JPanel panel = new JPanel();
         panel.setOpaque(false);
         panel.setLayout(null);
         this.add(panel);
