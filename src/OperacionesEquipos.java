@@ -23,7 +23,7 @@ public class OperacionesEquipos extends Equipos{
         equipos.add(equipo6);
         Equipos equipo7 = new Equipos("Instituto Occult");
         equipos.add(equipo7);
-        Equipos equipo8 = new Equipos("Little Gigantes");
+        Equipos equipo8 = new Equipos("Little Giants");
         equipos.add(equipo8);
         Equipos equipo9 = new Equipos("Épsilon");
         equipos.add(equipo9);
@@ -31,10 +31,8 @@ public class OperacionesEquipos extends Equipos{
         equipos.add(equipo10);
         Equipos equipo11 = new Equipos("Instituto Farm");
         equipos.add(equipo11);
-        Equipos equipo12 = new Equipos("Prominence");
+        Equipos equipo12 = new Equipos("Caos");
         equipos.add(equipo12);
-        Equipos equipo13 = new Equipos("Caos");
-        equipos.add(equipo13);
     }
 
     public List<Equipos> getEquipos() {

@@ -16,23 +16,14 @@ public class SelectorEquiposSolo extends JFrame {
     private ImageIcon[] imagenesEquipos = {new ImageIcon("src/Imagenes/Escudo/EscudoRaimon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoZeus.png"), new ImageIcon("src/Imagenes/Escudo/.png"), new ImageIcon("src/Imagenes/Escudo/EscudoGenesis.png")
             , new ImageIcon("src/Imagenes/Escudo/EscudoRoyal.png"), new ImageIcon("src/Imagenes/Escudo/EscudoAlpino.png"), new ImageIcon("src/Imagenes/Escudo/EscudoKirkwood.png"), new ImageIcon("src/Imagenes/Escudo/EscudoOccult.png"), new ImageIcon("src/Imagenes/Escudo/EscudoGigantes.png")
             , new ImageIcon("src/Imagenes/Escudo/EscudoEpsilon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoOtaku.png"), new ImageIcon("src/Imagenes/Escudo/EscudoFarm.png"), new ImageIcon("src/Imagenes/Escudo/EscudoProminence.png"), new ImageIcon("src/Imagenes/Escudo/EscudoCaos.png")};
-    JButton seleccionarEqu1;
-    JButton seleccionarEqu2;
-    JButton jugar;
-    JButton flechaIzquierda;
-    JButton flechaDerecha;
-    JButton back;
-    JPanel panel;
-    JButton flechaIzquierda2;
-    JButton flechaDerecha2;
+    JButton seleccionarEqu1, seleccionarEqu2, jugar, back, flechaIzquierda, flechaDerecha, flechaIzquierda2, flechaDerecha2;
     BufferedImage imagen;
-    JLabel labelEquipo1;
-    JLabel labelEquipo2;
+    JLabel labelEquipo1, labelEquipo2;
     int indiceEquipo1 = 0;
     int indiceEquipo2 = 0;
     boolean eq1 = false;
     boolean eq2 = false;
-    private Clip musicClip;
+
 
     public SelectorEquiposSolo() {
         super("Penalty Eleven");
@@ -48,7 +39,7 @@ public class SelectorEquiposSolo extends JFrame {
         Color colorTexto = new Color(4, 38, 193);
 
         // Panel
-        panel = new JPanel();
+        JPanel panel = new JPanel();
         panel.setOpaque(false);
         panel.setLayout(null);
         this.add(panel);
