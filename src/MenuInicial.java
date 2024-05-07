@@ -85,7 +85,6 @@ public class MenuInicial extends JFrame {
                 SelectorEquipos selectorEquipos = new SelectorEquipos();
                 selectorEquipos.setVisible(true);
                 dispose();
-
                 playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 musicManager.stopMusic();
             }

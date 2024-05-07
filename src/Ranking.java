@@ -9,11 +9,8 @@ import java.net.URL;
 
 public class Ranking extends JFrame{
     MusicManager musicManager = new MusicManager();
-    private JPanel panel;
-    private JButton volver;
-    private JLabel  ranking;
-    private JScrollPane scroll;
-    private BufferedImage imagen;
+    private JButton volver,fondo;
+
 
     public Ranking() {
         setSize(1280,720);
@@ -25,26 +22,24 @@ public class Ranking extends JFrame{
         //Poner icono de la aplicación
         setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
 
-        // Cargar imagen de fondo
-        try {
-            imagen = ImageIO.read(new File("src/Imagenes/FondoRanking.png")); // Ruta de la imagen de fondo
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        panel=new JPanel();
+        JPanel panel = new JPanel();
         panel.setLayout(null);
 
-        ranking = new JLabel();
-        ranking.setText("<html> RANKING DE LOS JUGADORES CON MÁS VICTORIAS</html>");
-        ranking.setBounds(820, 50, 460, 500);
-        panel.add(ranking);
+        // Crear un botón para el fondo
+        fondo = new JButton();
+        fondo.setBounds(0, 0, 1280, 720);
+        fondo.setOpaque(false);
+        fondo.setContentAreaFilled(false);
+        fondo.setBorderPainted(false);
 
-        scroll = new JScrollPane(ranking);
-        scroll.setOpaque(false);
-        scroll.setBounds(820, 50, 460, 500);
-        panel.add(scroll);
+        // Cargar la imagen de fondo y establecerla como icono del botón
+        URL url = this.getClass().getClassLoader().getResource("Imagenes/Fondo/axel.png");
+        ImageIcon icono = new ImageIcon(url);
+        Image imagen = icono.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH);
+        icono = new ImageIcon(imagen);
+        fondo.setIcon(icono);
 
+        //Boton volver
         volver = new JButton("Volver");
         volver.setBounds(620, 600, 460, 45);
         volver.addActionListener(e -> {
@@ -55,21 +50,16 @@ public class Ranking extends JFrame{
             playSound("Musica/SoundEffect/SonidoAtras.wav", 0.5f);
             musicManager.stopMusic();
         });
-        panel.add(volver);
 
+        //Añadir botones al panel
+        panel.add(fondo);
+        panel.add(volver);
         add(panel);
 
         //Controles música
         musicManager.playMusic("Musica/Soundtrack/Ranking.wav", 0.7f);
     }
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-        // Dibujar la imagen de fondo en el JFrame
-        if (imagen != null) {
-            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
-        }
-    }
+
     public void playSound(String soundFile, float volume) {
         try {
             // Abrir un audio input stream
