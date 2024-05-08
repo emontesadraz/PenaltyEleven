@@ -79,7 +79,12 @@ public class MenuInicial extends JFrame {
         multiPlayer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SelectorEquipos selectorEquipos = new SelectorEquipos();
+                SelectorEquipos selectorEquipos = null;
+                try {
+                    selectorEquipos = new SelectorEquipos();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 selectorEquipos.setVisible(true);
                 dispose();
                 playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);

@@ -4,8 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.awt.image.BufferedImage;
 
 public class SelectorEquipos extends JFrame {
     OperacionesEquipos oe = new OperacionesEquipos();
@@ -23,7 +25,7 @@ public class SelectorEquipos extends JFrame {
     boolean eq2 = false;
     private Clip musicClip;
 
-    public SelectorEquipos() {
+    public SelectorEquipos() throws IOException {
         super("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1280, 720);
@@ -72,6 +74,14 @@ public class SelectorEquipos extends JFrame {
         JLabel imagenEquipo2 = new JLabel(imagenesEquipos[indiceEquipo2]);
         imagenEquipo2.setBounds(950, 250, 200, 200);
         panel.add(imagenEquipo2);
+
+        //JLabel imagen versus
+        BufferedImage vs = ImageIO.read(new File("src/Imagenes/versus.png"));
+        JLabel versus = new JLabel();
+        versus.setIcon(new ImageIcon(vs.getScaledInstance(400,400, Image.SCALE_DEFAULT)));
+        versus.setBounds(450, 120, 400, 400);
+        versus.setBorder(null);
+        panel.add(versus);
 
         // Botón seleccionar para el equipo 1
         seleccionarEqu1 = new JButton("Seleccionar");
@@ -248,7 +258,7 @@ public class SelectorEquipos extends JFrame {
         // Cargar la imagen de fondo y establecerla como icono del botón
         URL url = this.getClass().getClassLoader().getResource("Imagenes/Fondo/SelectorEquipos.jpg");
         ImageIcon icono = new ImageIcon(url);
-        Image imagen = icono.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH);
+        Image imagen = icono.getImage().getScaledInstance(1280, 720, Image.SCALE_DEFAULT);
         icono = new ImageIcon(imagen);
         fondo.setIcon(icono);
 
