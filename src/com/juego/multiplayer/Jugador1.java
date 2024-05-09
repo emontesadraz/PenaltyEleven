@@ -6,6 +6,7 @@ public class Jugador1 {
         IZQUIERDA, DERECHA, CENTRO
     }
     public boolean chutar(Direccion direccion) {
+
         return true;
     }
 
