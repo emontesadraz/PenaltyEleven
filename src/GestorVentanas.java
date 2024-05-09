@@ -1,23 +1,36 @@
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 
 public class GestorVentanas extends JFrame {
     private JPanel currentPanel; // Mantiene una referencia al panel actualmente visible
 
     public GestorVentanas() {
-        setTitle("CHI VUOL ESSER MILIONARIO?");
+        setTitle("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
+        setResizable(false);
+
+        //Poner icono de la aplicación
+        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
 
 // Paneles de contenido
         JPanel p1 = new JPanel();
-        p1.add(new JLabel("Panel 1"));
+        p1.add(new JLabel("Menu Inicial"));
         JPanel p2 = new JPanel();
-        p2.add(new JLabel("Panel 2"));
+        p2.add(new JLabel("Ranking"));
         JPanel p3 = new JPanel();
-        p3.add(new JLabel("Panel 3"));
+        p3.add(new JLabel("Creditos"));
         JPanel p4 = new JPanel();
-        p4.add(new JLabel("Panel 4"));
+        p4.add(new JLabel("SelectorEquipos"));
+
+//Panel MenuInicial
+        //Crear botones
+        JButton soloPlayer=new JButton("Un Jugador");
+        JButton multiPlayer=new JButton("Multijugador");
+        JButton ranking =new JButton("Ranking de Goleadores");
+        JButton creditos=new JButton("Créditos");
+        JButton salir=new JButton("Salir");
 
 // Botones para cambiar paneles
         JButton b1 = new JButton("Button 1");
