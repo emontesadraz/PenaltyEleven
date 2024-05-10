@@ -45,6 +45,30 @@ public class JuegoMultiplayer extends JFrame {
         jugador1 = new Jugador1();
         jugador2 = new Jugador2();
 
+        // Creamos los botones
+        arribaIzquierda = new JButton();
+        arribaDerecha = new JButton();
+        arribaCentro = new JButton();
+        centroIzquierda = new JButton();
+        centroDerecha = new JButton();
+        centroCentro = new JButton();
+        abajoIzquierda = new JButton();
+        abajoDerecha = new JButton();
+        abajoCentro = new JButton();
+
+        // Configuramos la posicion de los botones
+        arribaIzquierda.setBounds(100, 100, 100, 100);
+        arribaDerecha.setBounds(1080, 100, 100, 100);
+        arribaCentro.setBounds(600, 100, 100, 100);
+        centroIzquierda.setBounds(100, 300, 100, 100);
+        centroDerecha.setBounds(1080, 300, 100, 100);
+        centroCentro.setBounds(600, 300, 100, 100);
+        abajoIzquierda.setBounds(100, 500, 100, 100);
+        abajoDerecha.setBounds(1080, 500, 100, 100);
+        abajoCentro.setBounds(600, 500, 100, 100);
+
+
+
         // Añadimos los checkbox al panel
         panel.add(arribaIzquierda);
         panel.add(arribaDerecha);
