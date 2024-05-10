@@ -20,6 +20,6 @@ public class InterfazMaestra extends JFrame {
         fondo.setIcon(icono);
     }
 
-
+    //Metodo para poner el logo de la aplicacion
 
 }
