@@ -26,7 +26,7 @@ public class JuegoMultiplayer extends JFrame {
 
     public JuegoMultiplayer() {
         // Configuramos el JFrame
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
         setTitle("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
