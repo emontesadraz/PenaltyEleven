@@ -3,7 +3,7 @@ package com.juego.multiplayer;
 public class Jugador1 {
 
     public enum Direccion {
-        IZQUIERDA, DERECHA, CENTRO
+        ARRIBAIZQUIERDA, ARRIBADERECHA, ABAJOIZQUIERDA, ABAJODERECHA,CENTROARRIBA,CENTROABAJO,CENTROIZQUIERDA,CENTRODERECHA,CENTRO
     }
     public boolean chutar(Direccion direccion) {
 

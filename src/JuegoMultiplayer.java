@@ -11,7 +11,18 @@ public class JuegoMultiplayer extends JFrame {
     private Jugador2 jugador2;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     private final MusicManager musicManager = new MusicManager();
-    private JButton botonChutarCentro,botonChutarDerecha,botonChutarIzquierda, botonPararCentro, botonPararDerecha, botonPararIzquierda, fondo;
+    private JCheckBox arribaIzquierda;
+    private JCheckBox centroIzquierda;
+    private JCheckBox abajoIzquierda;
+    private JCheckBox arribaCentro;
+    private JCheckBox centroCentro;
+    private JCheckBox abajoCentro;
+    private JCheckBox arribaDerecha;
+    private JCheckBox centroDerecha;
+    private JCheckBox abajoDerecha;
+    private JButton chutar;
+    private JButton parar;
+
 
     public JuegoMultiplayer() {
         // Configuramos el JFrame
@@ -34,189 +45,44 @@ public class JuegoMultiplayer extends JFrame {
         jugador1 = new Jugador1();
         jugador2 = new Jugador2();
 
-        // Creamos los botones de chutar
-        botonChutarCentro = new JButton("Chutar al centro");
-        botonChutarDerecha = new JButton("Chutar a la derecha");
-        botonChutarIzquierda = new JButton("Chutar a la izquierda");
+        // Creamos los checkbox
+        arribaIzquierda = new JCheckBox();
+        arribaDerecha = new JCheckBox();
+        arribaCentro = new JCheckBox();
+        centroIzquierda = new JCheckBox();
+        centroDerecha = new JCheckBox();
+        centroCentro = new JCheckBox();
+        abajoIzquierda = new JCheckBox();
+        abajoDerecha = new JCheckBox();
+        abajoCentro = new JCheckBox();
 
-        // Creamos los botones de parar
-        botonPararCentro = new JButton("Parar al centro");
-        botonPararDerecha = new JButton("Parar a la derecha");
-        botonPararIzquierda = new JButton("Parar a la izquierda");
+        // Configuramos la posición de los checkbox
+        arribaIzquierda.setBounds(100, 100, 150, 150);
+        arribaDerecha.setBounds(1000, 100, 150, 150);
+        arribaCentro.setBounds(500, 100, 150, 150);
+        centroIzquierda.setBounds(100, 300, 150, 150);
+        centroDerecha.setBounds(1000, 300, 150, 150);
+        centroCentro.setBounds(500, 300, 150, 150);
+        abajoIzquierda.setBounds(100, 500, 150, 150);
+        abajoDerecha.setBounds(1000, 500, 150, 150);
+        abajoCentro.setBounds(500, 500, 150, 150);
 
-        // Establecemos la posición de los botones de chutar
-        botonChutarCentro.setBounds(100, 100, 200, 50);
-        botonChutarDerecha.setBounds(100, 200, 200, 50);
-        botonChutarIzquierda.setBounds(100, 300, 200, 50);
+        // Añadimos los checkbox al panel
+        panel.add(arribaIzquierda);
+        panel.add(arribaDerecha);
+        panel.add(arribaCentro);
+        panel.add(centroIzquierda);
+        panel.add(centroDerecha);
+        panel.add(centroCentro);
+        panel.add(abajoIzquierda);
+        panel.add(abajoDerecha);
+        panel.add(abajoCentro);
 
-        // Establecemos la posición de los botones de parar
-        botonPararCentro.setBounds(400, 100, 200, 50);
-        botonPararDerecha.setBounds(400, 200, 200, 50);
-        botonPararIzquierda.setBounds(400, 300, 200, 50);
-
-        // Hacemos invisibles los botones de parar del jugador dos
-        botonPararCentro.setVisible(false);
-        botonPararDerecha.setVisible(false);
-        botonPararIzquierda.setVisible(false);
-
-        // Establecemos los colores de los botones
-
-
-        // Añadimos Listeeners a los botones de chutar del jugador 1
-        botonChutarCentro.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jugador1.chutar(Jugador1.Direccion.CENTRO);
-                // Ocultar botones de chutar del jugador 1
-                botonChutarCentro.setVisible(false);
-                botonChutarDerecha.setVisible(false);
-                botonChutarIzquierda.setVisible(false);
-                // Mostrar botones de parar del jugador 2
-                botonPararCentro.setVisible(true);
-                botonPararDerecha.setVisible(true);
-                botonPararIzquierda.setVisible(true);
-
-            }
-        });
-        botonChutarDerecha.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jugador1.chutar(Jugador1.Direccion.DERECHA);
-                // Ocultar botones de chutar del jugador 1
-                botonChutarCentro.setVisible(false);
-                botonChutarDerecha.setVisible(false);
-                botonChutarIzquierda.setVisible(false);
-                // Mostrar botones de parar del jugador 2
-                botonPararCentro.setVisible(true);
-                botonPararDerecha.setVisible(true);
-                botonPararIzquierda.setVisible(true);
-
-            }
-        });
-        botonChutarIzquierda.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jugador1.chutar(Jugador1.Direccion.IZQUIERDA);
-                // Ocultar botones de chutar del jugador 1
-                botonChutarCentro.setVisible(false);
-                botonChutarDerecha.setVisible(false);
-                botonChutarIzquierda.setVisible(false);
-                // Mostrar botones de parar del jugador 2
-                botonPararCentro.setVisible(true);
-                botonPararDerecha.setVisible(true);
-                botonPararIzquierda.setVisible(true);
-
-            }
-        });
-
-        // Añadimos Listeeners a los botones de parar del jugador 1
-        botonPararCentro.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jugador1.parar(Jugador1.Direccion.CENTRO);
-                // Ocultar botones de parar del jugador 2
-                botonPararCentro.setVisible(false);
-                botonPararDerecha.setVisible(false);
-                botonPararIzquierda.setVisible(false);
-                // Mostrar botones de chutar del jugador 1
-                botonChutarCentro.setVisible(true);
-                botonChutarDerecha.setVisible(true);
-                botonChutarIzquierda.setVisible(true);
-
-            }
-        });
-        botonPararDerecha.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jugador1.parar(Jugador1.Direccion.DERECHA);
-                // Ocultar botones de parar del jugador 2
-                botonPararCentro.setVisible(false);
-                botonPararDerecha.setVisible(false);
-                botonPararIzquierda.setVisible(false);
-                // Mostrar botones de chutar del jugador 1
-                botonChutarCentro.setVisible(true);
-                botonChutarDerecha.setVisible(true);
-                botonChutarIzquierda.setVisible(true);
-
-            }
-        });
-        botonPararIzquierda.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jugador1.parar(Jugador1.Direccion.IZQUIERDA);
-                // Ocultar botones de parar del jugador 2
-                botonPararCentro.setVisible(false);
-                botonPararDerecha.setVisible(false);
-                botonPararIzquierda.setVisible(false);
-                // Mostrar botones de chutar del jugador 1
-                botonChutarCentro.setVisible(true);
-                botonChutarDerecha.setVisible(true);
-                botonChutarIzquierda.setVisible(true);
-
-            }
-        });
-
-        // Añadimos listeners a los botones de chutar del jugador 2
-        botonChutarCentro.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jugador2.chutar(Jugador2.Direccion.CENTRO);
-
-            }
-        });
-        botonChutarDerecha.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jugador2.chutar(Jugador2.Direccion.DERECHA);
-
-            }
-        });
-        botonChutarIzquierda.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jugador2.chutar(Jugador2.Direccion.IZQUIERDA);
-
-            }
-        });
-
-        // Añadimos listeners a los botones de parar del jugador 2
-        botonPararCentro.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jugador2.parar(Jugador2.Direccion.CENTRO);
-
-            }
-        });
-
-        botonPararDerecha.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jugador2.parar(Jugador2.Direccion.DERECHA);
-
-            }
-        });
-
-        botonPararIzquierda.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jugador2.parar(Jugador2.Direccion.IZQUIERDA);
-
-            }
-        });
-
-        // Añadimos los botones al JFrame
-        panel.add(botonChutarCentro);
-        panel.add(botonChutarDerecha);
-        panel.add(botonChutarIzquierda);
-        panel.add(botonPararCentro);
-        panel.add(botonPararDerecha);
-        panel.add(botonPararIzquierda);
 
     }
 
     public static void main(String[] args) {
-        JuegoMultiplayer juegoMultiplayer = new JuegoMultiplayer();
-        juegoMultiplayer.setVisible(true);
+        JuegoMultiplayer juego = new JuegoMultiplayer();
+        juego.setVisible(true);
     }
-
 }
