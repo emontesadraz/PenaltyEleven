@@ -67,6 +67,18 @@ public class JuegoMultiplayer extends JFrame {
         abajoDerecha.setBounds(1000, 500, 150, 150);
         abajoCentro.setBounds(500, 500, 150, 150);
 
+        // Configuramos el color de los checkbox
+        arribaIzquierda.setBackground(colorBaseBotones);
+        arribaDerecha.setBackground(colorBaseBotones);
+        arribaCentro.setBackground(colorBaseBotones);
+        centroIzquierda.setBackground(colorBaseBotones);
+        centroDerecha.setBackground(colorBaseBotones);
+        centroCentro.setBackground(colorBaseBotones);
+        abajoIzquierda.setBackground(colorBaseBotones);
+        abajoDerecha.setBackground(colorBaseBotones);
+        abajoCentro.setBackground(colorBaseBotones);
+
+
         // Añadimos los checkbox al panel
         panel.add(arribaIzquierda);
         panel.add(arribaDerecha);
