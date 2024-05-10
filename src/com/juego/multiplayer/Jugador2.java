@@ -5,11 +5,11 @@ public class Jugador2 {
     public enum Direccion {
         IZQUIERDA, DERECHA, CENTRO
     }
-    public boolean chutar() {
+    public boolean chutar(Direccion direccion) {
         return true;
     }
 
-    public boolean parar() {
+    public boolean parar(Direccion direccion) {
         return true;
     }
 }
