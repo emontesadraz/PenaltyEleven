@@ -11,8 +11,12 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
-public class ElegirTemporada extends JFrame {
-    private final JButton temp1,temp2,temp3,volver,fondo;
+public class ElegirTemporada extends InterfazMaestra {
+    private final JButton temp1;
+    private final JButton temp2;
+    private final JButton temp3;
+    private final JButton volver;
+    private JButton fondo;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     private BufferedImage imagen;
     private final MusicManager musicManager = new MusicManager();
@@ -41,19 +45,9 @@ public class ElegirTemporada extends JFrame {
         temp3=new JButton("Temporada 3");
         volver=new JButton("Volver");
 
-        // Crear un botón para el fondo
+        //Crear fondo
         fondo = new JButton();
-        fondo.setBounds(0, 0, 1280, 720);
-        fondo.setOpaque(false);
-        fondo.setContentAreaFilled(false);
-        fondo.setBorderPainted(false);
-
-        // Cargar la imagen de fondo y establecerla como icono del botón
-        URL url = this.getClass().getClassLoader().getResource("Imagenes/Fondo/axelkevin.png");
-        ImageIcon icono = new ImageIcon(url);
-        Image imagen = icono.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH);
-        icono = new ImageIcon(imagen);
-        fondo.setIcon(icono);
+        crearFondo(fondo,"Imagenes/Fondo/axelkevin.png");
 
         //Añadir botones al panel
         panel.add(temp1);
@@ -70,7 +64,7 @@ public class ElegirTemporada extends JFrame {
                 lobbyIE1.setVisible(true);
                 dispose();
 
-                playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
+                musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 musicManager.stopMusic();
             }
         });
@@ -81,7 +75,7 @@ public class ElegirTemporada extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 //Abrir ventana de Temporada2
 
-                playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
+                musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 musicManager.stopMusic();
             }
         });
@@ -92,7 +86,7 @@ public class ElegirTemporada extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 //Abrir ventana de Temporada3
 
-                playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
+                musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 musicManager.stopMusic();
             }
         });
@@ -104,7 +98,7 @@ public class ElegirTemporada extends JFrame {
                 SoloPlayer soloPlayer = new SoloPlayer();
                 soloPlayer.setVisible(true);
                 dispose();
-                playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
+                musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 musicManager.stopMusic();
             }
         });
@@ -140,7 +134,7 @@ public class ElegirTemporada extends JFrame {
         temp1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
+                musicManager.playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
                 temp1.setBackground(colorBaseBotones.darker());
             }
             @Override
@@ -152,7 +146,7 @@ public class ElegirTemporada extends JFrame {
         temp2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
+                musicManager.playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
                 temp2.setBackground(colorBaseBotones.darker());}
             @Override
             public void mouseExited(MouseEvent e) {
@@ -163,7 +157,7 @@ public class ElegirTemporada extends JFrame {
         temp3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
+                musicManager.playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
                 temp3.setBackground(colorBaseBotones.darker());}
             @Override
             public void mouseExited(MouseEvent e) {
@@ -174,7 +168,7 @@ public class ElegirTemporada extends JFrame {
         volver.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
+                musicManager.playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
                 volver.setBackground(colorBaseBotones.darker());}
             @Override
             public void mouseExited(MouseEvent e) {
@@ -187,31 +181,7 @@ public class ElegirTemporada extends JFrame {
 
     }
 
-    public void playSound(String soundFile, float volume) {
-        try {
-            // Abrir un audio input stream
-            URL url = this.getClass().getClassLoader().getResource(soundFile);
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-
-            // Obtener un clip de sonido
-            Clip clip = AudioSystem.getClip();
-
-            // Abrir el clip de audio y cargar muestras de audio del audio input stream
-            clip.open(audioIn);
-
-            // Obtener el control de volumen
-            FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-
-            // Convertir el volumen en decibelios
-            float dB = (float) (Math.log(volume) / Math.log(10.0) * 20.0);
-            volumeControl.setValue(dB);
-
-            // Iniciar la reproducción
-            clip.start();
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            e.printStackTrace();
-        }
 
     }
 
-}
+

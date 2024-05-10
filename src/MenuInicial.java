@@ -9,8 +9,8 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 
-public class MenuInicial extends JFrame {
-    private final JButton soloPlayer, multiPlayer, ranking, creditos, salir, fondo;
+public class MenuInicial extends InterfazMaestra {
+    private final JButton soloPlayer, multiPlayer, ranking, creditos, salir,fondo;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     private final MusicManager musicManager = new MusicManager();
 
@@ -37,19 +37,8 @@ public class MenuInicial extends JFrame {
         creditos=new JButton("Créditos");
         salir=new JButton("Salir");
 
-        // Crear un botón para el fondo
         fondo = new JButton();
-        fondo.setBounds(0, 0, 1280, 720);
-        fondo.setOpaque(false);
-        fondo.setContentAreaFilled(false);
-        fondo.setBorderPainted(false);
-
-        // Cargar la imagen de fondo y establecerla como icono del botón
-        URL url = this.getClass().getClassLoader().getResource("Imagenes/Fondo/FondoMenuInicial.png");
-        ImageIcon icono = new ImageIcon(url);
-        Image imagen = icono.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH);
-        icono = new ImageIcon(imagen);
-        fondo.setIcon(icono);
+        crearFondo(fondo,"Imagenes/Fondo/FondoMenuInicial.png");
 
         // Añadir los otros botones al panel
         panel.add(soloPlayer);

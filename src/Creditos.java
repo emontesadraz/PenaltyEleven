@@ -9,10 +9,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
-public class Creditos extends JFrame {
+public class Creditos extends InterfazMaestra {
     private final JButton volver;
     private JLabel creditos;
-    public static final Color colorBaseBotones = new Color(25, 25, 25);
+    private JButton fondo;
+    public final Color colorBaseBotones = new Color(25, 25, 25);
     private MusicManager musicManager = new MusicManager();
 
     public Creditos() {
@@ -45,19 +46,8 @@ public class Creditos extends JFrame {
         });
         volver.setBounds(40,600,220,50);
 
-        // Crear un botón para el fondo
-        JButton fondo = new JButton();
-        fondo.setBounds(0, 0, 1280, 720);
-        fondo.setOpaque(false);
-        fondo.setContentAreaFilled(false);
-        fondo.setBorderPainted(false);
-
-        // Cargar la imagen de fondo y establecerla como icono del botón
-        URL url = this.getClass().getClassLoader().getResource("Imagenes/Fondo/Creditos.png");
-        ImageIcon icono = new ImageIcon(url);
-        Image imagen = icono.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH);
-        icono = new ImageIcon(imagen);
-        fondo.setIcon(icono);
+        fondo = new JButton();
+        crearFondo(fondo,"Imagenes/Fondo/hectorhelio.png");
 
         // Añadir botones al panel
         panel.add(volver);
