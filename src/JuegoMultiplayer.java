@@ -1,5 +1,6 @@
 import com.juego.multiplayer.Jugador1;
 import com.juego.multiplayer.Jugador2;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,24 +12,24 @@ public class JuegoMultiplayer extends JFrame {
     private Jugador2 jugador2;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     private final MusicManager musicManager = new MusicManager();
-    private JButton tirarArribaIzquierda;
-    private JButton tirarCentroIzquierda;
-    private JButton tirarAbajoIzquierda;
-    private JButton tirarArribaCentro;
-    private JButton tirarCentroCentro;
-    private JButton tirarAbajoCentro;
-    private JButton tirarArribaDerecha;
-    private JButton tirarCentroDerecha;
-    private JButton tirarAbajoDerecha;
-    private JButton pararArribaIzquierda;
-    private JButton pararCentroIzquierda;
-    private JButton pararAbajoIzquierda;
-    private JButton pararArribaCentro;
-    private JButton pararCentroCentro;
-    private JButton pararAbajoCentro;
-    private JButton pararArribaDerecha;
-    private JButton pararCentroDerecha;
-    private JButton pararAbajoDerecha;
+    private JToggleButton tirarArribaIzquierda;
+    private JToggleButton tirarCentroIzquierda;
+    private JToggleButton tirarAbajoIzquierda;
+    private JToggleButton tirarArribaCentro;
+    private JToggleButton tirarCentroCentro;
+    private JToggleButton tirarAbajoCentro;
+    private JToggleButton tirarArribaDerecha;
+    private JToggleButton tirarCentroDerecha;
+    private JToggleButton tirarAbajoDerecha;
+    private JToggleButton pararArribaIzquierda;
+    private JToggleButton pararCentroIzquierda;
+    private JToggleButton pararAbajoIzquierda;
+    private JToggleButton pararArribaCentro;
+    private JToggleButton pararCentroCentro;
+    private JToggleButton pararAbajoCentro;
+    private JToggleButton pararArribaDerecha;
+    private JToggleButton pararCentroDerecha;
+    private JToggleButton pararAbajoDerecha;
     private JButton chutar;
     private JButton parar;
     private Jugador1.Direccion direccionTiroJugador1_1;
@@ -38,8 +39,9 @@ public class JuegoMultiplayer extends JFrame {
     private Jugador2.Direccion direccionParadaJugador2;
     private Jugador2.Direccion direccionParadaJugador2_2;
     private boolean turnoJugador1;
-    private boolean tiroRealizado;
-
+    private int turnosJugador1 = 0;
+    private int turnosJugador2 = 0;
+    private static final int MAX_TURNOS = 5;
 
     public JuegoMultiplayer() {
         // Configuramos el JFrame
@@ -92,26 +94,26 @@ public class JuegoMultiplayer extends JFrame {
         jugador2 = new Jugador2();
 
         // Creamos los botones de tiro
-        tirarArribaIzquierda = new JButton();
-        tirarArribaDerecha = new JButton();
-        tirarArribaCentro = new JButton();
-        tirarCentroIzquierda = new JButton();
-        tirarCentroDerecha = new JButton();
-        tirarCentroCentro = new JButton();
-        tirarAbajoIzquierda = new JButton();
-        tirarAbajoDerecha = new JButton();
-        tirarAbajoCentro = new JButton();
+        tirarArribaIzquierda = new JToggleButton();
+        tirarArribaDerecha = new JToggleButton();
+        tirarArribaCentro = new JToggleButton();
+        tirarCentroIzquierda = new JToggleButton();
+        tirarCentroDerecha = new JToggleButton();
+        tirarCentroCentro = new JToggleButton();
+        tirarAbajoIzquierda = new JToggleButton();
+        tirarAbajoDerecha = new JToggleButton();
+        tirarAbajoCentro = new JToggleButton();
 
         // Configuramos los botones de parar
-        pararArribaIzquierda = new JButton();
-        pararArribaDerecha = new JButton();
-        pararArribaCentro = new JButton();
-        pararCentroIzquierda = new JButton();
-        pararCentroDerecha = new JButton();
-        pararCentroCentro = new JButton();
-        pararAbajoIzquierda = new JButton();
-        pararAbajoDerecha = new JButton();
-        pararAbajoCentro = new JButton();
+        pararArribaIzquierda = new JToggleButton();
+        pararArribaDerecha = new JToggleButton();
+        pararArribaCentro = new JToggleButton();
+        pararCentroIzquierda = new JToggleButton();
+        pararCentroDerecha = new JToggleButton();
+        pararCentroCentro = new JToggleButton();
+        pararAbajoIzquierda = new JToggleButton();
+        pararAbajoDerecha = new JToggleButton();
+        pararAbajoCentro = new JToggleButton();
 
         // Configuramos la posicion de los botones de tiro
         tirarArribaIzquierda.setBounds(500, 110, 300, 200);
@@ -232,20 +234,35 @@ public class JuegoMultiplayer extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Aquí actualizas la dirección del tiro o de la parada dependiendo del turno
                 if (turnoJugador1) {
-                    direccionTiroJugador1_1 = Jugador1.Direccion.CENTRO;
+                    if (direccionTiroJugador1_1 == null) {
+                        direccionTiroJugador1_1 = Jugador1.Direccion.ARRIBAIZQUIERDA;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
+                    }
                 } else {
-                    direccionTiroJugador2_1 = Jugador2.Direccion.CENTRO;
+                    if (direccionTiroJugador2_1 == null) {
+                        direccionTiroJugador2_1 = Jugador2.Direccion.ARRIBAIZQUIERDA;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
+                    }
                 }
             }
         });
         tirarAbajoIzquierda.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aquí actualizas la dirección del tiro o de la parada dependiendo del turno
-                if (turnoJugador1) {
-                    direccionTiroJugador1_1 = Jugador1.Direccion.ABAJOIZQUIERDA;
+                if (turnoJugador1){
+                if (direccionTiroJugador1_1 == null) {
+                    direccionTiroJugador1_1 = Jugador1.Direccion.ARRIBAIZQUIERDA;
                 } else {
-                    direccionTiroJugador2_1 = Jugador2.Direccion.ABAJOIZQUIERDA;
+                    JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
+                }
+            } else {
+                    if (direccionTiroJugador2_1 == null) {
+                        direccionTiroJugador2_1 = Jugador2.Direccion.ARRIBAIZQUIERDA;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
+                    }
                 }
             }
         });
@@ -254,9 +271,17 @@ public class JuegoMultiplayer extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Aquí actualizas la dirección del tiro o de la parada dependiendo del turno
                 if (turnoJugador1) {
-                    direccionTiroJugador1_1 = Jugador1.Direccion.ABAJODERECHA;
+                    if (direccionTiroJugador1_1 == null) {
+                        direccionTiroJugador1_1 = Jugador1.Direccion.ARRIBAIZQUIERDA;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
+                    }
                 } else {
-                    direccionTiroJugador2_1 = Jugador2.Direccion.ABAJODERECHA;
+                    if (direccionTiroJugador2_1 == null) {
+                        direccionTiroJugador2_1 = Jugador2.Direccion.ARRIBAIZQUIERDA;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
+                    }
                 }
             }
         });
@@ -265,9 +290,17 @@ public class JuegoMultiplayer extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Aquí actualizas la dirección del tiro o de la parada dependiendo del turno
                 if (turnoJugador1) {
-                    direccionTiroJugador1_1 = Jugador1.Direccion.CENTROABAJO;
+                    if (direccionTiroJugador1_1 == null) {
+                        direccionTiroJugador1_1 = Jugador1.Direccion.ARRIBAIZQUIERDA;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
+                    }
                 } else {
-                    direccionTiroJugador2_1 = Jugador2.Direccion.CENTROABAJO;
+                    if (direccionTiroJugador2_1 == null) {
+                        direccionTiroJugador2_1 = Jugador2.Direccion.ARRIBAIZQUIERDA;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
+                    }
                 }
             }
         });
@@ -448,12 +481,17 @@ public class JuegoMultiplayer extends JFrame {
         chutar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Solo permitimos chutar si no se ha realizado un tiro en este turno y es el turno del jugador 1
-                // Llamas al método chutar con las direcciones que hayas seleccionado
-                chutar(direccionTiroJugador1_1, direccionTiroJugador2_1);
-                // Cambias la visibilidad de los paneles
-                panelChutar.setVisible(false);
-                panelParar.setVisible(true);
+                if (turnoJugador1 && turnosJugador1 < MAX_TURNOS) {
+                    jugador1.chutar(direccionTiroJugador1_1);
+                    turnosJugador1++;
+                    panelChutar.setVisible(false);
+                    panelParar.setVisible(true);
+                } else if (!turnoJugador1 && turnosJugador2 < MAX_TURNOS) {
+                    jugador2.chutar(direccionTiroJugador2_1);
+                    turnosJugador2++;
+                    panelChutar.setVisible(false);
+                    panelParar.setVisible(true);
+                }
             }
         });
 
@@ -461,16 +499,28 @@ public class JuegoMultiplayer extends JFrame {
         parar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Llamas al método parar con las direcciones que hayas seleccionado
-                if (direccionParadaJugador2 != null && direccionParadaJugador2_2 != null) {
-                    // Llamas al método parar con las direcciones que hayas seleccionado
-                    parar(direccionParadaJugador2, direccionParadaJugador2_2, direccionParadaJugador1, direccionParadaJugador1_2);
-                    // Cambias la visibilidad de los paneles
-                    panelChutar.setVisible(true);
-                    panelParar.setVisible(false);
-                    // Cambiamos el turno después de parar
-                    turnoJugador1 = !turnoJugador1;
+                if (turnoJugador1 && turnosJugador1 < MAX_TURNOS) {
+                    if (direccionParadaJugador1 != null && direccionParadaJugador1_2 != null) {
+                        jugador1.parar(direccionParadaJugador1);
+                        jugador1.parar(direccionParadaJugador1_2);
+                        turnosJugador1++;
+                        panelParar.setVisible(false);
+                        panelChutar.setVisible(true);
+                        // Restablecemos las direcciones de parada para el próximo turno
+                        direccionParadaJugador1 = null;
+                        direccionParadaJugador1_2 = null;
+                    } else if (!turnoJugador1 && turnosJugador2 < MAX_TURNOS) {
+                        jugador2.parar(direccionParadaJugador2);
+                        jugador2.parar(direccionParadaJugador2_2);
+                        turnosJugador2++;
+                        panelParar.setVisible(false);
+                        panelChutar.setVisible(true);
+                        // Restablecemos las direcciones de parada para el próximo turno
+                        direccionParadaJugador2 = null;
+                        direccionParadaJugador2_2 = null;
+                    }
                 }
+                turnoJugador1 = !turnoJugador1;
             }
         });
 
@@ -478,34 +528,13 @@ public class JuegoMultiplayer extends JFrame {
         // Añadimos el turno del jugador 1 para que empiece el la partida
         turnoJugador1 = true;
     }
-
     public static void main(String[] args) {
         JuegoMultiplayer juego = new JuegoMultiplayer();
         juego.setVisible(true);
     }
-
-    public void chutar(Jugador1.Direccion direccion1, Jugador2.Direccion direccion2) {
-        if (turnoJugador1) { // Jugador 1 chuta si es su turno
-            direccionTiroJugador1_1 = direccion1;
-            jugador1.chutar(direccion1);
-        } else { // Jugador 2 chuta si no es el turno del jugador 1
-            direccionTiroJugador2_1 = direccion2;
-            jugador2.chutar(direccion2);
-        }
-    }
-
-    public void parar(Jugador2.Direccion direccion2, Jugador2.Direccion direccion2_1, Jugador1.Direccion direccion1, Jugador1.Direccion direccion1_2) {
-        if (turnoJugador1) { // Jugador 1 para si es su turno
-            direccionParadaJugador1 = direccion1;
-            direccionParadaJugador1_2 = direccion1_2;
-            jugador1.parar(direccion1);
-            jugador1.parar(direccion1_2);
-        } else { // Jugador 2 para si no es el turno del jugador 1
-            direccionParadaJugador2 = direccion2;
-            direccionParadaJugador2_2 = direccion2_1;
-            jugador2.parar(direccion2);
-            jugador2.parar(direccion2_1);
-        }
-        turnoJugador1 = !turnoJugador1; // Cambiamos el turno después de parar
-    }
 }
+
+
+
+
+
