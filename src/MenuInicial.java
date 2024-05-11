@@ -6,27 +6,21 @@ import java.awt.Font;
 import java.io.IOException;
 
 public class MenuInicial extends InterfazMaestra {
-    public static JPanel panelMenuInicial;
+    public static JPanel panel;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
-    public static final Font fuenteBoton = new Font("Action Man", Font.BOLD, 20);
+    public static final Font fuenteBoton = new Font("Rubik", Font.PLAIN, 20);
     public static final Color colorTexto = new Color(255, 255, 255);
     private final MusicManager musicManager = new MusicManager();
-
+//Trebuchet MS, Rubik
     public MenuInicial() {
 
-        setSize(1280,720);
-        setTitle("Penalty Eleven");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setResizable(false);
+//Ventana
+        crearVentana("Penalty Eleven",1280,720);
 
-        //Crear panel
-        panelMenuInicial = new JPanel();
-        panelMenuInicial.setOpaque(false);
-        panelMenuInicial.setLayout(null);
-
-//Poner icono de la aplicación
-        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
+// Panel
+        panel = new JPanel();
+        panel.setOpaque(false);
+        panel.setLayout(null);
 
 //Inicializar botones
         JButton soloPlayer = new JButton();
@@ -35,10 +29,6 @@ public class MenuInicial extends InterfazMaestra {
         JButton creditos = new JButton();
         JButton salir = new JButton();
 
-// Fondo
-        JButton fondo = new JButton();
-        crearFondo(fondo,"Imagenes/Fondo/FondoMenuInicial.png");
-
 // Crear botones
         crearBoton(soloPlayer, "Un Jugador", 120, 275, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(multiPlayer, "Multijugador", 120, 355, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
@@ -46,16 +36,20 @@ public class MenuInicial extends InterfazMaestra {
         crearBoton(creditos, "Créditos", 120, 515, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(salir, "Salir", 120, 595, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
 
+// Fondo
+        JButton fondo = new JButton();
+        crearFondo(fondo,"Imagenes/Fondo/FondoMenuInicial.png");
+
 // Añadir los botones al panel
-        panelMenuInicial.add(soloPlayer);
-        panelMenuInicial.add(multiPlayer);
-        panelMenuInicial.add(ranking);
-        panelMenuInicial.add(creditos);
-        panelMenuInicial.add(salir);
-        panelMenuInicial.add(fondo);
+        panel.add(soloPlayer);
+        panel.add(multiPlayer);
+        panel.add(ranking);
+        panel.add(creditos);
+        panel.add(salir);
+        panel.add(fondo);
 
 //Añadir panel al JFrame
-        add(panelMenuInicial);
+        add(panel);
 
 //Acciones de los botones
         //Accion del boton soloPlayer
@@ -65,7 +59,6 @@ public class MenuInicial extends InterfazMaestra {
                 SoloPlayer soloPlayer = new SoloPlayer();
                 soloPlayer.setVisible(true);
                 dispose();
-
                 musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 musicManager.stopMusic();
             }
@@ -75,7 +68,7 @@ public class MenuInicial extends InterfazMaestra {
         multiPlayer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SelectorEquipos selectorEquipos = null;
+                SelectorEquipos selectorEquipos;
                 try {
                     selectorEquipos = new SelectorEquipos();
                 } catch (IOException ex) {

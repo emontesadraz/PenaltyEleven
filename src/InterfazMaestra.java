@@ -44,4 +44,16 @@ public class InterfazMaestra extends JFrame {
         });
 
     }
+
+//Metodo para crear una ventana
+    public void crearVentana(String titulo,int width, int height) {
+        setTitle(titulo);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(width, height);
+        setVisible(true);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        // Icono
+        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
+    }
 }

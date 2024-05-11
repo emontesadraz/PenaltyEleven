@@ -1,29 +1,22 @@
 import javax.imageio.ImageIO;
-import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.awt.image.BufferedImage;
+import java.awt.Font;
 
 public class SelectorEquipos extends InterfazMaestra {
     OperacionesEquipos oe = new OperacionesEquipos();
-    MusicManager musicManager = new MusicManager();
+    private final MusicManager musicManager = new MusicManager();
+    public static final Color colorBase = new Color(25, 25, 25);
+    public static final Font fuente = new Font("Rubik", Font.PLAIN, 20);
+    public static final Color colorTexto = new Color(255, 255, 255);
     private final ImageIcon[] imagenesEquipos = {new ImageIcon("src/Imagenes/Escudo/EscudoRaimon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoZeus.png"), new ImageIcon("src/Imagenes/Escudo/EscudoGenesis.png")
             , new ImageIcon("src/Imagenes/Escudo/EscudoRoyal.png"), new ImageIcon("src/Imagenes/Escudo/EscudoAlpino.png"), new ImageIcon("src/Imagenes/Escudo/EscudoKirkwood.png"), new ImageIcon("src/Imagenes/Escudo/EscudoOccult.png"), new ImageIcon("src/Imagenes/Escudo/EscudoLittleGiants.png")
             , new ImageIcon("src/Imagenes/Escudo/EscudoEpsilon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoOtaku.png"), new ImageIcon("src/Imagenes/Escudo/EscudoFarm.png"), new ImageIcon("src/Imagenes/Escudo/EscudoCaos.png")};
-    JButton seleccionarEqu1;
-    JButton seleccionarEqu2;
-    JButton jugar;
-    JButton atras;
-    JButton flechaIzquierda;
-    JButton flechaDerecha;
-    JButton flechaIzquierda2;
-    JButton flechaDerecha2;
-    JButton fondo;
     JPanel panel;
     JLabel labelEquipo1;
     JLabel labelEquipo2;
@@ -33,63 +26,100 @@ public class SelectorEquipos extends InterfazMaestra {
     boolean eq2 = false;
 
     public SelectorEquipos() throws IOException {
-        setTitle("Penalty Eleven");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1280, 720);
-        setVisible(true);
-        setLocationRelativeTo(null);
-        setResizable(false);
 
-        //Poner icono de la aplicación
-        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
+//Ventana
+        crearVentana("Penalty Eleven",1280,720);
 
-        // Fuente y color de los botones
-        Font fuenteBoton = new Font("Action Man", Font.BOLD, 20);
-        Color colorBoton = new Color(25,25,25);
-        Color colorTexto = new Color(255, 255, 255);
-
-        // Panel
+// Panel
         panel = new JPanel();
         panel.setOpaque(false);
         panel.setLayout(null);
         add(panel);
 
-        // JLabel para el equipo 1
+// JLabel para el equipo 1
         labelEquipo1 = new JLabel(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
-        labelEquipo1.setFont(new Font("Action Man", Font.BOLD, 30));
-        labelEquipo1.setOpaque(false);
-        labelEquipo1.setForeground(Color.BLACK);
-        labelEquipo1.setBounds(100, 200, 300, 40);
+        labelEquipo1.setFont(fuente);
+        labelEquipo1.setOpaque(true);
+        labelEquipo1.setForeground(colorBase);
+        labelEquipo1.setBackground(Color.WHITE);
+        labelEquipo1.setBorder(BorderFactory.createLineBorder(Color.black, 3));
+        labelEquipo1.setBounds(100, 190, 300, 40);
         labelEquipo1.setHorizontalAlignment(JLabel.CENTER);
 
-        // JLabel para la imagen del equipo 1
+// JLabel para la imagen del equipo 1
         JLabel imagenEquipo1 = new JLabel(imagenesEquipos[indiceEquipo1]);
         imagenEquipo1.setBounds(150, 250, 200, 200);
 
-        // JLabel para el equipo 2
+// JLabel para el equipo 2
         labelEquipo2 = new JLabel(oe.getEquipos().get(indiceEquipo2).getNombreEquipo());
-        labelEquipo2.setFont(new Font("Action Man", Font.BOLD, 30));
-        labelEquipo2.setOpaque(false);
-        labelEquipo2.setForeground(Color.BLACK);
+        labelEquipo2.setFont(fuente);
+        labelEquipo2.setOpaque(true);
+        labelEquipo2.setForeground(colorBase);
+        labelEquipo2.setBackground(Color.WHITE);
+        labelEquipo2.setBorder(BorderFactory.createLineBorder(Color.black, 3));
+        labelEquipo2.setBounds(900, 190, 300, 40);
         labelEquipo2.setHorizontalAlignment(JLabel.CENTER);
-        labelEquipo2.setBounds(900, 200, 300, 40);
 
-        // JLabel para la imagen del equipo 2
+// JLabel para la imagen del equipo 2
         JLabel imagenEquipo2 = new JLabel(imagenesEquipos[indiceEquipo2]);
         imagenEquipo2.setBounds(950, 250, 200, 200);
 
-        //JLabel imagen versus
+//JLabel imagen versus
         BufferedImage vs = ImageIO.read(new File("src/Imagenes/Foto/versus.png"));
         JLabel versus = new JLabel();
         versus.setIcon(new ImageIcon(vs.getScaledInstance(400,400, Image.SCALE_DEFAULT)));
         versus.setBounds(450, 120, 400, 400);
         versus.setBorder(null);
 
-        // Botón seleccionar para el equipo 1
-        seleccionarEqu1 = new JButton("Seleccionar");
-        seleccionarEqu1.setFont(fuenteBoton);
-        seleccionarEqu1.setBackground(colorBoton);
-        seleccionarEqu1.setForeground(colorTexto);
+//Inicializar botones
+        JButton seleccionarEqu1 = new JButton();
+        JButton seleccionarEqu2 = new JButton();
+        JButton jugar = new JButton();
+        JButton atras = new JButton();
+        JButton flechaIzquierda = new JButton();
+        JButton flechaDerecha = new JButton();
+        JButton flechaIzquierda2 = new JButton();
+        JButton flechaDerecha2 = new JButton();
+        JButton fondo = new JButton();
+
+//Crear botones
+        crearBoton(seleccionarEqu1, "Seleccionar", 150, 100, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(seleccionarEqu2, "Seleccionar", 950, 100, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(jugar, "Jugar", 550, 500, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(atras, "Atrás", 550, 600, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(flechaIzquierda, "<", 900, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(flechaDerecha, ">", 1150, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(flechaIzquierda2, "<", 100, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(flechaDerecha2, ">", 350, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+
+//Fondo
+        crearFondo(fondo, "Imagenes/Fondo/SelectorEquipos.jpg");
+
+//Añadir botones al panel
+        panel.add(seleccionarEqu1);
+        panel.add(seleccionarEqu2);
+        panel.add(jugar);
+        panel.add(atras);
+        panel.add(flechaIzquierda);
+        panel.add(flechaDerecha);
+        panel.add(flechaIzquierda2);
+        panel.add(flechaDerecha2);
+
+//Añadir labels al panel
+        panel.add(labelEquipo1);
+        panel.add(labelEquipo2);
+        panel.add(imagenEquipo1);
+        panel.add(imagenEquipo2);
+        panel.add(versus);
+
+// Añadir fondo al panel
+        panel.add(fondo);
+
+//Añadir panel al JFrame
+        add(panel);
+
+//Acciones de los botones
+        //Accion del boton seleccionarEqu1
         seleccionarEqu1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -103,13 +133,8 @@ public class SelectorEquipos extends InterfazMaestra {
                 eq1 = !eq1;
             }
         });
-        seleccionarEqu1.setBounds(150, 100, 200, 50);
 
-        // Botón seleccionar para el equipo 2
-        seleccionarEqu2 = new JButton("Seleccionar");
-        seleccionarEqu2.setFont(fuenteBoton);
-        seleccionarEqu2.setBackground(colorBoton);
-        seleccionarEqu2.setForeground(colorTexto);
+        // Accion del boton seleccionarEqu2
         seleccionarEqu2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -123,14 +148,8 @@ public class SelectorEquipos extends InterfazMaestra {
                 eq2 = !eq2;
             }
         });
-        seleccionarEqu2.setBounds(950, 100, 200, 50);
 
-        // Botón jugar
-        jugar = new JButton("Jugar");
-        jugar.setFont(fuenteBoton);
-        jugar.setBackground(colorBoton);
-        jugar.setForeground(colorTexto);
-        jugar.setBounds(550, 500, 200, 50);
+        // Accion del boton jugar
         jugar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -148,11 +167,7 @@ public class SelectorEquipos extends InterfazMaestra {
             }
         });
 
-        // Botón atrás
-        atras = new JButton("Atrás");
-        atras.setFont(fuenteBoton);
-        atras.setBackground(colorBoton);
-        atras.setForeground(colorTexto);
+        // Accion del boton atras
         atras.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -166,14 +181,8 @@ public class SelectorEquipos extends InterfazMaestra {
 
             }
         });
-        atras.setBounds(550, 600, 200, 50);
 
-        // Botón flecha izquierda
-        flechaIzquierda = new JButton("<");
-        flechaIzquierda.setFont(fuenteBoton);
-        flechaIzquierda.setBackground(colorBoton);
-        flechaIzquierda.setForeground(colorTexto);
-        flechaIzquierda.setBounds(900, 500, 50, 50);
+        // Accion del boton flechaIzquierda
         flechaIzquierda.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -186,12 +195,7 @@ public class SelectorEquipos extends InterfazMaestra {
             }
         });
 
-        // Botón flecha derecha
-        flechaDerecha = new JButton(">");
-        flechaDerecha.setFont(fuenteBoton);
-        flechaDerecha.setBackground(colorBoton);
-        flechaDerecha.setForeground(colorTexto);
-        flechaDerecha.setBounds(1150, 500, 50, 50);
+        // Accion del boton flechaDerecha
         flechaDerecha.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -204,12 +208,7 @@ public class SelectorEquipos extends InterfazMaestra {
             }
         });
 
-        // Botón flecha izquierda 2
-        flechaIzquierda2 = new JButton("<");
-        flechaIzquierda2.setFont(fuenteBoton);
-        flechaIzquierda2.setBackground(colorBoton);
-        flechaIzquierda2.setForeground(colorTexto);
-        flechaIzquierda2.setBounds(100, 500, 50, 50);
+        // Accion del boton flechaIzquierda2
         flechaIzquierda2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -222,12 +221,7 @@ public class SelectorEquipos extends InterfazMaestra {
             }
         });
 
-        // Botón flecha derecha 2
-        flechaDerecha2 = new JButton(">");
-        flechaDerecha2.setFont(fuenteBoton);
-        flechaDerecha2.setBackground(colorBoton);
-        flechaDerecha2.setForeground(colorTexto);
-        flechaDerecha2.setBounds(350, 500, 50, 50);
+        // Accion del boton flechaDerecha2
         flechaDerecha2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -240,27 +234,8 @@ public class SelectorEquipos extends InterfazMaestra {
             }
         });
 
-        //Fondo
-        fondo = new JButton();
-        crearFondo(fondo,"Imagenes/Fondo/SelectorEquipos.jpg");
 
-        //Añadir botones al panel
-        panel.add(seleccionarEqu1);
-        panel.add(seleccionarEqu2);
-        panel.add(jugar);
-        panel.add(atras);
-        panel.add(flechaIzquierda);
-        panel.add(flechaDerecha);
-        panel.add(flechaIzquierda2);
-        panel.add(flechaDerecha2);
-        panel.add(labelEquipo1);
-        panel.add(labelEquipo2);
-        panel.add(imagenEquipo1);
-        panel.add(imagenEquipo2);
-        panel.add(versus);
-        panel.add(fondo);
-
-        // Controles de la música
+// Controles de la música
         musicManager.playMusic("Musica/Soundtrack/SelectorEquipos.wav", 0.7f);
     }
 }
