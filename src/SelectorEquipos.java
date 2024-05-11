@@ -9,13 +9,21 @@ import java.io.IOException;
 import java.net.URL;
 import java.awt.image.BufferedImage;
 
-public class SelectorEquipos extends JFrame {
+public class SelectorEquipos extends InterfazMaestra {
     OperacionesEquipos oe = new OperacionesEquipos();
     MusicManager musicManager = new MusicManager();
-    private ImageIcon[] imagenesEquipos = {new ImageIcon("src/Imagenes/Escudo/EscudoRaimon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoZeus.png"), new ImageIcon("src/Imagenes/Escudo/EscudoGenesis.png")
+    private final ImageIcon[] imagenesEquipos = {new ImageIcon("src/Imagenes/Escudo/EscudoRaimon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoZeus.png"), new ImageIcon("src/Imagenes/Escudo/EscudoGenesis.png")
             , new ImageIcon("src/Imagenes/Escudo/EscudoRoyal.png"), new ImageIcon("src/Imagenes/Escudo/EscudoAlpino.png"), new ImageIcon("src/Imagenes/Escudo/EscudoKirkwood.png"), new ImageIcon("src/Imagenes/Escudo/EscudoOccult.png"), new ImageIcon("src/Imagenes/Escudo/EscudoLittleGiants.png")
             , new ImageIcon("src/Imagenes/Escudo/EscudoEpsilon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoOtaku.png"), new ImageIcon("src/Imagenes/Escudo/EscudoFarm.png"), new ImageIcon("src/Imagenes/Escudo/EscudoCaos.png")};
-    JButton seleccionarEqu1, seleccionarEqu2, jugar, back, flechaIzquierda, flechaDerecha, flechaIzquierda2, flechaDerecha2;
+    JButton seleccionarEqu1;
+    JButton seleccionarEqu2;
+    JButton jugar;
+    JButton atras;
+    JButton flechaIzquierda;
+    JButton flechaDerecha;
+    JButton flechaIzquierda2;
+    JButton flechaDerecha2;
+    JButton fondo;
     JPanel panel;
     JLabel labelEquipo1;
     JLabel labelEquipo2;
@@ -23,10 +31,9 @@ public class SelectorEquipos extends JFrame {
     int indiceEquipo2 = 0;
     boolean eq1 = false;
     boolean eq2 = false;
-    private Clip musicClip;
 
     public SelectorEquipos() throws IOException {
-        super("Penalty Eleven");
+        setTitle("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1280, 720);
         setVisible(true);
@@ -45,7 +52,7 @@ public class SelectorEquipos extends JFrame {
         panel = new JPanel();
         panel.setOpaque(false);
         panel.setLayout(null);
-        this.add(panel);
+        add(panel);
 
         // JLabel para el equipo 1
         labelEquipo1 = new JLabel(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
@@ -54,12 +61,10 @@ public class SelectorEquipos extends JFrame {
         labelEquipo1.setForeground(Color.BLACK);
         labelEquipo1.setBounds(100, 200, 300, 40);
         labelEquipo1.setHorizontalAlignment(JLabel.CENTER);
-        panel.add(labelEquipo1);
 
         // JLabel para la imagen del equipo 1
         JLabel imagenEquipo1 = new JLabel(imagenesEquipos[indiceEquipo1]);
         imagenEquipo1.setBounds(150, 250, 200, 200);
-        panel.add(imagenEquipo1);
 
         // JLabel para el equipo 2
         labelEquipo2 = new JLabel(oe.getEquipos().get(indiceEquipo2).getNombreEquipo());
@@ -68,20 +73,17 @@ public class SelectorEquipos extends JFrame {
         labelEquipo2.setForeground(Color.BLACK);
         labelEquipo2.setHorizontalAlignment(JLabel.CENTER);
         labelEquipo2.setBounds(900, 200, 300, 40);
-        panel.add(labelEquipo2);
 
         // JLabel para la imagen del equipo 2
         JLabel imagenEquipo2 = new JLabel(imagenesEquipos[indiceEquipo2]);
         imagenEquipo2.setBounds(950, 250, 200, 200);
-        panel.add(imagenEquipo2);
 
         //JLabel imagen versus
-        BufferedImage vs = ImageIO.read(new File("src/Imagenes/versus.png"));
+        BufferedImage vs = ImageIO.read(new File("src/Imagenes/Foto/versus.png"));
         JLabel versus = new JLabel();
         versus.setIcon(new ImageIcon(vs.getScaledInstance(400,400, Image.SCALE_DEFAULT)));
         versus.setBounds(450, 120, 400, 400);
         versus.setBorder(null);
-        panel.add(versus);
 
         // Botón seleccionar para el equipo 1
         seleccionarEqu1 = new JButton("Seleccionar");
@@ -92,7 +94,7 @@ public class SelectorEquipos extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Reproducir sonido
-                playSound("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
+                musicManager.playSound("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
                 if (seleccionarEqu1.getText().equals("Seleccionar")) {
                     seleccionarEqu1.setText("Seleccionado");
                 } else {
@@ -103,8 +105,6 @@ public class SelectorEquipos extends JFrame {
         });
         seleccionarEqu1.setBounds(150, 100, 200, 50);
 
-        panel.add(seleccionarEqu1);
-
         // Botón seleccionar para el equipo 2
         seleccionarEqu2 = new JButton("Seleccionar");
         seleccionarEqu2.setFont(fuenteBoton);
@@ -114,7 +114,7 @@ public class SelectorEquipos extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Reproducir sonido
-                playSound("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
+                musicManager.playSound("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
                 if (seleccionarEqu2.getText().equals("Seleccionar")) {
                     seleccionarEqu2.setText("Seleccionado");
                 } else {
@@ -124,7 +124,6 @@ public class SelectorEquipos extends JFrame {
             }
         });
         seleccionarEqu2.setBounds(950, 100, 200, 50);
-        panel.add(seleccionarEqu2);
 
         // Botón jugar
         jugar = new JButton("Jugar");
@@ -136,7 +135,7 @@ public class SelectorEquipos extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Reproducir sonido
-                playSound("Musica/SoundEffect/SonidoJugar.wav", 0.7f);
+                musicManager.playSound("Musica/SoundEffect/SonidoJugar.wav", 0.7f);
                 if (eq1 && eq2) {
                     // Aquí va el código para iniciar el juego
                     // dispose();
@@ -148,18 +147,17 @@ public class SelectorEquipos extends JFrame {
                 }
             }
         });
-        panel.add(jugar);
 
         // Botón atrás
-        back = new JButton("Atrás");
-        back.setFont(fuenteBoton);
-        back.setBackground(colorBoton);
-        back.setForeground(colorTexto);
-        back.addActionListener(new ActionListener() {
+        atras = new JButton("Atrás");
+        atras.setFont(fuenteBoton);
+        atras.setBackground(colorBoton);
+        atras.setForeground(colorTexto);
+        atras.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Reproducir sonido
-                playSound("Musica/SoundEffect/SonidoAtras.wav", 0.7f);
+                musicManager.playSound("Musica/SoundEffect/SonidoAtras.wav", 0.7f);
                 musicManager.stopMusic();
                 dispose();
                 MenuInicial menuInicial = new MenuInicial();
@@ -168,8 +166,7 @@ public class SelectorEquipos extends JFrame {
 
             }
         });
-        back.setBounds(550, 600, 200, 50);
-        panel.add(back);
+        atras.setBounds(550, 600, 200, 50);
 
         // Botón flecha izquierda
         flechaIzquierda = new JButton("<");
@@ -180,7 +177,7 @@ public class SelectorEquipos extends JFrame {
         flechaIzquierda.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
+                musicManager.playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
                 if (!eq2 && indiceEquipo2 > 0) {
                     indiceEquipo2--;
                     labelEquipo2.setText(oe.getEquipos().get(indiceEquipo2).getNombreEquipo());
@@ -188,7 +185,6 @@ public class SelectorEquipos extends JFrame {
                 }
             }
         });
-        panel.add(flechaIzquierda);
 
         // Botón flecha derecha
         flechaDerecha = new JButton(">");
@@ -199,7 +195,7 @@ public class SelectorEquipos extends JFrame {
         flechaDerecha.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
+                musicManager.playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
                 if (!eq2 && indiceEquipo2 < oe.getEquipos().size() - 1) {
                     indiceEquipo2++;
                     labelEquipo2.setText(oe.getEquipos().get(indiceEquipo2).getNombreEquipo());
@@ -207,7 +203,6 @@ public class SelectorEquipos extends JFrame {
                 }
             }
         });
-        panel.add(flechaDerecha);
 
         // Botón flecha izquierda 2
         flechaIzquierda2 = new JButton("<");
@@ -218,7 +213,7 @@ public class SelectorEquipos extends JFrame {
         flechaIzquierda2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
+                musicManager.playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
                 if (!eq1 && indiceEquipo1 > 0) {
                     indiceEquipo1--;
                     labelEquipo1.setText(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
@@ -226,7 +221,6 @@ public class SelectorEquipos extends JFrame {
                 }
             }
         });
-        panel.add(flechaIzquierda2);
 
         // Botón flecha derecha 2
         flechaDerecha2 = new JButton(">");
@@ -237,7 +231,7 @@ public class SelectorEquipos extends JFrame {
         flechaDerecha2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
+                musicManager.playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
                 if (!eq1 && indiceEquipo1 < oe.getEquipos().size() - 1) {
                     indiceEquipo1++;
                     labelEquipo1.setText(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
@@ -245,50 +239,28 @@ public class SelectorEquipos extends JFrame {
                 }
             }
         });
+
+        //Fondo
+        fondo = new JButton();
+        crearFondo(fondo,"Imagenes/Fondo/SelectorEquipos.jpg");
+
+        //Añadir botones al panel
+        panel.add(seleccionarEqu1);
+        panel.add(seleccionarEqu2);
+        panel.add(jugar);
+        panel.add(atras);
+        panel.add(flechaIzquierda);
+        panel.add(flechaDerecha);
+        panel.add(flechaIzquierda2);
         panel.add(flechaDerecha2);
-
-        // Crear un botón para el fondo
-        JButton fondo = new JButton();
-        fondo.setBounds(0, 0, 1280, 720);
-        fondo.setOpaque(false);
-        fondo.setContentAreaFilled(false);
-        fondo.setBorderPainted(false);
+        panel.add(labelEquipo1);
+        panel.add(labelEquipo2);
+        panel.add(imagenEquipo1);
+        panel.add(imagenEquipo2);
+        panel.add(versus);
         panel.add(fondo);
-
-        // Cargar la imagen de fondo y establecerla como icono del botón
-        URL url = this.getClass().getClassLoader().getResource("Imagenes/Fondo/SelectorEquipos.jpg");
-        ImageIcon icono = new ImageIcon(url);
-        Image imagen = icono.getImage().getScaledInstance(1280, 720, Image.SCALE_DEFAULT);
-        icono = new ImageIcon(imagen);
-        fondo.setIcon(icono);
 
         // Controles de la música
         musicManager.playMusic("Musica/Soundtrack/SelectorEquipos.wav", 0.7f);
-    }
-
-    public void playSound(String soundFile, float volume) {
-        try {
-            // Abrir un audio input stream
-            URL url = this.getClass().getClassLoader().getResource(soundFile);
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-
-            // Obtener un clip de sonido
-            Clip clip = AudioSystem.getClip();
-
-            // Abrir el clip de audio y cargar muestras de audio del audio input stream
-            clip.open(audioIn);
-
-            // Obtener el control de volumen
-            FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-
-            // Convertir el volumen en decibelios
-            float dB = (float) (Math.log(volume) / Math.log(10.0) * 20.0);
-            volumeControl.setValue(dB);
-
-            // Iniciar la reproducción
-            clip.start();
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            e.printStackTrace();
-        }
     }
 }
