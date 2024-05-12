@@ -9,8 +9,11 @@ import java.net.URL;
 
 public class Ranking extends JFrame{
     MusicManager musicManager = new MusicManager();
-    private JButton volver,fondo;
-
+    private JPanel panel;
+    private JButton volver;
+    private JLabel  ranking;
+    private JScrollPane scroll;
+    private BufferedImage imagen;
 
     public Ranking() {
         setSize(1280,720);
@@ -18,31 +21,32 @@ public class Ranking extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
+
+        //Poner icono de la aplicación
         setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
 
-        JPanel panel = new JPanel();
+        // Cargar imagen de fondo
+        try {
+            imagen = ImageIO.read(new File("src/Imagenes/FondoRanking.png")); // Ruta de la imagen de fondo
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        panel=new JPanel();
         panel.setLayout(null);
 
-        // Crear un botón para el fondo
-        fondo = new JButton();
-        fondo.setBounds(0, 0, 1280, 720);
-        fondo.setOpaque(false);
-        fondo.setContentAreaFilled(false);
-        fondo.setBorderPainted(false);
+        ranking = new JLabel();
+        ranking.setText("<html> RANKING DE LOS JUGADORES CON MÁS VICTORIAS</html>");
+        ranking.setBounds(820, 50, 460, 500);
+        panel.add(ranking);
 
-        // Cargar la imagen de fondo y establecerla como icono del botón
-        URL url = this.getClass().getClassLoader().getResource("Imagenes/Fondo/axelblaze.png");
-        ImageIcon icono = new ImageIcon(url);
-        Image imagen = icono.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH);
-        icono = new ImageIcon(imagen);
-        fondo.setIcon(icono);
+        scroll = new JScrollPane(ranking);
+        scroll.setOpaque(false);
+        scroll.setBounds(820, 50, 460, 500);
+        panel.add(scroll);
 
-        //Boton volver
         volver = new JButton("Volver");
-        volver.setBounds(40,600,220,50);
-        volver.setBackground(MenuInicial.colorBaseBotones);
-        volver.setForeground(Color.WHITE);
-        volver.setFont(new Font("Action Man", Font.BOLD, 20));
+        volver.setBounds(620, 600, 460, 45);
         volver.addActionListener(e -> {
             MenuInicial menuInicial = new MenuInicial();
             menuInicial.setVisible(true);
@@ -51,16 +55,21 @@ public class Ranking extends JFrame{
             playSound("Musica/SoundEffect/SonidoAtras.wav", 0.5f);
             musicManager.stopMusic();
         });
-
-        //Añadir botones al panel
         panel.add(volver);
-        panel.add(fondo);
+
         add(panel);
 
         //Controles música
         musicManager.playMusic("Musica/Soundtrack/Ranking.wav", 0.7f);
     }
-
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        // Dibujar la imagen de fondo en el JFrame
+        if (imagen != null) {
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
     public void playSound(String soundFile, float volume) {
         try {
             // Abrir un audio input stream

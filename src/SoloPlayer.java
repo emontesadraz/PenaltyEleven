@@ -75,7 +75,9 @@ public class SoloPlayer extends JFrame {
         juegoLibre.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Abrir ventana de selector de equipos para soloplayer
+                SelectorEquiposSolo selectorEquiposSolo = new SelectorEquiposSolo();
+                selectorEquiposSolo.setVisible(true);
+                dispose();
 
                 playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 musicManager.stopMusic();
