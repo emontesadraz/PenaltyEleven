@@ -22,6 +22,9 @@ public class Ranking extends JFrame{
         setLocationRelativeTo(null);
         setResizable(false);
 
+        //Poner icono de la aplicación
+        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
+
         // Cargar imagen de fondo
         try {
             imagen = ImageIO.read(new File("src/Imagenes/FondoRanking.png")); // Ruta de la imagen de fondo

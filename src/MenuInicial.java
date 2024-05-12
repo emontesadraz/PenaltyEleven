@@ -1,4 +1,3 @@
-import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
@@ -7,25 +6,13 @@ import java.awt.event.ActionListener;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
 public class MenuInicial extends JFrame {
-    private JPanel panel;
-    private JButton soloPlayer;
-    private JButton multiPlayer;
-    private JButton rankingGoleadores;
-
-    private JButton creditos;
-    private JButton salir;
-    private Clip musicClip;
+    private final JButton soloPlayer, multiPlayer, rankingGoleadores, creditos, salir, fondo;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
-
-    private MusicManager musicManager = new MusicManager();
-
-    private BufferedImage imagen;
+    private final MusicManager musicManager = new MusicManager();
 
     public MenuInicial() {
 
@@ -35,17 +22,51 @@ public class MenuInicial extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
-        panel=new JPanel();
+        //Poner icono de la aplicación
+        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
+
+        //Crear panel
+        JPanel panel = new JPanel();
+        panel.setOpaque(false);
         panel.setLayout(null);
 
-
-        //Boton soloPlayer
-
+        //Crear botones
         soloPlayer=new JButton("Un Jugador");
+        multiPlayer=new JButton("Multijugador");
+        rankingGoleadores=new JButton("Ranking de Goleadores");
+        creditos=new JButton("Créditos");
+        salir=new JButton("Salir");
+
+        // Crear un botón para el fondo
+        fondo = new JButton();
+        fondo.setBounds(0, 0, 1280, 720);
+        fondo.setOpaque(false);
+        fondo.setContentAreaFilled(false);
+        fondo.setBorderPainted(false);
+
+        // Cargar la imagen de fondo y establecerla como icono del botón
+        URL url = this.getClass().getClassLoader().getResource("Imagenes/Fondo/FondoMenuInicial.png");
+        ImageIcon icono = new ImageIcon(url);
+        Image imagen = icono.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH);
+        icono = new ImageIcon(imagen);
+        fondo.setIcon(icono);
+
+        // Añadir los otros botones al panel
+        panel.add(soloPlayer);
+        panel.add(multiPlayer);
+        panel.add(rankingGoleadores);
+        panel.add(creditos);
+        panel.add(salir);
+        panel.add(fondo);
+
+        //Añadir panel al JFrame
+        add(panel);
+
+        //Accion del boton soloPlayer
         soloPlayer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-              SoloPlayer soloPlayer = new SoloPlayer();
+                SoloPlayer soloPlayer = new SoloPlayer();
                 soloPlayer.setVisible(true);
                 dispose();
 
@@ -54,13 +75,7 @@ public class MenuInicial extends JFrame {
             }
         });
 
-        soloPlayer.setBounds(120,275,460,45);
-        panel.add(soloPlayer);
-
-
-        //Boton multiPlayer
-
-        multiPlayer=new JButton("Multijugador");
+        //Acción del botón multiPlayer
         multiPlayer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -73,13 +88,7 @@ public class MenuInicial extends JFrame {
             }
         });
 
-        multiPlayer.setBounds(120,355,460,45);
-        panel.add(multiPlayer);
-
-
-        //Boton rankingGoleadores
-
-        rankingGoleadores=new JButton("Ranking de Goleadores");
+        //Acción del botón rankingGoleadores
         rankingGoleadores.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -92,38 +101,40 @@ public class MenuInicial extends JFrame {
             }
         });
 
-        rankingGoleadores.setBounds(120,435,460,45);
-        panel.add(rankingGoleadores);
-
-
-        //Boton creditos
-
-        creditos = new JButton("Créditos");
-        creditos.addActionListener(e -> {
-            Creditos creditos = new Creditos();
-            creditos.setVisible(true);
-            dispose();
-
-            playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
-            musicManager.stopMusic();
+        //Acción del botón creditos
+        creditos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Creditos creditos = new Creditos();
+                creditos.setVisible(true);
+                dispose();
+                playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
+                musicManager.stopMusic();
+            }
         });
-        creditos.setBounds(120, 515, 460, 45);
-        panel.add(creditos);
 
-
-        //Boton salir
-
-        salir=new JButton("Salir");
+        //Acción del botón salir
         salir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
                 playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
+                System.exit(0);
             }
         });
-        salir.setBounds(120,595,460,45);
-        panel.add(salir);
 
+        //Cambiar color base de los botones
+        soloPlayer.setBackground(colorBaseBotones);
+        multiPlayer.setBackground(colorBaseBotones);
+        rankingGoleadores.setBackground(colorBaseBotones);
+        creditos.setBackground(colorBaseBotones);
+        salir.setBackground(colorBaseBotones);
+
+        //Cambiar tamaño y posición de los botones
+        soloPlayer.setBounds(120,275,460,45);
+        multiPlayer.setBounds(120,355,460,45);
+        rankingGoleadores.setBounds(120,435,460,45);
+        creditos.setBounds(120,515,460,45);
+        salir.setBounds(120,595,460,45);
 
         //Cambiar la fuente de los botones
         Font fuenteBoton = new Font("Action Man", Font.BOLD, 20);
@@ -141,15 +152,6 @@ public class MenuInicial extends JFrame {
         creditos.setForeground(colorTexto);
         salir.setForeground(colorTexto);
 
-        getContentPane().add(panel);
-
-        // Cargar imagen de fondo
-        try {
-            imagen = ImageIO.read(new File("src/Imagenes/FondoMenuInicial.png")); // Ruta de la imagen de fondo
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         // Cambiar color de los botones al pasar el ratón por encima
         soloPlayer.addMouseListener(new MouseAdapter() {
             @Override
@@ -161,32 +163,24 @@ public class MenuInicial extends JFrame {
             public void mouseExited(MouseEvent e) {
                 soloPlayer.setBackground(colorBaseBotones);
             }
-
-
-
         });
 
         multiPlayer.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                multiPlayer.setBackground(colorBaseBotones.darker());
-            }
+                multiPlayer.setBackground(colorBaseBotones.darker());}
             @Override
             public void mouseExited(MouseEvent e) {
                 multiPlayer.setBackground(colorBaseBotones);
             }
-
         });
 
         rankingGoleadores.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                rankingGoleadores.setBackground(colorBaseBotones.darker());
-
-            }
-
+                rankingGoleadores.setBackground(colorBaseBotones.darker());}
             @Override
             public void mouseExited(MouseEvent e) {
                 rankingGoleadores.setBackground(colorBaseBotones);
@@ -197,10 +191,7 @@ public class MenuInicial extends JFrame {
             @Override
             public void mouseEntered(MouseEvent e) {
                 playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                creditos.setBackground(colorBaseBotones.darker());
-
-            }
-
+                creditos.setBackground(colorBaseBotones.darker());}
             @Override
             public void mouseExited(MouseEvent e) {
                 creditos.setBackground(colorBaseBotones);
@@ -211,10 +202,7 @@ public class MenuInicial extends JFrame {
             @Override
             public void mouseEntered(MouseEvent e) {
                 playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                salir.setBackground(colorBaseBotones.darker());
-
-            }
-
+                salir.setBackground(colorBaseBotones.darker());}
             @Override
             public void mouseExited(MouseEvent e) {
                 salir.setBackground(colorBaseBotones);
@@ -222,7 +210,7 @@ public class MenuInicial extends JFrame {
         });
 
         // Controles de la música
-        musicManager.playMusic("Musica/Soundtrack/MenuInicial.wav", 0.5f);
+        musicManager.playMusic("Musica/Soundtrack/MenuInicial.wav", 0.2f);
 
     }
 
@@ -250,17 +238,7 @@ public class MenuInicial extends JFrame {
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
         }
+
     }
-
-
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-        // Dibujar la imagen de fondo en el JFrame
-        if (imagen != null) {
-            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
-        }
-    }
-
 
 }
