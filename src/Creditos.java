@@ -23,6 +23,7 @@ public class Creditos extends JFrame {
         //Poner icono de la aplicación
         setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
 
+
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
