@@ -30,8 +30,10 @@ public class JuegoMultiplayer extends JFrame {
     private JToggleButton pararArribaDerecha;
     private JToggleButton pararCentroDerecha;
     private JToggleButton pararAbajoDerecha;
-    private JButton chutar;
-    private JButton parar;
+    private JButton chutarJugador1;
+    private JButton pararJugador1;
+    private JButton chutarJugador2;
+    private JButton pararJugador2;
     private Jugador1.Direccion direccionTiroJugador1_1;
     private Jugador2.Direccion direccionTiroJugador2_1;
     private Jugador1.Direccion direccionParadaJugador1;
@@ -39,8 +41,7 @@ public class JuegoMultiplayer extends JFrame {
     private Jugador2.Direccion direccionParadaJugador2;
     private Jugador2.Direccion direccionParadaJugador2_2;
     private boolean turnoJugador1;
-    private int turnosJugador1 = 0;
-    private int turnosJugador2 = 0;
+    private int turnos;
     private static final int MAX_TURNOS = 5;
 
     public JuegoMultiplayer() {
@@ -50,6 +51,10 @@ public class JuegoMultiplayer extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
+        setLayout(null);
+
+        turnos = 0;
+        turnoJugador1 = true; // Empieza el jugador 1
 
         // Obtén el tamaño de la pantalla
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -65,20 +70,37 @@ public class JuegoMultiplayer extends JFrame {
         // Poner icono de la aplicación
         setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
 
-        // Creamos el panel para chutar
-        JPanel panelChutar = new JPanel();
-        panelChutar.setSize(panel1Width, panel1Height);
-        panelChutar.setBackground(new Color(23, 23, 213, 255));
-        panelChutar.setLayout(null);
-        add(panelChutar);
+        // Creamos el panel para chutar jugador 1
+        JPanel panelChutarJugador1 = new JPanel();
+        panelChutarJugador1.setSize(panel1Width, panel1Height);
+        panelChutarJugador1.setBackground(new Color(23, 23, 213, 255));
+        panelChutarJugador1.setLayout(null);
+        add(panelChutarJugador1);
 
-        // Creamos el panel para parar
-        JPanel panelParar = new JPanel();
-        panelParar.setSize(panel1Width, panel1Height);
-        panelParar.setBackground(new Color(82, 255, 0, 255));
-        panelParar.setVisible(false);
-        panelParar.setLayout(null);
-        add(panelParar);
+        // Creamos el panel para parar jugador 1
+        JPanel panelPararJugador1 = new JPanel();
+        panelPararJugador1.setSize(panel1Width, panel1Height);
+        panelPararJugador1.setBackground(new Color(82, 255, 0, 255));
+        panelPararJugador1.setVisible(false);
+        panelPararJugador1.setLayout(null);
+        add(panelPararJugador1);
+
+        // Creamos el panel para chutar jugador 2
+        JPanel panelChutarJugador2 = new JPanel();
+        panelChutarJugador2.setSize(panel1Width, panel1Height);
+        panelChutarJugador2.setBackground(new Color(23, 23, 213, 255));
+        panelChutarJugador2.setVisible(false);
+        panelChutarJugador2.setLayout(null);
+        add(panelChutarJugador2);
+
+        // Creamos el panel para parar jugador 2
+        JPanel panelPararJugador2 = new JPanel();
+        panelPararJugador2.setSize(panel1Width, panel1Height);
+        panelPararJugador2.setBackground(new Color(82, 255, 0, 255));
+        panelPararJugador2.setVisible(false);
+        panelPararJugador2.setLayout(null);
+        add(panelPararJugador2);
+
 
 
         // Creamos el panel2
@@ -137,41 +159,85 @@ public class JuegoMultiplayer extends JFrame {
         pararCentroDerecha.setBounds(1050, 310, 300, 200);
         pararAbajoDerecha.setBounds(1050, 510, 300, 200);
 
-        // Botón de chutar
-        chutar = new JButton("Tirar");
-        chutar.setBounds(100, 350, 200, 100);
+        // Botón de chutar jugador1
+        chutarJugador1 = new JButton("Tirar");
+        chutarJugador1.setBounds(100, 350, 200, 100);
 
-        // Botón de parar
-        parar = new JButton("Parar");
-        parar.setBounds(100, 350, 200, 100);
+        // Botón de parar jugador 1
+        pararJugador1 = new JButton("Parar");
+        pararJugador1.setBounds(100, 350, 200, 100);
 
-        // Color del boton de chutar y de parar
-        chutar.setBackground(colorBaseBotones);
-        parar.setBackground(colorBaseBotones);
+        // Botón de chutar jugador2
+        chutarJugador2 = new JButton("Tirar");
+        chutarJugador2.setBounds(100, 350, 200, 100);
 
-        // Añadimos los botones de dirección al panel de chutar
-        panelChutar.add(tirarArribaIzquierda);
-        panelChutar.add(tirarArribaDerecha);
-        panelChutar.add(tirarArribaCentro);
-        panelChutar.add(tirarCentroIzquierda);
-        panelChutar.add(tirarCentroDerecha);
-        panelChutar.add(tirarCentroCentro);
-        panelChutar.add(tirarAbajoIzquierda);
-        panelChutar.add(tirarAbajoDerecha);
-        panelChutar.add(tirarAbajoCentro);
-        panelChutar.add(chutar);
+        // Botón de parar jugador 2
+        pararJugador2 = new JButton("Parar");
+        pararJugador2.setBounds(100, 350, 200, 100);
 
-        // Añadimos los botones de dirección al panel de parar
-        panelParar.add(pararArribaIzquierda);
-        panelParar.add(pararArribaDerecha);
-        panelParar.add(pararArribaCentro);
-        panelParar.add(pararCentroIzquierda);
-        panelParar.add(pararCentroDerecha);
-        panelParar.add(pararCentroCentro);
-        panelParar.add(pararAbajoIzquierda);
-        panelParar.add(pararAbajoDerecha);
-        panelParar.add(pararAbajoCentro);
-        panelParar.add(parar);
+        // Color del boton de chutar y de parar de los dos jugadores
+        chutarJugador1.setBackground(colorBaseBotones);
+        pararJugador1.setBackground(colorBaseBotones);
+        chutarJugador2.setBackground(colorBaseBotones);
+        pararJugador2.setBackground(colorBaseBotones);
+
+        // Color de letras de los botones de jugadores
+        chutarJugador1.setForeground(Color.WHITE);
+        pararJugador1.setForeground(Color.WHITE);
+        chutarJugador2.setForeground(Color.WHITE);
+        pararJugador2.setForeground(Color.WHITE);
+
+        // Añadimos los botones de dirección al panel de chutar jugador 1
+        panelChutarJugador1.add(tirarArribaIzquierda);
+        panelChutarJugador1.add(tirarArribaDerecha);
+        panelChutarJugador1.add(tirarArribaCentro);
+        panelChutarJugador1.add(tirarCentroIzquierda);
+        panelChutarJugador1.add(tirarCentroDerecha);
+        panelChutarJugador1.add(tirarCentroCentro);
+        panelChutarJugador1.add(tirarAbajoIzquierda);
+        panelChutarJugador1.add(tirarAbajoDerecha);
+        panelChutarJugador1.add(tirarAbajoCentro);
+        panelChutarJugador1.add(chutarJugador1);
+
+        // Añadimos los botones de dirección al panel de chutar jugador 2
+        panelChutarJugador2.add(tirarArribaIzquierda);
+        panelChutarJugador2.add(tirarArribaDerecha);
+        panelChutarJugador2.add(tirarArribaCentro);
+        panelChutarJugador2.add(tirarCentroIzquierda);
+        panelChutarJugador2.add(tirarCentroDerecha);
+        panelChutarJugador2.add(tirarCentroCentro);
+        panelChutarJugador2.add(tirarAbajoIzquierda);
+        panelChutarJugador2.add(tirarAbajoDerecha);
+        panelChutarJugador2.add(tirarAbajoCentro);
+        panelChutarJugador2.add(chutarJugador2);
+
+
+        // Añadimos los botones de dirección al panel de parada jugador 1
+        panelPararJugador1.add(tirarArribaIzquierda);
+        panelPararJugador1.add(tirarArribaDerecha);
+        panelPararJugador1.add(tirarArribaCentro);
+        panelPararJugador1.add(tirarCentroIzquierda);
+        panelPararJugador1.add(tirarCentroDerecha);
+        panelPararJugador1.add(tirarCentroCentro);
+        panelPararJugador1.add(tirarAbajoIzquierda);
+        panelPararJugador1.add(tirarAbajoDerecha);
+        panelPararJugador1.add(tirarAbajoCentro);
+        panelPararJugador1.add(chutarJugador2);
+
+
+        // Añadimos los botones de dirección al panel de parar jugador 2
+        panelPararJugador2.add(pararArribaIzquierda);
+        panelPararJugador2.add(pararArribaDerecha);
+        panelPararJugador2.add(pararArribaCentro);
+        panelPararJugador2.add(pararCentroIzquierda);
+        panelPararJugador2.add(pararCentroDerecha);
+        panelPararJugador2.add(pararCentroCentro);
+        panelPararJugador2.add(pararAbajoIzquierda);
+        panelPararJugador2.add(pararAbajoDerecha);
+        panelPararJugador2.add(pararAbajoCentro);
+        panelPararJugador2.add(pararJugador1);
+
+
 
         // Listeners de los tiros
         tirarArribaIzquierda.addActionListener(new ActionListener() {
@@ -251,13 +317,13 @@ public class JuegoMultiplayer extends JFrame {
         tirarAbajoIzquierda.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (turnoJugador1){
-                if (direccionTiroJugador1_1 == null) {
-                    direccionTiroJugador1_1 = Jugador1.Direccion.ARRIBAIZQUIERDA;
+                if (turnoJugador1) {
+                    if (direccionTiroJugador1_1 == null) {
+                        direccionTiroJugador1_1 = Jugador1.Direccion.ARRIBAIZQUIERDA;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
-                }
-            } else {
                     if (direccionTiroJugador2_1 == null) {
                         direccionTiroJugador2_1 = Jugador2.Direccion.ARRIBAIZQUIERDA;
                     } else {
@@ -477,57 +543,68 @@ public class JuegoMultiplayer extends JFrame {
                 }
             }
         });
-        // Botón de chutar
-        chutar.addActionListener(new ActionListener() {
+        // Botón de chutar jugador 1
+        chutarJugador1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (turnoJugador1 && turnosJugador1 < MAX_TURNOS) {
+                if (turnoJugador1 && turnos < MAX_TURNOS) {
                     jugador1.chutar(direccionTiroJugador1_1);
-                    turnosJugador1++;
-                    panelChutar.setVisible(false);
-                    panelParar.setVisible(true);
-                } else if (!turnoJugador1 && turnosJugador2 < MAX_TURNOS) {
-                    jugador2.chutar(direccionTiroJugador2_1);
-                    turnosJugador2++;
-                    panelChutar.setVisible(false);
-                    panelParar.setVisible(true);
+                    chutarJugador1.setEnabled(false);
+                    pararJugador2.setEnabled(true);
+                    panelChutarJugador1.setVisible(false);
+                    panelPararJugador2.setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Turno " + (turnos + 1) + ": Jugador 1 ha chutado.");
                 }
             }
         });
 
-// Botón de parar
-        parar.addActionListener(new ActionListener() {
+        // Botón de parar jugador 2
+        pararJugador2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (turnoJugador1 && turnosJugador1 < MAX_TURNOS) {
-                    if (direccionParadaJugador1 != null && direccionParadaJugador1_2 != null) {
-                        jugador1.parar(direccionParadaJugador1);
-                        jugador1.parar(direccionParadaJugador1_2);
-                        turnosJugador1++;
-                        panelParar.setVisible(false);
-                        panelChutar.setVisible(true);
-                        // Restablecemos las direcciones de parada para el próximo turno
-                        direccionParadaJugador1 = null;
-                        direccionParadaJugador1_2 = null;
-                    } else if (!turnoJugador1 && turnosJugador2 < MAX_TURNOS) {
-                        jugador2.parar(direccionParadaJugador2);
-                        jugador2.parar(direccionParadaJugador2_2);
-                        turnosJugador2++;
-                        panelParar.setVisible(false);
-                        panelChutar.setVisible(true);
-                        // Restablecemos las direcciones de parada para el próximo turno
-                        direccionParadaJugador2 = null;
-                        direccionParadaJugador2_2 = null;
-                    }
+                if (!turnoJugador1 && turnos < MAX_TURNOS) {
+                    jugador2.parar(direccionParadaJugador2);
+                    pararJugador2.setEnabled(false);
+                    chutarJugador2.setEnabled(true);
+                    panelPararJugador2.setVisible(false);
+                    panelChutarJugador2.setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Turno " + (turnos + 1) + ": Jugador 2 ha parado.");
                 }
-                turnoJugador1 = !turnoJugador1;
             }
         });
-
-
-        // Añadimos el turno del jugador 1 para que empiece el la partida
-        turnoJugador1 = true;
+        // Botón de chutar jugador 2
+        chutarJugador2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!turnoJugador1 && turnos < MAX_TURNOS) {
+                    jugador2.chutar(direccionTiroJugador2_1);
+                    chutarJugador2.setEnabled(false);
+                    pararJugador1.setEnabled(true);
+                    panelChutarJugador2.setVisible(false);
+                    panelPararJugador1.setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Turno " + (turnos + 1) + ": Jugador 2 ha chutado.");
+                }
+            }
+        });
+        // Botón de parar jugador 1
+        pararJugador1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (turnoJugador1 && turnos < MAX_TURNOS) {
+                    jugador1.parar(direccionParadaJugador1);
+                    pararJugador1.setEnabled(false);
+                    chutarJugador1.setEnabled(true);
+                    panelPararJugador1.setVisible(false);
+                    panelChutarJugador1.setVisible(true);
+                    // Cambiamos el turno al otro jugador y incrementamos la cuenta de los turnos
+                    turnoJugador1 = !turnoJugador1;
+                    turnos++;
+                    JOptionPane.showMessageDialog(null, "Turno " + turnos + ": Jugador 1 ha parado. Cambiando turno al Jugador " + (turnoJugador1 ? "1" : "2") + ".");
+                }
+            }
+        });
     }
+
     public static void main(String[] args) {
         JuegoMultiplayer juego = new JuegoMultiplayer();
         juego.setVisible(true);
