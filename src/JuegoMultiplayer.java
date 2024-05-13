@@ -1,5 +1,6 @@
 import com.juego.multiplayer.Jugador1;
 import com.juego.multiplayer.Jugador2;
+import com.juego.multiplayer.TurnManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,9 +41,7 @@ public class JuegoMultiplayer extends JFrame {
     private Jugador1.Direccion direccionParadaJugador1_2;
     private Jugador2.Direccion direccionParadaJugador2;
     private Jugador2.Direccion direccionParadaJugador2_2;
-    private boolean turnoJugador1;
-    private int turnos;
-    private static final int MAX_TURNOS = 5;
+    private TurnManager turnManager;
 
     public JuegoMultiplayer() {
         // Configuramos el JFrame
@@ -53,8 +52,8 @@ public class JuegoMultiplayer extends JFrame {
         setResizable(false);
         setLayout(null);
 
-        turnos = 0;
-        turnoJugador1 = true; // Empieza el jugador 1
+        // Inicializamos el TurnManager
+        turnManager = new TurnManager();
 
         // Obtén el tamaño de la pantalla
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -244,62 +243,7 @@ public class JuegoMultiplayer extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Aquí actualizas la dirección del tiro o de la parada dependiendo del turno
-                if (turnoJugador1) {
-                    direccionTiroJugador1_1 = Jugador1.Direccion.ARRIBAIZQUIERDA;
-                } else {
-                    direccionTiroJugador2_1 = Jugador2.Direccion.ARRIBAIZQUIERDA;
-                }
-            }
-        });
-        tirarArribaDerecha.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Aquí actualizas la dirección del tiro o de la parada dependiendo del turno
-                if (turnoJugador1) {
-                    direccionTiroJugador1_1 = Jugador1.Direccion.ARRIBADERECHA;
-                } else {
-                    direccionTiroJugador2_1 = Jugador2.Direccion.ARRIBADERECHA;
-                }
-            }
-        });
-        tirarArribaCentro.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Aquí actualizas la dirección del tiro o de la parada dependiendo del turno
-                if (turnoJugador1) {
-                    direccionTiroJugador1_1 = Jugador1.Direccion.CENTROARRIBA;
-                } else {
-                    direccionTiroJugador2_1 = Jugador2.Direccion.CENTROARRIBA;
-                }
-            }
-        });
-        tirarCentroIzquierda.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Aquí actualizas la dirección del tiro o de la parada dependiendo del turno
-                if (turnoJugador1) {
-                    direccionTiroJugador1_1 = Jugador1.Direccion.CENTROIZQUIERDA;
-                } else {
-                    direccionTiroJugador2_1 = Jugador2.Direccion.CENTROIZQUIERDA;
-                }
-            }
-        });
-        tirarCentroDerecha.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Aquí actualizas la dirección del tiro o de la parada dependiendo del turno
-                if (turnoJugador1) {
-                    direccionTiroJugador1_1 = Jugador1.Direccion.CENTRODERECHA;
-                } else {
-                    direccionTiroJugador2_1 = Jugador2.Direccion.CENTRODERECHA;
-                }
-            }
-        });
-        tirarCentroCentro.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Aquí actualizas la dirección del tiro o de la parada dependiendo del turno
-                if (turnoJugador1) {
+                if (turnManager.isTurnoJugador1()) {
                     if (direccionTiroJugador1_1 == null) {
                         direccionTiroJugador1_1 = Jugador1.Direccion.ARRIBAIZQUIERDA;
                     } else {
@@ -308,6 +252,101 @@ public class JuegoMultiplayer extends JFrame {
                 } else {
                     if (direccionTiroJugador2_1 == null) {
                         direccionTiroJugador2_1 = Jugador2.Direccion.ARRIBAIZQUIERDA;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
+                    }
+                }
+            }
+        });
+        tirarArribaDerecha.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Aquí actualizas la dirección del tiro o de la parada dependiendo del turno
+                if (turnManager.isTurnoJugador1()) {
+                    if (direccionTiroJugador1_1 == null) {
+                        direccionTiroJugador1_1 = Jugador1.Direccion.ARRIBADERECHA;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
+                    }
+                } else {
+                    if (direccionTiroJugador2_1 == null) {
+                        direccionTiroJugador2_1 = Jugador2.Direccion.ARRIBADERECHA;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
+                    }
+                }
+            }
+        });
+        tirarArribaCentro.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Aquí actualizas la dirección del tiro o de la parada dependiendo del turno
+                if (turnManager.isTurnoJugador1()) {
+                    if (direccionTiroJugador1_1 == null) {
+                        direccionTiroJugador1_1 = Jugador1.Direccion.CENTROARRIBA;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
+                    }
+                } else {
+                    if (direccionTiroJugador2_1 == null) {
+                        direccionTiroJugador2_1 = Jugador2.Direccion.CENTROARRIBA;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
+                    }
+                }
+            }
+        });
+        tirarCentroIzquierda.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Aquí actualizas la dirección del tiro o de la parada dependiendo del turno
+                if (turnManager.isTurnoJugador1()) {
+                    if (direccionTiroJugador1_1 == null) {
+                        direccionTiroJugador1_1 = Jugador1.Direccion.CENTROIZQUIERDA;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
+                    }
+                } else {
+                    if (direccionTiroJugador2_1 == null) {
+                        direccionTiroJugador2_1 = Jugador2.Direccion.CENTROIZQUIERDA;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
+                    }
+                }
+            }
+        });
+        tirarCentroDerecha.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Aquí actualizas la dirección del tiro o de la parada dependiendo del turno
+                if (turnManager.isTurnoJugador1()) {
+                    if (direccionTiroJugador1_1 == null) {
+                        direccionTiroJugador1_1 = Jugador1.Direccion.CENTRODERECHA;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
+                    }
+                } else {
+                    if (direccionTiroJugador2_1 == null) {
+                        direccionTiroJugador2_1 = Jugador2.Direccion.CENTRODERECHA;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
+                    }
+                }
+            }
+        });
+        tirarCentroCentro.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Aquí actualizas la dirección del tiro o de la parada dependiendo del turno
+                if (turnManager.isTurnoJugador1()) {
+                    if (direccionTiroJugador1_1 == null) {
+                        direccionTiroJugador1_1 = Jugador1.Direccion.CENTRO;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
+                    }
+                } else {
+                    if (direccionTiroJugador2_1 == null) {
+                        direccionTiroJugador2_1 = Jugador2.Direccion.CENTRO;
                     } else {
                         JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
                     }
@@ -317,15 +356,15 @@ public class JuegoMultiplayer extends JFrame {
         tirarAbajoIzquierda.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (turnoJugador1) {
+                if (turnManager.isTurnoJugador1()) {
                     if (direccionTiroJugador1_1 == null) {
-                        direccionTiroJugador1_1 = Jugador1.Direccion.ARRIBAIZQUIERDA;
+                        direccionTiroJugador1_1 = Jugador1.Direccion.ABAJOIZQUIERDA;
                     } else {
                         JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
                     }
                 } else {
                     if (direccionTiroJugador2_1 == null) {
-                        direccionTiroJugador2_1 = Jugador2.Direccion.ARRIBAIZQUIERDA;
+                        direccionTiroJugador2_1 = Jugador2.Direccion.ABAJOIZQUIERDA;
                     } else {
                         JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
                     }
@@ -336,15 +375,15 @@ public class JuegoMultiplayer extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Aquí actualizas la dirección del tiro o de la parada dependiendo del turno
-                if (turnoJugador1) {
+                if (turnManager.isTurnoJugador1()) {
                     if (direccionTiroJugador1_1 == null) {
-                        direccionTiroJugador1_1 = Jugador1.Direccion.ARRIBAIZQUIERDA;
+                        direccionTiroJugador1_1 = Jugador1.Direccion.ABAJODERECHA;
                     } else {
                         JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
                     }
                 } else {
                     if (direccionTiroJugador2_1 == null) {
-                        direccionTiroJugador2_1 = Jugador2.Direccion.ARRIBAIZQUIERDA;
+                        direccionTiroJugador2_1 = Jugador2.Direccion.ABAJODERECHA;
                     } else {
                         JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
                     }
@@ -355,15 +394,15 @@ public class JuegoMultiplayer extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Aquí actualizas la dirección del tiro o de la parada dependiendo del turno
-                if (turnoJugador1) {
+                if (turnManager.isTurnoJugador1()) {
                     if (direccionTiroJugador1_1 == null) {
-                        direccionTiroJugador1_1 = Jugador1.Direccion.ARRIBAIZQUIERDA;
+                        direccionTiroJugador1_1 = Jugador1.Direccion.CENTROABAJO;
                     } else {
                         JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
                     }
                 } else {
                     if (direccionTiroJugador2_1 == null) {
-                        direccionTiroJugador2_1 = Jugador2.Direccion.ARRIBAIZQUIERDA;
+                        direccionTiroJugador2_1 = Jugador2.Direccion.CENTROABAJO;
                     } else {
                         JOptionPane.showMessageDialog(null, "Ya has seleccionado una dirección de tiro. No puedes seleccionar más de una.");
                     }
@@ -376,7 +415,7 @@ public class JuegoMultiplayer extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Aquí actualizas la dirección de la parada o del tiro dependiendo del turno
-                if (turnoJugador1) {
+                if (turnManager.isTurnoJugador1()) {
                     if (direccionParadaJugador1 == null) {
                         direccionParadaJugador1 = Jugador1.Direccion.ARRIBAIZQUIERDA;
                     } else if (Math.abs(direccionParadaJugador1.getValor() - Jugador1.Direccion.ARRIBAIZQUIERDA.getValor()) == 1) {
@@ -395,7 +434,7 @@ public class JuegoMultiplayer extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Aquí actualizas la dirección de la parada o del tiro dependiendo del turno
-                if (turnoJugador1) {
+                if (turnManager.isTurnoJugador1()) {
                     if (direccionParadaJugador1 == null) {
                         direccionParadaJugador1 = Jugador1.Direccion.ARRIBADERECHA;
                     } else if (Math.abs(direccionParadaJugador1.getValor() - Jugador1.Direccion.ARRIBADERECHA.getValor()) == 2) {
@@ -414,7 +453,7 @@ public class JuegoMultiplayer extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Aquí actualizas la dirección de la parada o del tiro dependiendo del turno
-                if (turnoJugador1) {
+                if (turnManager.isTurnoJugador1()) {
                     if (direccionParadaJugador1 == null) {
                         direccionParadaJugador1 = Jugador1.Direccion.CENTROARRIBA;
                     } else if (Math.abs(direccionParadaJugador2.getValor() - Jugador2.Direccion.CENTROARRIBA.getValor()) == 5) {
@@ -433,7 +472,7 @@ public class JuegoMultiplayer extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Aquí actualizas la dirección de la parada o del tiro dependiendo del turno
-                if (turnoJugador1) {
+                if (turnManager.isTurnoJugador1()) {
                     if (direccionParadaJugador1 == null) {
                         direccionParadaJugador1 = Jugador1.Direccion.CENTROIZQUIERDA;
                     } else if (Math.abs(direccionParadaJugador2.getValor() - Jugador2.Direccion.CENTROIZQUIERDA.getValor()) == 7) {
@@ -452,7 +491,7 @@ public class JuegoMultiplayer extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Aquí actualizas la dirección de la parada o del tiro dependiendo del turno
-                if (turnoJugador1) {
+                if (turnManager.isTurnoJugador1()) {
                     if (direccionParadaJugador1 == null) {
                         direccionParadaJugador1 = Jugador1.Direccion.CENTRODERECHA;
                     } else if (Math.abs(direccionParadaJugador2.getValor() - Jugador2.Direccion.CENTRODERECHA.getValor()) == 8) {
@@ -471,7 +510,7 @@ public class JuegoMultiplayer extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Aquí actualizas la dirección de la parada o del tiro dependiendo del turno
-                if (turnoJugador1) {
+                if (turnManager.isTurnoJugador1()) {
                     if (direccionParadaJugador1 == null) {
                         direccionParadaJugador1 = Jugador1.Direccion.CENTRO;
                     } else if (Math.abs(direccionParadaJugador2.getValor() - Jugador2.Direccion.CENTRO.getValor()) == 9) {
@@ -490,7 +529,7 @@ public class JuegoMultiplayer extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Aquí actualizas la dirección de la parada o del tiro dependiendo del turno
-                if (turnoJugador1) {
+                if (turnManager.isTurnoJugador1()) {
                     if (direccionParadaJugador1 == null) {
                         direccionParadaJugador1 = Jugador1.Direccion.ABAJOIZQUIERDA;
                     } else if (Math.abs(direccionParadaJugador2.getValor() - Jugador2.Direccion.ABAJOIZQUIERDA.getValor()) == 3) {
@@ -509,7 +548,7 @@ public class JuegoMultiplayer extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Aquí actualizas la dirección de la parada o del tiro dependiendo del turno
-                if (turnoJugador1) {
+                if (turnManager.isTurnoJugador1()) {
                     if (direccionParadaJugador1 == null) {
                         direccionParadaJugador1 = Jugador1.Direccion.ABAJODERECHA;
                     } else if (Math.abs(direccionParadaJugador2.getValor() - Jugador2.Direccion.ABAJODERECHA.getValor()) == 4) {
@@ -528,7 +567,7 @@ public class JuegoMultiplayer extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Aquí actualizas la dirección de la parada o del tiro dependiendo del turno
-                if (turnoJugador1) {
+                if (turnManager.isTurnoJugador1()) {
                     if (direccionParadaJugador1 == null) {
                         direccionParadaJugador1 = Jugador1.Direccion.CENTROABAJO;
                     } else if (Math.abs(direccionParadaJugador2.getValor() - Jugador2.Direccion.CENTROABAJO.getValor()) == 6) {
@@ -547,13 +586,13 @@ public class JuegoMultiplayer extends JFrame {
         chutarJugador1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (turnoJugador1 && turnos < MAX_TURNOS) {
+                if (turnManager.isTurnoJugador1() && !turnManager.isGameFinished()) {
                     jugador1.chutar(direccionTiroJugador1_1);
                     chutarJugador1.setEnabled(false);
                     pararJugador2.setEnabled(true);
-                    panelChutarJugador1.setVisible(false);
-                    panelPararJugador2.setVisible(true);
-                    JOptionPane.showMessageDialog(null, "Turno " + (turnos + 1) + ": Jugador 1 ha chutado.");
+                    panelChutarJugador1.setVisible(false); // Oculta el panel de chutar del jugador 1
+                    panelPararJugador2.setVisible(true); // Muestra el panel de parar del jugador 2
+                    turnManager.nextTurn();
                 }
             }
         });
@@ -562,13 +601,13 @@ public class JuegoMultiplayer extends JFrame {
         pararJugador2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!turnoJugador1 && turnos < MAX_TURNOS) {
+                if (!turnManager.isTurnoJugador1() && !turnManager.isGameFinished()) {
                     jugador2.parar(direccionParadaJugador2);
                     pararJugador2.setEnabled(false);
                     chutarJugador2.setEnabled(true);
                     panelPararJugador2.setVisible(false);
                     panelChutarJugador2.setVisible(true);
-                    JOptionPane.showMessageDialog(null, "Turno " + (turnos + 1) + ": Jugador 2 ha parado.");
+                    turnManager.nextTurn();
                 }
             }
         });
@@ -576,13 +615,13 @@ public class JuegoMultiplayer extends JFrame {
         chutarJugador2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!turnoJugador1 && turnos < MAX_TURNOS) {
+                if (!turnManager.isTurnoJugador1() && !turnManager.isGameFinished()) {
                     jugador2.chutar(direccionTiroJugador2_1);
                     chutarJugador2.setEnabled(false);
                     pararJugador1.setEnabled(true);
                     panelChutarJugador2.setVisible(false);
                     panelPararJugador1.setVisible(true);
-                    JOptionPane.showMessageDialog(null, "Turno " + (turnos + 1) + ": Jugador 2 ha chutado.");
+                    turnManager.nextTurn();
                 }
             }
         });
@@ -590,16 +629,13 @@ public class JuegoMultiplayer extends JFrame {
         pararJugador1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (turnoJugador1 && turnos < MAX_TURNOS) {
+                if (turnManager.isTurnoJugador1() && !turnManager.isGameFinished()) {
                     jugador1.parar(direccionParadaJugador1);
                     pararJugador1.setEnabled(false);
                     chutarJugador1.setEnabled(true);
                     panelPararJugador1.setVisible(false);
                     panelChutarJugador1.setVisible(true);
-                    // Cambiamos el turno al otro jugador y incrementamos la cuenta de los turnos
-                    turnoJugador1 = !turnoJugador1;
-                    turnos++;
-                    JOptionPane.showMessageDialog(null, "Turno " + turnos + ": Jugador 1 ha parado. Cambiando turno al Jugador " + (turnoJugador1 ? "1" : "2") + ".");
+                    turnManager.nextTurn();
                 }
             }
         });
