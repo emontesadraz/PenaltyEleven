@@ -1,14 +1,13 @@
-import javax.imageio.ImageIO;
-import javax.sound.sampled.*;
+package com.penaltyeleven.soloplayer;
+
+import com.penaltyeleven.InterfazMaestra;
+import com.penaltyeleven.MenuInicial;
+import com.penaltyeleven.MusicManager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 
 public class SoloPlayer extends InterfazMaestra {
     public static final Color colorBaseBotones = new Color(25, 25, 25);

@@ -1,3 +1,5 @@
+package com.penaltyeleven;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;

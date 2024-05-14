@@ -1,3 +1,5 @@
+package com.penaltyeleven;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +12,7 @@ import java.awt.Font;
 
 /**
  * This class represents a team selector interface for a game.
- * It extends from the InterfazMaestra class.
+ * It extends from the com.penaltyeleven.InterfazMaestra class.
  */
 public class SelectorEquipos extends InterfazMaestra {
     OperacionesEquipos oe = new OperacionesEquipos();
@@ -30,7 +32,7 @@ public class SelectorEquipos extends InterfazMaestra {
     boolean eq2 = false;
 
     /**
-     * Constructor for the SelectorEquipos class.
+     * Constructor for the com.penaltyeleven.SelectorEquipos class.
      * It initializes the team selector interface.
      * @throws IOException if there is an error reading an image file.
      */

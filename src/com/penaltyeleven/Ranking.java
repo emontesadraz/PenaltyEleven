@@ -1,9 +1,8 @@
-import javax.imageio.ImageIO;
+package com.penaltyeleven;
+
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
