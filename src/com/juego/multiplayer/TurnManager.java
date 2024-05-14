@@ -1,7 +1,7 @@
 package com.juego.multiplayer;
 
 public class TurnManager {
-    private static final int MAX_TURNOS = 5;
+    public static final int MAX_TURNOS = 10;
     private int turnos;
     private boolean turnoJugador1;
 
@@ -25,4 +25,7 @@ public class TurnManager {
         return turnos >= MAX_TURNOS;
     }
 
+    public int getTurnos() {
+        return turnos;
+    }
 }
