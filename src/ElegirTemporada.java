@@ -22,16 +22,10 @@ public class ElegirTemporada extends InterfazMaestra {
     private final MusicManager musicManager = new MusicManager();
 
     public ElegirTemporada() {
+        //Ventana
+        crearVentana("Penalty Eleven",1280,720);
 
-        setSize(1280,720);
-        setTitle("Penalty Eleven");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setResizable(false);
-
-        //Poner icono de la aplicación
-        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
-
+        // Panel
         JPanel panel = new JPanel();
         panel.setOpaque(false);
         panel.setLayout(null);
