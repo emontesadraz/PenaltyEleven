@@ -8,6 +8,10 @@ import java.io.IOException;
 import java.awt.image.BufferedImage;
 import java.awt.Font;
 
+/**
+ * This class represents a team selector interface for a game.
+ * It extends from the InterfazMaestra class.
+ */
 public class SelectorEquipos extends InterfazMaestra {
     OperacionesEquipos oe = new OperacionesEquipos();
     private final MusicManager musicManager = new MusicManager();
@@ -25,6 +29,11 @@ public class SelectorEquipos extends InterfazMaestra {
     boolean eq1 = false;
     boolean eq2 = false;
 
+    /**
+     * Constructor for the SelectorEquipos class.
+     * It initializes the team selector interface.
+     * @throws IOException if there is an error reading an image file.
+     */
     public SelectorEquipos() throws IOException {
 
 //Ventana

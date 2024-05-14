@@ -33,8 +33,8 @@ public class LobbyIE1 extends InterfazMaestra {
         JButton fondo = new JButton();
 
 // Crear botones
-        crearBoton(empezar, "Empezar", 1000, 600, 200, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(volver, "Volver", 60, 600, 200, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(empezar, "Empezar", 1020, 620, 200, 50, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(volver, "Volver", 60, 620, 200, 50, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
 
 // Fondo
         crearFondo(fondo,"Imagenes/Fondo/LobbyIE1.png");

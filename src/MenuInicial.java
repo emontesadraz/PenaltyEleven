@@ -8,7 +8,7 @@ import java.io.IOException;
 public class MenuInicial extends InterfazMaestra {
     public static JPanel panel;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
-    public static final Font fuenteBoton = new Font("Rubik", Font.PLAIN, 20);
+    public static final Font fuenteBoton = new Font("Rubik", Font.BOLD, 20);
     public static final Color colorTexto = new Color(255, 255, 255);
     private final MusicManager musicManager = new MusicManager();
 //Trebuchet MS, Rubik
