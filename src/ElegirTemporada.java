@@ -22,6 +22,7 @@ public class ElegirTemporada extends InterfazMaestra {
     private final MusicManager musicManager = new MusicManager();
 
     public ElegirTemporada() {
+
         //Ventana
         crearVentana("Penalty Eleven",1280,720);
 
