@@ -50,7 +50,6 @@ public class InterfazMaestra extends JFrame {
         setTitle(titulo);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(width, height);
-        setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
         // Icono
