@@ -1,3 +1,5 @@
+package com.penaltyeleven;
+
 public class Equipos {
     private String nombreEquipo;
 

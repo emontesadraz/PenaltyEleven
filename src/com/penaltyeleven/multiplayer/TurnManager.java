@@ -1,4 +1,4 @@
-package com.juego.multiplayer;
+package com.penaltyeleven.multiplayer;
 
 public class TurnManager {
     public static final int MAX_TURNOS = 10;

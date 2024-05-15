@@ -1,7 +1,9 @@
+package com.penaltyeleven;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class OperacionesEquipos extends Equipos{
+public class OperacionesEquipos extends Equipos {
     private List<Equipos> equipos = new ArrayList<Equipos>();
 
     public OperacionesEquipos() {

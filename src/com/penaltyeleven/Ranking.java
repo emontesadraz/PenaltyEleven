@@ -1,3 +1,5 @@
+package com.penaltyeleven;
+
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.*;

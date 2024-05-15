@@ -1,3 +1,7 @@
+package com.penaltyeleven;
+
+import com.penaltyeleven.multiplayer.SelectorEquipos;
+
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
@@ -33,7 +37,7 @@ public class MenuInicial extends JFrame {
         //Crear botones
         soloPlayer=new JButton("Un Jugador");
         multiPlayer=new JButton("Multijugador");
-        rankingGoleadores=new JButton("Ranking de Goleadores");
+        rankingGoleadores=new JButton("com.penaltyeleven.Ranking de Goleadores");
         creditos=new JButton("Créditos");
         salir=new JButton("Salir");
 

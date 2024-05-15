@@ -1,14 +1,12 @@
-package com.juego.multiplayer;
+package com.penaltyeleven.multiplayer;
 
-public class Jugador1 {
+public class Jugador2 {
 
     public boolean chutar() {
-
         return true;
     }
 
     public boolean parar() {
-
         return true;
     }
 }

@@ -1,6 +1,6 @@
-import com.juego.multiplayer.Jugador1;
-import com.juego.multiplayer.Jugador2;
-import com.juego.multiplayer.TurnManager;
+package com.penaltyeleven.multiplayer;
+
+import com.penaltyeleven.MusicManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,7 +43,7 @@ public class JuegoMultiplayer extends JFrame {
         setResizable(false);
 
 
-        // Inicializamos el TurnManager
+        // Inicializamos el com.penaltyeleven.multiplayer.TurnManager
         turnManager = new TurnManager();
 
         // Obtén el tamaño de la pantalla
@@ -67,7 +67,7 @@ public class JuegoMultiplayer extends JFrame {
 
         // Inicializamos el JLabel de la imagen del evento
         JLabel golesLabel = new JLabel();
-        golesLabel.setBounds(100, 200, 300, 300); // Ajusta la posición y el tamaño según sea necesario
+        golesLabel.setBounds(100, 200, 300, 300);// Ajusta la posición y el tamaño según sea necesario
         add(golesLabel);
 
         // Creamos el panel para chutar jugador 1
@@ -264,7 +264,8 @@ public class JuegoMultiplayer extends JFrame {
         int turnosRestantes = TurnManager.MAX_TURNOS - turnManager.getTurnos();
         infoTurno.setText(String.format("%s tiene que %s. Quedan %d turnos.", jugador, accion, turnosRestantes));
         infoTurno.setBackground(Color.WHITE);
-        infoTurno.setHorizontalTextPosition(JLabel.CENTER);
+        infoTurno.setHorizontalAlignment(JLabel.CENTER);
+        infoTurno.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         infoTurno.setOpaque(true);
         infoTurno.setFont(new Font("Arial", Font.PLAIN, 14));
     }
