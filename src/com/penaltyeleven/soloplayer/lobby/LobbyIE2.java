@@ -1,20 +1,21 @@
-package com.penaltyeleven.soloplayer;
+package com.penaltyeleven.soloplayer.lobby;
 
 import com.penaltyeleven.InterfazMaestra;
 import com.penaltyeleven.MusicManager;
+import com.penaltyeleven.soloplayer.ElegirTemporada;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LobbyIE1 extends InterfazMaestra {
+public class LobbyIE2 extends InterfazMaestra {
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     public static final Font fuenteBoton = new Font("Rubik", Font.PLAIN, 20);
     public static final Color colorTexto = new Color(255, 255, 255);
     private final MusicManager musicManager = new MusicManager();
 
-    public LobbyIE1() {
+    public LobbyIE2() {
 
         //Ventana
         crearVentana("Penalty Eleven",1280,720);
@@ -34,7 +35,7 @@ public class LobbyIE1 extends InterfazMaestra {
         crearBoton(volver, "Volver", 60, 620, 200, 50, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
 
 // Fondo
-        crearFondo(fondo,"Imagenes/Fondo/LobbyIE1.png");
+        crearFondo(fondo,"Imagenes/Fondo/LobbyIE2.png");
 
 //Añadir botones al panel
         panel.add(empezar);
@@ -50,7 +51,7 @@ public class LobbyIE1 extends InterfazMaestra {
         empezar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Abrir ventana de Temporada 1
+                //Abrir ventana de Temporada 2
 
                 musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 musicManager.stopMusic();

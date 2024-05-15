@@ -15,7 +15,7 @@ public class MenuInicial extends InterfazMaestra {
     public static final Font fuenteBoton = new Font("Rubik", Font.BOLD, 20);
     public static final Color colorTexto = new Color(255, 255, 255);
     private final MusicManager musicManager = new MusicManager();
-//Trebuchet MS, Rubik
+
     public MenuInicial() {
 
 //Ventana
@@ -36,7 +36,7 @@ public class MenuInicial extends InterfazMaestra {
 // Crear botones
         crearBoton(soloPlayer, "Un Jugador", 120, 275, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(multiPlayer, "Multijugador", 120, 355, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(ranking, "com.penaltyeleven.Ranking de Goleadores", 120, 435, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(ranking, "Ranking de Goleadores", 120, 435, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(creditos, "Créditos", 120, 515, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(salir, "Salir", 120, 595, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
 

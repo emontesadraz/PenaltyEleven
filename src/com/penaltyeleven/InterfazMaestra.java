@@ -44,7 +44,6 @@ public class InterfazMaestra extends JFrame {
                 boton.setBackground(colorFondoBotones);
             }
         });
-
     }
 
 //Metodo para crear una ventana
