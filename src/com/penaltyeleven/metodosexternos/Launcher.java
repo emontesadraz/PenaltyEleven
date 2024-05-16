@@ -1,4 +1,6 @@
-package com.penaltyeleven;
+package com.penaltyeleven.metodosexternos;
+
+import com.penaltyeleven.pantallainicial.MenuInicial;
 
 public class Launcher {
 

@@ -1,4 +1,4 @@
-package com.penaltyeleven;
+package com.penaltyeleven.metodosexternos;
 
 public class Equipos {
     private String nombreEquipo;

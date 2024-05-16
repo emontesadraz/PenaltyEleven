@@ -1,4 +1,4 @@
-package com.penaltyeleven;
+package com.penaltyeleven.metodosexternos;
 
 import javax.sound.sampled.*;
 import java.io.IOException;

@@ -1,4 +1,8 @@
-package com.penaltyeleven;
+package com.penaltyeleven.pantallainicial.multiplayer;
+
+import com.penaltyeleven.metodosexternos.MusicManager;
+import com.penaltyeleven.metodosexternos.OperacionesEquipos;
+import com.penaltyeleven.pantallainicial.MenuInicial;
 
 import javax.sound.sampled.*;
 import javax.swing.*;
@@ -10,7 +14,7 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 
-public class SelectorEquiposSolo extends JFrame {
+public class SelectorEquipos extends JFrame {
     OperacionesEquipos oe = new OperacionesEquipos();
     MusicManager musicManager = new MusicManager();
     private ImageIcon[] imagenesEquipos = {new ImageIcon("src/Imagenes/Escudo/EscudoRaimon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoZeus.png"), new ImageIcon("src/Imagenes/Escudo/EscudoGenesis.png")
@@ -18,15 +22,14 @@ public class SelectorEquiposSolo extends JFrame {
             , new ImageIcon("src/Imagenes/Escudo/EscudoEpsilon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoOtaku.png"), new ImageIcon("src/Imagenes/Escudo/EscudoFarm.png"), new ImageIcon("src/Imagenes/Escudo/EscudoCaos.png")};
     JButton seleccionarEqu1, seleccionarEqu2, jugar, back, flechaIzquierda, flechaDerecha, flechaIzquierda2, flechaDerecha2;
     JPanel panel;
-    JLabel labelEquipo1;
-    JLabel labelEquipo2;
-    int indiceEquipo1 = 0;
-    int indiceEquipo2 = 0;
-    boolean eq1 = false;
-    boolean eq2 = false;
-    private Clip musicClip;
+    JLabel labelEquipo1, labelEquipo2;
+    int indiceEquipo1, indiceEquipo2 = 0;
+    boolean eq1, eq2 = false;
 
-    public SelectorEquiposSolo() {
+
+    public SelectorEquipos() {
+
+        // Configuración de la ventana
         super("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1280, 720);
@@ -157,8 +160,6 @@ public class SelectorEquiposSolo extends JFrame {
                 dispose();
                 MenuInicial menuInicial = new MenuInicial();
                 menuInicial.setVisible(true);
-
-
             }
         });
         back.setBounds(550, 600, 200, 50);
@@ -239,6 +240,14 @@ public class SelectorEquiposSolo extends JFrame {
             }
         });
         panel.add(flechaDerecha2);
+
+        // Crear un botón para el fondo
+        JButton fondo = new JButton();
+        fondo.setBounds(0, 0, 1280, 720);
+        fondo.setOpaque(false);
+        fondo.setContentAreaFilled(false);
+        fondo.setBorderPainted(false);
+        panel.add(fondo);
 
         //Crear el mouseListener de todos los botones
         seleccionarEqu1.addMouseListener(new MouseAdapter() {
@@ -344,13 +353,7 @@ public class SelectorEquiposSolo extends JFrame {
             }
         });
 
-        // Crear un botón para el fondo
-        JButton fondo = new JButton();
-        fondo.setBounds(0, 0, 1280, 720);
-        fondo.setOpaque(false);
-        fondo.setContentAreaFilled(false);
-        fondo.setBorderPainted(false);
-        panel.add(fondo);
+
 
         // Cargar la imagen de fondo y establecerla como icono del botón
         URL url = this.getClass().getClassLoader().getResource("Imagenes/Fondo/SelectorEquipos.jpg");

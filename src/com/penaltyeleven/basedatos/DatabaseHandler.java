@@ -1,4 +1,4 @@
-package com.penaltyeleven;
+package com.penaltyeleven.basedatos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

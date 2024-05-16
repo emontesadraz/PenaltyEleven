@@ -1,4 +1,4 @@
-package com.penaltyeleven;
+package com.penaltyeleven.basedatos;
 
 public class Usuarios {
     private String nombre;

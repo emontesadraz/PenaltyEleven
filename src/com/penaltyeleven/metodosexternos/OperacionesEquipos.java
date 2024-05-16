@@ -1,4 +1,4 @@
-package com.penaltyeleven;
+package com.penaltyeleven.metodosexternos;
 
 import java.util.ArrayList;
 import java.util.List;
