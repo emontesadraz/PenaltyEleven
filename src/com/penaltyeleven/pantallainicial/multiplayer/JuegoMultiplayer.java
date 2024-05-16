@@ -55,14 +55,13 @@ public class JuegoMultiplayer extends JFrame {
         // Inicializamos el Label de información de los goles
         golesLabel = new JLabel();// Asegúrate de inicializar este JLabel en tu constructor y agregarlo a tu JFrame
         golesLabel.setBackground(Color.WHITE);
-        golesLabel.setHorizontalAlignment(JLabel.CENTER);
         golesLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK,3));
-        golesLabel.setBounds(1400, 20, 200, 50); // Ajusta la posición y el tamaño según sea necesario
+        golesLabel.setBounds(1500, 20, 200, 50); // Ajusta la posición y el tamaño según sea necesario
         golesLabel.setOpaque(true);
         golesLabel.setFont(new Font("Rubik", Font.PLAIN, 14));
         add(golesLabel);
 
-        // Inicializamos el com.penaltyeleven.pantallainicial.multiplayer.TurnManager
+        // Inicializamos TurnManager
         turnManager = new TurnManager();
 
         // Obtén el tamaño de la pantalla
@@ -133,6 +132,7 @@ public class JuegoMultiplayer extends JFrame {
                 } else {
                     ImageIcon icon = new ImageIcon("src/Imagenes/Gol.png");
                     JOptionPane.showMessageDialog(null, "¡Tremendo golazo, si señor!", "Portero", JOptionPane.INFORMATION_MESSAGE, icon);
+                    actualizarGoles(true);
                 }
 
                 // Cambiar de panel
@@ -142,6 +142,8 @@ public class JuegoMultiplayer extends JFrame {
                 // Cambiar de turno
                 turnManager.nextTurn();
                 updateTurnInfo();
+
+                finalizarPartido();
             }
         });
         // Boton para chutar del jugador 2
@@ -160,6 +162,7 @@ public class JuegoMultiplayer extends JFrame {
                 } else {
                     ImageIcon icon = new ImageIcon("src/Imagenes/Gol.png");
                     JOptionPane.showMessageDialog(null, "", "Portero", JOptionPane.INFORMATION_MESSAGE, icon);
+                    actualizarGoles(false);
                 }
                 // Cambiar de panel
                 panelJugador2.setVisible(false);
@@ -168,8 +171,28 @@ public class JuegoMultiplayer extends JFrame {
                 // Cambiar de turno
                 turnManager.nextTurn();
                 updateTurnInfo();
+
+                finalizarPartido();
             }
         });
+    }
+    public void finalizarPartido() {
+        if (turnManager.isGameFinished()) {
+            if (golesJugador1 > golesJugador2) {
+                JOptionPane.showMessageDialog(null, "El jugador 1 ha ganado el partido!", "Fin del partido", JOptionPane.INFORMATION_MESSAGE);
+            } else if (golesJugador2 > golesJugador1) {
+                JOptionPane.showMessageDialog(null, "El jugador 2 ha ganado el partido!", "Fin del partido", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "El partido ha terminado en empate. Se repetirán los penaltis.", "Fin del partido", JOptionPane.INFORMATION_MESSAGE);
+                reiniciarPartido();
+            }
+        }
+    }
+    private void reiniciarPartido() {
+        golesJugador1 = 0;
+        golesJugador2 = 0;
+        turnManager = new TurnManager();
+        golesLabel.setText("<html>Goles Jugador 1: " + golesJugador1 + "<br>Goles Jugador 2: " + golesJugador2 + "</html>");
     }
     private String guardarDireccionSeleccionada(JToggleButton[][] direcciones) {
         for (int i = 0; i < 3; i++) {
@@ -180,6 +203,15 @@ public class JuegoMultiplayer extends JFrame {
             }
         }
         return null; // Devuelve null si no se ha seleccionado ninguna dirección
+    }
+    private void actualizarGoles(boolean golJugador1) {
+        if (golJugador1) {
+            golesJugador1++;
+        } else {
+            golesJugador2++;
+        }
+
+        golesLabel.setText("<html>Goles Jugador 1: " + golesJugador1 + "<br>Goles Jugador 2: " + golesJugador2 + "</html>");
     }
     private void crearBotonesDireccion() {
         // Inicializar la matriz de los botones
