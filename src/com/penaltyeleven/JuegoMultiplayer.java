@@ -44,7 +44,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 // Carga la imagen de fondo
-                ImageIcon imagenFondo = new ImageIcon("src/Imagenes/Fondo/porteria.png");
+                ImageIcon imagenFondo = new ImageIcon("src/Imagenes/Fondo/porteria.jpg");
                 // Dibuja la imagen de fondo
                 g.drawImage(imagenFondo.getImage(), 0, 0, getWidth(), getHeight(), null);
             }
