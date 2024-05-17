@@ -1,9 +1,11 @@
+import com.penaltyeleven.InterfazMaestra;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class JuegoMultiplayer extends JFrame {
+public class JuegoMultiplayer extends InterfazMaestra {
     private static final int NUM_PENALES = 5;
     private int turno = 0;
     private int penalesRestantes1 = NUM_PENALES;
@@ -18,14 +20,11 @@ public class JuegoMultiplayer extends JFrame {
 
     private JButton[][] botones = new JButton[3][3];
     private JButton accionBoton = new JButton("Tirar");
-    private JLabel estadoLabel = new JLabel("Jugador 1 tira");
     private JLabel marcadorLabel = new JLabel("Jugador 1: 0 | Jugador 2: 0");
+    private JLabel estadoLabel = new JLabel("Jugador 1 tira");
 
     public JuegoMultiplayer() {
-        setTitle("Juego de Penaltis Multiplayer");
-        setSize(400, 500);
-        setLayout(new BorderLayout());
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        crearVentana("Penalty Eleven", 1280,720);
 
         JPanel porteriaPanel = new JPanel();
         porteriaPanel.setLayout(new GridLayout(3, 3));
@@ -102,17 +101,14 @@ public class JuegoMultiplayer extends JFrame {
 
         controlPanel.add(accionBoton);
 
-        JPanel marcadorPanel = new JPanel();
-        marcadorPanel.add(marcadorLabel);
-
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(porteriaPanel, BorderLayout.CENTER);
         mainPanel.add(controlPanel, BorderLayout.SOUTH);
 
         add(mainPanel, BorderLayout.CENTER);
-        add(marcadorPanel, BorderLayout.SOUTH);
-        add(estadoLabel, BorderLayout.NORTH);
+        add(marcadorLabel, BorderLayout.NORTH);
+        add(estadoLabel, BorderLayout.SOUTH);
 
         setVisible(true);
     }
@@ -156,9 +152,9 @@ public class JuegoMultiplayer extends JFrame {
         } else {
             estadoLabel.setText("¡Gol!");
             if (jugador1Tira) {
-                aciertos1++;
-            } else {
                 aciertos2++;
+            } else {
+                aciertos1++;
             }
         }
 
