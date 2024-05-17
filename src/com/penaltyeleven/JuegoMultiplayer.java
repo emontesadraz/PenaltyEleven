@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class JuegoMultiplayer extends InterfazMaestra {
-    private final MusicManager musicManager = new MusicManager();
     private static final int NUM_PENALES = 5;
     private int turno = 0;
     private int penalesRestantes1 = NUM_PENALES;
@@ -19,8 +18,13 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private int[] porteroSeleccion = new int[4];
     private int seleccionPorteroCount = 0;
 
+    public static final Color colorBaseBotones = new Color(25, 25, 25);
+    public static final Font fuenteBoton = new Font("Rubik", Font.PLAIN, 20);
+    public static final Color colorTexto = new Color(255, 255, 255);
+    private final MusicManager musicManager = new MusicManager();
+
+    private JButton accionBoton = new JButton();
     private JButton[][] botones = new JButton[3][3];
-    private JButton accionBoton = new JButton("Tirar");
     private JLabel marcadorLabel = new JLabel("Jugador 1: 0 | Jugador 2: 0");
     private JLabel estadoLabel = new JLabel("Jugador 1 tira");
 
@@ -73,10 +77,13 @@ public class JuegoMultiplayer extends InterfazMaestra {
                 porteriaPanel.add(botones[i][j]);
             }
         }
+        //Boton Tirar/Parar
+        crearBoton(accionBoton, "Tirar", 120, 595, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
 
         JPanel controlPanel = new JPanel();
         accionBoton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 if (jugador1Tira) {
                     if (!seleccionPortero) {
                         if (tiroActual[0] == 0 && tiroActual[1] == 0) {
@@ -206,6 +213,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private void actualizarMarcador() {
         marcadorLabel.setText("Jugador 1: " + aciertos1 + " | Jugador 2: " + aciertos2);
     }
+
 
     private void determinarGanador() {
         if (aciertos1 > aciertos2) {
