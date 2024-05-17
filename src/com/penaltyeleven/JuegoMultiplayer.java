@@ -1,4 +1,4 @@
-import com.penaltyeleven.InterfazMaestra;
+package com.penaltyeleven;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class JuegoMultiplayer extends InterfazMaestra {
+    private final MusicManager musicManager = new MusicManager();
     private static final int NUM_PENALES = 5;
     private int turno = 0;
     private int penalesRestantes1 = NUM_PENALES;
@@ -24,17 +25,36 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private JLabel estadoLabel = new JLabel("Jugador 1 tira");
 
     public JuegoMultiplayer() {
-        crearVentana("Penalty Eleven", 1280,720);
+        setTitle("Penalty Eleven");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1280, 720);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        // Icono
+        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
+        // Controles de la música
+        musicManager.playMusic("Musica/Soundtrack/PartidovsZeus.wav", 0.5f);
 
-        JPanel porteriaPanel = new JPanel();
-        porteriaPanel.setLayout(new GridLayout(3, 3));
+        JPanel porteriaPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                // Carga la imagen de fondo
+                ImageIcon imagenFondo = new ImageIcon("src/Imagenes/Fondo/porteria.png");
+                // Dibuja la imagen de fondo
+                g.drawImage(imagenFondo.getImage(), 0, 0, getWidth(), getHeight(), null);
+            }
+        };
+        porteriaPanel.setLayout(null); // Usamos un layout null para poder posicionar los elementos manualmente
 
+        // Ahora añadimos los botones a este panel
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 final int x = i;
                 final int y = j;
                 botones[i][j] = new JButton();
-                botones[i][j].setBackground(Color.WHITE);
+                botones[i][j].setContentAreaFilled(false);
+                botones[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
                 botones[i][j].addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         if (!seleccionPortero) {
@@ -46,6 +66,10 @@ public class JuegoMultiplayer extends InterfazMaestra {
                         }
                     }
                 });
+                // Establecemos las coordenadas y el tamaño de cada botón
+                int anchoBoton = 422; // ajusta este valor según tus necesidades
+                int altoBoton = 204; // ajusta este valor según tus necesidades
+                botones[i][j].setBounds(j * anchoBoton, i * altoBoton, anchoBoton, altoBoton);
                 porteriaPanel.add(botones[i][j]);
             }
         }
