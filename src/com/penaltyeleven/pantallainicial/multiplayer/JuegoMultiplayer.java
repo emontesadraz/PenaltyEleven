@@ -147,6 +147,10 @@ public class JuegoMultiplayer extends JFrame {
         chutarJugador1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (!turnManager.isTurnoDeTirar()) {
+                    JOptionPane.showMessageDialog(null, "No es tu turno para chutar.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 String direccionSeleccionada = guardarDireccionSeleccionada(direccionesJugador1);
                 if (direccionSeleccionada == null) {
                     JOptionPane.showMessageDialog(null, "Debes elegir una dirección antes de chutar.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -161,6 +165,7 @@ public class JuegoMultiplayer extends JFrame {
                 pararJugador2.setEnabled(true);
 
                 // No cambiar de turno aquí
+                turnManager.nextTurn();
                 updateTurnInfo();
             }
         });
@@ -168,6 +173,10 @@ public class JuegoMultiplayer extends JFrame {
         chutarJugador2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (!turnManager.isTurnoDeTirar()) {
+                    JOptionPane.showMessageDialog(null, "No es tu turno para chutar.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 String direccionSeleccionada = guardarDireccionSeleccionada(direccionesJugador2);
                 if (direccionSeleccionada == null) {
                     JOptionPane.showMessageDialog(null, "Debes elegir una dirección antes de chutar.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -182,6 +191,7 @@ public class JuegoMultiplayer extends JFrame {
                 pararJugador1.setEnabled(true);
 
                 // No cambiar de turno aquí
+                turnManager.nextTurn();
                 updateTurnInfo();
             }
         });
@@ -191,16 +201,23 @@ public class JuegoMultiplayer extends JFrame {
         pararJugador1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (turnManager.isTurnoDeTirar()) {
+                    JOptionPane.showMessageDialog(null, "No es tu turno para parar.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 List<int[]> direccionesSeleccionadas = getDireccionesSeleccionadas(direccionesJugador1);
-                seleccionarPortero(direccionesSeleccionadas.get(0)[0], direccionesSeleccionadas.get(0)[1], true);
-                seleccionarPortero(direccionesSeleccionadas.get(1)[0], direccionesSeleccionadas.get(1)[1], true);
-
+                if (direccionesSeleccionadas.size() > 1) {
+                    seleccionarPortero(direccionesSeleccionadas.get(0)[0], direccionesSeleccionadas.get(0)[1], true);
+                    seleccionarPortero(direccionesSeleccionadas.get(1)[0], direccionesSeleccionadas.get(1)[1], true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Debes seleccionar dos direcciones antes de parar.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
 
                 chutarJugador1.setEnabled(true);
                 pararJugador1.setEnabled(false);
 
                 // Cambiar de turno
-                procesarTurno();
+                turnManager.nextTurn();
                 updateTurnInfo();
                 finalizarPartido();
             }
@@ -209,18 +226,22 @@ public class JuegoMultiplayer extends JFrame {
         pararJugador2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (turnManager.isTurnoDeTirar()) {
+                    JOptionPane.showMessageDialog(null, "No es tu turno para parar.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 List<int[]> direccionesSeleccionadas = getDireccionesSeleccionadas(direccionesJugador2);
-                seleccionarPortero(direccionesSeleccionadas.get(0)[0], direccionesSeleccionadas.get(0)[1], false);
-                seleccionarPortero(direccionesSeleccionadas.get(1)[0], direccionesSeleccionadas.get(1)[1], false);
-
-
-
-
+                if (direccionesSeleccionadas.size() > 1) {
+                    seleccionarPortero(direccionesSeleccionadas.get(0)[0], direccionesSeleccionadas.get(0)[1], false);
+                    seleccionarPortero(direccionesSeleccionadas.get(1)[0], direccionesSeleccionadas.get(1)[1], false);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Debes seleccionar dos direcciones antes de parar.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
                 chutarJugador2.setEnabled(true);
                 pararJugador2.setEnabled(false);
 
                 // Cambiar de turno
-                procesarTurno();
+                turnManager.nextTurn();
                 updateTurnInfo();
                 finalizarPartido();
             }
@@ -337,10 +358,10 @@ public class JuegoMultiplayer extends JFrame {
                 buttonTirarJugador1.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        if (chutarJugador1.isEnabled() && getDireccionesSeleccionadas(direccionesJugador1).size() > 1) {
+                        if (turnManager.isTurnoDeTirar() && getDireccionesSeleccionadas(direccionesJugador1).size() > 1) {
                             JOptionPane.showMessageDialog(null, "Solo puedes seleccionar una dirección para chutar.", "Error", JOptionPane.ERROR_MESSAGE);
                             buttonTirarJugador1.setSelected(false);
-                        } else if (pararJugador1.isEnabled() && getDireccionesSeleccionadas(direccionesJugador1).size() > 2) {
+                        } else if (!turnManager.isTurnoDeTirar() && getDireccionesSeleccionadas(direccionesJugador1).size() > 2) {
                             JOptionPane.showMessageDialog(null, "Solo puedes seleccionar dos direcciones para parar.", "Error", JOptionPane.ERROR_MESSAGE);
                             buttonTirarJugador1.setSelected(false);
                         }
@@ -350,10 +371,10 @@ public class JuegoMultiplayer extends JFrame {
                 buttonTirarJugador2.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        if (chutarJugador2.isEnabled() && getDireccionesSeleccionadas(direccionesJugador2).size() > 1) {
+                        if (turnManager.isTurnoDeTirar() && getDireccionesSeleccionadas(direccionesJugador2).size() > 1) {
                             JOptionPane.showMessageDialog(null, "Solo puedes seleccionar una dirección para chutar.", "Error", JOptionPane.ERROR_MESSAGE);
                             buttonTirarJugador2.setSelected(false);
-                        } else if (pararJugador2.isEnabled() && getDireccionesSeleccionadas(direccionesJugador2).size() > 2) {
+                        } else if (!turnManager.isTurnoDeTirar() && getDireccionesSeleccionadas(direccionesJugador2).size() > 2) {
                             JOptionPane.showMessageDialog(null, "Solo puedes seleccionar dos direcciones para parar.", "Error", JOptionPane.ERROR_MESSAGE);
                             buttonTirarJugador2.setSelected(false);
                         }
