@@ -7,7 +7,7 @@ public class Creditos extends InterfazMaestra {
     JPanel panel;
     JLabel creditos;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
-    public static final Font fuente = new Font("Rubik", Font.PLAIN, 20);
+    public static final Font fuente = new Font("Rubik", Font.PLAIN, 23);
     public static final Color colorTexto = new Color(255, 255, 255);
     private MusicManager musicManager = new MusicManager();
 
@@ -22,10 +22,10 @@ public class Creditos extends InterfazMaestra {
         panel.setLayout(null);
 
 //Label creditos
-        creditos = new JLabel("<html><center>Desarrollado por:<br><br>Pedro Piñeiro Ordax <br>&<br>Esteban Miguel Montes Adraz</center></html>");
+        creditos = new JLabel("<html><center><h1>Penalty Eleven</h1><br><br>Desarrollado por:<br> Esteban Miguel Montes Adraz<br>Pedro Piñeiro Ordax<br><br>Diseño Grafico:<br>Pedro Piñeiro Ordax<br><br>Musica:<br>Esteban Miguel Montes Adraz<br>Pedro Piñeiro Ordax<br><br>Y gracias a ti.</center></html>");
         creditos.setFont(fuente);
         creditos.setForeground(Color.BLACK);
-        creditos.setBounds(750, 150, 500, 300);
+        creditos.setBounds(750, 0, 500, 700);
 
 //Inicializar botones
         JButton volver=new JButton();
