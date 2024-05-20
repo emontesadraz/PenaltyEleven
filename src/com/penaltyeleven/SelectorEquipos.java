@@ -167,10 +167,11 @@ public class SelectorEquipos extends InterfazMaestra {
                 // Reproducir sonido
                 musicManager.playSound("Musica/SoundEffect/SonidoJugar.wav", 0.7f);
                 if (eq1 && eq2) {
-                    // Aquí va el código para iniciar el juego
-                    // dispose();
-                    // playMusic.stopMusic();
-                    // new Juego().setVisible(true);
+                     JuegoMultiplayer juego = new JuegoMultiplayer();
+                     juego.setVisible(true);
+                     dispose();
+                     musicManager.stopMusic();
+
                 } else {
                     // Mostrar un mensaje de error si los equipos no están seleccionados
                     JOptionPane.showMessageDialog(null, "Debes seleccionar ambos equipos antes de jugar.", "Error", JOptionPane.ERROR_MESSAGE);

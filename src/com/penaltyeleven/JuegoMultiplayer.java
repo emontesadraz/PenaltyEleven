@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class JuegoMultiplayer extends InterfazMaestra {
+
     private static final int NUM_PENALES = 5;
     private int turno = 0;
     private int penalesRestantes1 = NUM_PENALES;
