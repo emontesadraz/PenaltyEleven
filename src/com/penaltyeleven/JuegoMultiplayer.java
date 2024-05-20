@@ -37,14 +37,13 @@ public class JuegoMultiplayer extends InterfazMaestra {
         // Icono
         setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
         // Controles de la música
-        musicManager.playMusic("Musica/Soundtrack/PartidovsZeus.wav", 0.5f);
 
         JPanel porteriaPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 // Carga la imagen de fondo
-                ImageIcon imagenFondo = new ImageIcon("src/Imagenes/Fondo/porteria.jpg");
+                ImageIcon imagenFondo = new ImageIcon("src/Imagenes/Fondo/porteria3.png");
                 // Dibuja la imagen de fondo
                 g.drawImage(imagenFondo.getImage(), 0, 0, getWidth(), getHeight(), null);
             }
@@ -71,8 +70,8 @@ public class JuegoMultiplayer extends InterfazMaestra {
                     }
                 });
                 // Establecemos las coordenadas y el tamaño de cada botón
-                int anchoBoton = 422; // ajusta este valor según tus necesidades
-                int altoBoton = 204; // ajusta este valor según tus necesidades
+                int anchoBoton = 427; // ajusta este valor según tus necesidades
+                int altoBoton = 200; // ajusta este valor según tus necesidades
                 botones[i][j].setBounds(j * anchoBoton, i * altoBoton, anchoBoton, altoBoton);
                 porteriaPanel.add(botones[i][j]);
             }
