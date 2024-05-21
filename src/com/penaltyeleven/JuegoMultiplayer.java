@@ -63,13 +63,16 @@ public class JuegoMultiplayer extends InterfazMaestra {
         }
 
         //Hacer que el nombre de las supertecnicas sean las que tenga el equipo que escogimos
-        JButton boton1 = crearBotonMarcador("Activar 1");
-        JButton boton2 = crearBotonMarcador("Activar 2");
-        JButton boton3 = crearBotonMarcador("Activar 3");
+        JButton tecnica1Boton = new JButton();
+        crearBoton(tecnica1Boton, "Técnica 1", 50, 50, 150, 30, Color.BLUE, Color.BLACK, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        JButton tecnica2Boton = new JButton();
+        crearBoton(tecnica2Boton, "Técnica 2", 250, 50, 150, 30, Color.YELLOW, Color.BLACK, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        JButton tecnica3Boton = new JButton();
+        crearBoton(tecnica3Boton, "Técnica 3", 450, 50, 150, 30, Color.RED, Color.BLACK, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
 
-        botonesPanel.add(boton1);
-        botonesPanel.add(boton2);
-        botonesPanel.add(boton3);
+        botonesPanel.add(tecnica1Boton);
+        botonesPanel.add(tecnica2Boton);
+        botonesPanel.add(tecnica3Boton);
 
         marcadorPanel.add(marcadorLabel, BorderLayout.CENTER);
         marcadorPanel.add(botonesPanel, BorderLayout.SOUTH);
@@ -80,7 +83,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 // Carga la imagen de fondo
-                ImageIcon imagenFondo = new ImageIcon("src/Imagenes/Fondo/porteria3.png");
+                ImageIcon imagenFondo = new ImageIcon("src/Imagenes/Fondo/porteriaConFondo.png");
                 // Dibuja la imagen de fondo
                 g.drawImage(imagenFondo.getImage(), 0, 0, getWidth(), getHeight(), null);
             }
@@ -107,8 +110,8 @@ public class JuegoMultiplayer extends InterfazMaestra {
                     }
                 });
                 // Establecemos las coordenadas y el tamaño de cada botón
-                int anchoBoton = 427; // ajusta este valor según tus necesidades
-                int altoBoton = 200; // ajusta este valor según tus necesidades
+                int anchoBoton = 479; // ajusta este valor según tus necesidades
+                int altoBoton = 210; // ajusta este valor según tus necesidades
                 botones[i][j].setBounds(j * anchoBoton, i * altoBoton, anchoBoton, altoBoton);
                 porteriaPanel.add(botones[i][j]);
             }
