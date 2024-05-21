@@ -143,6 +143,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
                 seguirBoton.setVisible(false);
                 accionBoton.setEnabled(true);
                 estadoLabel.setText(jugador1Tira ? "Jugador 1 tira" : "Jugador 2 tira");
+
                 tiroActual[0]=-1;
                 tiroActual[1]=-1;
             }
