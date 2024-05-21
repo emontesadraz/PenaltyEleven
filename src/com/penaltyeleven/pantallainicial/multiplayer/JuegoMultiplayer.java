@@ -1,4 +1,7 @@
-package com.penaltyeleven;
+package com.penaltyeleven.pantallainicial.multiplayer;
+
+import com.penaltyeleven.metodosexternos.InterfazMaestra;
+import com.penaltyeleven.metodosexternos.MusicManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,15 +39,13 @@ public class JuegoMultiplayer extends InterfazMaestra {
         setResizable(false);
         // Icono
         setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
-        // Controles de la música
-        musicManager.playMusic("Musica/Soundtrack/PartidovsZeus.wav", 0.5f);
 
         JPanel porteriaPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 // Carga la imagen de fondo
-                ImageIcon imagenFondo = new ImageIcon("src/Imagenes/Fondo/porteria.jpg");
+                ImageIcon imagenFondo = new ImageIcon("src/Imagenes/Fondo/austin.jpg");
                 // Dibuja la imagen de fondo
                 g.drawImage(imagenFondo.getImage(), 0, 0, getWidth(), getHeight(), null);
             }
@@ -83,7 +84,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
         JPanel controlPanel = new JPanel();
         accionBoton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
+                musicManager.playMusic("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 if (jugador1Tira) {
                     if (!seleccionPortero) {
                         if (tiroActual[0] == 0 && tiroActual[1] == 0) {
