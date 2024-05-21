@@ -2,6 +2,7 @@ package com.penaltyeleven.pantallainicial;
 
 import com.penaltyeleven.pantallainicial.multiplayer.SelectorEquipos;
 import com.penaltyeleven.metodosexternos.MusicManager;
+import com.penaltyeleven.soloplayer.SoloPlayer;
 
 import javax.sound.sampled.*;
 import javax.swing.*;

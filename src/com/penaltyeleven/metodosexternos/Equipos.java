@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:src/com/penaltyeleven/metodosexternos/Equipos.java
 package com.penaltyeleven.metodosexternos;
-========
-package com.penaltyeleven;
->>>>>>>> origin/premain:src/com/penaltyeleven/Equipos.java
 
 public class Equipos {
     private String nombreEquipo;

@@ -33,13 +33,22 @@ public class JuegoMultiplayer extends InterfazMaestra {
     public JuegoMultiplayer() {
         setTitle("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1280, 720);
+        setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height); // Pantalla completa
         setLocationRelativeTo(null);
         setResizable(false);
+
         // Icono
         setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
-        // Controles de la música
 
+        // Panel superior para el marcador y estado
+        JPanel panelSuperior = new JPanel();
+        panelSuperior.setLayout(new BorderLayout());
+        panelSuperior.add(marcadorLabel, BorderLayout.WEST);
+        panelSuperior.add(estadoLabel, BorderLayout.EAST);
+        marcadorLabel.setFont(new Font("Rubik", Font.BOLD, 24));
+        estadoLabel.setFont(new Font("Rubik", Font.BOLD, 24));
+
+        // Panel portería con imagen de fondo
         JPanel porteriaPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -52,7 +61,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
         };
         porteriaPanel.setLayout(null); // Usamos un layout null para poder posicionar los elementos manualmente
 
-        // Ahora añadimos los botones a este panel
+        // Añadimos los botones a este panel
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 final int x = i;
@@ -71,18 +80,44 @@ public class JuegoMultiplayer extends InterfazMaestra {
                         }
                     }
                 });
-                // Establecemos las coordenadas y el tamaño de cada botón
-                int anchoBoton = 427; // ajusta este valor según tus necesidades
-                int altoBoton = 200; // ajusta este valor según tus necesidades
-                botones[i][j].setBounds(j * anchoBoton, i * altoBoton, anchoBoton, altoBoton);
                 porteriaPanel.add(botones[i][j]);
             }
         }
 
-        // Boton Tirar/Parar
-        crearBoton(accionBoton, "Tirar", 120, 595, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        porteriaPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                int anchoBoton = porteriaPanel.getWidth() / 3;
+                int altoBoton = porteriaPanel.getHeight() / 3;
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 0; j < 3; j++) {
+                        botones[i][j].setBounds(j * anchoBoton, i * altoBoton, anchoBoton, altoBoton);
+                    }
+                }
+            }
+        });
 
-        // Boton Seguir
+        // Paneles laterales
+        JPanel panelIzquierdo = new JPanel();
+        JPanel panelDerecho = new JPanel();
+
+        // Definimos el tamaño de los paneles laterales
+        Dimension panelLateralSize = new Dimension(200, getHeight());
+        panelIzquierdo.setPreferredSize(panelLateralSize);
+        panelDerecho.setPreferredSize(panelLateralSize);
+
+        panelIzquierdo.setBackground(Color.GRAY); // Cambia el color de fondo si es necesario
+        panelDerecho.setBackground(Color.GRAY); // Cambia el color de fondo si es necesario
+
+        // Panel inferior para los botones de acción
+        JPanel panelInferior = new JPanel();
+        panelInferior.setLayout(new FlowLayout());
+
+        // Botón Tirar/Parar
+        crearBoton(accionBoton, "Tirar", 120, 595, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        panelInferior.add(accionBoton);
+
+        // Botón Seguir
         crearBoton(seguirBoton, "Seguir", 700, 595, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         seguirBoton.setVisible(false);
         seguirBoton.addActionListener(new ActionListener() {
@@ -93,12 +128,12 @@ public class JuegoMultiplayer extends InterfazMaestra {
                 seguirBoton.setVisible(false);
                 accionBoton.setEnabled(true);
                 estadoLabel.setText(jugador1Tira ? "Jugador 1 tira" : "Jugador 2 tira");
-                tiroActual[0]=0;
-                tiroActual[1]=0;
+                tiroActual[0] = 0;
+                tiroActual[1] = 0;
             }
         });
+        panelInferior.add(seguirBoton);
 
-        JPanel controlPanel = new JPanel();
         accionBoton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
@@ -150,17 +185,15 @@ public class JuegoMultiplayer extends InterfazMaestra {
             }
         });
 
-        controlPanel.add(accionBoton);
-        controlPanel.add(seguirBoton);
-
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
+        mainPanel.add(panelSuperior, BorderLayout.NORTH);
+        mainPanel.add(panelIzquierdo, BorderLayout.WEST);
+        mainPanel.add(panelDerecho, BorderLayout.EAST);
         mainPanel.add(porteriaPanel, BorderLayout.CENTER);
-        mainPanel.add(controlPanel, BorderLayout.SOUTH);
+        mainPanel.add(panelInferior, BorderLayout.SOUTH);
 
         add(mainPanel, BorderLayout.CENTER);
-        add(marcadorLabel, BorderLayout.NORTH);
-        add(estadoLabel, BorderLayout.SOUTH);
 
         setVisible(true);
     }

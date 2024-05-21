@@ -1,5 +1,9 @@
-package com.penaltyeleven;
+package com.penaltyeleven.soloplayer;
 
+import com.penaltyeleven.JuegoMultiplayer;
+import com.penaltyeleven.MenuInicial;
+import com.penaltyeleven.metodosexternos.InterfazMaestra;
+import com.penaltyeleven.metodosexternos.MusicManager;
 import com.penaltyeleven.metodosexternos.OperacionesEquipos;
 
 import javax.imageio.ImageIO;
@@ -16,7 +20,7 @@ import java.awt.Font;
  * This class represents a team selector interface for a game.
  * It extends from the com.penaltyeleven.InterfazMaestra class.
  */
-public class SelectorEquipos extends InterfazMaestra {
+public class SelectorEquiposSolo extends InterfazMaestra {
     OperacionesEquipos oe = new OperacionesEquipos();
     private final MusicManager musicManager = new MusicManager();
     public static final Color colorBase = new Color(25, 25, 25);
@@ -36,12 +40,13 @@ public class SelectorEquipos extends InterfazMaestra {
     /**
      * Constructor for the com.penaltyeleven.SelectorEquipos class.
      * It initializes the team selector interface.
+     *
      * @throws IOException if there is an error reading an image file.
      */
-    public SelectorEquipos() throws IOException {
+    public SelectorEquiposSolo() throws IOException {
 
 //Ventana
-        crearVentana("Penalty Eleven",1280,720);
+        crearVentana("Penalty Eleven", 1280, 720);
 
 // Panel
         panel = new JPanel();
@@ -80,7 +85,7 @@ public class SelectorEquipos extends InterfazMaestra {
 //JLabel imagen versus
         BufferedImage vs = ImageIO.read(new File("src/Imagenes/Foto/versus.png"));
         JLabel versus = new JLabel();
-        versus.setIcon(new ImageIcon(vs.getScaledInstance(400,400, Image.SCALE_DEFAULT)));
+        versus.setIcon(new ImageIcon(vs.getScaledInstance(400, 400, Image.SCALE_DEFAULT)));
         versus.setBounds(450, 120, 400, 400);
         versus.setBorder(null);
 
@@ -137,7 +142,7 @@ public class SelectorEquipos extends InterfazMaestra {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Reproducir sonido
-                musicManager.playSound("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
+                musicManager.playMusic("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
                 if (seleccionarEqu1.getText().equals("Seleccionar")) {
                     seleccionarEqu1.setText("Seleccionado");
                 } else {
@@ -152,7 +157,7 @@ public class SelectorEquipos extends InterfazMaestra {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Reproducir sonido
-                musicManager.playSound("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
+                musicManager.playMusic("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
                 if (seleccionarEqu2.getText().equals("Seleccionar")) {
                     seleccionarEqu2.setText("Seleccionado");
                 } else {
@@ -167,12 +172,12 @@ public class SelectorEquipos extends InterfazMaestra {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Reproducir sonido
-                musicManager.playSound("Musica/SoundEffect/SonidoJugar.wav", 0.7f);
+                musicManager.playMusic("Musica/SoundEffect/SonidoJugar.wav", 0.7f);
                 if (eq1 && eq2) {
-                     JuegoMultiplayer juego = new JuegoMultiplayer();
-                     juego.setVisible(true);
-                     dispose();
-                     musicManager.stopMusic();
+                    JuegoMultiplayer juego = new JuegoMultiplayer();
+                    juego.setVisible(true);
+                    dispose();
+                    musicManager.stopMusic();
 
                 } else {
                     // Mostrar un mensaje de error si los equipos no están seleccionados
@@ -186,7 +191,7 @@ public class SelectorEquipos extends InterfazMaestra {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Reproducir sonido
-                musicManager.playSound("Musica/SoundEffect/SonidoAtras.wav", 0.7f);
+                musicManager.playMusic("Musica/SoundEffect/SonidoAtras.wav", 0.7f);
                 musicManager.stopMusic();
                 dispose();
                 MenuInicial menuInicial = new MenuInicial();
@@ -200,7 +205,7 @@ public class SelectorEquipos extends InterfazMaestra {
         flechaIzquierda.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                musicManager.playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
+                musicManager.playMusic("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
                 if (!eq2 && indiceEquipo2 > 0) {
                     indiceEquipo2--;
                     labelEquipo2.setText(oe.getEquipos().get(indiceEquipo2).getNombreEquipo());
@@ -213,7 +218,7 @@ public class SelectorEquipos extends InterfazMaestra {
         flechaDerecha.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                musicManager.playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
+                musicManager.playMusic("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
                 if (!eq2 && indiceEquipo2 < oe.getEquipos().size() - 1) {
                     indiceEquipo2++;
                     labelEquipo2.setText(oe.getEquipos().get(indiceEquipo2).getNombreEquipo());
@@ -226,7 +231,7 @@ public class SelectorEquipos extends InterfazMaestra {
         flechaIzquierda2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                musicManager.playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
+                musicManager.playMusic("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
                 if (!eq1 && indiceEquipo1 > 0) {
                     indiceEquipo1--;
                     labelEquipo1.setText(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
@@ -239,7 +244,7 @@ public class SelectorEquipos extends InterfazMaestra {
         flechaDerecha2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                musicManager.playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
+                musicManager.playMusic("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
                 if (!eq1 && indiceEquipo1 < oe.getEquipos().size() - 1) {
                     indiceEquipo1++;
                     labelEquipo1.setText(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
