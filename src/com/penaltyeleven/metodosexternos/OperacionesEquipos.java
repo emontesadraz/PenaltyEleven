@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:src/com/penaltyeleven/metodosexternos/OperacionesEquipos.java
 package com.penaltyeleven.metodosexternos;
+========
+package com.penaltyeleven;
+>>>>>>>> origin/premain:src/com/penaltyeleven/OperacionesEquipos.java
 
 import java.util.ArrayList;
 import java.util.List;

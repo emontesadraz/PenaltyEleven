@@ -1,8 +1,18 @@
+<<<<<<<< HEAD:src/com/penaltyeleven/pantallainicial/SelectorEquiposSolo.java
 package com.penaltyeleven.pantallainicial;
 
 import com.penaltyeleven.metodosexternos.MusicManager;
 import com.penaltyeleven.metodosexternos.OperacionesEquipos;
 
+========
+package com.penaltyeleven.soloplayer;
+
+import com.penaltyeleven.MenuInicial;
+import com.penaltyeleven.MusicManager;
+import com.penaltyeleven.OperacionesEquipos;
+
+import javax.imageio.ImageIO;
+>>>>>>>> origin/premain:src/com/penaltyeleven/soloplayer/SelectorEquiposSolo.java
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +23,7 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 
+<<<<<<<< HEAD:src/com/penaltyeleven/pantallainicial/SelectorEquiposSolo.java
 public class SelectorEquiposSolo extends JFrame {
     OperacionesEquipos oe = new OperacionesEquipos();
     MusicManager musicManager = new MusicManager();
@@ -23,12 +34,27 @@ public class SelectorEquiposSolo extends JFrame {
     JPanel panel;
     JLabel labelEquipo1;
     JLabel labelEquipo2;
+========
+
+public class SelectorEquiposSolo extends JFrame {
+    OperacionesEquipos oe = new OperacionesEquipos();
+    MusicManager musicManager = new MusicManager();
+    private ImageIcon[] imagenesEquipos = {new ImageIcon("src/Imagenes/Escudo/EscudoRaimon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoZeus.png"), new ImageIcon("src/Imagenes/Escudo/.png"), new ImageIcon("src/Imagenes/Escudo/EscudoGenesis.png")
+            , new ImageIcon("src/Imagenes/Escudo/EscudoRoyal.png"), new ImageIcon("src/Imagenes/Escudo/EscudoAlpino.png"), new ImageIcon("src/Imagenes/Escudo/EscudoKirkwood.png"), new ImageIcon("src/Imagenes/Escudo/EscudoOccult.png"), new ImageIcon("src/Imagenes/Escudo/EscudoGigantes.png")
+            , new ImageIcon("src/Imagenes/Escudo/EscudoEpsilon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoOtaku.png"), new ImageIcon("src/Imagenes/Escudo/EscudoFarm.png"), new ImageIcon("src/Imagenes/Escudo/EscudoProminence.png"), new ImageIcon("src/Imagenes/Escudo/EscudoCaos.png")};
+    JButton seleccionarEqu1, seleccionarEqu2, jugar, back, flechaIzquierda, flechaDerecha, flechaIzquierda2, flechaDerecha2;
+    BufferedImage imagen;
+    JLabel labelEquipo1, labelEquipo2;
+>>>>>>>> origin/premain:src/com/penaltyeleven/soloplayer/SelectorEquiposSolo.java
     int indiceEquipo1 = 0;
     int indiceEquipo2 = 0;
     boolean eq1 = false;
     boolean eq2 = false;
-    private Clip musicClip;
 
+<<<<<<<< HEAD:src/com/penaltyeleven/pantallainicial/SelectorEquiposSolo.java
+========
+
+>>>>>>>> origin/premain:src/com/penaltyeleven/soloplayer/SelectorEquiposSolo.java
     public SelectorEquiposSolo() {
         super("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,11 +72,21 @@ public class SelectorEquiposSolo extends JFrame {
         Color colorTexto = new Color(255, 255, 255);
 
         // Panel
-        panel = new JPanel();
+        JPanel panel = new JPanel();
         panel.setOpaque(false);
         panel.setLayout(null);
         this.add(panel);
 
+<<<<<<<< HEAD:src/com/penaltyeleven/pantallainicial/SelectorEquiposSolo.java
+========
+        // Cargar imagen de fondo
+        try {
+            imagen = ImageIO.read(new File("src/Imagenes/Fondo/FondoSelectorEquipos.png")); // Ruta de la imagen de fondo
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+>>>>>>>> origin/premain:src/com/penaltyeleven/soloplayer/SelectorEquiposSolo.java
         // JLabel para el equipo 1
         labelEquipo1 = new JLabel(oe.getEquipos().get(indiceEquipo1).getNombreEquipo());
         labelEquipo1.setFont(new Font("Action Man", Font.BOLD, 30));
@@ -364,6 +400,11 @@ public class SelectorEquiposSolo extends JFrame {
 
         // Controles de la música
         musicManager.playMusic("Musica/Soundtrack/SelectorEquipos.wav", 0.7f);
+<<<<<<<< HEAD:src/com/penaltyeleven/pantallainicial/SelectorEquiposSolo.java
+========
+
+
+>>>>>>>> origin/premain:src/com/penaltyeleven/soloplayer/SelectorEquiposSolo.java
     }
 
     public void playSound(String soundFile, float volume) {
