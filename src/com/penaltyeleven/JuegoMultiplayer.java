@@ -33,7 +33,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
     public JuegoMultiplayer() {
         setTitle("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1280, 720);
+        setSize(1430, 870);
         setLocationRelativeTo(null);
         setResizable(false);
         // Icono
@@ -79,32 +79,14 @@ public class JuegoMultiplayer extends InterfazMaestra {
             }
         }
 
-        // Boton Tirar/Parar
+// Boton Tirar/Parar
         crearBoton(accionBoton, "Tirar", 120, 595, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-
-        // Boton Seguir
-        crearBoton(seguirBoton, "Seguir", 700, 595, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        seguirBoton.setVisible(false);
-        seguirBoton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
-                resetearBotones();
-                setBotonesContentAreaFilled(false);
-                seguirBoton.setVisible(false);
-                accionBoton.setEnabled(true);
-                estadoLabel.setText(jugador1Tira ? "Jugador 1 tira" : "Jugador 2 tira");
-                tiroActual[0]=0;
-                tiroActual[1]=0;
-            }
-        });
-
-        JPanel controlPanel = new JPanel();
         accionBoton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 if (jugador1Tira) {
                     if (!seleccionPortero) {
-                        if (tiroActual[0] == 0 && tiroActual[1] == 0) {
+                        if (tiroActual[0] == -1 && tiroActual[1] == -1) {
                             estadoLabel.setText("Seleccione una casilla para tirar.");
                         } else {
                             estadoLabel.setText("Jugador 2 selecciona parada");
@@ -126,7 +108,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
                     }
                 } else {
                     if (!seleccionPortero) {
-                        if (tiroActual[0] == 0 && tiroActual[1] == 0) {
+                        if (tiroActual[0] == -1 && tiroActual[1] == -1) {
                             estadoLabel.setText("Seleccione una casilla para tirar.");
                         } else {
                             estadoLabel.setText("Jugador 1 selecciona parada");
@@ -150,13 +132,34 @@ public class JuegoMultiplayer extends InterfazMaestra {
             }
         });
 
+// Boton Seguir
+        crearBoton(seguirBoton, "Seguir", 700, 595, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        seguirBoton.setVisible(false);
+        seguirBoton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
+                resetearBotones();
+                setBotonesContentAreaFilled(false);
+                seguirBoton.setVisible(false);
+                accionBoton.setEnabled(true);
+                estadoLabel.setText(jugador1Tira ? "Jugador 1 tira" : "Jugador 2 tira");
+                tiroActual[0]=-1;
+                tiroActual[1]=-1;
+            }
+        });
+
+        JPanel controlPanel = new JPanel();
         controlPanel.add(accionBoton);
         controlPanel.add(seguirBoton);
+
+        JPanel marcadorPanel = new JPanel();
+        marcadorPanel.add(marcadorLabel);
 
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(porteriaPanel, BorderLayout.CENTER);
         mainPanel.add(controlPanel, BorderLayout.SOUTH);
+        mainPanel.add(marcadorPanel, BorderLayout.NORTH);
 
         add(mainPanel, BorderLayout.CENTER);
         add(marcadorLabel, BorderLayout.NORTH);
@@ -165,6 +168,8 @@ public class JuegoMultiplayer extends InterfazMaestra {
         setVisible(true);
     }
 
+//Metodos
+    //Metodo para crear botones
     private void marcarTiro(int x, int y) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -174,6 +179,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
         botones[x][y].setBackground(Color.YELLOW);
     }
 
+    //Metodo para seleccionar parada
     private void seleccionarParada(int x, int y) {
         if (seleccionPorteroCount < 2) {
             botones[x][y].setBackground(Color.GREEN);
