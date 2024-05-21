@@ -29,7 +29,6 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private final JButton[][] botones = new JButton[3][3];
     private JLabel marcadorLabel = new JLabel("Jugador 1: 0 | Jugador 2: 0");
     private JLabel estadoLabel = new JLabel("Jugador 1 tira");
-    private JLabel imagenResultado = new JLabel(); // JLabel para mostrar la imagen del resultado
 
     public JuegoMultiplayer() {
         setTitle("Penalty Eleven");
@@ -64,13 +63,16 @@ public class JuegoMultiplayer extends InterfazMaestra {
         }
 
         //Hacer que el nombre de las supertecnicas sean las que tenga el equipo que escogimos
-        JButton boton1 = crearBotonMarcador("Activar 1");
-        JButton boton2 = crearBotonMarcador("Activar 2");
-        JButton boton3 = crearBotonMarcador("Activar 3");
+        JButton tecnica1Boton = new JButton();
+        crearBoton(tecnica1Boton, "Técnica 1", 50, 50, 150, 30, Color.BLUE, Color.BLACK, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        JButton tecnica2Boton = new JButton();
+        crearBoton(tecnica2Boton, "Técnica 2", 250, 50, 150, 30, Color.YELLOW, Color.BLACK, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        JButton tecnica3Boton = new JButton();
+        crearBoton(tecnica3Boton, "Técnica 3", 450, 50, 150, 30, Color.RED, Color.BLACK, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
 
-        botonesPanel.add(boton1);
-        botonesPanel.add(boton2);
-        botonesPanel.add(boton3);
+        botonesPanel.add(tecnica1Boton);
+        botonesPanel.add(tecnica2Boton);
+        botonesPanel.add(tecnica3Boton);
 
         marcadorPanel.add(marcadorLabel, BorderLayout.CENTER);
         marcadorPanel.add(botonesPanel, BorderLayout.SOUTH);
@@ -81,7 +83,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 // Carga la imagen de fondo
-                ImageIcon imagenFondo = new ImageIcon("src/Imagenes/Fondo/porteria3.png");
+                ImageIcon imagenFondo = new ImageIcon("src/Imagenes/Fondo/porteriaConFondo.png");
                 // Dibuja la imagen de fondo
                 g.drawImage(imagenFondo.getImage(), 0, 0, getWidth(), getHeight(), null);
             }
@@ -108,8 +110,8 @@ public class JuegoMultiplayer extends InterfazMaestra {
                     }
                 });
                 // Establecemos las coordenadas y el tamaño de cada botón
-                int anchoBoton = 427; // ajusta este valor según tus necesidades
-                int altoBoton = 200; // ajusta este valor según tus necesidades
+                int anchoBoton = 479; // ajusta este valor según tus necesidades
+                int altoBoton = 210; // ajusta este valor según tus necesidades
                 botones[i][j].setBounds(j * anchoBoton, i * altoBoton, anchoBoton, altoBoton);
                 porteriaPanel.add(botones[i][j]);
             }
@@ -182,9 +184,6 @@ public class JuegoMultiplayer extends InterfazMaestra {
 
                 tiroActual[0] = -1;
                 tiroActual[1] = -1;
-
-                // Ocultar la imagen del resultado
-                imagenResultado.setVisible(false);
             }
         });
 
@@ -204,11 +203,6 @@ public class JuegoMultiplayer extends InterfazMaestra {
         estadoLabel.setOpaque(true);
         estadoLabel.setHorizontalAlignment(SwingConstants.CENTER);
         estadoLabel.setFont(new Font("Rubik", Font.PLAIN, 18));
-
-        // Añadir el JLabel de la imagen del resultado al mainPanel
-        mainPanel.add(imagenResultado, BorderLayout.CENTER);
-        imagenResultado.setHorizontalAlignment(SwingConstants.CENTER);
-        imagenResultado.setVisible(false);
 
         add(mainPanel, BorderLayout.CENTER);
         add(estadoLabel, BorderLayout.SOUTH);
@@ -263,10 +257,8 @@ public class JuegoMultiplayer extends InterfazMaestra {
 
         if (parada) {
             estadoLabel.setText("¡Parada!");
-            mostrarImagenResultado("src/Imagenes/Parada.png"); // Mostrar imagen de parada
         } else {
             estadoLabel.setText("¡Gol!");
-            mostrarImagenResultado("src/Imagenes/Gol.png"); // Mostrar imagen de gol
             if (jugador1Tira) {
                 aciertos1++;
             } else {
@@ -336,21 +328,6 @@ public class JuegoMultiplayer extends InterfazMaestra {
             accionBoton.setEnabled(false);
         }
         accionBoton.setEnabled(false);
-    }
-
-    private void mostrarImagenResultado(String rutaImagen) {
-        imagenResultado.setIcon(new ImageIcon(rutaImagen));
-        imagenResultado.setVisible(true);
-
-        // Crear un temporizador para ocultar la imagen después de 2 segundos
-        Timer timer = new Timer(2000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                imagenResultado.setVisible(false);
-            }
-        });
-        timer.setRepeats(false); // Solo queremos que se ejecute una vez
-        timer.start();
     }
 
     public static void main(String[] args) {
