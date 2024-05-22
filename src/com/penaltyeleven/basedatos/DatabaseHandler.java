@@ -24,9 +24,12 @@ public class DatabaseHandler {
     public void addUser(String nombre) {
         String SQL = "INSERT INTO usuarios(nombre) VALUES(?)";
 
-        try (Connection conn = connect();
-             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+        try (Connection conn = connect()) {
+            if (conn == null) {
+                throw new SQLException("Failed to connect to the database");
+            }
 
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, nombre);
             pstmt.executeUpdate();
 
