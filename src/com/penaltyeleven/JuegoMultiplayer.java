@@ -25,7 +25,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private final MusicManager musicManager = new MusicManager();
 
     private JButton accionBoton = new JButton();
-    private JButton seguirBoton = new JButton("Seguir");
+    private JButton seguirBoton = new JButton();
     private final JButton[][] botones = new JButton[3][3];
     private JLabel marcadorLabel = new JLabel("Jugador 1: 0 | Jugador 2: 0");
     private JLabel estadoLabel = new JLabel("Jugador 1 tira");
@@ -38,8 +38,6 @@ public class JuegoMultiplayer extends InterfazMaestra {
         setResizable(false);
         // Icono
         setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
-        // Musica
-        musicManager.playMusic("Musica/Soundtrack/PartidoVsZeus.wav", 0.5f);
 
         // Panel de marcador
         JPanel marcadorPanel = new JPanel();
@@ -330,7 +328,12 @@ public class JuegoMultiplayer extends InterfazMaestra {
             accionBoton.setEnabled(false);
         }
         accionBoton.setEnabled(false);
+
+        // Musica
+        musicManager.playMusic("Musica/Soundtrack/ParatidoVsZeus.wav", 0.5f);
+
     }
+
 
     public static void main(String[] args) {
         new JuegoMultiplayer();
