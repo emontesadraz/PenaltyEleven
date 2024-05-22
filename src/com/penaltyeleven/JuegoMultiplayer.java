@@ -38,6 +38,8 @@ public class JuegoMultiplayer extends InterfazMaestra {
         setResizable(false);
         // Icono
         setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
+        // Musica
+        musicManager.playMusic("Musica/Soundtrack/PartidoVsZeus.wav", 0.5f);
 
         // Panel de marcador
         JPanel marcadorPanel = new JPanel();
