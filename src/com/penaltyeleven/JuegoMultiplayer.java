@@ -29,6 +29,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private final JButton[][] botones = new JButton[3][3];
     private JLabel marcadorLabel = new JLabel("Jugador 1: 0 | Jugador 2: 0");
     private JLabel estadoLabel = new JLabel("Jugador 1 tira");
+    private Timer timer;
 
     public JuegoMultiplayer() {
         setTitle("Penalty Eleven");
@@ -207,6 +208,14 @@ public class JuegoMultiplayer extends InterfazMaestra {
         add(mainPanel, BorderLayout.CENTER);
         add(estadoLabel, BorderLayout.SOUTH);
 
+        // Inicializamos el temporizador
+        timer = new Timer(2000, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Cerrar el JOptionPane después de 2 segundos
+                JOptionPane.getRootFrame().dispose();
+            }
+        });
+
         setVisible(true);
     }
 
@@ -255,16 +264,36 @@ public class JuegoMultiplayer extends InterfazMaestra {
             parada = true;
         }
 
+        // Crear el JOptionPane
+        final JOptionPane optionPane = new JOptionPane();
+        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+
+        // Crear el ImageIcon y el JLabel
+        ImageIcon imageIcon;
         if (parada) {
-            estadoLabel.setText("¡Parada!");
+            imageIcon = new ImageIcon("src/Imagenes/Parada.png");
         } else {
-            estadoLabel.setText("¡Gol!");
-            if (jugador1Tira) {
-                aciertos1++;
-            } else {
-                aciertos2++;
-            }
+            imageIcon = new ImageIcon("src/Imagenes/Gol.png");
         }
+        JLabel label = new JLabel(imageIcon);
+
+        // Establecer el mensaje del JOptionPane
+        optionPane.setMessage(label);
+
+        // Crear el JDialog y mostrarlo
+        final JDialog dialog = optionPane.createDialog(null, "Resultado");
+        dialog.setModal(false);
+        dialog.setVisible(true);
+
+        // Crear un Timer para cerrar el JDialog después de 2 segundos
+        Timer timer = new Timer(1500, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dialog.dispose();
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
 
         actualizarMarcador();
 
