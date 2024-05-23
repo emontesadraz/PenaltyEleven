@@ -54,6 +54,6 @@ public class InterfazMaestra extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         // Icono
-        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
+        setIconImage(new ImageIcon("src/Imagenes/Foto/Logo.png").getImage());
     }
 }

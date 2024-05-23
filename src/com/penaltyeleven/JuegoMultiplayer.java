@@ -13,7 +13,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private int penalesRestantes2 = NUM_PENALES;
     private int aciertos1 = 0;
     private int aciertos2 = 0;
-    private int[] tiroActual = new int[2];
+    private int[] tiroActual = {-1, -1}; // Inicializar en -1 para indicar que no se ha seleccionado ninguna casilla
     private boolean jugador1Tira = true;
     private boolean seleccionPortero = false;
     private int[] porteroSeleccion = new int[4];
@@ -25,7 +25,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private final MusicManager musicManager = new MusicManager();
 
     private JButton accionBoton = new JButton();
-    private JButton seguirBoton = new JButton("Seguir");
+    private JButton seguirBoton = new JButton();
     private final JButton[][] botones = new JButton[3][3];
     private JLabel marcadorLabel = new JLabel("Jugador 1: 0 | Jugador 2: 0");
     private JLabel estadoLabel = new JLabel("Jugador 1 tira");
@@ -33,19 +33,57 @@ public class JuegoMultiplayer extends InterfazMaestra {
     public JuegoMultiplayer() {
         setTitle("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1280, 720);
+        setSize(1430, 870);
         setLocationRelativeTo(null);
         setResizable(false);
         // Icono
         setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
-        // Controles de la música
 
+        // Panel de marcador
+        JPanel marcadorPanel = new JPanel();
+        marcadorPanel.setLayout(new BorderLayout());
+        marcadorPanel.setPreferredSize(new Dimension(1430, 120)); // Ajustar altura
+        marcadorPanel.setBackground(new Color(0, 51, 102));
+        marcadorLabel.setForeground(Color.WHITE);
+        marcadorLabel.setFont(new Font("Rubik", Font.BOLD, 24));
+        marcadorLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // Panel para los botones y etiquetas en el marcador
+        JPanel botonesPanel = new JPanel();
+        botonesPanel.setOpaque(false);
+        botonesPanel.setLayout(new GridLayout(2, 3, 10, 0));
+
+        String[] superTecnicas = {"SuperTecnica Nivel 1", "SuperTecnica Nivel 2", "SuperTecnica Nivel 3"};
+        for (String tecnica : superTecnicas) {
+            JLabel etiqueta = new JLabel(tecnica);
+            etiqueta.setFont(new Font("Rubik", Font.PLAIN, 16));
+            etiqueta.setForeground(Color.WHITE);
+            etiqueta.setHorizontalAlignment(SwingConstants.CENTER);
+            botonesPanel.add(etiqueta);
+        }
+
+        //Hacer que el nombre de las supertecnicas sean las que tenga el equipo que escogimos
+        JButton tecnica1Boton = new JButton();
+        crearBoton(tecnica1Boton, "Técnica 1", 50, 50, 150, 30, Color.BLUE, Color.BLACK, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        JButton tecnica2Boton = new JButton();
+        crearBoton(tecnica2Boton, "Técnica 2", 250, 50, 150, 30, Color.YELLOW, Color.BLACK, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        JButton tecnica3Boton = new JButton();
+        crearBoton(tecnica3Boton, "Técnica 3", 450, 50, 150, 30, Color.RED, Color.BLACK, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+
+        botonesPanel.add(tecnica1Boton);
+        botonesPanel.add(tecnica2Boton);
+        botonesPanel.add(tecnica3Boton);
+
+        marcadorPanel.add(marcadorLabel, BorderLayout.CENTER);
+        marcadorPanel.add(botonesPanel, BorderLayout.SOUTH);
+
+        // Panel de la portería
         JPanel porteriaPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 // Carga la imagen de fondo
-                ImageIcon imagenFondo = new ImageIcon("src/Imagenes/Fondo/porteria3.png");
+                ImageIcon imagenFondo = new ImageIcon("src/Imagenes/Fondo/porteriaConFondo.png");
                 // Dibuja la imagen de fondo
                 g.drawImage(imagenFondo.getImage(), 0, 0, getWidth(), getHeight(), null);
             }
@@ -72,8 +110,8 @@ public class JuegoMultiplayer extends InterfazMaestra {
                     }
                 });
                 // Establecemos las coordenadas y el tamaño de cada botón
-                int anchoBoton = 427; // ajusta este valor según tus necesidades
-                int altoBoton = 200; // ajusta este valor según tus necesidades
+                int anchoBoton = 479; // ajusta este valor según tus necesidades
+                int altoBoton = 210; // ajusta este valor según tus necesidades
                 botones[i][j].setBounds(j * anchoBoton, i * altoBoton, anchoBoton, altoBoton);
                 porteriaPanel.add(botones[i][j]);
             }
@@ -81,30 +119,12 @@ public class JuegoMultiplayer extends InterfazMaestra {
 
         // Boton Tirar/Parar
         crearBoton(accionBoton, "Tirar", 120, 595, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-
-        // Boton Seguir
-        crearBoton(seguirBoton, "Seguir", 700, 595, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        seguirBoton.setVisible(false);
-        seguirBoton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
-                resetearBotones();
-                setBotonesContentAreaFilled(false);
-                seguirBoton.setVisible(false);
-                accionBoton.setEnabled(true);
-                estadoLabel.setText(jugador1Tira ? "Jugador 1 tira" : "Jugador 2 tira");
-                tiroActual[0]=0;
-                tiroActual[1]=0;
-            }
-        });
-
-        JPanel controlPanel = new JPanel();
         accionBoton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 if (jugador1Tira) {
                     if (!seleccionPortero) {
-                        if (tiroActual[0] == 0 && tiroActual[1] == 0) {
+                        if (tiroActual[0] == -1 && tiroActual[1] == -1) {
                             estadoLabel.setText("Seleccione una casilla para tirar.");
                         } else {
                             estadoLabel.setText("Jugador 2 selecciona parada");
@@ -126,7 +146,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
                     }
                 } else {
                     if (!seleccionPortero) {
-                        if (tiroActual[0] == 0 && tiroActual[1] == 0) {
+                        if (tiroActual[0] == -1 && tiroActual[1] == -1) {
                             estadoLabel.setText("Seleccione una casilla para tirar.");
                         } else {
                             estadoLabel.setText("Jugador 1 selecciona parada");
@@ -150,6 +170,24 @@ public class JuegoMultiplayer extends InterfazMaestra {
             }
         });
 
+        // Boton Seguir
+        crearBoton(seguirBoton, "Seguir", 700, 595, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        seguirBoton.setVisible(false);
+        seguirBoton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
+                resetearBotones();
+                setBotonesContentAreaFilled(false);
+                seguirBoton.setVisible(false);
+                accionBoton.setEnabled(true);
+                estadoLabel.setText(jugador1Tira ? "Jugador 1 tira" : "Jugador 2 tira");
+
+                tiroActual[0] = -1;
+                tiroActual[1] = -1;
+            }
+        });
+
+        JPanel controlPanel = new JPanel();
         controlPanel.add(accionBoton);
         controlPanel.add(seguirBoton);
 
@@ -157,12 +195,30 @@ public class JuegoMultiplayer extends InterfazMaestra {
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(porteriaPanel, BorderLayout.CENTER);
         mainPanel.add(controlPanel, BorderLayout.SOUTH);
+        mainPanel.add(marcadorPanel, BorderLayout.NORTH);
+
+        // Ajustar la etiqueta de estado para el pie de página
+        estadoLabel.setForeground(Color.BLACK);
+        estadoLabel.setBackground(Color.WHITE);
+        estadoLabel.setOpaque(true);
+        estadoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        estadoLabel.setFont(new Font("Rubik", Font.PLAIN, 18));
 
         add(mainPanel, BorderLayout.CENTER);
-        add(marcadorLabel, BorderLayout.NORTH);
         add(estadoLabel, BorderLayout.SOUTH);
 
         setVisible(true);
+    }
+
+    // Método para crear botones en el marcador
+    private JButton crearBotonMarcador(String texto) {
+        JButton boton = new JButton(texto);
+        boton.setFont(new Font("Rubik", Font.PLAIN, 16));
+        boton.setBackground(colorBaseBotones);
+        boton.setForeground(colorTexto);
+        boton.setFocusPainted(false);
+        boton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+        return boton;
     }
 
     private void marcarTiro(int x, int y) {
@@ -204,9 +260,9 @@ public class JuegoMultiplayer extends InterfazMaestra {
         } else {
             estadoLabel.setText("¡Gol!");
             if (jugador1Tira) {
-                aciertos2++;
-            } else {
                 aciertos1++;
+            } else {
+                aciertos2++;
             }
         }
 
@@ -272,7 +328,12 @@ public class JuegoMultiplayer extends InterfazMaestra {
             accionBoton.setEnabled(false);
         }
         accionBoton.setEnabled(false);
+
+        // Musica
+        musicManager.playMusic("Musica/Soundtrack/ParatidoVsZeus.wav", 0.5f);
+
     }
+
 
     public static void main(String[] args) {
         new JuegoMultiplayer();
