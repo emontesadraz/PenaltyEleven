@@ -306,7 +306,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
     }
 
     private void actualizarMarcador() {
-        marcadorLabel.setText("Jugador 1: " + aciertos1 + " | Jugador 2: " + aciertos2);
+        marcadorLabel.setText("Jugador 1: " + aciertos2 + " | Jugador 2: " + aciertos1);
     }
 
     private void resetearBotones() {
