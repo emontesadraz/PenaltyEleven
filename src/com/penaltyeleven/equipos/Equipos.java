@@ -1,19 +1,23 @@
 package com.penaltyeleven.equipos;
 
-import com.penaltyeleven.InterfazMaestra;
-
-import javax.swing.*;
-
-public class Equipos extends InterfazMaestra {
-
+public class Equipos{
+    private int numEquipo;
     private String nombreEquipo;
     private String rutaEscudo;
-    private String supertecnicaTiro1;
-    private String supertecnicaTiro2;
-    private String supertecnicaTiro3;
-    private String supertecnicaParada1;
-    private String supertecnicaParada2;
-    private String supertecnicaParada3;
+    private String Tiro1;
+    private String Tiro2;
+    private String Tiro3;
+    private String Parada1;
+    private String Parada2;
+    private String Parada3;
+
+    public int getNumEquipo() {
+        return numEquipo;
+    }
+
+    public void setNumEquipo(int numEquipo) {
+        this.numEquipo = numEquipo;
+    }
 
     public String getNombreEquipo() {
         return nombreEquipo;
@@ -31,51 +35,51 @@ public class Equipos extends InterfazMaestra {
         this.rutaEscudo = rutaEscudo;
     }
 
-    public String getSupertecnicaTiro1() {
-        return supertecnicaTiro1;
+    public String getTiro1() {
+        return Tiro1;
     }
 
-    public void setSupertecnicaTiro1(String supertecnicaTiro1) {
-        this.supertecnicaTiro1 = supertecnicaTiro1;
+    public void setTiro1(String tiro1) {
+        this.Tiro1 = tiro1;
     }
 
-    public String getSupertecnicaTiro2() {
-        return supertecnicaTiro2;
+    public String getTiro2() {
+        return Tiro2;
     }
 
-    public void setSupertecnicaTiro2(String supertecnicaTiro2) {
-        this.supertecnicaTiro2 = supertecnicaTiro2;
+    public void setTiro2(String tiro2) {
+        this.Tiro2 = tiro2;
     }
 
-    public String getSupertecnicaTiro3() {
-        return supertecnicaTiro3;
+    public String getTiro3() {
+        return Tiro3;
     }
 
-    public void setSupertecnicaTiro3(String supertecnicaTiro3) {
-        this.supertecnicaTiro3 = supertecnicaTiro3;
+    public void setTiro3(String tiro3) {
+        this.Tiro3 = tiro3;
     }
 
-    public String getSupertecnicaParada1() {
-        return supertecnicaParada1;
+    public String getParada1() {
+        return Parada1;
     }
 
-    public void setSupertecnicaParada1(String supertecnicaParada1) {
-        this.supertecnicaParada1 = supertecnicaParada1;
+    public void setParada1(String parada1) {
+        this.Parada1 = parada1;
     }
 
-    public String getSupertecnicaParada2() {
-        return supertecnicaParada2;
+    public String getParada2() {
+        return Parada2;
     }
 
-    public void setSupertecnicaParada2(String supertecnicaParada2) {
-        this.supertecnicaParada2 = supertecnicaParada2;
+    public void setParada2(String parada2) {
+        this.Parada2 = parada2;
     }
 
-    public String getSupertecnicaParada3() {
-        return supertecnicaParada3;
+    public String getParada3() {
+        return Parada3;
     }
 
-    public void setSupertecnicaParada3(String supertecnicaParada3) {
-        this.supertecnicaParada3 = supertecnicaParada3;
+    public void setParada3(String parada3) {
+        this.Parada3 = parada3;
     }
 }

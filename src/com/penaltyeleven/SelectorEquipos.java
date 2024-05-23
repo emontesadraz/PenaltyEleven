@@ -20,9 +20,9 @@ public class SelectorEquipos extends InterfazMaestra {
     public static final Color colorBase = new Color(25, 25, 25);
     public static final Font fuente = new Font("Rubik", Font.PLAIN, 20);
     public static final Color colorTexto = new Color(255, 255, 255);
-    private final ImageIcon[] imagenesEquipos = {new ImageIcon("src/Imagenes/Escudo/EscudoRaimon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoZeus.png"), new ImageIcon("src/Imagenes/Escudo/EscudoGenesis.png")
-            , new ImageIcon("src/Imagenes/Escudo/EscudoRoyal.png"), new ImageIcon("src/Imagenes/Escudo/EscudoAlpino.png"), new ImageIcon("src/Imagenes/Escudo/EscudoKirkwood.png"), new ImageIcon("src/Imagenes/Escudo/EscudoOccult.png"), new ImageIcon("src/Imagenes/Escudo/EscudoLittleGiants.png")
-            , new ImageIcon("src/Imagenes/Escudo/EscudoEpsilon.png"), new ImageIcon("src/Imagenes/Escudo/EscudoOtaku.png"), new ImageIcon("src/Imagenes/Escudo/EscudoFarm.png"), new ImageIcon("src/Imagenes/Escudo/EscudoCaos.png")};
+    private final ImageIcon[] imagenesEquipos = {new ImageIcon("src/Imagenes/Escudo/Raimon.png"), new ImageIcon("src/Imagenes/Escudo/Zeus.png"), new ImageIcon("src/Imagenes/Escudo/Genesis.png")
+            , new ImageIcon("src/Imagenes/Escudo/RoyalAcademy.png"), new ImageIcon("src/Imagenes/Escudo/Alpino.png"), new ImageIcon("src/Imagenes/Escudo/Kirkwood.png"), new ImageIcon("src/Imagenes/Escudo/Occult.png"), new ImageIcon("src/Imagenes/Escudo/EscudoLittleGiants.png")
+            , new ImageIcon("src/Imagenes/Escudo/Epsilon.png"), new ImageIcon("src/Imagenes/Escudo/Otaku.png"), new ImageIcon("src/Imagenes/Escudo/Farm.png"), new ImageIcon("src/Imagenes/Escudo/Caos.png")};
     JPanel panel;
     JLabel labelEquipo1;
     JLabel labelEquipo2;
