@@ -1,5 +1,8 @@
 package com.penaltyeleven;
 
+import com.penaltyeleven.pantallainicial.multiplayer.Jugador1Gana;
+import com.penaltyeleven.pantallainicial.multiplayer.Jugador2Gana;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -263,6 +266,14 @@ public class JuegoMultiplayer extends InterfazMaestra {
                 (tiroActual[0] == porteroSeleccion[2] && tiroActual[1] == porteroSeleccion[3])) {
             parada = true;
         }
+        // Incrementar los goles del jugador correspondiente si no hay parada
+        if (!parada) {
+            if (jugador1Tira) {
+                aciertos1++;
+            } else {
+                aciertos2++;
+            }
+        }
 
         // Crear el JOptionPane
         final JOptionPane optionPane = new JOptionPane();
@@ -335,7 +346,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
     }
 
     private void actualizarMarcador() {
-        marcadorLabel.setText("Jugador 1: " + aciertos1 + " | Jugador 2: " + aciertos2);
+        marcadorLabel.setText("Jugador 1: " + aciertos2 + " | Jugador 2: " + aciertos1);
     }
 
     private void resetearBotones() {
@@ -347,10 +358,14 @@ public class JuegoMultiplayer extends InterfazMaestra {
     }
 
     private void determinarGanador() {
-        if (aciertos1 > aciertos2) {
-            estadoLabel.setText("Jugador 1 gana");
-        } else if (aciertos2 > aciertos1) {
-            estadoLabel.setText("Jugador 2 gana");
+        if (aciertos2 > aciertos1) {
+            Jugador1Gana jugador1Gana = new Jugador1Gana();
+            jugador1Gana.setVisible(true);
+            dispose();
+        } else if (aciertos1 > aciertos2) {
+            Jugador2Gana jugador2Gana = new Jugador2Gana();
+            jugador2Gana.setVisible(true);
+            dispose();
         } else {
             estadoLabel.setText("Empate, muerte súbita");
             // Implementar lógica de muerte súbita

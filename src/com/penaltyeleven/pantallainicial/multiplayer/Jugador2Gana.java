@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
 
-public class Jugador1Gana extends InterfazMaestra {
+public class Jugador2Gana extends InterfazMaestra {
     private JTextField nombreField;
     private JLabel mensajeGanador;
     private JLabel mensajeRegistro;
@@ -22,7 +22,7 @@ public class Jugador1Gana extends InterfazMaestra {
     public static final Color colorTexto = new Color(255, 255, 255);
     private final MusicManager musicManager = new MusicManager();
 
-    public Jugador1Gana() {
+    public Jugador2Gana() {
         setTitle("Penalty Eleven");
         setSize(1280, 720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,9 +45,9 @@ public class Jugador1Gana extends InterfazMaestra {
         // Editamos el mensaje a nuestro gusto
         mensajeNombre = new JLabel();
         mensajeNombre.setHorizontalAlignment(JLabel.CENTER);
-        mensajeNombre.setText("Jugador 1");
+        mensajeNombre.setText("Jugador 2");
         mensajeNombre.setFont(new Font("Rubik",Font.PLAIN | Font.ITALIC, 30));
-        mensajeNombre.setForeground(new Color(162, 2, 2));
+        mensajeNombre.setForeground(new Color(2, 34, 162));
         mensajeNombre.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         mensajeNombre.setBackground(new Color(255, 255, 255));
         mensajeNombre.setOpaque(true);
@@ -156,8 +156,8 @@ public class Jugador1Gana extends InterfazMaestra {
     }
 
     public static void main(String[] args) {
-        Jugador1Gana jugador1Gana = new Jugador1Gana();
-        jugador1Gana.setVisible(true);
+        Jugador2Gana jugador2Gana = new Jugador2Gana();
+        jugador2Gana.setVisible(true);
     }
 
 }
