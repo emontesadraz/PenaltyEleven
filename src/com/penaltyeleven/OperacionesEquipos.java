@@ -11,30 +11,11 @@ public class OperacionesEquipos extends Equipos{
     }
 
     public void agregarEquipo() {
-        Equipos equipo1 = new Equipos("Instituto Raimon");
+        Equipos equipo1 = new Equipos("Instituto Raimon", "Imagenes/Escudo/Raimon.png", "Tornado de Fuego", "Super Relámpago", "Fénix", "Despeje de Fuego","Mano Celestial", "Mano Mágica");
         equipos.add(equipo1);
-        Equipos equipo2 = new Equipos("Instituto Zeus");
+        Equipos equipo2 = new Equipos("Instituto Zeus", "Imagenes/Escudo/Zeus.png", "Tornado de Fuego", "Super Relámpago", "Fénix", "Despeje de Fuego","Mano Celestial", "Mano Mágica");
         equipos.add(equipo2);
-        Equipos equipo3 = new Equipos("Genesis");
-        equipos.add(equipo3);
-        Equipos equipo4 = new Equipos("Royal Academy");
-        equipos.add(equipo4);
-        Equipos equipo5 = new Equipos("Instituto Alpino");
-        equipos.add(equipo5);
-        Equipos equipo6 = new Equipos("Instituto Kirkwood");
-        equipos.add(equipo6);
-        Equipos equipo7 = new Equipos("Instituto Occult");
-        equipos.add(equipo7);
-        Equipos equipo8 = new Equipos("Little Giants");
-        equipos.add(equipo8);
-        Equipos equipo9 = new Equipos("Épsilon");
-        equipos.add(equipo9);
-        Equipos equipo10 = new Equipos("Instituto Otaku");
-        equipos.add(equipo10);
-        Equipos equipo11 = new Equipos("Instituto Farm");
-        equipos.add(equipo11);
-        Equipos equipo12 = new Equipos("Caos");
-        equipos.add(equipo12);
+
     }
 
     public List<Equipos> getEquipos() {

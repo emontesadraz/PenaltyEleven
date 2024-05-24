@@ -167,9 +167,14 @@ public class SelectorEquipos extends InterfazMaestra {
                 // Reproducir sonido
                 musicManager.playSound("Musica/SoundEffect/SonidoJugar.wav", 0.7f);
                 if (eq1 && eq2) {
-                     JuegoMultiplayer juego = new JuegoMultiplayer();
-                     juego.setVisible(true);
-                     dispose();
+                    JuegoMultiplayer juegoMultiplayer;
+                    try {
+                        juegoMultiplayer = new JuegoMultiplayer();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    juegoMultiplayer.setVisible(true);
+                    dispose();
                      musicManager.stopMusic();
 
                 } else {
