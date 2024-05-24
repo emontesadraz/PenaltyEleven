@@ -2,7 +2,7 @@ package com.penaltyeleven.soloplayer;
 
 import com.penaltyeleven.MenuInicial;
 import com.penaltyeleven.MusicManager;
-import com.penaltyeleven.OperacionesEquipos;
+import com.penaltyeleven.equipos.OperacionesEquipos;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
