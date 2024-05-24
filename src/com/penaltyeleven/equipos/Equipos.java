@@ -11,6 +11,8 @@ public class Equipos{
     private String Parada2;
     private String Parada3;
 
+
+
     public int getNumEquipo() {
         return numEquipo;
     }
