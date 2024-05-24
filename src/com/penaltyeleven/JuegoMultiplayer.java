@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 public class JuegoMultiplayer extends InterfazMaestra {
 
@@ -32,6 +33,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private final JButton[][] botones = new JButton[3][3];
     private JLabel marcadorLabel = new JLabel("Jugador 1: 0 | Jugador 2: 0");
     private JLabel estadoLabel = new JLabel("Jugador 1 tira");
+    String[] canciones = {"Musica/Soundtrack/MusicaPartidoBasico1.wav", "Musica/Soundtrack/MusicaPartidoBasico2.wav", "Musica/Soundtrack/MusicaPartidoBasico3.wav","Musica/Soundtrack/MusicaPartidoBasico4.wav"};
     private Timer timer;
 
     public JuegoMultiplayer() {
@@ -218,6 +220,10 @@ public class JuegoMultiplayer extends InterfazMaestra {
                 JOptionPane.getRootFrame().dispose();
             }
         });
+        Random random = new Random();
+        int indiceCancionAleatoria = random.nextInt(canciones.length);
+        String cancionAleatoria = canciones[indiceCancionAleatoria];
+        musicManager.playSound(cancionAleatoria, 0.6f);
 
         setVisible(true);
     }
