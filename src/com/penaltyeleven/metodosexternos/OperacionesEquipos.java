@@ -58,22 +58,21 @@ public class OperacionesEquipos extends Equipos {
         equipos.add(equipo20);
 
         //Temporada 3
-        Equipos equipo21 = new Equipos("Inazuma Japón","Imagenes/Escudo/InazumaJapon.png", "Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial");
+        Equipos equipo21 = new Equipos("Inazuma Japón", "Imagenes/Escudo/InazumaJapon.png", "Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial");
         equipos.add(equipo21);
-        Equipos equipo21 = new Equipos("Inazuma Japón","Imagenes/Escudo/InazumaJapon.png", "Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial");
-        equipos.add(equipo21);
-        Equipos equipo21 = new Equipos("Inazuma Japón","Imagenes/Escudo/InazumaJapon.png", "Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial");
-        equipos.add(equipo21);
-        Equipos equipo21 = new Equipos("Inazuma Japón","Imagenes/Escudo/InazumaJapon.png", "Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial");
-        equipos.add(equipo21);
-        Equipos equipo21 = new Equipos("Inazuma Japón","Imagenes/Escudo/InazumaJapon.png", "Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial");
-        equipos.add(equipo21);
-        Equipos equipo21 = new Equipos("Inazuma Japón","Imagenes/Escudo/InazumaJapon.png", "Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial");
-        equipos.add(equipo21);
-        Equipos equipo21 = new Equipos("Inazuma Japón","Imagenes/Escudo/InazumaJapon.png", "Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial");
-        equipos.add(equipo21);
+        Equipos equipo22 = new Equipos("Inazuma Japón", "Imagenes/Escudo/InazumaJapon.png", "Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial");
+        equipos.add(equipo22);
+        Equipos equipo23 = new Equipos("Inazuma Japón", "Imagenes/Escudo/InazumaJapon.png", "Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial");
+        equipos.add(equipo23);
+        Equipos equipo24 = new Equipos("Inazuma Japón", "Imagenes/Escudo/InazumaJapon.png", "Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial");
+        equipos.add(equipo24);
+        Equipos equipo25 = new Equipos("Inazuma Japón", "Imagenes/Escudo/InazumaJapon.png", "Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial");
+        equipos.add(equipo25);
+        Equipos equipo26 = new Equipos("Inazuma Japón", "Imagenes/Escudo/InazumaJapon.png", "Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial");
+        equipos.add(equipo26);
+        Equipos equipo27 = new Equipos("Inazuma Japón", "Imagenes/Escudo/InazumaJapon.png", "Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial");
+        equipos.add(equipo27);
     }
-
 
 
     public List<Equipos> getEquipos() {

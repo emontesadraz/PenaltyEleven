@@ -1,6 +1,6 @@
 package com.penaltyeleven.metodosexternos;
 
-public class Equipos{
+public class Equipos {
     private String nombreEquipo;
     private String rutaEscudo;
     private String Tiro1;

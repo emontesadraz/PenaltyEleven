@@ -33,7 +33,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private final JButton[][] botones = new JButton[3][3];
     private JLabel marcadorLabel = new JLabel("Jugador 1: 0 | Jugador 2: 0");
     private JLabel estadoLabel = new JLabel("Jugador 1 tira");
-    String[] canciones = {"Musica/Soundtrack/MusicaPartidoBasico1.wav", "Musica/Soundtrack/MusicaPartidoBasico2.wav", "Musica/Soundtrack/MusicaPartidoBasico3.wav","Musica/Soundtrack/MusicaPartidoBasico4.wav"};
+    String[] canciones = {"Musica/Soundtrack/MusicaPartidoBasico1.wav", "Musica/Soundtrack/MusicaPartidoBasico2.wav", "Musica/Soundtrack/MusicaPartidoBasico3.wav", "Musica/Soundtrack/MusicaPartidoBasico4.wav"};
     private Timer timer;
 
     public JuegoMultiplayer() {
