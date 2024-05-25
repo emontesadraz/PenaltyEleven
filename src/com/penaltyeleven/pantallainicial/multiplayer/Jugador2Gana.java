@@ -110,6 +110,9 @@ public class Jugador2Gana extends InterfazMaestra {
                 String nombre = nombreField.getText();
                 DatabaseHandler dbHandler = new DatabaseHandler();
                 dbHandler.addOrUpdateUser(nombre);
+
+                JOptionPane.showMessageDialog(null, "¡Tu victoria ha sido registrada con éxito!", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                confirmarButton.setEnabled(false);
             }
         });
         reiniciarButton.addActionListener(new ActionListener() {
