@@ -1,9 +1,11 @@
 package com.penaltyeleven.basedatos;
 
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import static java.sql.DriverManager.getConnection;
 
 public class DatabaseHandler {
     private static final String DATABASE_URL = "jdbc:postgresql://localhost:5432/postgres";
@@ -13,7 +15,7 @@ public class DatabaseHandler {
     public Connection connect() {
         Connection conn = null;
         try {
-            conn = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
+            conn = getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
             System.out.println("Connected to the database successfully.");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -21,20 +23,33 @@ public class DatabaseHandler {
         return conn;
     }
 
-    public void addUser(String nombre) {
-        String SQL = "INSERT INTO usuarios(nombre) VALUES(?)";
+    public void addOrUpdateUser(String nombre) {
+        Connection conn = connect();
+        try {
+            // Intenta actualizar la puntuación del usuario existente
+            String updateSql = "UPDATE usuarios SET puntuacion = puntuacion + 1 WHERE nombre = ?";
+            PreparedStatement updatePstmt = conn.prepareStatement(updateSql);
+            updatePstmt.setString(1, nombre);
+            int updatedRows = updatePstmt.executeUpdate();
 
-        try (Connection conn = connect()) {
-            if (conn == null) {
-                throw new SQLException("Failed to connect to the database");
+            // Si no se actualizó ninguna fila, inserta un nuevo usuario
+            if (updatedRows == 0) {
+                String insertSql = "INSERT INTO usuarios (nombre, puntuacion) VALUES (?, ?)";
+                PreparedStatement insertPstmt = conn.prepareStatement(insertSql);
+                insertPstmt.setString(1, nombre);
+                insertPstmt.setInt(2, 1); // Establece la puntuación inicial en 1
+                insertPstmt.executeUpdate();
             }
-
-            PreparedStatement pstmt = conn.prepareStatement(SQL);
-            pstmt.setString(1, nombre);
-            pstmt.executeUpdate();
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
         }
     }
 }

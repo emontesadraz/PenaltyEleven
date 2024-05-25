@@ -109,7 +109,7 @@ public class Jugador1Gana extends InterfazMaestra {
             public void actionPerformed(ActionEvent e) {
                 String nombre = nombreField.getText();
                 DatabaseHandler dbHandler = new DatabaseHandler();
-                dbHandler.addUser(nombre);
+                dbHandler.addOrUpdateUser(nombre);
             }
         });
         reiniciarButton.addActionListener(new ActionListener() {
