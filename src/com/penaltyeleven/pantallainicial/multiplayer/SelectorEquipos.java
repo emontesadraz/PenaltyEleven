@@ -153,7 +153,7 @@ public class SelectorEquipos extends InterfazMaestra {
         crearBoton(flechaDerecha, ">", 1150, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(flechaIzquierda2, "<", 100, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(flechaDerecha2, ">", 350, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(seleccionarTemporada, "Cambiar Temporada", 550, 100, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(seleccionarTemporada, "Cambiar Temporada", 450, 20, 400, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
 
         // Fondo
         crearFondo(fondo, "Imagenes/Fondo/SelectorEquipos.jpg");
@@ -252,8 +252,11 @@ public class SelectorEquipos extends InterfazMaestra {
                 musicManager.playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
                 if (!eq2 && indiceEquipo2 > 0) {
                     indiceEquipo2--;
-                    labelEquipo2.setText(temporadas.get(temporadaActual).get(indiceEquipo2).getNombreEquipo());
-                    imagenEquipo2.setIcon(imagenesEquipos[indiceEquipo2][temporadaActual]);
+                    // Asegúrate de que el índice esté dentro de los límites de la matriz
+                    if (indiceEquipo2 < imagenesEquipos[temporadaActual].length) {
+                        labelEquipo2.setText(temporadas.get(temporadaActual).get(indiceEquipo2).getNombreEquipo());
+                        imagenEquipo2.setIcon(imagenesEquipos[temporadaActual][indiceEquipo2]);
+                    }
                 }
             }
         });
@@ -265,8 +268,11 @@ public class SelectorEquipos extends InterfazMaestra {
                 musicManager.playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
                 if (!eq2 && indiceEquipo2 < temporadas.get(temporadaActual).size() - 1) {
                     indiceEquipo2++;
-                    labelEquipo2.setText(temporadas.get(temporadaActual).get(indiceEquipo2).getNombreEquipo());
-                    imagenEquipo2.setIcon(imagenesEquipos[indiceEquipo2][temporadaActual]);
+                    // Asegúrate de que el índice esté dentro de los límites de la matriz
+                    if (indiceEquipo2 < imagenesEquipos[temporadaActual].length) {
+                        labelEquipo2.setText(temporadas.get(temporadaActual).get(indiceEquipo2).getNombreEquipo());
+                        imagenEquipo2.setIcon(imagenesEquipos[temporadaActual][indiceEquipo2]);
+                    }
                 }
             }
         });
@@ -278,8 +284,11 @@ public class SelectorEquipos extends InterfazMaestra {
                 musicManager.playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
                 if (!eq1 && indiceEquipo1 > 0) {
                     indiceEquipo1--;
-                    labelEquipo1.setText(temporadas.get(temporadaActual).get(indiceEquipo1).getNombreEquipo());
-                    imagenEquipo1.setIcon(imagenesEquipos[indiceEquipo1][temporadaActual]);
+                    // Asegúrate de que el índice esté dentro de los límites de la matriz
+                    if (indiceEquipo1 < imagenesEquipos[temporadaActual].length) {
+                        labelEquipo1.setText(temporadas.get(temporadaActual).get(indiceEquipo1).getNombreEquipo());
+                        imagenEquipo1.setIcon(imagenesEquipos[temporadaActual][indiceEquipo1]);
+                    }
                 }
             }
         });
@@ -291,8 +300,11 @@ public class SelectorEquipos extends InterfazMaestra {
                 musicManager.playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
                 if (!eq1 && indiceEquipo1 < temporadas.get(temporadaActual).size() - 1) {
                     indiceEquipo1++;
-                    labelEquipo1.setText(temporadas.get(temporadaActual).get(indiceEquipo1).getNombreEquipo());
-                    imagenEquipo1.setIcon(imagenesEquipos[indiceEquipo1][temporadaActual]);
+                    // Asegúrate de que el índice esté dentro de los límites de la matriz
+                    if (indiceEquipo1 < imagenesEquipos[temporadaActual].length) {
+                        labelEquipo1.setText(temporadas.get(temporadaActual).get(indiceEquipo1).getNombreEquipo());
+                        imagenEquipo1.setIcon(imagenesEquipos[temporadaActual][indiceEquipo1]);
+                    }
                 }
             }
         });
@@ -306,9 +318,10 @@ public class SelectorEquipos extends InterfazMaestra {
                 indiceEquipo1 = 0;
                 indiceEquipo2 = 0;
                 labelEquipo1.setText(temporadas.get(temporadaActual).get(indiceEquipo1).getNombreEquipo());
-                imagenEquipo1.setIcon(imagenesEquipos[indiceEquipo1][temporadaActual]);
                 labelEquipo2.setText(temporadas.get(temporadaActual).get(indiceEquipo2).getNombreEquipo());
-                imagenEquipo2.setIcon(imagenesEquipos[indiceEquipo2][temporadaActual]);
+                // Actualiza los íconos de los equipos
+                imagenEquipo1.setIcon(imagenesEquipos[temporadaActual][indiceEquipo1]);
+                imagenEquipo2.setIcon(imagenesEquipos[temporadaActual][indiceEquipo2]);
             }
         });
 

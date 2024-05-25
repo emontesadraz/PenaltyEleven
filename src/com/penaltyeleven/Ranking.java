@@ -2,12 +2,8 @@ package com.penaltyeleven;
 
 import com.penaltyeleven.basedatos.DatabaseHandler;
 import com.penaltyeleven.basedatos.User;
-
-import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 
 public class Ranking extends InterfazMaestra {
