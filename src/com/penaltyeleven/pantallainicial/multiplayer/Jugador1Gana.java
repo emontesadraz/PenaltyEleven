@@ -161,6 +161,8 @@ public class Jugador1Gana extends InterfazMaestra {
         icono = new ImageIcon(imagen);
         fondo.setIcon(icono);
 
+        musicManager.playMusic("Musica/Soundtrack/Victoria.wav", 0.7f);
+
     }
 
     public static void main(String[] args) {
