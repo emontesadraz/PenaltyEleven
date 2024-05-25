@@ -1,15 +1,19 @@
 package com.penaltyeleven;
 
+import com.penaltyeleven.basedatos.DatabaseHandler;
+import com.penaltyeleven.basedatos.User;
+
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 
 public class Ranking extends JFrame {
     MusicManager musicManager = new MusicManager();
     private JButton volver, fondo;
-
+    private JPanel rankingPanel;
 
     public Ranking() {
         setSize(1280, 720);
@@ -36,6 +40,8 @@ public class Ranking extends JFrame {
         icono = new ImageIcon(imagen);
         fondo.setIcon(icono);
 
+
+
         //Boton volver
         volver = new JButton("Volver");
         volver.setBounds(40, 600, 220, 50);
@@ -50,14 +56,45 @@ public class Ranking extends JFrame {
             playSound("Musica/SoundEffect/SonidoAtras.wav", 0.5f);
             musicManager.stopMusic();
         });
+        // Crear un área de texto para mostrar el ranking
+        rankingPanel = new JPanel();
+        rankingPanel.setBounds(100, 100, 280, 500); // Ajusta estos valores según tus necesidades
+        rankingPanel.setOpaque(false);
+
 
         //Añadir botones al panel
         panel.add(volver);
+        panel.add(rankingPanel);
         panel.add(fondo);
         add(panel);
 
+
+
+        updateRanking();
+
+
         //Controles música
         musicManager.playMusic("Musica/Soundtrack/Ranking.wav", 0.7f);
+    }
+
+    private void updateRanking() {
+        DatabaseHandler dbHandler = new DatabaseHandler();
+        List<User> users = dbHandler.getUsersRanked();
+
+        // Limpia el JPanel
+        rankingPanel.removeAll();
+
+        for (User user : users) {
+            String formattedName = String.format("    %s: %d", user.getNombre(), user.getPuntuacion()); // Agrega 4 espacios al principio
+            JLabel userLabel = new JLabel(formattedName);
+            userLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Alinea el texto a la izquierda
+            userLabel.setFont(new Font("Rubik", Font.BOLD, 20));
+            rankingPanel.add(userLabel);
+        }
+
+        // Actualiza el JPanel
+        rankingPanel.revalidate();
+        rankingPanel.repaint();
     }
 
     public void playSound(String soundFile, float volume) {
@@ -84,6 +121,18 @@ public class Ranking extends JFrame {
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void setVisible(boolean b) {
+        super.setVisible(b);
+        if (b) {
+            updateRanking();
+        }
+    }
+
+    public static void main(String[] args) {
+        new Ranking().setVisible(true);
     }
 
 }

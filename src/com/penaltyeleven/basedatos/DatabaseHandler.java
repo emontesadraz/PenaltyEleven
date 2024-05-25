@@ -1,9 +1,9 @@
 package com.penaltyeleven.basedatos;
 
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.sql.DriverManager.getConnection;
 
@@ -51,5 +51,31 @@ public class DatabaseHandler {
                 System.out.println(ex.getMessage());
             }
         }
+    }
+    public List<User> getUsersRanked() {
+        List<User> users = new ArrayList<>();
+        Connection conn = connect();
+        try {
+            String sql = "SELECT nombre, puntuacion FROM usuarios ORDER BY puntuacion DESC";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                String nombre = rs.getString("nombre");
+                int puntuacion = rs.getInt("puntuacion");
+                users.add(new User(nombre, puntuacion));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return users;
     }
 }
