@@ -59,18 +59,24 @@ public class OperacionesEquipos extends Equipos {
         //Temporada 3
         Equipos equipo21 = new Equipos("Inazuma Japón",  "Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial");
         equipos.add(equipo21);
-        Equipos equipo22 = new Equipos("Inazuma Japón", "Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial");
+        Equipos equipo22 = new Equipos("Neo Japón", "Flecha Divina", "Triángulo Z", "Lanza de Odín", "Colmillo de Pantera", "Destrozataladros", "Muralla Infinita");
         equipos.add(equipo22);
-        Equipos equipo23 = new Equipos("Inazuma Japón","Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial");
+        Equipos equipo23 = new Equipos("Dragones de Fuego","Remate Celestial", "Ventisca de Fuego", "Remate Caótico", "Combustión", "Lanzallamas", "Rechace de Fuego");
         equipos.add(equipo23);
-        Equipos equipo24 = new Equipos("Inazuma Japón", "Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial");
+        Equipos equipo24 = new Equipos("Knights of Queen", "Tiro del Cometa", "Ataque de Paladín", "Excalibur", "Cuchilla Asesina", "Escudo Protector", "Espada Defensiva");
         equipos.add(equipo24);
-        Equipos equipo25 = new Equipos("Inazuma Japón",  "Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial");
+        Equipos equipo25 = new Equipos("Los Emperadores",  "Ataque del Cóndor", "Remate del Águila", "LLamarada Infernal", "Simun", "Muralla Infinita", "Millón de Manos");
         equipos.add(equipo25);
-        Equipos equipo26 = new Equipos("Inazuma Japón", "Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial");
+        Equipos equipo26 = new Equipos("Unicorn", "Remate Pegaso", "Remate Unicornio", "Tri-Pegaso", "Puño Vengativo", "Despeje Cohete", "Golpes de Luz");
         equipos.add(equipo26);
-        Equipos equipo27 = new Equipos("Inazuma Japón", "Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial");
+        Equipos equipo27 = new Equipos("Los Rojos", "Disparo Rodante", "Tirachinas", "Dragón Terrestre", "Despeje de Fuego", "Destrozataladros", "Aguijón");
         equipos.add(equipo27);
+        Equipos equipo28 = new Equipos("Orfeo", "Remate de Hielo", "Disparo Valiente", "Espada de Odín", "Barrera de Cristal", "Muralla Gigante", "Guardia del Coliseo");
+        equipos.add(equipo28);
+        Equipos equipo29 = new Equipos("Os Reis",  "Tiro Giratorio", "Tiro Vendaval", "Golpe de Samba", "Parada Múltiple", "Garra Salvaje", "Parada Capoeira");
+        equipos.add(equipo29);
+        Equipos equipo30 = new Equipos("Little Giants",  "Mandíbulas Dobles", "Disparo Dual", "Disparo X", "Mano Celestial", "Mano Celestial X", "Mano Espiritual");
+        equipos.add(equipo30);
     }
 
 
