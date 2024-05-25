@@ -14,6 +14,7 @@ public class Ranking extends JFrame {
     MusicManager musicManager = new MusicManager();
     private JButton volver, fondo;
     private JPanel rankingPanel;
+    private JLabel mensaje;
 
     public Ranking() {
         setSize(1280, 720);
@@ -41,7 +42,6 @@ public class Ranking extends JFrame {
         fondo.setIcon(icono);
 
 
-
         //Boton volver
         volver = new JButton("Volver");
         volver.setBounds(40, 600, 220, 50);
@@ -58,16 +58,25 @@ public class Ranking extends JFrame {
         });
         // Crear un área de texto para mostrar el ranking
         rankingPanel = new JPanel();
-        rankingPanel.setBounds(100, 100, 280, 500); // Ajusta estos valores según tus necesidades
+        rankingPanel.setBounds(100, 150, 280, 500); // Ajusta estos valores según tus necesidades
         rankingPanel.setOpaque(false);
+
+        // Crear un título para el ranking
+        mensaje = new JLabel("Tabla de Campeones Máximos");
+        mensaje.setBounds(100, 100, 500, 50); // Ajusta estos valores según tus necesidades
+        mensaje.setFont(new Font("Rubik", Font.BOLD, 30));
+        mensaje.setForeground(Color.BLACK);
+        mensaje.setHorizontalAlignment(SwingConstants.LEFT);
+        mensaje.setVerticalAlignment(SwingConstants.TOP);
+        mensaje.setOpaque(false);
 
 
         //Añadir botones al panel
         panel.add(volver);
         panel.add(rankingPanel);
+        panel.add(mensaje);
         panel.add(fondo);
         add(panel);
-
 
 
         updateRanking();
