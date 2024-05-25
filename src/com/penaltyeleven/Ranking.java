@@ -6,13 +6,13 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 
-public class Ranking extends JFrame{
+public class Ranking extends JFrame {
     MusicManager musicManager = new MusicManager();
-    private JButton volver,fondo;
+    private JButton volver, fondo;
 
 
     public Ranking() {
-        setSize(1280,720);
+        setSize(1280, 720);
         setTitle("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -38,7 +38,7 @@ public class Ranking extends JFrame{
 
         //Boton volver
         volver = new JButton("Volver");
-        volver.setBounds(40,600,220,50);
+        volver.setBounds(40, 600, 220, 50);
         volver.setBackground(MenuInicial.colorBaseBotones);
         volver.setForeground(Color.WHITE);
         volver.setFont(new Font("Action Man", Font.BOLD, 20));

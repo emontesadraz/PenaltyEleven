@@ -1,5 +1,9 @@
-package com.penaltyeleven;
+package com.penaltyeleven.pantallainicial;
 
+import com.penaltyeleven.InterfazMaestra;
+import com.penaltyeleven.JuegoMultiplayer;
+import com.penaltyeleven.MenuInicial;
+import com.penaltyeleven.MusicManager;
 import com.penaltyeleven.metodosexternos.OperacionesEquipos;
 
 import javax.imageio.ImageIO;
@@ -7,10 +11,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.awt.image.BufferedImage;
-import java.awt.Font;
 
 /**
  * This class represents a team selector interface for a game.
@@ -34,14 +37,15 @@ public class SelectorEquipos extends InterfazMaestra {
     boolean eq2 = false;
 
     /**
-     * Constructor for the com.penaltyeleven.SelectorEquipos class.
+     * Constructor for the com.penaltyeleven.pantallainicial.SelectorEquipos class.
      * It initializes the team selector interface.
+     *
      * @throws IOException if there is an error reading an image file.
      */
     public SelectorEquipos() throws IOException {
 
 //Ventana
-        crearVentana("Penalty Eleven",1280,720);
+        crearVentana("Penalty Eleven", 1280, 720);
 
 // Panel
         panel = new JPanel();
@@ -80,7 +84,7 @@ public class SelectorEquipos extends InterfazMaestra {
 //JLabel imagen versus
         BufferedImage vs = ImageIO.read(new File("src/Imagenes/Foto/versus.png"));
         JLabel versus = new JLabel();
-        versus.setIcon(new ImageIcon(vs.getScaledInstance(400,400, Image.SCALE_DEFAULT)));
+        versus.setIcon(new ImageIcon(vs.getScaledInstance(400, 400, Image.SCALE_DEFAULT)));
         versus.setBounds(450, 120, 400, 400);
         versus.setBorder(null);
 
@@ -169,10 +173,10 @@ public class SelectorEquipos extends InterfazMaestra {
                 // Reproducir sonido
                 musicManager.playSound("Musica/SoundEffect/SonidoJugar.wav", 0.7f);
                 if (eq1 && eq2) {
-                     JuegoMultiplayer juego = new JuegoMultiplayer();
-                     juego.setVisible(true);
-                     dispose();
-                     musicManager.stopMusic();
+                    JuegoMultiplayer juego = new JuegoMultiplayer();
+                    juego.setVisible(true);
+                    dispose();
+                    musicManager.stopMusic();
 
                 } else {
                     // Mostrar un mensaje de error si los equipos no están seleccionados

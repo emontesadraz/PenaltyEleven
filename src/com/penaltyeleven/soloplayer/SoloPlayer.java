@@ -18,7 +18,7 @@ public class SoloPlayer extends InterfazMaestra {
     public SoloPlayer() {
 
         //Ventana
-        crearVentana("Penalty Eleven",1280,720);
+        crearVentana("Penalty Eleven", 1280, 720);
 
         //Panel
         JPanel panel = new JPanel();
@@ -41,7 +41,7 @@ public class SoloPlayer extends InterfazMaestra {
 
 
         // Fondo
-        crearFondo(fondo,"Imagenes/Fondo/markevans.png");
+        crearFondo(fondo, "Imagenes/Fondo/markevans.png");
 
         //Añadir botones al panel
         panel.add(modoHistoria);

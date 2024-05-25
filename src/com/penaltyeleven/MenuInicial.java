@@ -1,13 +1,12 @@
 package com.penaltyeleven;
 
+import com.penaltyeleven.pantallainicial.SelectorEquipos;
 import com.penaltyeleven.soloplayer.SoloPlayer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Font;
-import java.io.IOException;
 
 public class MenuInicial extends InterfazMaestra {
     public static JPanel panel;
@@ -19,7 +18,7 @@ public class MenuInicial extends InterfazMaestra {
     public MenuInicial() {
 
 //Ventana
-        crearVentana("Penalty Eleven",1280,720);
+        crearVentana("Penalty Eleven", 1280, 720);
 
 // Panel
         panel = new JPanel();
@@ -42,7 +41,7 @@ public class MenuInicial extends InterfazMaestra {
 
 // Fondo
         JButton fondo = new JButton();
-        crearFondo(fondo,"Imagenes/Fondo/FondoMenuInicial.png");
+        crearFondo(fondo, "Imagenes/Fondo/FondoMenuInicial.png");
 
 // Añadir los botones al panel
         panel.add(soloPlayer);
@@ -68,21 +67,22 @@ public class MenuInicial extends InterfazMaestra {
             }
         });
 
-        //Acción del botón multiPlayer
+//Acción del botón multiPlayer
         multiPlayer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SelectorEquipos selectorEquipos;
                 try {
-                    selectorEquipos = new SelectorEquipos();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
+                    SelectorEquipos selectorEquipos = new SelectorEquipos();
+                    selectorEquipos.setVisible(true);
+                    dispose();
+                    musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
+                    musicManager.stopMusic();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Error al iniciar SelectorEquipos: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
-                selectorEquipos.setVisible(true);
-                dispose();
-                musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
-                musicManager.stopMusic();
             }
+
         });
 
         //Acción del botón rankingGoleadores

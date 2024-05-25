@@ -1,5 +1,6 @@
 package com.penaltyeleven.pantallainicial;
 
+import com.penaltyeleven.MenuInicial;
 import com.penaltyeleven.metodosexternos.MusicManager;
 
 import javax.imageio.ImageIO;
@@ -11,16 +12,16 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
-public class Ranking extends JFrame{
+public class Ranking extends JFrame {
     MusicManager musicManager = new MusicManager();
     private JPanel panel;
     private JButton volver;
-    private JLabel  ranking;
+    private JLabel ranking;
     private JScrollPane scroll;
     private BufferedImage imagen;
 
     public Ranking() {
-        setSize(1280,720);
+        setSize(1280, 720);
         setTitle("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -36,7 +37,7 @@ public class Ranking extends JFrame{
             e.printStackTrace();
         }
 
-        panel=new JPanel();
+        panel = new JPanel();
         panel.setLayout(null);
 
         ranking = new JLabel();
@@ -66,6 +67,7 @@ public class Ranking extends JFrame{
         //Controles música
         musicManager.playMusic("Musica/Soundtrack/Ranking.wav", 0.7f);
     }
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -74,6 +76,7 @@ public class Ranking extends JFrame{
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
         }
     }
+
     public void playSound(String soundFile, float volume) {
         try {
             // Abrir un audio input stream

@@ -11,10 +11,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.awt.image.BufferedImage;
-import java.awt.Font;
 
 /**
  * This class represents a team selector interface for a game.
@@ -38,7 +37,7 @@ public class SelectorEquiposSolo extends InterfazMaestra {
     boolean eq2 = false;
 
     /**
-     * Constructor for the com.penaltyeleven.SelectorEquipos class.
+     * Constructor for the com.penaltyeleven.pantallainicial.SelectorEquipos class.
      * It initializes the team selector interface.
      *
      * @throws IOException if there is an error reading an image file.

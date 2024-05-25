@@ -14,13 +14,13 @@ import java.io.IOException;
 import java.net.URL;
 
 public class ElegirTemporada extends JFrame {
-    private final JButton temp1,temp2,temp3,volver,fondo;
+    private final JButton temp1, temp2, temp3, volver, fondo;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     private final MusicManager musicManager = new MusicManager();
 
     public ElegirTemporada() {
 
-        setSize(1280,720);
+        setSize(1280, 720);
         setTitle("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -37,10 +37,10 @@ public class ElegirTemporada extends JFrame {
         add(panel);
 
         //Crear botones
-        temp1=new JButton("Temporada 1");
-        temp2=new JButton("Temporada 2");
-        temp3=new JButton("Temporada 3");
-        volver=new JButton("Volver");
+        temp1 = new JButton("Temporada 1");
+        temp2 = new JButton("Temporada 2");
+        temp3 = new JButton("Temporada 3");
+        volver = new JButton("Volver");
 
         // Crear un botón para el fondo
         fondo = new JButton();
@@ -116,10 +116,10 @@ public class ElegirTemporada extends JFrame {
         fondo.setBackground(colorBaseBotones);
 
         //Cambiar tamaño y posición de los botones
-        temp1.setBounds(120,275,460,45);
-        temp2.setBounds(120,355,460,45);
-        temp3.setBounds(120,435,460,45);
-        volver.setBounds(120,515,460,45);
+        temp1.setBounds(120, 275, 460, 45);
+        temp2.setBounds(120, 355, 460, 45);
+        temp3.setBounds(120, 435, 460, 45);
+        volver.setBounds(120, 515, 460, 45);
 
         //Cambiar la fuente de los botones
         Font fuenteBoton = new Font("Action Man", Font.BOLD, 20);
@@ -142,6 +142,7 @@ public class ElegirTemporada extends JFrame {
                 playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
                 temp1.setBackground(colorBaseBotones.darker());
             }
+
             @Override
             public void mouseExited(MouseEvent e) {
                 temp1.setBackground(colorBaseBotones);
@@ -152,7 +153,9 @@ public class ElegirTemporada extends JFrame {
             @Override
             public void mouseEntered(MouseEvent e) {
                 playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                temp2.setBackground(colorBaseBotones.darker());}
+                temp2.setBackground(colorBaseBotones.darker());
+            }
+
             @Override
             public void mouseExited(MouseEvent e) {
                 temp2.setBackground(colorBaseBotones);
@@ -163,7 +166,9 @@ public class ElegirTemporada extends JFrame {
             @Override
             public void mouseEntered(MouseEvent e) {
                 playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                temp3.setBackground(colorBaseBotones.darker());}
+                temp3.setBackground(colorBaseBotones.darker());
+            }
+
             @Override
             public void mouseExited(MouseEvent e) {
                 temp3.setBackground(colorBaseBotones);
@@ -174,7 +179,9 @@ public class ElegirTemporada extends JFrame {
             @Override
             public void mouseEntered(MouseEvent e) {
                 playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                volver.setBackground(colorBaseBotones.darker());}
+                volver.setBackground(colorBaseBotones.darker());
+            }
+
             @Override
             public void mouseExited(MouseEvent e) {
                 volver.setBackground(colorBaseBotones);

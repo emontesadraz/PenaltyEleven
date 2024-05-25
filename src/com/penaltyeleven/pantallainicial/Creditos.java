@@ -1,5 +1,6 @@
 package com.penaltyeleven.pantallainicial;
 
+import com.penaltyeleven.MenuInicial;
 import com.penaltyeleven.metodosexternos.MusicManager;
 
 import javax.sound.sampled.*;
@@ -18,7 +19,7 @@ public class Creditos extends JFrame {
 
     public Creditos() {
 
-        setSize(1280,720);
+        setSize(1280, 720);
         setTitle("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -32,7 +33,7 @@ public class Creditos extends JFrame {
 
 
         //Boton volver
-        volver=new JButton("Volver");
+        volver = new JButton("Volver");
         volver.setBackground(colorBaseBotones);
         volver.setForeground(Color.WHITE);
         volver.setFont(new Font("Action Man", Font.BOLD, 20));
@@ -44,7 +45,7 @@ public class Creditos extends JFrame {
             playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
             musicManager.stopMusic();
         });
-        volver.setBounds(40,600,220,50);
+        volver.setBounds(40, 600, 220, 50);
 
         // Crear un botón para el fondo
         JButton fondo = new JButton();
@@ -93,6 +94,7 @@ public class Creditos extends JFrame {
 
 
     }
+
     public void playSound(String soundFile, float volume) {
         try {
             // Abrir un audio input stream

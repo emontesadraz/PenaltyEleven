@@ -1,7 +1,5 @@
 package com.penaltyeleven.metodosexternos;
 
-import com.penaltyeleven.metodosexternos.MusicManager;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -41,6 +39,7 @@ public class InterfazMaestra extends JFrame {
                 boton.setBackground(colorFondoBotones.darker());
                 musicManager.playMusic(rutaSoundEfectHover, volumenSoundEfectHover);
             }
+
             @Override
             public void mouseExited(MouseEvent e) {
                 boton.setBackground(colorFondoBotones);
@@ -49,7 +48,7 @@ public class InterfazMaestra extends JFrame {
     }
 
     //Metodo para crear una ventana
-    public void crearVentana(String titulo,int width, int height) {
+    public void crearVentana(String titulo, int width, int height) {
         setTitle(titulo);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(width, height);

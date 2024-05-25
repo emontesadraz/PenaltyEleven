@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.net.URL;
 
 public class Jugador1Gana extends InterfazMaestra {
@@ -36,22 +37,22 @@ public class Jugador1Gana extends InterfazMaestra {
         mensajeGanador = new JLabel();
         mensajeGanador.setHorizontalAlignment(JLabel.CENTER);
         mensajeGanador.setText("¡Enhorabuena! Has ganado.");
-        mensajeGanador.setFont(new Font("Rubik", Font.BOLD,34));
+        mensajeGanador.setFont(new Font("Rubik", Font.BOLD, 34));
         mensajeGanador.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         mensajeGanador.setBackground(new Color(255, 255, 255));
         mensajeGanador.setOpaque(true);
-        mensajeGanador.setBounds(380,50,500,50);
+        mensajeGanador.setBounds(380, 50, 500, 50);
 
         // Editamos el mensaje a nuestro gusto
         mensajeNombre = new JLabel();
         mensajeNombre.setHorizontalAlignment(JLabel.CENTER);
         mensajeNombre.setText("Jugador 1");
-        mensajeNombre.setFont(new Font("Rubik",Font.PLAIN | Font.ITALIC, 30));
+        mensajeNombre.setFont(new Font("Rubik", Font.PLAIN | Font.ITALIC, 30));
         mensajeNombre.setForeground(new Color(162, 2, 2));
         mensajeNombre.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         mensajeNombre.setBackground(new Color(255, 255, 255));
         mensajeNombre.setOpaque(true);
-        mensajeNombre.setBounds(520,100,200,50); // Ahora mensajeNombre ha sido inicializado antes de llamar a setBounds
+        mensajeNombre.setBounds(520, 100, 200, 50); // Ahora mensajeNombre ha sido inicializado antes de llamar a setBounds
 
         // Editamos el mensaje a nuestro gusto
         mensajeRegistro = new JLabel();
@@ -79,7 +80,6 @@ public class Jugador1Gana extends InterfazMaestra {
         fondo.setOpaque(false);
         fondo.setContentAreaFilled(false);
         fondo.setBorderPainted(false);
-
 
 
         // Inicializamos los Botones
@@ -126,7 +126,12 @@ public class Jugador1Gana extends InterfazMaestra {
         selectorEquipos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SelectorEquipos selectorEquipos = new SelectorEquipos();
+                SelectorEquipos selectorEquipos = null;
+                try {
+                    selectorEquipos = new SelectorEquipos();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 selectorEquipos.setVisible(true);
                 dispose();
 
