@@ -10,11 +10,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
-public class Ranking extends JFrame {
+public class Ranking extends InterfazMaestra {
     MusicManager musicManager = new MusicManager();
     private JButton volver, fondo;
     private JPanel rankingPanel;
     private JLabel mensaje;
+    public static final Color colorBase = new Color(25, 25, 25);
+    public static final Font fuente = new Font("Rubik", Font.PLAIN, 20);
+    public static final Color colorTexto = new Color(255, 255, 255);
 
     public Ranking() {
         setSize(1280, 720);
@@ -24,38 +27,20 @@ public class Ranking extends JFrame {
         setResizable(false);
         setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
 
+        // Crear botones
+        volver = new JButton();
+        fondo = new JButton();
+
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
-        // Crear un botón para el fondo
-        fondo = new JButton();
-        fondo.setBounds(0, 0, 1280, 720);
-        fondo.setOpaque(false);
-        fondo.setContentAreaFilled(false);
-        fondo.setBorderPainted(false);
+        // Aquí creamos el fondo
+        crearFondo(fondo,"Imagenes/Fondo/axelblaze.png");
 
-        // Cargar la imagen de fondo y establecerla como icono del botón
-        URL url = this.getClass().getClassLoader().getResource("Imagenes/Fondo/axelblaze.png");
-        ImageIcon icono = new ImageIcon(url);
-        Image imagen = icono.getImage().getScaledInstance(1280, 720, Image.SCALE_SMOOTH);
-        icono = new ImageIcon(imagen);
-        fondo.setIcon(icono);
+        //Aquí creamos el boton volver
+        crearBoton(volver, "Volver", 40, 600, 220, 50, colorBase,colorTexto,fuente,"Musica/SoundEffect/SonidoSeleccion.wav",0.5f);
 
 
-        //Boton volver
-        volver = new JButton("Volver");
-        volver.setBounds(40, 600, 220, 50);
-        volver.setBackground(MenuInicial.colorBaseBotones);
-        volver.setForeground(Color.WHITE);
-        volver.setFont(new Font("Action Man", Font.BOLD, 20));
-        volver.addActionListener(e -> {
-            MenuInicial menuInicial = new MenuInicial();
-            menuInicial.setVisible(true);
-            dispose();
-
-            playSound("Musica/SoundEffect/SonidoAtras.wav", 0.5f);
-            musicManager.stopMusic();
-        });
         // Crear un área de texto para mostrar el ranking
         rankingPanel = new JPanel();
         rankingPanel.setBounds(100, 150, 280, 500); // Ajusta estos valores según tus necesidades
@@ -66,8 +51,8 @@ public class Ranking extends JFrame {
         mensaje.setBounds(100, 100, 500, 50); // Ajusta estos valores según tus necesidades
         mensaje.setFont(new Font("Rubik", Font.BOLD, 30));
         mensaje.setForeground(Color.BLACK);
-        mensaje.setHorizontalAlignment(SwingConstants.LEFT);
-        mensaje.setVerticalAlignment(SwingConstants.TOP);
+        mensaje.setHorizontalAlignment(JLabel.LEFT);
+        mensaje.setVerticalAlignment(JLabel.TOP);
         mensaje.setOpaque(false);
 
 
@@ -77,6 +62,15 @@ public class Ranking extends JFrame {
         panel.add(mensaje);
         panel.add(fondo);
         add(panel);
+
+        volver.addActionListener(e -> {
+            MenuInicial menuInicial = new MenuInicial();
+            menuInicial.setVisible(true);
+            dispose();
+
+            playSound("Musica/SoundEffect/SonidoAtras.wav", 0.5f);
+            musicManager.stopMusic();
+        });
 
 
         updateRanking();
