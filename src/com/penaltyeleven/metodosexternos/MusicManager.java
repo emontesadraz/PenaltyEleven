@@ -26,6 +26,10 @@ public class MusicManager {
         }
     }
 
+    public Clip getMusicClip() {
+        return musicClip;
+    }
+
     public void stopMusic() {
         if (musicClip != null && musicClip.isRunning()) {
             musicClip.stop();

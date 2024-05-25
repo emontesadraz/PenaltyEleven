@@ -3,10 +3,15 @@ package com.penaltyeleven;
 import com.penaltyeleven.pantallainicial.multiplayer.Jugador1Gana;
 import com.penaltyeleven.pantallainicial.multiplayer.Jugador2Gana;
 
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineEvent;
+import javax.sound.sampled.LineListener;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 public class JuegoMultiplayer extends InterfazMaestra {
@@ -33,8 +38,10 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private final JButton[][] botones = new JButton[3][3];
     private JLabel marcadorLabel = new JLabel("Jugador 1: 0 | Jugador 2: 0");
     private JLabel estadoLabel = new JLabel("Jugador 1 tira");
-    String[] canciones = {"Musica/Soundtrack/MusicaPartidoBasico1.wav", "Musica/Soundtrack/MusicaPartidoBasico2.wav", "Musica/Soundtrack/MusicaPartidoBasico3.wav", "Musica/Soundtrack/MusicaPartidoBasico4.wav"};
+    private java.util.List<String> canciones = Arrays.asList("Musica/Soundtrack/MusicaPartidoBasico1.wav", "Musica/Soundtrack/MusicaPartidoBasico2.wav", "Musica/Soundtrack/MusicaPartidoBasico3.wav", "Musica/Soundtrack/MusicaPartidoBasico4.wav");
+    private int currentSongsIndex = 0;
     private Timer timer;
+    private Timer songTimer;
 
     public JuegoMultiplayer() {
         setTitle("Penalty Eleven");
@@ -213,17 +220,9 @@ public class JuegoMultiplayer extends InterfazMaestra {
         add(mainPanel, BorderLayout.CENTER);
         add(estadoLabel, BorderLayout.SOUTH);
 
-        // Inicializamos el temporizador
-        timer = new Timer(2000, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Cerrar el JOptionPane después de 2 segundos
-                JOptionPane.getRootFrame().dispose();
-            }
-        });
-        Random random = new Random();
-        int indiceCancionAleatoria = random.nextInt(canciones.length);
-        String cancionAleatoria = canciones[indiceCancionAleatoria];
-        musicManager.playSound(cancionAleatoria, 0.6f);
+
+
+        playNextSong();
 
         setVisible(true);
     }
@@ -246,6 +245,11 @@ public class JuegoMultiplayer extends InterfazMaestra {
             }
         }
         botones[x][y].setBackground(Color.YELLOW);
+    }
+    @Override
+    public void dispose() {
+        musicManager.stopMusic();
+        super.dispose();
     }
 
     private void seleccionarParada(int x, int y) {
@@ -361,6 +365,21 @@ public class JuegoMultiplayer extends InterfazMaestra {
                 botones[i][j].setBackground(Color.WHITE);
             }
         }
+    }
+    private void playNextSong() {
+        if (canciones.isEmpty()) {
+            return;
+        }
+
+        // Si es la primera vez que se llama a playNextSong, selecciona una canción aleatoria
+        if (currentSongsIndex == 0) {
+            Random random = new Random();
+            currentSongsIndex = random.nextInt(canciones.size());
+        }
+
+        String song = canciones.get(currentSongsIndex);
+        musicManager.stopMusic();
+        musicManager.playMusic(song, 0.5f);
     }
 
     private void determinarGanador() {
