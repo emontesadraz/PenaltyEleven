@@ -405,22 +405,36 @@ public class JuegoMultiplayer extends InterfazMaestra {
             jugador2Gana.setVisible(true);
             dispose();
         } else {
-            JOptionPane.showMessageDialog(null,"Muerte Súbita, que gane el mejor!","Muerte Súbita",JOptionPane.INFORMATION_MESSAGE);
             muerteSubita();
             accionBoton.setEnabled(false);
         }
         accionBoton.setEnabled(false);
     }
     private void muerteSubita() {
-        // Reiniciar el turno
+        JOptionPane.showMessageDialog(null,"Muerte Súbita, que gane el mejor!","Muerte Súbita",JOptionPane.INFORMATION_MESSAGE);
+
+        penalesRestantes1 = 1;
+        penalesRestantes2 = 1;
         turno = 0;
-        // Reiniciar los aciertos de cada jugador
         aciertos1 = 0;
         aciertos2 = 0;
-        // Permitir que el jugador 1 comience
         jugador1Tira = true;
-        // Habilitar el botón de acción
-        accionBoton.setEnabled(true);
+
+        // Si estamos en muerte súbita y ambos jugadores han tenido un turno
+        if (turno % 2 == 0) {
+            // Si el jugador 1 ha anotado y el jugador 2 no, el jugador 1 gana
+            if (aciertos1 > 0 && aciertos2 == 0) {
+                Jugador1Gana jugador1Gana = new Jugador1Gana();
+                jugador1Gana.setVisible(true);
+                dispose();
+            }
+            // Si el jugador 2 ha anotado y el jugador 1 no, el jugador 2 gana
+            else if (aciertos2 > 0 && aciertos1 == 0) {
+                Jugador2Gana jugador2Gana = new Jugador2Gana();
+                jugador2Gana.setVisible(true);
+                dispose();
+            }
+        }
     }
 
     public static void main(String[] args) {
