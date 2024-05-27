@@ -1,5 +1,7 @@
 package com.penaltyeleven;
 
+import com.penaltyeleven.equipos.OperacionesEquipos;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -9,6 +11,8 @@ import java.io.File;
 import java.io.IOException;
 import java.awt.image.BufferedImage;
 import java.awt.Font;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  * This class represents a team selector interface for a game.
@@ -20,9 +24,40 @@ public class SelectorEquipos extends InterfazMaestra {
     public static final Color colorBase = new Color(25, 25, 25);
     public static final Font fuente = new Font("Rubik", Font.PLAIN, 20);
     public static final Color colorTexto = new Color(255, 255, 255);
-    private final ImageIcon[] imagenesEquipos = {new ImageIcon("src/Imagenes/Escudo/Raimon.png"), new ImageIcon("src/Imagenes/Escudo/Zeus.png"), new ImageIcon("src/Imagenes/Escudo/Genesis.png")
-            , new ImageIcon("src/Imagenes/Escudo/RoyalAcademy.png"), new ImageIcon("src/Imagenes/Escudo/Alpino.png"), new ImageIcon("src/Imagenes/Escudo/Kirkwood.png"), new ImageIcon("src/Imagenes/Escudo/Occult.png"), new ImageIcon("src/Imagenes/Escudo/EscudoLittleGiants.png")
-            , new ImageIcon("src/Imagenes/Escudo/Epsilon.png"), new ImageIcon("src/Imagenes/Escudo/Otaku.png"), new ImageIcon("src/Imagenes/Escudo/Farm.png"), new ImageIcon("src/Imagenes/Escudo/Caos.png")};
+    private final ImageIcon[] imagenesEquipos = {new ImageIcon("src/Imagenes/Escudo/Raimon.png", "Raimon"),
+            new ImageIcon("src/Imagenes/Escudo/Occult.png", "Occult"),
+            new ImageIcon("src/Imagenes/Escudo/Wild.png", "Wild"),
+            new ImageIcon("src/Imagenes/Escudo/Brain.png", "Brain"),
+            new ImageIcon("src/Imagenes/Escudo/Otaku.png", "Otaku"),
+            new ImageIcon("src/Imagenes/Escudo/RoyalAcademy.png", "Royal Academy"),
+            new ImageIcon("src/Imagenes/Escudo/Shuriken.png", "Shuriken"),
+            new ImageIcon("src/Imagenes/Escudo/Farm.png", "Farm"),
+            new ImageIcon("src/Imagenes/Escudo/Kirkwood.png", "Kirkwood"),
+            new ImageIcon("src/Imagenes/Escudo/Zeus.png", "Zeus"),
+
+            new ImageIcon("src/Imagenes/Escudo/Raimon2.png", "Raimon 2"),
+            new ImageIcon("src/Imagenes/Escudo/Alpino.png", "Alpino"),
+            new ImageIcon("src/Imagenes/Escudo/TormentaDeGeminis.png", "Tormenta de Geminis"),
+            new ImageIcon("src/Imagenes/Escudo/RoyalRedux.png", "Royal Academy Redux"),
+            new ImageIcon("src/Imagenes/Escudo/Epsilon.png", "Épsilon"),
+            new ImageIcon("src/Imagenes/Escudo/Prominence.png", "Prominence"),
+            new ImageIcon("src/Imagenes/Escudo/PolvoDiamante.png", "Polvo de Diamantes"),
+            new ImageIcon("src/Imagenes/Escudo/Caos.png", "Caos"),
+            new ImageIcon("src/Imagenes/Escudo/Genesis.png", "Genesis"),
+            new ImageIcon("src/Imagenes/Escudo/EmperadoresOscuros.png", "Emperadores Oscuros"),
+
+            new ImageIcon("src/Imagenes/Escudo/InazumaJapon.png", "Inazuma Japón"),
+            new ImageIcon("src/Imagenes/Escudo/NeoJapon.png", "Neo Japón"),
+            new ImageIcon("src/Imagenes/Escudo/DragonesDeFuego.png", "Dragones de Fuego"),
+            new ImageIcon("src/Imagenes/Escudo/KnightsOfQueen.png", "Knights of Queen"),
+            new ImageIcon("src/Imagenes/Escudo/Emperadores.png", "Los Emperadores"),
+            new ImageIcon("src/Imagenes/Escudo/Unicorn.png", "Unicorn"),
+            new ImageIcon("src/Imagenes/Escudo/LosRojos.png", "Los Rojos"),
+            new ImageIcon("src/Imagenes/Escudo/Orfeo.png", "Orfeo"),
+            new ImageIcon("src/Imagenes/Escudo/OsReis.png", "Os Reis"),
+            new ImageIcon("src/Imagenes/Escudo/LittleGiants.png", "Little Giants")
+    };
+
     JPanel panel;
     JLabel labelEquipo1;
     JLabel labelEquipo2;
@@ -167,9 +202,14 @@ public class SelectorEquipos extends InterfazMaestra {
                 // Reproducir sonido
                 musicManager.playSound("Musica/SoundEffect/SonidoJugar.wav", 0.7f);
                 if (eq1 && eq2) {
-                     JuegoMultiplayer juego = new JuegoMultiplayer();
-                     juego.setVisible(true);
-                     dispose();
+                    JuegoMultiplayer juegoMultiplayer;
+                    try {
+                        juegoMultiplayer = new JuegoMultiplayer();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    juegoMultiplayer.setVisible(true);
+                    dispose();
                      musicManager.stopMusic();
 
                 } else {

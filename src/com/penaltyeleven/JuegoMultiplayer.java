@@ -1,9 +1,13 @@
 package com.penaltyeleven;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class JuegoMultiplayer extends InterfazMaestra {
 
@@ -30,7 +34,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private JLabel marcadorLabel = new JLabel("Jugador 1: 0 | Jugador 2: 0");
     private JLabel estadoLabel = new JLabel("Jugador 1 tira");
 
-    public JuegoMultiplayer() {
+    public JuegoMultiplayer() throws IOException{
         setTitle("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1430, 870);
@@ -187,10 +191,20 @@ public class JuegoMultiplayer extends InterfazMaestra {
             }
         });
 
+        //Label Escudo1
+        BufferedImage vs = ImageIO.read(new File("src/Imagenes/Foto/versus.png"));
+        JLabel escudo1 = new JLabel();
+        escudo1.setIcon(new ImageIcon(vs.getScaledInstance(400,400, Image.SCALE_DEFAULT)));
+        escudo1.setBounds(450, 120, 400, 400);
+        escudo1.setBorder(null);
+
+        // Panel de control
         JPanel controlPanel = new JPanel();
         controlPanel.add(accionBoton);
         controlPanel.add(seguirBoton);
+        controlPanel.add(escudo1);
 
+        // Panel principal
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(porteriaPanel, BorderLayout.CENTER);
@@ -208,17 +222,6 @@ public class JuegoMultiplayer extends InterfazMaestra {
         add(estadoLabel, BorderLayout.SOUTH);
 
         setVisible(true);
-    }
-
-    // Método para crear botones en el marcador
-    private JButton crearBotonMarcador(String texto) {
-        JButton boton = new JButton(texto);
-        boton.setFont(new Font("Rubik", Font.PLAIN, 16));
-        boton.setBackground(colorBaseBotones);
-        boton.setForeground(colorTexto);
-        boton.setFocusPainted(false);
-        boton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
-        return boton;
     }
 
     private void marcarTiro(int x, int y) {
@@ -306,7 +309,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
     }
 
     private void actualizarMarcador() {
-        marcadorLabel.setText("Jugador 1: " + aciertos1 + " | Jugador 2: " + aciertos2);
+        marcadorLabel.setText("Jugador 1: " + aciertos2 + " | Jugador 2: " + aciertos1);
     }
 
     private void resetearBotones() {
@@ -334,8 +337,4 @@ public class JuegoMultiplayer extends InterfazMaestra {
 
     }
 
-
-    public static void main(String[] args) {
-        new JuegoMultiplayer();
-    }
 }

@@ -1,7 +1,6 @@
 package com.penaltyeleven.equipos;
 
 public class Equipos{
-    private int numEquipo;
     private String nombreEquipo;
     private String rutaEscudo;
     private String Tiro1;
@@ -11,12 +10,20 @@ public class Equipos{
     private String Parada2;
     private String Parada3;
 
-    public int getNumEquipo() {
-        return numEquipo;
+    // Constructor vacio
+    public Equipos() {
     }
 
-    public void setNumEquipo(int numEquipo) {
-        this.numEquipo = numEquipo;
+    // Constructor con parametros
+    public Equipos(String nombreEquipo, String rutaEscudo, String Tiro1, String Tiro2, String Tiro3, String Parada1, String Parada2, String Parada3) {
+        this.nombreEquipo = nombreEquipo;
+        this.rutaEscudo = rutaEscudo;
+        this.Tiro1 = Tiro1;
+        this.Tiro2 = Tiro2;
+        this.Tiro3 = Tiro3;
+        this.Parada1 = Parada1;
+        this.Parada2 = Parada2;
+        this.Parada3 = Parada3;
     }
 
     public String getNombreEquipo() {
