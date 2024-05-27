@@ -1,8 +1,8 @@
-package com.penaltyeleven.soloplayer.lobby;
+package com.penaltyeleven.pantallainicial.soloplayer.lobby;
 
-import com.penaltyeleven.InterfazMaestra;
-import com.penaltyeleven.MusicManager;
-import com.penaltyeleven.soloplayer.ElegirTemporada;
+import com.penaltyeleven.metodosexternos.InterfazMaestra;
+import com.penaltyeleven.metodosexternos.MusicManager;
+import com.penaltyeleven.pantallainicial.soloplayer.ElegirTemporada;
 
 import javax.swing.*;
 import java.awt.*;

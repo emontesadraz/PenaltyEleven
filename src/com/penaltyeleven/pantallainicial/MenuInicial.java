@@ -1,7 +1,10 @@
-package com.penaltyeleven;
+package com.penaltyeleven.pantallainicial;
 
+import com.penaltyeleven.metodosexternos.InterfazMaestra;
+import com.penaltyeleven.metodosexternos.MusicManager;
 import com.penaltyeleven.pantallainicial.multiplayer.SelectorEquipos;
-import com.penaltyeleven.soloplayer.SoloPlayer;
+import com.penaltyeleven.pantallainicial.soloplayer.Ranking;
+import com.penaltyeleven.pantallainicial.soloplayer.SoloPlayer;
 
 import javax.swing.*;
 import java.awt.*;

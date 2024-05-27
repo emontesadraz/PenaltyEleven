@@ -1,4 +1,7 @@
-package com.penaltyeleven;
+package com.penaltyeleven.pantallainicial;
+
+import com.penaltyeleven.metodosexternos.InterfazMaestra;
+import com.penaltyeleven.metodosexternos.MusicManager;
 
 import javax.swing.*;
 import java.awt.*;

@@ -37,7 +37,7 @@ public class InterfazMaestra extends JFrame {
         boton.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
                 boton.setBackground(colorFondoBotones.darker());
-                musicManager.playMusic(rutaSoundEfectHover, volumenSoundEfectHover);
+                musicManager.playSound(rutaSoundEfectHover, volumenSoundEfectHover);
             }
 
             @Override

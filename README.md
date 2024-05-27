@@ -44,6 +44,12 @@ classDiagram
         +void eliminarJugador(Jugador jugador)
         +void actualizarPuntos(int puntos)
     }
+    class InterfazMaestra{
+        +MusicManager musicManager
+        +void crearVentana()
+        +static void crearFondo
+        +static void crearBoton
+    }
     class JuegoMultiplayer{
         -Jugador jugador1
         -Jugador jugador2
@@ -53,6 +59,47 @@ classDiagram
         +void terminarJuego()
         +void turnoJugador(Jugador jugador)
     }
+    class Jugador1Gana{
+        -JTextArea nombreField;
+        -JLabel mensajeGanador;
+        -JLabel mensajeRegistro;
+        -JLabel mensajeNombre;
+        +static final Color colorBaseBotones 
+        +static final Font fuente
+        +static final Color colorTexto
+        -final MusicManager musicManager 
+    }
+    class Jugador2Gana{
+        -JTextArea nombreField;
+        -JLabel mensajeGanador;
+        -JLabel mensajeRegistro;
+        -JLabel mensajeNombre;
+        +static final Color colorBaseBotones 
+        +static final Font fuente
+        +static final Color colorTexto
+        -final MusicManager musicManager 
+    }
+    class SelectorEquipos{
+        +OperacionesEquipos oe = new OperacionesEquipos()
+        -final MusicManager musicManager 
+        +static final Color colorBase 
+        +static final Font fuente 
+        +static final Color colorTexto 
+        -final ImageIcon[][] imagenesEquipos
+        -JPanel panel;
+        -JLabel labelEquipo1;
+        -JLabel labelEquipo2
+        int indiceEquipo1
+        int indiceEquipo2
+        int temporadaActual
+        boolean eq1 = false
+        boolean eq2 = false
+        List<List<Equipos>> temporadas
+    }
+    class ElegitTemporada{
+        
+    }
+    
     
     
     

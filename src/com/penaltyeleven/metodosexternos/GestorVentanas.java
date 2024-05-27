@@ -1,4 +1,4 @@
-package com.penaltyeleven;
+package com.penaltyeleven.metodosexternos;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,17 +19,17 @@ public class GestorVentanas extends JFrame {
         JPanel p1 = new JPanel();
         p1.add(new JLabel("Menu Inicial"));
         JPanel p2 = new JPanel();
-        p2.add(new JLabel("com.penaltyeleven.Ranking"));
+        p2.add(new JLabel("com.penaltyeleven.pantallainicial.soloplayer.Ranking"));
         JPanel p3 = new JPanel();
-        p3.add(new JLabel("com.penaltyeleven.Creditos"));
+        p3.add(new JLabel("com.penaltyeleven.pantallainicial.Creditos"));
         JPanel p4 = new JPanel();
         p4.add(new JLabel("com.penaltyeleven.pantallainicial.SelectorEquipos"));
 
-//Panel com.penaltyeleven.MenuInicial
+//Panel com.penaltyeleven.pantallainicial.MenuInicial
         //Crear botones
         JButton soloPlayer = new JButton("Un Jugador");
         JButton multiPlayer = new JButton("Multijugador");
-        JButton ranking = new JButton("com.penaltyeleven.Ranking de Goleadores");
+        JButton ranking = new JButton("com.penaltyeleven.pantallainicial.soloplayer.Ranking de Goleadores");
         JButton creditos = new JButton("Créditos");
         JButton salir = new JButton("Salir");
 

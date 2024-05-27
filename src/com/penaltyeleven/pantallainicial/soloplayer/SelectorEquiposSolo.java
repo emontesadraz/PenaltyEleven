@@ -1,9 +1,11 @@
-package com.penaltyeleven.pantallainicial.multiplayer;
+package com.penaltyeleven.pantallainicial.soloplayer;
 import com.penaltyeleven.metodosexternos.InterfazMaestra;
 import com.penaltyeleven.pantallainicial.MenuInicial;
 import com.penaltyeleven.metodosexternos.MusicManager;
 import com.penaltyeleven.metodosexternos.Equipos;
 import com.penaltyeleven.metodosexternos.OperacionesEquipos;
+import com.penaltyeleven.pantallainicial.multiplayer.JuegoMultiplayer;
+import com.penaltyeleven.pantallainicial.multiplayer.SelectorEquipos;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -20,7 +22,7 @@ import java.util.List;
  * This class represents a team selector interface for a game.
  * It extends from the com.penaltyeleven.metodosexternos.InterfazMaestra class.
  */
-public class SelectorEquipos extends InterfazMaestra {
+public class SelectorEquiposSolo extends InterfazMaestra {
     OperacionesEquipos oe = new OperacionesEquipos();
     private final MusicManager musicManager = new MusicManager();
     public static final Color colorBase = new Color(25, 25, 25);
@@ -80,7 +82,7 @@ public class SelectorEquipos extends InterfazMaestra {
      * It initializes the team selector interface.
      * @throws IOException if there is an error reading an image file.
      */
-    public SelectorEquipos() throws IOException {
+    public SelectorEquiposSolo() throws IOException {
         // Ventana
         crearVentana("Penalty Eleven", 1280, 720);
 
@@ -220,9 +222,8 @@ public class SelectorEquipos extends InterfazMaestra {
                 // Reproducir sonido
                 musicManager.playSound("Musica/SoundEffect/SonidoJugar.wav", 0.7f);
                 if (eq1 && eq2) {
-                    JuegoMultiplayer juegoMultiplayer;
-                    juegoMultiplayer = new JuegoMultiplayer();
-                    juegoMultiplayer.setVisible(true);
+                    JuegoSoloplayer juegoSoloplayer = new JuegoSoloplayer();
+                    juegoSoloplayer.setVisible(true);
                     dispose();
                     musicManager.stopMusic();
                 } else {
