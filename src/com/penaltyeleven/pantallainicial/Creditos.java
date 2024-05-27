@@ -7,8 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Creditos extends InterfazMaestra {
-    JPanel panel;
-    JLabel creditos;
+    private JPanel panel;
+    private JLabel creditos;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     public static final Font fuente = new Font("Rubik", Font.PLAIN, 23);
     public static final Color colorTexto = new Color(255, 255, 255);

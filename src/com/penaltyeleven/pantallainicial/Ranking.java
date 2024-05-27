@@ -1,7 +1,6 @@
-package com.penaltyeleven.pantallainicial.soloplayer;
+package com.penaltyeleven.pantallainicial;
 
 import com.penaltyeleven.metodosexternos.InterfazMaestra;
-import com.penaltyeleven.pantallainicial.MenuInicial;
 import com.penaltyeleven.metodosexternos.MusicManager;
 import com.penaltyeleven.basedatos.DatabaseHandler;
 import com.penaltyeleven.basedatos.User;
@@ -10,19 +9,10 @@ import java.awt.*;
 import java.util.List;
 
 public class Ranking extends InterfazMaestra {
-    MusicManager musicManager = new MusicManager();
+    private MusicManager musicManager = new MusicManager();
     private JButton volver, fondo;
     private JPanel rankingPanel;
     private JLabel puesto1;
-    private JLabel puesto2;
-    private JLabel puesto3;
-    private JLabel puesto4;
-    private JLabel puesto5;
-    private JLabel puesto6;
-    private JLabel puesto7;
-    private JLabel puesto8;
-    private JLabel puesto9;
-    private JLabel puesto10;
     public static final Color colorBase = new Color(25, 25, 25);
     public static final Font fuente = new Font("Rubik", Font.PLAIN, 20);
     public static final Color colorTexto = new Color(255, 255, 255);
@@ -88,7 +78,7 @@ public class Ranking extends InterfazMaestra {
         musicManager.playMusic("Musica/Soundtrack/Ranking.wav", 0.7f);
     }
 
-    private void updateRanking() {
+    public void updateRanking() {
         DatabaseHandler dbHandler = new DatabaseHandler();
         List<User> users = dbHandler.getUsersRanked();
 
