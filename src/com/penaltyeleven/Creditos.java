@@ -28,14 +28,14 @@ public class Creditos extends InterfazMaestra {
         creditos.setBounds(750, 0, 500, 700);
 
 //Inicializar botones
-        JButton volver=new JButton();
-        JButton fondo=new JButton();
+        JButton volver = new JButton();
+        JButton fondo = new JButton();
 
 //Crear botones
-        crearBoton(volver,"Volver",40,600,220,50,colorBaseBotones,colorTexto, fuente,"Musica/SoundEffect/SonidoSeleccion.wav",0.6f );
+        crearBoton(volver, "Volver", 40, 600, 220, 50, colorBaseBotones, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
 
 // Fondo
-        crearFondo(fondo,"Imagenes/Fondo/Creditos.png");
+        crearFondo(fondo, "Imagenes/Fondo/Creditos.png");
 
 // Añadir botones al panel
         panel.add(volver);

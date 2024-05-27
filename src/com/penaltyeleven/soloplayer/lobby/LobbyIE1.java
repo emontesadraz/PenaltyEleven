@@ -18,7 +18,7 @@ public class LobbyIE1 extends InterfazMaestra {
     public LobbyIE1() {
 
         //Ventana
-        crearVentana("Penalty Eleven",1280,720);
+        crearVentana("Penalty Eleven", 1280, 720);
 
         // Panel
         JPanel panel = new JPanel();
@@ -35,7 +35,7 @@ public class LobbyIE1 extends InterfazMaestra {
         crearBoton(volver, "Volver", 60, 620, 200, 50, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
 
 // Fondo
-        crearFondo(fondo,"Imagenes/Fondo/LobbyIE1.png");
+        crearFondo(fondo, "Imagenes/Fondo/LobbyIE1.png");
 
 //Añadir botones al panel
         panel.add(empezar);

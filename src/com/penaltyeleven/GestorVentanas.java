@@ -23,15 +23,15 @@ public class GestorVentanas extends JFrame {
         JPanel p3 = new JPanel();
         p3.add(new JLabel("com.penaltyeleven.Creditos"));
         JPanel p4 = new JPanel();
-        p4.add(new JLabel("com.penaltyeleven.SelectorEquipos"));
+        p4.add(new JLabel("com.penaltyeleven.pantallainicial.SelectorEquipos"));
 
 //Panel com.penaltyeleven.MenuInicial
         //Crear botones
-        JButton soloPlayer=new JButton("Un Jugador");
-        JButton multiPlayer=new JButton("Multijugador");
-        JButton ranking =new JButton("com.penaltyeleven.Ranking de Goleadores");
-        JButton creditos=new JButton("Créditos");
-        JButton salir=new JButton("Salir");
+        JButton soloPlayer = new JButton("Un Jugador");
+        JButton multiPlayer = new JButton("Multijugador");
+        JButton ranking = new JButton("com.penaltyeleven.Ranking de Goleadores");
+        JButton creditos = new JButton("Créditos");
+        JButton salir = new JButton("Salir");
 
 // Botones para cambiar paneles
         JButton b1 = new JButton("Button 1");

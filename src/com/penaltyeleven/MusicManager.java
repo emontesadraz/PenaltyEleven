@@ -57,4 +57,12 @@ public class MusicManager {
             musicClip.stop();
         }
     }
+
+    public Clip getMusicClip() {
+        return musicClip;
+    }
+
+    public void setMusicClip(Clip musicClip) {
+        this.musicClip = musicClip;
+    }
 }

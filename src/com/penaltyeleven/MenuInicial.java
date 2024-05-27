@@ -1,12 +1,12 @@
 package com.penaltyeleven;
 
+import com.penaltyeleven.pantallainicial.multiplayer.SelectorEquipos;
 import com.penaltyeleven.soloplayer.SoloPlayer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Font;
 import java.io.IOException;
 
 public class MenuInicial extends InterfazMaestra {
@@ -19,7 +19,7 @@ public class MenuInicial extends InterfazMaestra {
     public MenuInicial() {
 
 //Ventana
-        crearVentana("Penalty Eleven",1280,720);
+        crearVentana("Penalty Eleven", 1280, 720);
 
 // Panel
         panel = new JPanel();
@@ -42,7 +42,7 @@ public class MenuInicial extends InterfazMaestra {
 
 // Fondo
         JButton fondo = new JButton();
-        crearFondo(fondo,"Imagenes/Fondo/FondoMenuInicial.png");
+        crearFondo(fondo, "Imagenes/Fondo/FondoMenuInicial.png");
 
 // Añadir los botones al panel
         panel.add(soloPlayer);
@@ -55,7 +55,6 @@ public class MenuInicial extends InterfazMaestra {
 //Añadir panel al JFrame
         add(panel);
 
-//Acciones de los botones
         //Accion del boton soloPlayer
         soloPlayer.addActionListener(new ActionListener() {
             @Override
@@ -68,11 +67,11 @@ public class MenuInicial extends InterfazMaestra {
             }
         });
 
-        //Acción del botón multiPlayer
+//Acción del botón multiPlayer
         multiPlayer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SelectorEquipos selectorEquipos;
+                SelectorEquipos selectorEquipos = null;
                 try {
                     selectorEquipos = new SelectorEquipos();
                 } catch (IOException ex) {
@@ -82,7 +81,9 @@ public class MenuInicial extends InterfazMaestra {
                 dispose();
                 musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 musicManager.stopMusic();
+
             }
+
         });
 
         //Acción del botón rankingGoleadores
