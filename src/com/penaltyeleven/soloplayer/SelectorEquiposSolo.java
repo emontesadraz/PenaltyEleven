@@ -1,6 +1,6 @@
 package com.penaltyeleven.soloplayer;
 
-import com.penaltyeleven.JuegoMultiplayer;
+import com.penaltyeleven.pantallainicial.multiplayer.JuegoMultiplayer;
 import com.penaltyeleven.MenuInicial;
 import com.penaltyeleven.metodosexternos.InterfazMaestra;
 import com.penaltyeleven.metodosexternos.MusicManager;

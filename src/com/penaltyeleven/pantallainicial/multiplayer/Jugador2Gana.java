@@ -1,7 +1,6 @@
 package com.penaltyeleven.pantallainicial.multiplayer;
 
 import com.penaltyeleven.InterfazMaestra;
-import com.penaltyeleven.JuegoMultiplayer;
 import com.penaltyeleven.MenuInicial;
 import com.penaltyeleven.MusicManager;
 import com.penaltyeleven.basedatos.DatabaseHandler;
@@ -14,7 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 
 public class Jugador2Gana extends InterfazMaestra {
-    private JTextField nombreField;
+    private JTextArea nombreField;
     private JLabel mensajeGanador;
     private JLabel mensajeRegistro;
     private JLabel mensajeNombre;
@@ -63,7 +62,8 @@ public class Jugador2Gana extends InterfazMaestra {
         mensajeRegistro.setBounds(380, 250, 500, 50);
 
         // Editamos el campo de texto a nuestro gusto
-        nombreField = new JTextField("Por favor, introduce tu nombre");
+        nombreField = new JTextArea("Por favor, introduce tu nombre");
+        nombreField.setForeground(colorTexto.LIGHT_GRAY);
         nombreField.setBounds(450, 300, 350, 50);
         nombreField.setFont(fuente);
 

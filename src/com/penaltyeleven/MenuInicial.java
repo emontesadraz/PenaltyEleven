@@ -1,12 +1,13 @@
 package com.penaltyeleven;
 
-import com.penaltyeleven.pantallainicial.SelectorEquipos;
+import com.penaltyeleven.pantallainicial.multiplayer.SelectorEquipos;
 import com.penaltyeleven.soloplayer.SoloPlayer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class MenuInicial extends InterfazMaestra {
     public static JPanel panel;
@@ -54,7 +55,6 @@ public class MenuInicial extends InterfazMaestra {
 //Añadir panel al JFrame
         add(panel);
 
-//Acciones de los botones
         //Accion del boton soloPlayer
         soloPlayer.addActionListener(new ActionListener() {
             @Override
@@ -71,16 +71,17 @@ public class MenuInicial extends InterfazMaestra {
         multiPlayer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                SelectorEquipos selectorEquipos = null;
                 try {
-                    SelectorEquipos selectorEquipos = new SelectorEquipos();
-                    selectorEquipos.setVisible(true);
-                    dispose();
-                    musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
-                    musicManager.stopMusic();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Error al iniciar SelectorEquipos: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    selectorEquipos = new SelectorEquipos();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 }
+                selectorEquipos.setVisible(true);
+                dispose();
+                musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
+                musicManager.stopMusic();
+
             }
 
         });

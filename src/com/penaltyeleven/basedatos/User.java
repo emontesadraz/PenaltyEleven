@@ -4,8 +4,6 @@ public class User {
     private String nombre;
     private int puntuacion;
 
-    public User() {
-    }
 
     public User(String nombre, int puntuacion) {
         this.nombre = nombre;
