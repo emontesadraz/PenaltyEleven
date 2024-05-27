@@ -34,6 +34,7 @@ public class SelectorEquipos extends InterfazMaestra {
             new ImageIcon("src/Imagenes/Escudo/Farm.png", "Farm"),
             new ImageIcon("src/Imagenes/Escudo/Kirkwood.png", "Kirkwood"),
             new ImageIcon("src/Imagenes/Escudo/Zeus.png", "Zeus"),
+
             new ImageIcon("src/Imagenes/Escudo/Raimon2.png", "Raimon 2"),
             new ImageIcon("src/Imagenes/Escudo/Alpino.png", "Alpino"),
             new ImageIcon("src/Imagenes/Escudo/TormentaDeGeminis.png", "Tormenta de Geminis"),
@@ -43,7 +44,19 @@ public class SelectorEquipos extends InterfazMaestra {
             new ImageIcon("src/Imagenes/Escudo/PolvoDiamante.png", "Polvo de Diamantes"),
             new ImageIcon("src/Imagenes/Escudo/Caos.png", "Caos"),
             new ImageIcon("src/Imagenes/Escudo/Genesis.png", "Genesis"),
-            new ImageIcon("src/Imagenes/Escudo/EmperadoresOscuros.png", "Emperadores Oscuros")};
+            new ImageIcon("src/Imagenes/Escudo/EmperadoresOscuros.png", "Emperadores Oscuros"),
+
+            new ImageIcon("src/Imagenes/Escudo/InazumaJapon.png", "Inazuma Japón"),
+            new ImageIcon("src/Imagenes/Escudo/NeoJapon.png", "Neo Japón"),
+            new ImageIcon("src/Imagenes/Escudo/DragonesDeFuego.png", "Dragones de Fuego"),
+            new ImageIcon("src/Imagenes/Escudo/KnightsOfQueen.png", "Knights of Queen"),
+            new ImageIcon("src/Imagenes/Escudo/Emperadores.png", "Los Emperadores"),
+            new ImageIcon("src/Imagenes/Escudo/Unicorn.png", "Unicorn"),
+            new ImageIcon("src/Imagenes/Escudo/LosRojos.png", "Los Rojos"),
+            new ImageIcon("src/Imagenes/Escudo/Orfeo.png", "Orfeo"),
+            new ImageIcon("src/Imagenes/Escudo/OsReis.png", "Os Reis"),
+            new ImageIcon("src/Imagenes/Escudo/LittleGiants.png", "Little Giants")
+    };
 
     JPanel panel;
     JLabel labelEquipo1;

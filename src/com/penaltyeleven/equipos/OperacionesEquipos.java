@@ -55,9 +55,27 @@ public class OperacionesEquipos extends Equipos {
         Equipos equipo20 = new Equipos("Emperadores Oscuros", "Imagenes/Escudo/EmperadoresOscuros.png", "Tornado Oscuro", "Remate Triple", "Fénix Oscuro", "Campo de Fuerza Defensivo", "Malla Letal", "Bloqueo Doble");
         equipos.add(equipo20);
 
-
-//"Tormenta de Geminis", "Imagenes/Escudo/TormentaDeGeminis.png", "Tiro del Cometa", "Astro Remate", "Disparo Cósmico", "___", "___", "Agujero Negro"
-        //"Inazuma Japón", "Imagenes/Escudo/InazumaJapon.png", "Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial"
+        //Temporada 3
+        Equipos equipo21 = new Equipos("Inazuma Japón", "Imagenes/Escudo/InazumaJapon.png", "Descenso Estelar", "La Aurora", "Big Bang", "Puño de Furia", "Mano Ultradimensional", "Parada Celestial");
+        equipos.add(equipo21);
+        Equipos equipo22 = new Equipos("Neo Japón","Imagenes/Escudo/NeoJapon.png", "Flecha Divina", "Triángulo Z", "Lanza de Odín", "Colmillo de Pantera", "Destrozataladros", "Muralla Infinita");
+        equipos.add(equipo22);
+        Equipos equipo23 = new Equipos("Dragones de Fuego","Imagenes/Escudo/DragonesDeFuego.png","Remate Celestial", "Ventisca de Fuego", "Remate Caótico", "Combustión", "Lanzallamas", "Rechace de Fuego");
+        equipos.add(equipo23);
+        Equipos equipo24 = new Equipos("Knights of Queen","Imagenes/Escudo/KnightsOfQueen.png", "Tiro del Cometa", "Ataque de Paladín", "Excalibur", "Cuchilla Asesina", "Escudo Protector", "Espada Defensiva");
+        equipos.add(equipo24);
+        Equipos equipo25 = new Equipos("Los Emperadores","Imagenes/Escudo/Emperadores.png",  "Ataque del Cóndor", "Remate del Águila", "LLamarada Infernal", "Simun", "Muralla Infinita", "Millón de Manos");
+        equipos.add(equipo25);
+        Equipos equipo26 = new Equipos("Unicorn","Imagenes/Escudo/Unicorn.png", "Remate Pegaso", "Remate Unicornio", "Tri-Pegaso", "Puño Vengativo", "Despeje Cohete", "Golpes de Luz");
+        equipos.add(equipo26);
+        Equipos equipo27 = new Equipos("Los Rojos","Imagenes/Escudo/LosRojos.png", "Disparo Rodante", "Tirachinas", "Dragón Terrestre", "Despeje de Fuego", "Destrozataladros", "Aguijón");
+        equipos.add(equipo27);
+        Equipos equipo28 = new Equipos("Orfeo","Imagenes/Escudo/Orfeo.png", "Remate de Hielo", "Disparo Valiente", "Espada de Odín", "Barrera de Cristal", "Muralla Gigante", "Guardia del Coliseo");
+        equipos.add(equipo28);
+        Equipos equipo29 = new Equipos("Os Reis","Imagenes/Escudo/OsReis.png",  "Tiro Giratorio", "Tiro Vendaval", "Golpe de Samba", "Parada Múltiple", "Garra Salvaje", "Parada Capoeira");
+        equipos.add(equipo29);
+        Equipos equipo30 = new Equipos("Little Giants","Imagenes/Escudo/LittleGiants.png",  "Mandíbulas Dobles", "Disparo Dual", "Disparo X", "Mano Celestial", "Mano Celestial X", "Mano Espiritual");
+        equipos.add(equipo30);
     }
 
 
