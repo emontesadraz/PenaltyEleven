@@ -1,8 +1,10 @@
 package com.penaltyeleven.pantallainicial.multiplayer;
-import com.penaltyeleven.InterfazMaestra;
+
+import com.penaltyeleven.pantallainicial.multiplayer.SelectorEquipos;
+import com.penaltyeleven.metodosexternos.InterfazMaestra;
 import com.penaltyeleven.MenuInicial;
-import com.penaltyeleven.MusicManager;
 import com.penaltyeleven.metodosexternos.Equipos;
+import com.penaltyeleven.metodosexternos.MusicManager;
 import com.penaltyeleven.metodosexternos.OperacionesEquipos;
 
 import javax.imageio.ImageIO;
@@ -18,9 +20,11 @@ import java.util.List;
 
 /**
  * This class represents a team selector interface for a game.
- * It extends from the com.penaltyeleven.InterfazMaestra class.
+ * It extends from the com.penaltyeleven.metodosexternos.InterfazMaestra class.
  */
 public class SelectorEquipos extends InterfazMaestra {
+    private Equipos equipoSeleccionado1;
+    private Equipos equipoSeleccionado2;
     OperacionesEquipos oe = new OperacionesEquipos();
     private final MusicManager musicManager = new MusicManager();
     public static final Color colorBase = new Color(25, 25, 25);
@@ -217,16 +221,16 @@ public class SelectorEquipos extends InterfazMaestra {
         jugar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Reproducir sonido
                 musicManager.playSound("Musica/SoundEffect/SonidoJugar.wav", 0.7f);
                 if (eq1 && eq2) {
+                    equipoSeleccionado1 = oe.getEquipos().get(indiceEquipo1);
+                    equipoSeleccionado2 = oe.getEquipos().get(indiceEquipo2);
                     JuegoMultiplayer juegoMultiplayer;
                     juegoMultiplayer = new JuegoMultiplayer();
                     juegoMultiplayer.setVisible(true);
                     dispose();
                     musicManager.stopMusic();
                 } else {
-                    // Mostrar un mensaje de error si los equipos no están seleccionados
                     JOptionPane.showMessageDialog(null, "Debes seleccionar ambos equipos antes de jugar.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }

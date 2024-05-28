@@ -1,10 +1,10 @@
 package com.penaltyeleven.soloplayer;
 
-import com.penaltyeleven.pantallainicial.multiplayer.JuegoMultiplayer;
-import com.penaltyeleven.MenuInicial;
 import com.penaltyeleven.metodosexternos.InterfazMaestra;
 import com.penaltyeleven.metodosexternos.MusicManager;
 import com.penaltyeleven.metodosexternos.OperacionesEquipos;
+import com.penaltyeleven.pantallainicial.multiplayer.JuegoMultiplayer;
+import com.penaltyeleven.MenuInicial;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -17,7 +17,7 @@ import java.io.IOException;
 
 /**
  * This class represents a team selector interface for a game.
- * It extends from the com.penaltyeleven.InterfazMaestra class.
+ * It extends from the com.penaltyeleven.metodosexternos.InterfazMaestra class.
  */
 public class SelectorEquiposSolo extends InterfazMaestra {
     OperacionesEquipos oe = new OperacionesEquipos();
@@ -173,7 +173,12 @@ public class SelectorEquiposSolo extends InterfazMaestra {
                 // Reproducir sonido
                 musicManager.playMusic("Musica/SoundEffect/SonidoJugar.wav", 0.7f);
                 if (eq1 && eq2) {
-                    JuegoMultiplayer juego = new JuegoMultiplayer();
+                    JuegoMultiplayer juego = null;
+                    try {
+                        juego = new JuegoMultiplayer( oe.getEquipos().get(indiceEquipo1), oe.getEquipos().get(indiceEquipo2));
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     juego.setVisible(true);
                     dispose();
                     musicManager.stopMusic();

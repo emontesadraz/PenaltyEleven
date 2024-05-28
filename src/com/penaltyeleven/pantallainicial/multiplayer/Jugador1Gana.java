@@ -1,8 +1,8 @@
 package com.penaltyeleven.pantallainicial.multiplayer;
 
-import com.penaltyeleven.InterfazMaestra;
+import com.penaltyeleven.metodosexternos.InterfazMaestra;
 import com.penaltyeleven.MenuInicial;
-import com.penaltyeleven.MusicManager;
+import com.penaltyeleven.metodosexternos.MusicManager;
 import com.penaltyeleven.basedatos.DatabaseHandler;
 
 import javax.swing.*;
@@ -35,7 +35,7 @@ public class Jugador1Gana extends InterfazMaestra {
         // Editamos el mensaje a nuestro gusto
         mensajeGanador = new JLabel();
         mensajeGanador.setHorizontalAlignment(JLabel.CENTER);
-        mensajeGanador.setText("¡Enhorabuena! Has ganado.");
+        mensajeGanador.setText("¡Enhorabuena! Has ganado");
         mensajeGanador.setFont(new Font("Rubik", Font.BOLD, 34));
         mensajeGanador.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         mensajeGanador.setBackground(new Color(255, 255, 255));
@@ -47,7 +47,7 @@ public class Jugador1Gana extends InterfazMaestra {
         mensajeNombre.setHorizontalAlignment(JLabel.CENTER);
         mensajeNombre.setText("Jugador 1");
         mensajeNombre.setFont(new Font("Rubik", Font.PLAIN | Font.ITALIC, 30));
-        mensajeNombre.setForeground(new Color(162, 2, 2));
+        mensajeNombre.setForeground(new Color(2, 34, 162));
         mensajeNombre.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         mensajeNombre.setBackground(new Color(255, 255, 255));
         mensajeNombre.setOpaque(true);
@@ -119,7 +119,8 @@ public class Jugador1Gana extends InterfazMaestra {
         reiniciarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JuegoMultiplayer juegoMultiplayer = new JuegoMultiplayer();
+                JuegoMultiplayer juegoMultiplayer = null;
+                juegoMultiplayer = new JuegoMultiplayer();
                 juegoMultiplayer.setVisible(true);
                 dispose();
 

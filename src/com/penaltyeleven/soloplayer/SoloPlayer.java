@@ -1,8 +1,8 @@
 package com.penaltyeleven.soloplayer;
 
-import com.penaltyeleven.InterfazMaestra;
+import com.penaltyeleven.metodosexternos.InterfazMaestra;
 import com.penaltyeleven.MenuInicial;
-import com.penaltyeleven.MusicManager;
+import com.penaltyeleven.metodosexternos.MusicManager;
 
 import javax.swing.*;
 import java.awt.*;

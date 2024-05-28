@@ -2,6 +2,9 @@ package com.penaltyeleven;
 
 import com.penaltyeleven.basedatos.DatabaseHandler;
 import com.penaltyeleven.basedatos.User;
+import com.penaltyeleven.metodosexternos.InterfazMaestra;
+import com.penaltyeleven.metodosexternos.MusicManager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;

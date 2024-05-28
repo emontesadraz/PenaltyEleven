@@ -1,7 +1,7 @@
 package com.penaltyeleven.soloplayer;
 
-import com.penaltyeleven.InterfazMaestra;
-import com.penaltyeleven.MusicManager;
+import com.penaltyeleven.metodosexternos.InterfazMaestra;
+import com.penaltyeleven.metodosexternos.MusicManager;
 import com.penaltyeleven.soloplayer.lobby.LobbyIE1;
 import com.penaltyeleven.soloplayer.lobby.LobbyIE2;
 
