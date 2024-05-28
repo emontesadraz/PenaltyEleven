@@ -64,7 +64,10 @@ public class SelectorEquipos extends InterfazMaestra {
                     new ImageIcon("src/Imagenes/Escudo/LittleGiants.png", "Little Giants"),
             }
     };
-
+    private Equipos equipoSeleccionado1;
+    private ImageIcon escudoEquipoSeleccionado1;
+    private Equipos equipoSeleccionado2;
+    private ImageIcon escudoEquipoSeleccionado2;
     private JPanel panel;
     private JLabel labelEquipo1;
     private JLabel labelEquipo2;
@@ -191,8 +194,12 @@ public class SelectorEquipos extends InterfazMaestra {
                 musicManager.playSound("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
                 if (seleccionarEqu1.getText().equals("Seleccionar")) {
                     seleccionarEqu1.setText("Seleccionado");
+                    equipoSeleccionado1 = temporadas.get(temporadaActual).get(indiceEquipo1);
+                    escudoEquipoSeleccionado1 = imagenesEquipos[temporadaActual][indiceEquipo1];
                 } else {
                     seleccionarEqu1.setText("Seleccionar");
+                    equipoSeleccionado1 = null;
+                    escudoEquipoSeleccionado1 = null;
                 }
                 eq1 = !eq1;
             }
@@ -206,8 +213,12 @@ public class SelectorEquipos extends InterfazMaestra {
                 musicManager.playSound("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
                 if (seleccionarEqu2.getText().equals("Seleccionar")) {
                     seleccionarEqu2.setText("Seleccionado");
+                    equipoSeleccionado2 = temporadas.get(temporadaActual).get(indiceEquipo2);
+                    escudoEquipoSeleccionado2 = imagenesEquipos[temporadaActual][indiceEquipo2];
                 } else {
                     seleccionarEqu2.setText("Seleccionar");
+                    equipoSeleccionado2 = null;
+                    escudoEquipoSeleccionado2 = null;
                 }
                 eq2 = !eq2;
             }
@@ -221,7 +232,7 @@ public class SelectorEquipos extends InterfazMaestra {
                 musicManager.playSound("Musica/SoundEffect/SonidoJugar.wav", 0.7f);
                 if (eq1 && eq2) {
                     JuegoMultiplayer juegoMultiplayer;
-                    juegoMultiplayer = new JuegoMultiplayer();
+                    juegoMultiplayer = new JuegoMultiplayer(equipoSeleccionado1,escudoEquipoSeleccionado1,equipoSeleccionado2,escudoEquipoSeleccionado2);
                     juegoMultiplayer.setVisible(true);
                     dispose();
                     musicManager.stopMusic();
@@ -328,6 +339,7 @@ public class SelectorEquipos extends InterfazMaestra {
         // Controles de la música
         musicManager.playMusic("Musica/Soundtrack/SelectorEquipos.wav", 0.7f);
     }
+
 
     /**
      * Main method for the com.penaltyeleven.pantallainicial.SelectorEquipos class.

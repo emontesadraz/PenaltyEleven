@@ -1,5 +1,6 @@
 package com.penaltyeleven.pantallainicial.multiplayer;
 
+import com.penaltyeleven.metodosexternos.Equipos;
 import com.penaltyeleven.metodosexternos.InterfazMaestra;
 import com.penaltyeleven.pantallainicial.MenuInicial;
 import com.penaltyeleven.metodosexternos.MusicManager;
@@ -21,8 +22,12 @@ public class Jugador1Gana extends InterfazMaestra {
     public static final Font fuente = new Font("Rubik", Font.PLAIN, 23);
     public static final Color colorTexto = new Color(255, 255, 255);
     private final MusicManager musicManager = new MusicManager();
+    private Equipos equipoSeleccionado1;
+    private ImageIcon escudoEquipoSeleccionado1;
+    private Equipos equipoSeleccionado2;
+    private ImageIcon escudoEquipoSeleccionado2;
 
-    public Jugador1Gana() {
+    public Jugador1Gana(Equipos equipoSeleccionado1, ImageIcon escudoEquipoSeleccionado1, Equipos equipoSeleccionado2, ImageIcon escudoEquipoSeleccionado2) {
         setTitle("Penalty Eleven");
         setSize(1280, 720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,6 +35,11 @@ public class Jugador1Gana extends InterfazMaestra {
         setLayout(null);
         setResizable(false);
         setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
+
+        this.equipoSeleccionado1 = equipoSeleccionado1;
+        this.escudoEquipoSeleccionado1 = escudoEquipoSeleccionado1;
+        this.equipoSeleccionado2 = equipoSeleccionado2;
+        this.escudoEquipoSeleccionado2 = escudoEquipoSeleccionado2;
 
 
         // Editamos el mensaje a nuestro gusto
@@ -119,7 +129,7 @@ public class Jugador1Gana extends InterfazMaestra {
         reiniciarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JuegoMultiplayer juegoMultiplayer = new JuegoMultiplayer();
+               JuegoMultiplayer juegoMultiplayer = new JuegoMultiplayer(equipoSeleccionado1,escudoEquipoSeleccionado1,equipoSeleccionado2,escudoEquipoSeleccionado2);
                 juegoMultiplayer.setVisible(true);
                 dispose();
 
@@ -166,9 +176,7 @@ public class Jugador1Gana extends InterfazMaestra {
 
     }
 
-    public static void main(String[] args) {
-        Jugador1Gana jugador1Gana = new Jugador1Gana();
-        jugador1Gana.setVisible(true);
-    }
+    public Jugador1Gana() {
 
+    }
 }

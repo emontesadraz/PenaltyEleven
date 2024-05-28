@@ -1,5 +1,6 @@
 package com.penaltyeleven.pantallainicial.multiplayer;
 
+import com.penaltyeleven.metodosexternos.Equipos;
 import com.penaltyeleven.metodosexternos.InterfazMaestra;
 import com.penaltyeleven.metodosexternos.MusicManager;
 
@@ -36,10 +37,17 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private JLabel estadoLabel = new JLabel("Jugador 1 tira");
     private java.util.List<String> canciones = Arrays.asList("Musica/Soundtrack/MusicaPartidoBasico1.wav", "Musica/Soundtrack/MusicaPartidoBasico2.wav", "Musica/Soundtrack/MusicaPartidoBasico3.wav", "Musica/Soundtrack/MusicaPartidoBasico4.wav");
     private int currentSongsIndex = 0;
-    private Timer timer;
-    private Timer songTimer;
+    // Variables para el equipo y el escudo seleccionados
+    private Equipos equipoSeleccionado1;
+    private ImageIcon escudoEquipoSeleccionado1;
+    private Equipos equipoSeleccionado2;
+    private ImageIcon escudoEquipoSeleccionado2;
+    private JLabel equipo1Label;
+    private JLabel escudo1Label;
+    private JLabel equipo2Label;
+    private JLabel escudo2Label;
 
-    public JuegoMultiplayer() {
+    public JuegoMultiplayer(Equipos equipoSeleccionado1, ImageIcon escudoEquipoSeleccionado1, Equipos equipoSeleccionado2, ImageIcon escudoEquipoSeleccionado2) {
         setTitle("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1430, 870);
@@ -47,6 +55,11 @@ public class JuegoMultiplayer extends InterfazMaestra {
         setResizable(false);
         // Icono
         setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
+
+        this.equipoSeleccionado1 = equipoSeleccionado1;
+        this.escudoEquipoSeleccionado1 = escudoEquipoSeleccionado1;
+        this.equipoSeleccionado2 = equipoSeleccionado2;
+        this.escudoEquipoSeleccionado2 = escudoEquipoSeleccionado2;
 
         // Panel de marcador
         JPanel marcadorPanel = new JPanel();
@@ -62,14 +75,49 @@ public class JuegoMultiplayer extends InterfazMaestra {
         botonesPanel.setOpaque(false);
         botonesPanel.setLayout(new GridLayout(2, 3, 10, 0));
 
-        String[] superTecnicas = {"SuperTecnica Nivel 1", "SuperTecnica Nivel 2", "SuperTecnica Nivel 3"};
-        for (String tecnica : superTecnicas) {
+        String[] tecnicasTiro = {equipoSeleccionado1.getTiro1(),equipoSeleccionado1.getTiro2(), equipoSeleccionado1.getTiro3()};
+        for (String tecnica : tecnicasTiro) {
             JLabel etiqueta = new JLabel(tecnica);
             etiqueta.setFont(new Font("Rubik", Font.PLAIN, 16));
             etiqueta.setForeground(Color.WHITE);
             etiqueta.setHorizontalAlignment(SwingConstants.CENTER);
             botonesPanel.add(etiqueta);
         }
+        String[] tecnicasTiro2 = {equipoSeleccionado2.getTiro1(),equipoSeleccionado2.getTiro2(), equipoSeleccionado2.getTiro3()};
+        for (String tecnica : tecnicasTiro2) {
+            JLabel etiqueta = new JLabel(tecnica);
+            etiqueta.setFont(new Font("Rubik", Font.PLAIN, 16));
+            etiqueta.setForeground(Color.WHITE);
+            etiqueta.setHorizontalAlignment(SwingConstants.CENTER);
+            botonesPanel.add(etiqueta);
+        }
+        String[] tecnicasParada = {equipoSeleccionado1.getParada1(),equipoSeleccionado1.getParada2(), equipoSeleccionado1.getParada3()};
+        for (String tecnica : tecnicasParada) {
+            JLabel etiqueta = new JLabel(tecnica);
+            etiqueta.setFont(new Font("Rubik", Font.PLAIN, 16));
+            etiqueta.setForeground(Color.WHITE);
+            etiqueta.setHorizontalAlignment(SwingConstants.CENTER);
+            botonesPanel.add(etiqueta);
+        }
+        String[] tecnicasParada2 = {equipoSeleccionado2.getParada1(),equipoSeleccionado2.getParada2(), equipoSeleccionado2.getParada3()};
+        for (String tecnica : tecnicasParada2) {
+            JLabel etiqueta = new JLabel(tecnica);
+            etiqueta.setFont(new Font("Rubik", Font.PLAIN, 16));
+            etiqueta.setForeground(Color.WHITE);
+            etiqueta.setHorizontalAlignment(SwingConstants.CENTER);
+            botonesPanel.add(etiqueta);
+        }
+        // Inicializar los JLabel
+        equipo1Label = new JLabel(equipoSeleccionado1.getNombreEquipo());
+        equipo1Label.setBounds(50, 50, 150, 30);
+        equipo1Label.setFont(new Font("Rubik", Font.PLAIN, 20));
+        escudo1Label = new JLabel();
+        escudo1Label.setIcon(escudoEquipoSeleccionado1);
+        escudo1Label.setBounds(50, 50, 10, 150);
+        equipo2Label = new JLabel(equipoSeleccionado2.getNombreEquipo());
+        equipo2Label.setFont(new Font("Rubik", Font.PLAIN, 20));
+        escudo2Label = new JLabel();
+        escudo2Label.setIcon(escudoEquipoSeleccionado2);
 
         //Hacer que el nombre de las supertecnicas sean las que tenga el equipo que escogimos
         JButton tecnica1Boton = new JButton();
@@ -195,10 +243,22 @@ public class JuegoMultiplayer extends InterfazMaestra {
                 tiroActual[1] = -1;
             }
         });
+        // Añadir los JLabel al panelBotones
+        JPanel panelEquipo1 = new JPanel(new BorderLayout());
+        panelEquipo1.add(equipo1Label);
+        panelEquipo1.add(escudo1Label);
+
+        JPanel panelEquipo2 = new JPanel(new BorderLayout());
+        panelEquipo2.add(equipo2Label);
+        panelEquipo2.add(escudo2Label);
+
+
 
         JPanel controlPanel = new JPanel();
         controlPanel.add(accionBoton);
         controlPanel.add(seguirBoton);
+        controlPanel.add(panelEquipo1);
+        controlPanel.add(panelEquipo2);
 
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
@@ -223,16 +283,6 @@ public class JuegoMultiplayer extends InterfazMaestra {
         setVisible(true);
     }
 
-    // Método para crear botones en el marcador
-    private JButton crearBotonMarcador(String texto) {
-        JButton boton = new JButton(texto);
-        boton.setFont(new Font("Rubik", Font.PLAIN, 16));
-        boton.setBackground(colorBaseBotones);
-        boton.setForeground(colorTexto);
-        boton.setFocusPainted(false);
-        boton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
-        return boton;
-    }
 
     private void marcarTiro(int x, int y) {
         for (int i = 0; i < 3; i++) {
@@ -435,9 +485,5 @@ public class JuegoMultiplayer extends InterfazMaestra {
                 dispose();
             }
         }
-    }
-
-    public static void main(String[] args) {
-        new JuegoMultiplayer();
     }
 }
