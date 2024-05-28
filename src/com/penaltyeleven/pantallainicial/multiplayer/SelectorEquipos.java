@@ -64,6 +64,8 @@ public class SelectorEquipos extends InterfazMaestra {
                     new ImageIcon("src/Imagenes/Escudo/LittleGiants.png", "Little Giants"),
             }
     };
+    private boolean equipo1Seleccionado = false;
+    private boolean equipo2Seleccionado = false;
     private Equipos equipoSeleccionado1;
     private ImageIcon escudoEquipoSeleccionado1;
     private Equipos equipoSeleccionado2;
@@ -145,18 +147,21 @@ public class SelectorEquipos extends InterfazMaestra {
         JButton flechaIzquierda2 = new JButton();
         JButton flechaDerecha2 = new JButton();
         JButton fondo = new JButton();
-        JButton seleccionarTemporada = new JButton();
+        JButton seleccionarTemporada1 = new JButton();
+        JButton seleccionarTemporada2 = new JButton();
+
 
         // Crear botones
-        crearBoton(seleccionarEqu1, "Seleccionar", 150, 100, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(seleccionarEqu2, "Seleccionar", 950, 100, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(seleccionarEqu1, "Seleccionar", 150, 30, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(seleccionarEqu2, "Seleccionar", 950, 30, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(jugar, "Jugar", 550, 500, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(atras, "Atrás", 550, 600, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(flechaIzquierda, "<", 900, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(flechaDerecha, ">", 1150, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(flechaIzquierda2, "<", 100, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(flechaDerecha2, ">", 350, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(seleccionarTemporada, "Cambiar Temporada", 450, 20, 400, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(seleccionarTemporada1, "Cambiar Temporada", 50, 100, 400, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(seleccionarTemporada2, "Cambiar Temporada", 850, 100, 400, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
 
         // Fondo
         crearFondo(fondo, "Imagenes/Fondo/SelectorEquipos.jpg");
@@ -170,7 +175,8 @@ public class SelectorEquipos extends InterfazMaestra {
         panel.add(flechaDerecha);
         panel.add(flechaIzquierda2);
         panel.add(flechaDerecha2);
-        panel.add(seleccionarTemporada);
+        panel.add(seleccionarTemporada1);
+        panel.add(seleccionarTemporada2);
 
         // Añadir labels al panel
         panel.add(labelEquipo1);
@@ -201,6 +207,7 @@ public class SelectorEquipos extends InterfazMaestra {
                     equipoSeleccionado1 = null;
                     escudoEquipoSeleccionado1 = null;
                 }
+                equipo1Seleccionado = !equipo1Seleccionado;
                 eq1 = !eq1;
             }
         });
@@ -220,6 +227,7 @@ public class SelectorEquipos extends InterfazMaestra {
                     equipoSeleccionado2 = null;
                     escudoEquipoSeleccionado2 = null;
                 }
+                equipo2Seleccionado = !equipo2Seleccionado;
                 eq2 = !eq2;
             }
         });
@@ -321,18 +329,31 @@ public class SelectorEquipos extends InterfazMaestra {
         });
 
         // Accion del boton seleccionarTemporada
-        seleccionarTemporada.addActionListener(new ActionListener() {
+        seleccionarTemporada1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                musicManager.playSound("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
-                temporadaActual = (temporadaActual + 1) % temporadas.size();
-                indiceEquipo1 = 0;
-                indiceEquipo2 = 0;
-                labelEquipo1.setText(temporadas.get(temporadaActual).get(indiceEquipo1).getNombreEquipo());
-                labelEquipo2.setText(temporadas.get(temporadaActual).get(indiceEquipo2).getNombreEquipo());
-                // Actualiza los íconos de los equipos
-                imagenEquipo1.setIcon(imagenesEquipos[temporadaActual][indiceEquipo1]);
-                imagenEquipo2.setIcon(imagenesEquipos[temporadaActual][indiceEquipo2]);
+                if (!equipo1Seleccionado) {
+                    musicManager.playSound("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
+                    temporadaActual = (temporadaActual + 1) % temporadas.size();
+                    indiceEquipo1 = 0;
+                    labelEquipo1.setText(temporadas.get(temporadaActual).get(indiceEquipo1).getNombreEquipo());
+                    // Actualiza los íconos de los equipos
+                    imagenEquipo1.setIcon(imagenesEquipos[temporadaActual][indiceEquipo1]);
+                }
+            }
+        });
+        // Accion del boton seleccionarTemporada2
+        seleccionarTemporada2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!equipo2Seleccionado) {
+                    musicManager.playSound("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
+                    temporadaActual = (temporadaActual + 1) % temporadas.size();
+                    indiceEquipo2 = 0;
+                    labelEquipo2.setText(temporadas.get(temporadaActual).get(indiceEquipo2).getNombreEquipo());
+                    // Actualiza los íconos de los equipos
+                    imagenEquipo2.setIcon(imagenesEquipos[temporadaActual][indiceEquipo2]);
+                }
             }
         });
 

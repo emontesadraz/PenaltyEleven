@@ -176,8 +176,4 @@ public class Jugador2Gana extends InterfazMaestra {
         musicManager.playMusic("Musica/Soundtrack/Victoria.wav", 0.7f);
 
     }
-
-    public Jugador2Gana() {
-
-    }
 }

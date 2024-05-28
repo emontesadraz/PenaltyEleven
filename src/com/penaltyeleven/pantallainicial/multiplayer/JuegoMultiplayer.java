@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class JuegoMultiplayer extends InterfazMaestra {
 
-    private static final int NUM_PENALES = 5;
+    private static final int NUM_PENALES = 1;
     private int turno = 0;
     private int penalesRestantes1 = NUM_PENALES;
     private int penalesRestantes2 = NUM_PENALES;
@@ -447,11 +447,11 @@ public class JuegoMultiplayer extends InterfazMaestra {
 
     private void determinarGanador() {
         if (aciertos2 > aciertos1) {
-            Jugador1Gana jugador1Gana = new Jugador1Gana();
+            Jugador1Gana jugador1Gana = new Jugador1Gana(equipoSeleccionado1, escudoEquipoSeleccionado1, equipoSeleccionado2, escudoEquipoSeleccionado2);
             jugador1Gana.setVisible(true);
             dispose();
         } else if (aciertos1 > aciertos2) {
-            Jugador2Gana jugador2Gana = new Jugador2Gana();
+            Jugador2Gana jugador2Gana = new Jugador2Gana(equipoSeleccionado1, escudoEquipoSeleccionado1, equipoSeleccionado2, escudoEquipoSeleccionado2);
             jugador2Gana.setVisible(true);
             dispose();
         } else {
@@ -474,13 +474,13 @@ public class JuegoMultiplayer extends InterfazMaestra {
         if (turno % 2 == 0) {
             // Si el jugador 1 ha anotado y el jugador 2 no, el jugador 1 gana
             if (aciertos1 > 0 && aciertos2 == 0) {
-                Jugador1Gana jugador1Gana = new Jugador1Gana();
+                Jugador1Gana jugador1Gana = new Jugador1Gana(equipoSeleccionado1, escudoEquipoSeleccionado1, equipoSeleccionado2, escudoEquipoSeleccionado2);
                 jugador1Gana.setVisible(true);
                 dispose();
             }
             // Si el jugador 2 ha anotado y el jugador 1 no, el jugador 2 gana
             else if (aciertos2 > 0 && aciertos1 == 0) {
-                Jugador2Gana jugador2Gana = new Jugador2Gana();
+                Jugador2Gana jugador2Gana = new Jugador2Gana(equipoSeleccionado1, escudoEquipoSeleccionado1, equipoSeleccionado2, escudoEquipoSeleccionado2);
                 jugador2Gana.setVisible(true);
                 dispose();
             }
