@@ -119,10 +119,6 @@ public class Jugador1Gana extends InterfazMaestra {
         reiniciarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JuegoMultiplayer juegoMultiplayer = null;
-                juegoMultiplayer = new JuegoMultiplayer();
-                juegoMultiplayer.setVisible(true);
-                dispose();
 
                 musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.5f);
                 musicManager.stopMusic();

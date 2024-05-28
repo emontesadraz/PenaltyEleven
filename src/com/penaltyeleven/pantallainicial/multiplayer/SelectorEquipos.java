@@ -1,6 +1,5 @@
 package com.penaltyeleven.pantallainicial.multiplayer;
 
-import com.penaltyeleven.pantallainicial.multiplayer.SelectorEquipos;
 import com.penaltyeleven.metodosexternos.InterfazMaestra;
 import com.penaltyeleven.MenuInicial;
 import com.penaltyeleven.metodosexternos.Equipos;
@@ -225,10 +224,7 @@ public class SelectorEquipos extends InterfazMaestra {
                 if (eq1 && eq2) {
                     equipoSeleccionado1 = oe.getEquipos().get(indiceEquipo1);
                     equipoSeleccionado2 = oe.getEquipos().get(indiceEquipo2);
-                    JuegoMultiplayer juegoMultiplayer;
-                    juegoMultiplayer = new JuegoMultiplayer();
-                    juegoMultiplayer.setVisible(true);
-                    dispose();
+
                     musicManager.stopMusic();
                 } else {
                     JOptionPane.showMessageDialog(null, "Debes seleccionar ambos equipos antes de jugar.", "Error", JOptionPane.ERROR_MESSAGE);

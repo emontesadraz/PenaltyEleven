@@ -48,9 +48,6 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private Equipos equipo1;
     private Equipos equipo2;
 
-    public JuegoMultiplayer() {
-    }
-
     public JuegoMultiplayer(Equipos equipo1, Equipos equipo2) throws IOException {
         this.equipo1 = equipo1;
         this.equipo2 = equipo2;
@@ -58,12 +55,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
     }
 
     private void initUI() throws IOException {
-        setTitle("Penalty Eleven");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1430, 870);
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
+        crearVentana("Penalty Eleven", 1430, 870);
 
         JPanel marcadorPanel = new JPanel();
         marcadorPanel.setLayout(new BorderLayout());
@@ -77,7 +69,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
         botonesPanel.setOpaque(false);
         botonesPanel.setLayout(new GridLayout(2, 3, 10, 0));
 
-        String[] superTecnicas = {equipo1.getTiro1(), equipo1.getTiro2(), equipo1.getTiro3()};
+        String[] superTecnicas = {"Super Técnica NIvel 1", "Super Técnica NIvel 2","Super Técnica NIvel 3"};
         for (String tecnica : superTecnicas) {
             JLabel etiqueta = new JLabel(tecnica);
             etiqueta.setFont(new Font("Rubik", Font.PLAIN, 16));
@@ -459,17 +451,6 @@ public class JuegoMultiplayer extends InterfazMaestra {
         }
     }
 
-    public Equipos getEquipo1() {
-        return equipo1;
-    }
-
-    public Equipos getEquipo2() {
-        return equipo2;
-    }
-
-    public static void main(String[] args) throws IOException {
-        new JuegoMultiplayer();
-    }
 
 
 
