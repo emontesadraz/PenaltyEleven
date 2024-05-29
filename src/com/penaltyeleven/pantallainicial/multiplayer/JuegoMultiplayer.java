@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class JuegoMultiplayer extends InterfazMaestra {
 
-    private static final int NUM_PENALES = 1;
+    private static final int NUM_PENALES = 3;
     private int turno = 0;
     private int penalesRestantes1 = NUM_PENALES;
     private int penalesRestantes2 = NUM_PENALES;
@@ -24,6 +24,10 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private boolean seleccionPortero = false;
     private int[] porteroSeleccion = new int[4];
     private int seleccionPorteroCount = 0;
+    private JButton[][] botonesTiro1 = new JButton[1][3];
+    private JButton[][] botonesParada1 = new JButton[1][3];
+    private JButton[][] botonesTiro2 = new JButton[1][3];
+    private JButton[][] botonesParada2 = new JButton[1][3];
 
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     public static final Font fuenteBoton = new Font("Rubik", Font.PLAIN, 20);
@@ -37,6 +41,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private JLabel estadoLabel = new JLabel("Jugador 1 tira");
     private java.util.List<String> canciones = Arrays.asList("Musica/Soundtrack/MusicaPartidoBasico1.wav", "Musica/Soundtrack/MusicaPartidoBasico2.wav", "Musica/Soundtrack/MusicaPartidoBasico3.wav", "Musica/Soundtrack/MusicaPartidoBasico4.wav");
     private int currentSongsIndex = 0;
+
     // Variables para el equipo y el escudo seleccionados
     private Equipos equipoSeleccionado1;
     private ImageIcon escudoEquipoSeleccionado1;
@@ -75,38 +80,6 @@ public class JuegoMultiplayer extends InterfazMaestra {
         botonesPanel.setOpaque(false);
         botonesPanel.setLayout(new GridLayout(2, 3, 10, 0));
 
-        String[] tecnicasTiro = {equipoSeleccionado1.getTiro1(),equipoSeleccionado1.getTiro2(), equipoSeleccionado1.getTiro3()};
-        for (String tecnica : tecnicasTiro) {
-            JLabel etiqueta = new JLabel(tecnica);
-            etiqueta.setFont(new Font("Rubik", Font.PLAIN, 16));
-            etiqueta.setForeground(Color.WHITE);
-            etiqueta.setHorizontalAlignment(SwingConstants.CENTER);
-            botonesPanel.add(etiqueta);
-        }
-        String[] tecnicasTiro2 = {equipoSeleccionado2.getTiro1(),equipoSeleccionado2.getTiro2(), equipoSeleccionado2.getTiro3()};
-        for (String tecnica : tecnicasTiro2) {
-            JLabel etiqueta = new JLabel(tecnica);
-            etiqueta.setFont(new Font("Rubik", Font.PLAIN, 16));
-            etiqueta.setForeground(Color.WHITE);
-            etiqueta.setHorizontalAlignment(SwingConstants.CENTER);
-            botonesPanel.add(etiqueta);
-        }
-        String[] tecnicasParada = {equipoSeleccionado1.getParada1(),equipoSeleccionado1.getParada2(), equipoSeleccionado1.getParada3()};
-        for (String tecnica : tecnicasParada) {
-            JLabel etiqueta = new JLabel(tecnica);
-            etiqueta.setFont(new Font("Rubik", Font.PLAIN, 16));
-            etiqueta.setForeground(Color.WHITE);
-            etiqueta.setHorizontalAlignment(SwingConstants.CENTER);
-            botonesPanel.add(etiqueta);
-        }
-        String[] tecnicasParada2 = {equipoSeleccionado2.getParada1(),equipoSeleccionado2.getParada2(), equipoSeleccionado2.getParada3()};
-        for (String tecnica : tecnicasParada2) {
-            JLabel etiqueta = new JLabel(tecnica);
-            etiqueta.setFont(new Font("Rubik", Font.PLAIN, 16));
-            etiqueta.setForeground(Color.WHITE);
-            etiqueta.setHorizontalAlignment(SwingConstants.CENTER);
-            botonesPanel.add(etiqueta);
-        }
         // Inicializar los JLabel
         equipo1Label = new JLabel(equipoSeleccionado1.getNombreEquipo());
         equipo1Label.setBounds(50, 50, 150, 30);
@@ -119,17 +92,22 @@ public class JuegoMultiplayer extends InterfazMaestra {
         escudo2Label = new JLabel();
         escudo2Label.setIcon(escudoEquipoSeleccionado2);
 
-        //Hacer que el nombre de las supertecnicas sean las que tenga el equipo que escogimos
-        JButton tecnica1Boton = new JButton();
-        crearBoton(tecnica1Boton, "Técnica 1", 50, 50, 150, 30, Color.BLUE, Color.BLACK, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        JButton tecnica2Boton = new JButton();
-        crearBoton(tecnica2Boton, "Técnica 2", 250, 50, 150, 30, Color.YELLOW, Color.BLACK, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        JButton tecnica3Boton = new JButton();
-        crearBoton(tecnica3Boton, "Técnica 3", 450, 50, 150, 30, Color.RED, Color.BLACK, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        // Inicializar los botones de las supertécnicas de tiro y parada
+        for (int i = 0; i < 3; i++) {
+            botonesTiro1[0][i] = new JButton();
+            botonesParada1[0][i] = new JButton();
+            botonesTiro2[0][i] = new JButton();
+            botonesParada2[0][i] = new JButton();
+        }
 
-        botonesPanel.add(tecnica1Boton);
-        botonesPanel.add(tecnica2Boton);
-        botonesPanel.add(tecnica3Boton);
+        // Añadimos los botones al panel
+        for (int i = 0; i < 3; i++) {
+            botonesPanel.add(botonesTiro1[0][i]);
+            botonesPanel.add(botonesParada1[0][i]);
+            botonesPanel.add(botonesTiro2[0][i]);
+            botonesPanel.add(botonesParada2[0][i]);
+        }
+
 
         marcadorPanel.add(marcadorLabel, BorderLayout.CENTER);
         marcadorPanel.add(botonesPanel, BorderLayout.SOUTH);
@@ -253,7 +231,6 @@ public class JuegoMultiplayer extends InterfazMaestra {
         panelEquipo2.add(escudo2Label);
 
 
-
         JPanel controlPanel = new JPanel();
         controlPanel.add(accionBoton);
         controlPanel.add(seguirBoton);
@@ -276,7 +253,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
         add(mainPanel, BorderLayout.CENTER);
         add(estadoLabel, BorderLayout.SOUTH);
 
-
+        actualizarBotonesTecnicas();
 
         playNextSong();
 
@@ -292,6 +269,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
         }
         botones[x][y].setBackground(Color.YELLOW);
     }
+
     @Override
     public void dispose() {
         musicManager.stopMusic();
@@ -322,6 +300,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
                 (tiroActual[0] == porteroSeleccion[2] && tiroActual[1] == porteroSeleccion[3])) {
             parada = true;
         }
+        actualizarBotonesTecnicas();
         // Incrementar los goles del jugador correspondiente si no hay parada
         if (!parada) {
             if (jugador1Tira) {
@@ -418,6 +397,52 @@ public class JuegoMultiplayer extends InterfazMaestra {
         }
     }
 
+
+    private void actualizarBotonesTecnicas() {
+        if (jugador1Tira && !seleccionPortero) {
+            // Es el turno del jugador 1 para tirar
+            String[] tecnicasTiro1 = {equipoSeleccionado1.getTiro1(), equipoSeleccionado1.getTiro2(), equipoSeleccionado1.getTiro3()};
+            for (int i = 0; i < 3; i++) {
+                botonesTiro1[0][i].setText(tecnicasTiro1[i]);
+                botonesTiro1[0][i].setBounds(50 + i * 200, 50, 200, 50);
+                botonesTiro1[0][i].setVisible(true);
+                botonesParada1[0][i].setVisible(false);
+                botonesTiro2[0][i].setVisible(false);
+                botonesParada2[0][i].setVisible(false);
+            }
+        } else if (!jugador1Tira && !seleccionPortero) {
+            // Es el turno del jugador 2 para tirar
+            String[] tecnicasTiro2 = {equipoSeleccionado2.getTiro1(), equipoSeleccionado2.getTiro2(), equipoSeleccionado2.getTiro3()};
+            for (int i = 0; i < 3; i++) {
+                botonesTiro2[0][i].setText(tecnicasTiro2[i]);
+                botonesTiro1[0][i].setVisible(false);
+                botonesParada1[0][i].setVisible(false);
+                botonesTiro2[0][i].setVisible(true);
+                botonesParada2[0][i].setVisible(false);
+            }
+        } else if (jugador1Tira) {
+            // Es el turno del jugador 1 para parar
+            String[] tecnicasParada1 = {equipoSeleccionado1.getParada1(), equipoSeleccionado1.getParada2(), equipoSeleccionado1.getParada3()};
+            for (int i = 0; i < 3; i++) {
+                botonesParada1[0][i].setText(tecnicasParada1[i]);
+                botonesTiro1[0][i].setVisible(false);
+                botonesParada1[0][i].setVisible(true);
+                botonesTiro2[0][i].setVisible(false);
+                botonesParada2[0][i].setVisible(false);
+            }
+        } else {
+            // Es el turno del jugador 2 para parar
+            String[] tecnicasParada2 = {equipoSeleccionado2.getParada1(), equipoSeleccionado2.getParada2(), equipoSeleccionado2.getParada3()};
+            for (int i = 0; i < 3; i++) {
+                botonesParada2[0][i].setText(tecnicasParada2[i]);
+                botonesTiro1[0][i].setVisible(false);
+                botonesParada1[0][i].setVisible(false);
+                botonesTiro2[0][i].setVisible(false);
+                botonesParada2[0][i].setVisible(true);
+            }
+        }
+    }
+
     private void actualizarMarcador() {
         marcadorLabel.setText("Jugador 1: " + aciertos2 + " | Jugador 2: " + aciertos1);
     }
@@ -428,7 +453,9 @@ public class JuegoMultiplayer extends InterfazMaestra {
                 botones[i][j].setBackground(Color.WHITE);
             }
         }
+        actualizarBotonesTecnicas();
     }
+
     private void playNextSong() {
         if (canciones.isEmpty()) {
             return;
@@ -460,8 +487,9 @@ public class JuegoMultiplayer extends InterfazMaestra {
         }
         accionBoton.setEnabled(false);
     }
+
     private void muerteSubita() {
-        JOptionPane.showMessageDialog(null,"Muerte Súbita, que gane el mejor!","Muerte Súbita",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Muerte Súbita, que gane el mejor!", "Muerte Súbita", JOptionPane.INFORMATION_MESSAGE);
 
         penalesRestantes1 = 1;
         penalesRestantes2 = 1;
