@@ -28,6 +28,9 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private JButton[][] botonesParada1 = new JButton[1][3];
     private JButton[][] botonesTiro2 = new JButton[1][3];
     private JButton[][] botonesParada2 = new JButton[1][3];
+    CardLayout cardLayout = new CardLayout();
+    JPanel panelBotones = new JPanel(cardLayout);
+    private int tiroSeleccionado = -1; // Nueva variable de instancia
 
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     public static final Font fuenteBoton = new Font("Rubik", Font.PLAIN, 20);
@@ -75,10 +78,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
         marcadorLabel.setFont(new Font("Rubik", Font.BOLD, 24));
         marcadorLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        // Panel para los botones y etiquetas en el marcador
-        JPanel botonesPanel = new JPanel();
-        botonesPanel.setOpaque(false);
-        botonesPanel.setLayout(new GridLayout(2, 3, 10, 0));
+
 
         // Inicializar los JLabel
         equipo1Label = new JLabel(equipoSeleccionado1.getNombreEquipo());
@@ -100,17 +100,41 @@ public class JuegoMultiplayer extends InterfazMaestra {
             botonesParada2[0][i] = new JButton();
         }
 
-        // Añadimos los botones al panel
+        // Añadir cada conjunto de botones al panel con un nombre único
+        JPanel panelTiro1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JPanel panelParada1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JPanel panelTiro2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JPanel panelParada2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
         for (int i = 0; i < 3; i++) {
-            botonesPanel.add(botonesTiro1[0][i]);
-            botonesPanel.add(botonesParada1[0][i]);
-            botonesPanel.add(botonesTiro2[0][i]);
-            botonesPanel.add(botonesParada2[0][i]);
+            panelTiro1.add(botonesTiro1[0][i]);
+            panelParada1.add(botonesParada1[0][i]);
+            panelTiro2.add(botonesTiro2[0][i]);
+            panelParada2.add(botonesParada2[0][i]);
+        }
+        panelBotones.add(panelTiro1, "Tiro1");
+        panelBotones.add(panelParada1, "Parada1");
+        panelBotones.add(panelTiro2, "Tiro2");
+        panelBotones.add(panelParada2, "Parada2");
+
+        for (int i = 0; i < 3; i++) {
+            final int tiroIndex = i + 1;
+            botonesTiro1[0][i].addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    tiroSeleccionado = tiroIndex;
+                    // No procesar el turno inmediatamente
+                }
+            });
+            botonesTiro2[0][i].addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    tiroSeleccionado = tiroIndex;
+                    // No procesar el turno inmediatamente
+                }
+            });
         }
 
 
         marcadorPanel.add(marcadorLabel, BorderLayout.CENTER);
-        marcadorPanel.add(botonesPanel, BorderLayout.SOUTH);
+        marcadorPanel.add(panelBotones, BorderLayout.SOUTH);
 
         // Panel de la portería
         JPanel porteriaPanel = new JPanel() {
@@ -166,6 +190,8 @@ public class JuegoMultiplayer extends InterfazMaestra {
                             seleccionPortero = true;
                             accionBoton.setText("Parar");
                             ocultarTiro();
+                            // Mostrar botones de parada del jugador 2
+                            cardLayout.show(panelBotones, "Parada2");
                         }
                     } else {
                         if (seleccionPorteroCount < 2) {
@@ -177,6 +203,8 @@ public class JuegoMultiplayer extends InterfazMaestra {
                             procesarTurno();
                             accionBoton.setText("Tirar");
                             mostrarResultados();
+                            // Mostrar botones de tiro del jugador 1
+                            cardLayout.show(panelBotones, "Tiro1");
                         }
                     }
                 } else {
@@ -188,6 +216,8 @@ public class JuegoMultiplayer extends InterfazMaestra {
                             seleccionPortero = true;
                             accionBoton.setText("Parar");
                             ocultarTiro();
+                            // Mostrar botones de parada del jugador 1
+                            cardLayout.show(panelBotones, "Parada1");
                         }
                     } else {
                         if (seleccionPorteroCount < 2) {
@@ -199,6 +229,8 @@ public class JuegoMultiplayer extends InterfazMaestra {
                             procesarTurno();
                             accionBoton.setText("Tirar");
                             mostrarResultados();
+                            // Mostrar botones de tiro del jugador 2
+                            cardLayout.show(panelBotones, "Tiro2");
                         }
                     }
                 }
@@ -296,17 +328,22 @@ public class JuegoMultiplayer extends InterfazMaestra {
 
     private void procesarTurno() {
         boolean parada = false;
-        if ((tiroActual[0] == porteroSeleccion[0] && tiroActual[1] == porteroSeleccion[1]) ||
-                (tiroActual[0] == porteroSeleccion[2] && tiroActual[1] == porteroSeleccion[3])) {
-            parada = true;
+        if (seleccionPorteroCount == 2) { // Verificar si el jugador 2 ha intentado parar el tiro
+            if (tiroSeleccionado == 1 && ((tiroActual[0] == porteroSeleccion[0] && tiroActual[1] == porteroSeleccion[1]) ||
+                    (tiroActual[0] == porteroSeleccion[2] && tiroActual[1] == porteroSeleccion[3]))) {
+                parada = true;
+            } else if (tiroSeleccionado == 2 && tiroActual[0] == porteroSeleccion[2] && tiroActual[1] == porteroSeleccion[3]) {
+                parada = true;
+            } else if (tiroSeleccionado == 3 && tiroActual[0] == porteroSeleccion[2] && tiroActual[1] == porteroSeleccion[3]) {
+                parada = true;
+            }
         }
-        actualizarBotonesTecnicas();
         // Incrementar los goles del jugador correspondiente si no hay parada
         if (!parada) {
             if (jugador1Tira) {
-                aciertos1++;
+                aciertos1++; // Incrementar el marcador del jugador 1
             } else {
-                aciertos2++;
+                aciertos2++; // Incrementar el marcador del jugador 2
             }
         }
 
@@ -399,46 +436,37 @@ public class JuegoMultiplayer extends InterfazMaestra {
 
 
     private void actualizarBotonesTecnicas() {
-        if (jugador1Tira && !seleccionPortero) {
-            // Es el turno del jugador 1 para tirar
-            String[] tecnicasTiro1 = {equipoSeleccionado1.getTiro1(), equipoSeleccionado1.getTiro2(), equipoSeleccionado1.getTiro3()};
-            for (int i = 0; i < 3; i++) {
-                botonesTiro1[0][i].setText(tecnicasTiro1[i]);
-                botonesTiro1[0][i].setBounds(50 + i * 200, 50, 200, 50);
-                botonesTiro1[0][i].setVisible(true);
-                botonesParada1[0][i].setVisible(false);
-                botonesTiro2[0][i].setVisible(false);
-                botonesParada2[0][i].setVisible(false);
-            }
-        } else if (!jugador1Tira && !seleccionPortero) {
-            // Es el turno del jugador 2 para tirar
-            String[] tecnicasTiro2 = {equipoSeleccionado2.getTiro1(), equipoSeleccionado2.getTiro2(), equipoSeleccionado2.getTiro3()};
-            for (int i = 0; i < 3; i++) {
-                botonesTiro2[0][i].setText(tecnicasTiro2[i]);
-                botonesTiro1[0][i].setVisible(false);
-                botonesParada1[0][i].setVisible(false);
-                botonesTiro2[0][i].setVisible(true);
-                botonesParada2[0][i].setVisible(false);
-            }
-        } else if (jugador1Tira) {
-            // Es el turno del jugador 1 para parar
-            String[] tecnicasParada1 = {equipoSeleccionado1.getParada1(), equipoSeleccionado1.getParada2(), equipoSeleccionado1.getParada3()};
-            for (int i = 0; i < 3; i++) {
-                botonesParada1[0][i].setText(tecnicasParada1[i]);
-                botonesTiro1[0][i].setVisible(false);
-                botonesParada1[0][i].setVisible(true);
-                botonesTiro2[0][i].setVisible(false);
-                botonesParada2[0][i].setVisible(false);
+        if (jugador1Tira) {
+            if (!seleccionPortero) {
+                // Es el turno del jugador 1 para tirar
+                String[] tecnicasTiro1 = {equipoSeleccionado1.getTiro1(), equipoSeleccionado1.getTiro2(), equipoSeleccionado1.getTiro3()};
+                for (int i = 0; i < 3; i++) {
+                    botonesTiro1[0][i].setText(tecnicasTiro1[i]);
+                }
+                cardLayout.show(panelBotones, "Tiro1");
+            } else {
+                // Es el turno del jugador 1 para parar
+                String[] tecnicasParada1 = {equipoSeleccionado1.getParada1(), equipoSeleccionado1.getParada2(), equipoSeleccionado1.getParada3()};
+                for (int i = 0; i < 3; i++) {
+                    botonesParada1[0][i].setText(tecnicasParada1[i]);
+                }
+                cardLayout.show(panelBotones, "Parada1");
             }
         } else {
-            // Es el turno del jugador 2 para parar
-            String[] tecnicasParada2 = {equipoSeleccionado2.getParada1(), equipoSeleccionado2.getParada2(), equipoSeleccionado2.getParada3()};
-            for (int i = 0; i < 3; i++) {
-                botonesParada2[0][i].setText(tecnicasParada2[i]);
-                botonesTiro1[0][i].setVisible(false);
-                botonesParada1[0][i].setVisible(false);
-                botonesTiro2[0][i].setVisible(false);
-                botonesParada2[0][i].setVisible(true);
+            if (!seleccionPortero) {
+                // Es el turno del jugador 2 para tirar
+                String[] tecnicasTiro2 = {equipoSeleccionado2.getTiro1(), equipoSeleccionado2.getTiro2(), equipoSeleccionado2.getTiro3()};
+                for (int i = 0; i < 3; i++) {
+                    botonesTiro2[0][i].setText(tecnicasTiro2[i]);
+                }
+                cardLayout.show(panelBotones, "Tiro2");
+            } else {
+                // Es el turno del jugador 2 para parar
+                String[] tecnicasParada2 = {equipoSeleccionado2.getParada1(), equipoSeleccionado2.getParada2(), equipoSeleccionado2.getParada3()};
+                for (int i = 0; i < 3; i++) {
+                    botonesParada2[0][i].setText(tecnicasParada2[i]);
+                }
+                cardLayout.show(panelBotones, "Parada2");
             }
         }
     }
@@ -482,6 +510,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
             jugador2Gana.setVisible(true);
             dispose();
         } else {
+            JOptionPane.showMessageDialog(null, "Muerte Súbita, que gane el mejor!", "Muerte Súbita", JOptionPane.INFORMATION_MESSAGE);
             muerteSubita();
             accionBoton.setEnabled(false);
         }
@@ -489,8 +518,6 @@ public class JuegoMultiplayer extends InterfazMaestra {
     }
 
     private void muerteSubita() {
-        JOptionPane.showMessageDialog(null, "Muerte Súbita, que gane el mejor!", "Muerte Súbita", JOptionPane.INFORMATION_MESSAGE);
-
         penalesRestantes1 = 1;
         penalesRestantes2 = 1;
         turno = 0;
