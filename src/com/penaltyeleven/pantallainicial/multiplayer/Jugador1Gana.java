@@ -1,7 +1,8 @@
 package com.penaltyeleven.pantallainicial.multiplayer;
 
+import com.penaltyeleven.metodosexternos.Equipos;
 import com.penaltyeleven.metodosexternos.InterfazMaestra;
-import com.penaltyeleven.MenuInicial;
+import com.penaltyeleven.pantallainicial.MenuInicial;
 import com.penaltyeleven.metodosexternos.MusicManager;
 import com.penaltyeleven.basedatos.DatabaseHandler;
 
@@ -21,8 +22,12 @@ public class Jugador1Gana extends InterfazMaestra {
     public static final Font fuente = new Font("Rubik", Font.PLAIN, 23);
     public static final Color colorTexto = new Color(255, 255, 255);
     private final MusicManager musicManager = new MusicManager();
+    private Equipos equipoSeleccionado1;
+    private ImageIcon escudoEquipoSeleccionado1;
+    private Equipos equipoSeleccionado2;
+    private ImageIcon escudoEquipoSeleccionado2;
 
-    public Jugador1Gana() {
+    public Jugador1Gana(Equipos equipoSeleccionado1, ImageIcon escudoEquipoSeleccionado1, Equipos equipoSeleccionado2, ImageIcon escudoEquipoSeleccionado2) {
         setTitle("Penalty Eleven");
         setSize(1280, 720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,11 +36,16 @@ public class Jugador1Gana extends InterfazMaestra {
         setResizable(false);
         setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
 
+        this.equipoSeleccionado1 = equipoSeleccionado1;
+        this.escudoEquipoSeleccionado1 = escudoEquipoSeleccionado1;
+        this.equipoSeleccionado2 = equipoSeleccionado2;
+        this.escudoEquipoSeleccionado2 = escudoEquipoSeleccionado2;
+
 
         // Editamos el mensaje a nuestro gusto
         mensajeGanador = new JLabel();
         mensajeGanador.setHorizontalAlignment(JLabel.CENTER);
-        mensajeGanador.setText("¡Enhorabuena! Has ganado");
+        mensajeGanador.setText("¡Enhorabuena! Has ganado.");
         mensajeGanador.setFont(new Font("Rubik", Font.BOLD, 34));
         mensajeGanador.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         mensajeGanador.setBackground(new Color(255, 255, 255));
@@ -47,7 +57,7 @@ public class Jugador1Gana extends InterfazMaestra {
         mensajeNombre.setHorizontalAlignment(JLabel.CENTER);
         mensajeNombre.setText("Jugador 1");
         mensajeNombre.setFont(new Font("Rubik", Font.PLAIN | Font.ITALIC, 30));
-        mensajeNombre.setForeground(new Color(2, 34, 162));
+        mensajeNombre.setForeground(new Color(162, 2, 2));
         mensajeNombre.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         mensajeNombre.setBackground(new Color(255, 255, 255));
         mensajeNombre.setOpaque(true);
@@ -119,6 +129,9 @@ public class Jugador1Gana extends InterfazMaestra {
         reiniciarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+               JuegoMultiplayer juegoMultiplayer = new JuegoMultiplayer(equipoSeleccionado1,escudoEquipoSeleccionado1,equipoSeleccionado2,escudoEquipoSeleccionado2);
+                juegoMultiplayer.setVisible(true);
+                dispose();
 
                 musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.5f);
                 musicManager.stopMusic();
@@ -162,10 +175,4 @@ public class Jugador1Gana extends InterfazMaestra {
         musicManager.playMusic("Musica/Soundtrack/Victoria.wav", 0.7f);
 
     }
-
-    public static void main(String[] args) {
-        Jugador1Gana jugador1Gana = new Jugador1Gana();
-        jugador1Gana.setVisible(true);
-    }
-
 }

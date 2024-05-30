@@ -1,9 +1,11 @@
-package com.penaltyeleven.pantallainicial.multiplayer;
+package com.penaltyeleven.pantallainicial.soloplayer;
 import com.penaltyeleven.metodosexternos.InterfazMaestra;
 import com.penaltyeleven.pantallainicial.MenuInicial;
 import com.penaltyeleven.metodosexternos.MusicManager;
 import com.penaltyeleven.metodosexternos.Equipos;
 import com.penaltyeleven.metodosexternos.OperacionesEquipos;
+import com.penaltyeleven.pantallainicial.multiplayer.JuegoMultiplayer;
+import com.penaltyeleven.pantallainicial.multiplayer.SelectorEquipos;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -20,7 +22,7 @@ import java.util.List;
  * This class represents a team selector interface for a game.
  * It extends from the com.penaltyeleven.metodosexternos.InterfazMaestra class.
  */
-public class SelectorEquipos extends InterfazMaestra {
+public class SelectorEquiposSolo extends InterfazMaestra {
     OperacionesEquipos oe = new OperacionesEquipos();
     private final MusicManager musicManager = new MusicManager();
     public static final Color colorBase = new Color(25, 25, 25);
@@ -64,12 +66,7 @@ public class SelectorEquipos extends InterfazMaestra {
                     new ImageIcon("src/Imagenes/Escudo/LittleGiants.png", "Little Giants"),
             }
     };
-    private boolean equipo1Seleccionado = false;
-    private boolean equipo2Seleccionado = false;
-    private Equipos equipoSeleccionado1;
-    private ImageIcon escudoEquipoSeleccionado1;
-    private Equipos equipoSeleccionado2;
-    private ImageIcon escudoEquipoSeleccionado2;
+
     private JPanel panel;
     private JLabel labelEquipo1;
     private JLabel labelEquipo2;
@@ -85,7 +82,7 @@ public class SelectorEquipos extends InterfazMaestra {
      * It initializes the team selector interface.
      * @throws IOException if there is an error reading an image file.
      */
-    public SelectorEquipos() throws IOException {
+    public SelectorEquiposSolo() throws IOException {
         // Ventana
         crearVentana("Penalty Eleven", 1280, 720);
 
@@ -147,21 +144,18 @@ public class SelectorEquipos extends InterfazMaestra {
         JButton flechaIzquierda2 = new JButton();
         JButton flechaDerecha2 = new JButton();
         JButton fondo = new JButton();
-        JButton seleccionarTemporada1 = new JButton();
-        JButton seleccionarTemporada2 = new JButton();
-
+        JButton seleccionarTemporada = new JButton();
 
         // Crear botones
-        crearBoton(seleccionarEqu1, "Seleccionar", 150, 30, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(seleccionarEqu2, "Seleccionar", 950, 30, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(seleccionarEqu1, "Seleccionar", 150, 100, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(seleccionarEqu2, "Seleccionar", 950, 100, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(jugar, "Jugar", 550, 500, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(atras, "Atrás", 550, 600, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(flechaIzquierda, "<", 900, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(flechaDerecha, ">", 1150, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(flechaIzquierda2, "<", 100, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(flechaDerecha2, ">", 350, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(seleccionarTemporada1, "Cambiar Temporada", 50, 100, 400, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(seleccionarTemporada2, "Cambiar Temporada", 850, 100, 400, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(seleccionarTemporada, "Cambiar Temporada", 450, 20, 400, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
 
         // Fondo
         crearFondo(fondo, "Imagenes/Fondo/SelectorEquipos.jpg");
@@ -175,8 +169,7 @@ public class SelectorEquipos extends InterfazMaestra {
         panel.add(flechaDerecha);
         panel.add(flechaIzquierda2);
         panel.add(flechaDerecha2);
-        panel.add(seleccionarTemporada1);
-        panel.add(seleccionarTemporada2);
+        panel.add(seleccionarTemporada);
 
         // Añadir labels al panel
         panel.add(labelEquipo1);
@@ -200,14 +193,9 @@ public class SelectorEquipos extends InterfazMaestra {
                 musicManager.playSound("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
                 if (seleccionarEqu1.getText().equals("Seleccionar")) {
                     seleccionarEqu1.setText("Seleccionado");
-                    equipoSeleccionado1 = temporadas.get(temporadaActual).get(indiceEquipo1);
-                    escudoEquipoSeleccionado1 = imagenesEquipos[temporadaActual][indiceEquipo1];
                 } else {
                     seleccionarEqu1.setText("Seleccionar");
-                    equipoSeleccionado1 = null;
-                    escudoEquipoSeleccionado1 = null;
                 }
-                equipo1Seleccionado = !equipo1Seleccionado;
                 eq1 = !eq1;
             }
         });
@@ -220,14 +208,9 @@ public class SelectorEquipos extends InterfazMaestra {
                 musicManager.playSound("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
                 if (seleccionarEqu2.getText().equals("Seleccionar")) {
                     seleccionarEqu2.setText("Seleccionado");
-                    equipoSeleccionado2 = temporadas.get(temporadaActual).get(indiceEquipo2);
-                    escudoEquipoSeleccionado2 = imagenesEquipos[temporadaActual][indiceEquipo2];
                 } else {
                     seleccionarEqu2.setText("Seleccionar");
-                    equipoSeleccionado2 = null;
-                    escudoEquipoSeleccionado2 = null;
                 }
-                equipo2Seleccionado = !equipo2Seleccionado;
                 eq2 = !eq2;
             }
         });
@@ -239,9 +222,8 @@ public class SelectorEquipos extends InterfazMaestra {
                 // Reproducir sonido
                 musicManager.playSound("Musica/SoundEffect/SonidoJugar.wav", 0.7f);
                 if (eq1 && eq2) {
-                    JuegoMultiplayer juegoMultiplayer;
-                    juegoMultiplayer = new JuegoMultiplayer(equipoSeleccionado1,escudoEquipoSeleccionado1,equipoSeleccionado2,escudoEquipoSeleccionado2);
-                    juegoMultiplayer.setVisible(true);
+                    JuegoSoloplayer juegoSoloplayer = new JuegoSoloplayer();
+                    juegoSoloplayer.setVisible(true);
                     dispose();
                     musicManager.stopMusic();
                 } else {
@@ -329,38 +311,24 @@ public class SelectorEquipos extends InterfazMaestra {
         });
 
         // Accion del boton seleccionarTemporada
-        seleccionarTemporada1.addActionListener(new ActionListener() {
+        seleccionarTemporada.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!equipo1Seleccionado) {
-                    musicManager.playSound("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
-                    temporadaActual = (temporadaActual + 1) % temporadas.size();
-                    indiceEquipo1 = 0;
-                    labelEquipo1.setText(temporadas.get(temporadaActual).get(indiceEquipo1).getNombreEquipo());
-                    // Actualiza los íconos de los equipos
-                    imagenEquipo1.setIcon(imagenesEquipos[temporadaActual][indiceEquipo1]);
-                }
-            }
-        });
-        // Accion del boton seleccionarTemporada2
-        seleccionarTemporada2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (!equipo2Seleccionado) {
-                    musicManager.playSound("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
-                    temporadaActual = (temporadaActual + 1) % temporadas.size();
-                    indiceEquipo2 = 0;
-                    labelEquipo2.setText(temporadas.get(temporadaActual).get(indiceEquipo2).getNombreEquipo());
-                    // Actualiza los íconos de los equipos
-                    imagenEquipo2.setIcon(imagenesEquipos[temporadaActual][indiceEquipo2]);
-                }
+                musicManager.playSound("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
+                temporadaActual = (temporadaActual + 1) % temporadas.size();
+                indiceEquipo1 = 0;
+                indiceEquipo2 = 0;
+                labelEquipo1.setText(temporadas.get(temporadaActual).get(indiceEquipo1).getNombreEquipo());
+                labelEquipo2.setText(temporadas.get(temporadaActual).get(indiceEquipo2).getNombreEquipo());
+                // Actualiza los íconos de los equipos
+                imagenEquipo1.setIcon(imagenesEquipos[temporadaActual][indiceEquipo1]);
+                imagenEquipo2.setIcon(imagenesEquipos[temporadaActual][indiceEquipo2]);
             }
         });
 
         // Controles de la música
         musicManager.playMusic("Musica/Soundtrack/SelectorEquipos.wav", 0.7f);
     }
-
 
     /**
      * Main method for the com.penaltyeleven.pantallainicial.SelectorEquipos class.
