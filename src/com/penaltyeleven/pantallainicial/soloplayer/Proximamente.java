@@ -20,8 +20,7 @@ public class Proximamente extends InterfazMaestra {
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     private final MusicManager musicManager = new MusicManager();
 
-    public Proximamente(JLabel proximamente) {
-        this.comingSoon = proximamente;
+    public Proximamente() {
 
         //Ventana
         crearVentana("Penalty Eleven", 1280, 720);
@@ -64,17 +63,17 @@ public class Proximamente extends InterfazMaestra {
         volver.setBackground(colorBaseBotones);
 
         //Cambiar tamaño y posición
-        comingSoon.setBounds(120, 200, 460, 45);
-        volver.setBounds(120, 515, 460, 45);
+        comingSoon.setBounds(120, 270, 480, 45);
+        volver.setBounds(60, 620, 200, 50);
 
         //Cambiar la fuente
         Font fuenteBoton = new Font("Action Man", Font.BOLD, 20);
-        comingSoon.setFont(new Font("Action Man", Font.BOLD, 40));
+        comingSoon.setFont(new Font("Action Man", Font.BOLD, 60));
         volver.setFont(fuenteBoton);
 
         //Cambiar color de texto de los botones
         Color colorTexto = new Color(255, 255, 255);
-        comingSoon.setForeground(colorTexto);
+        comingSoon.setForeground(colorBaseBotones);
         volver.setForeground(colorTexto);
 
         // Cambiar color de los botones al pasar el ratón por encima
@@ -92,7 +91,7 @@ public class Proximamente extends InterfazMaestra {
         });
 
         // Controles de la música
-        musicManager.playMusic("Musica/Soundtrack/SoloPlayer1.wav", 0.5f);
+        musicManager.playMusic("Musica/Soundtrack/ComingSoon.wav", 0.5f);
 
     }
 

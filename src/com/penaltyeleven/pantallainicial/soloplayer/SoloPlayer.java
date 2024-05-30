@@ -66,7 +66,9 @@ public class SoloPlayer extends InterfazMaestra {
         juegoLibre.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Abrir ventana de selector de equipos para soloplayer
+                Proximamente proximamente = new Proximamente();
+                proximamente.setVisible(true);
+                dispose();
 
                 musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 musicManager.stopMusic();

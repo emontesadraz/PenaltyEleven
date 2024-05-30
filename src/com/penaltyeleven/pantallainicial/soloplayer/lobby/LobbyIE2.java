@@ -3,6 +3,7 @@ package com.penaltyeleven.pantallainicial.soloplayer.lobby;
 import com.penaltyeleven.metodosexternos.InterfazMaestra;
 import com.penaltyeleven.metodosexternos.MusicManager;
 import com.penaltyeleven.pantallainicial.soloplayer.ElegirTemporada;
+import com.penaltyeleven.pantallainicial.soloplayer.Proximamente;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,7 +52,9 @@ public class LobbyIE2 extends InterfazMaestra {
         empezar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Abrir ventana de Temporada 2
+                Proximamente proximamente = new Proximamente();
+                proximamente.setVisible(true);
+                dispose();
 
                 musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 musicManager.stopMusic();

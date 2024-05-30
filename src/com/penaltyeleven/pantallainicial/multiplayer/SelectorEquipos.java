@@ -104,12 +104,12 @@ public class SelectorEquipos extends InterfazMaestra {
 
         // JLabel para el equipo 1
         labelEquipo1 = new JLabel(temporadas.get(temporadaActual).get(indiceEquipo1).getNombreEquipo());
-        labelEquipo1.setFont(fuente);
+        labelEquipo1.setFont(new Font("Trebuchet MS", Font.BOLD, 30));
         labelEquipo1.setOpaque(true);
         labelEquipo1.setForeground(colorBase);
         labelEquipo1.setBackground(Color.WHITE);
         labelEquipo1.setBorder(BorderFactory.createLineBorder(Color.black, 3));
-        labelEquipo1.setBounds(100, 190, 300, 40);
+        labelEquipo1.setBounds(80, 170, 340, 45);
         labelEquipo1.setHorizontalAlignment(JLabel.CENTER);
 
         // JLabel para la imagen del equipo 1
@@ -118,12 +118,12 @@ public class SelectorEquipos extends InterfazMaestra {
 
         // JLabel para el equipo 2
         labelEquipo2 = new JLabel(temporadas.get(temporadaActual).get(indiceEquipo2).getNombreEquipo());
-        labelEquipo2.setFont(fuente);
+        labelEquipo2.setFont(new Font("Trebuchet MS", Font.BOLD, 30));
         labelEquipo2.setOpaque(true);
         labelEquipo2.setForeground(colorBase);
         labelEquipo2.setBackground(Color.WHITE);
         labelEquipo2.setBorder(BorderFactory.createLineBorder(Color.black, 3));
-        labelEquipo2.setBounds(900, 190, 300, 40);
+        labelEquipo2.setBounds(880, 170, 340, 45);
         labelEquipo2.setHorizontalAlignment(JLabel.CENTER);
 
         // JLabel para la imagen del equipo 2
@@ -152,16 +152,16 @@ public class SelectorEquipos extends InterfazMaestra {
 
 
         // Crear botones
-        crearBoton(seleccionarEqu1, "Seleccionar", 150, 30, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(seleccionarEqu2, "Seleccionar", 950, 30, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(seleccionarEqu1, "Seleccionar", 150, 60, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(seleccionarEqu2, "Seleccionar", 950, 60, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(jugar, "Jugar", 550, 500, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(atras, "Atrás", 550, 600, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(flechaIzquierda, "<", 900, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(flechaDerecha, ">", 1150, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(flechaIzquierda2, "<", 100, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(flechaDerecha2, ">", 350, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(seleccionarTemporada1, "Cambiar Temporada", 50, 100, 400, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(seleccionarTemporada2, "Cambiar Temporada", 850, 100, 400, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(seleccionarTemporada1, "Cambiar Temporada", 100, 580, 300, 40, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(seleccionarTemporada2, "Cambiar Temporada", 900, 580, 300, 40, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
 
         // Fondo
         crearFondo(fondo, "Imagenes/Fondo/SelectorEquipos.jpg");

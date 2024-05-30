@@ -10,13 +10,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LobbyIE1 extends InterfazMaestra {
+public class LobbyIE3 extends InterfazMaestra {
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     public static final Font fuenteBoton = new Font("Rubik", Font.PLAIN, 20);
     public static final Color colorTexto = new Color(255, 255, 255);
     private final MusicManager musicManager = new MusicManager();
 
-    public LobbyIE1() {
+    public LobbyIE3() {
 
         //Ventana
         crearVentana("Penalty Eleven", 1280, 720);
@@ -36,7 +36,7 @@ public class LobbyIE1 extends InterfazMaestra {
         crearBoton(volver, "Volver", 60, 620, 200, 50, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
 
 // Fondo
-        crearFondo(fondo, "Imagenes/Fondo/LobbyIE1.png");
+        crearFondo(fondo, "Imagenes/Fondo/LobbyIE3.png");
 
 //Añadir botones al panel
         panel.add(empezar);
@@ -73,9 +73,8 @@ public class LobbyIE1 extends InterfazMaestra {
             }
         });
 
-
         // Controles de la música
-        musicManager.playMusic("Musica/Soundtrack/SoloPlayer1.wav", 0.5f);
+        musicManager.playMusic("Musica/Soundtrack/LobbyIE3.wav", 0.5f);
 
     }
 
