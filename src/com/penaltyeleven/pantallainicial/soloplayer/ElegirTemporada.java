@@ -21,7 +21,7 @@ public class ElegirTemporada extends InterfazMaestra {
     private final JButton volver;
     private JButton fondo;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
-    private BufferedImage imagen;
+    public static final Font fuenteBoton = new Font("Rubik", Font.PLAIN, 20);
     private final MusicManager musicManager = new MusicManager();
 
     public ElegirTemporada() {
@@ -105,32 +105,11 @@ public class ElegirTemporada extends InterfazMaestra {
             }
         });
 
-        //Cambiar color base de los botones
-        temp1.setBackground(colorBaseBotones);
-        temp2.setBackground(colorBaseBotones);
-        temp3.setBackground(colorBaseBotones);
-        volver.setBackground(colorBaseBotones);
-        fondo.setBackground(colorBaseBotones);
-
-        //Cambiar tamaño y posición de los botones
-        temp1.setBounds(120, 275, 460, 45);
-        temp2.setBounds(120, 355, 460, 45);
-        temp3.setBounds(120, 435, 460, 45);
-        volver.setBounds(120, 515, 460, 45);
-
-        //Cambiar la fuente de los botones
-        Font fuenteBoton = new Font("Action Man", Font.BOLD, 20);
-        temp1.setFont(fuenteBoton);
-        temp2.setFont(fuenteBoton);
-        temp3.setFont(fuenteBoton);
-        volver.setFont(fuenteBoton);
-
-        //Cambiar color de texto de los botones
-        Color colorTexto = new Color(255, 255, 255);
-        temp1.setForeground(colorTexto);
-        temp2.setForeground(colorTexto);
-        temp3.setForeground(colorTexto);
-        volver.setForeground(colorTexto);
+        //Crear botones
+        crearBoton(temp1, "Temporada 1", 120, 275, 460, 45, colorBaseBotones, Color.WHITE, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(temp2, "Temporada 2", 120, 355, 460, 45, colorBaseBotones, Color.WHITE, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(temp3, "Temporada 3", 120, 435, 460, 45, colorBaseBotones, Color.WHITE, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(volver, "Volver", 120, 515, 460, 45, colorBaseBotones, Color.WHITE, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
 
         // Cambiar color de los botones al pasar el ratón por encima
         temp1.addMouseListener(new MouseAdapter() {
