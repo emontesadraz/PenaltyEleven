@@ -1,7 +1,8 @@
 package com.penaltyeleven.metodosexternos;
 
-public class Equipos {
+public class Equipos{
     private String nombreEquipo;
+    private String rutaEscudo;
     private String Tiro1;
     private String Tiro2;
     private String Tiro3;
@@ -14,8 +15,9 @@ public class Equipos {
     }
 
     // Constructor con parametros
-    public Equipos(String nombreEquipo,String Tiro1, String Tiro2, String Tiro3, String Parada1, String Parada2, String Parada3) {
+    public Equipos(String nombreEquipo, String rutaEscudo, String Tiro1, String Tiro2, String Tiro3, String Parada1, String Parada2, String Parada3) {
         this.nombreEquipo = nombreEquipo;
+        this.rutaEscudo = rutaEscudo;
         this.Tiro1 = Tiro1;
         this.Tiro2 = Tiro2;
         this.Tiro3 = Tiro3;
@@ -30,6 +32,14 @@ public class Equipos {
 
     public void setNombreEquipo(String nombreEquipo) {
         this.nombreEquipo = nombreEquipo;
+    }
+
+    public String getRutaEscudo() {
+        return rutaEscudo;
+    }
+
+    public void setRutaEscudo(String rutaEscudo) {
+        this.rutaEscudo = rutaEscudo;
     }
 
     public String getTiro1() {
