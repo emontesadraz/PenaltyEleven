@@ -1,8 +1,8 @@
 package com.penaltyeleven.soloplayer;
 
-import com.penaltyeleven.InterfazMaestra;
 import com.penaltyeleven.MenuInicial;
-import com.penaltyeleven.MusicManager;
+import com.penaltyeleven.metodosexternos.MusicManager;
+import com.penaltyeleven.metodosexternos.InterfazMaestra;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,9 +53,7 @@ public class SoloPlayer extends InterfazMaestra {
         modoHistoria.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ElegirTemporada elegirTemporada = new ElegirTemporada();
-                elegirTemporada.setVisible(true);
-                dispose();
+
 
                 musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 musicManager.stopMusic();
@@ -77,9 +75,7 @@ public class SoloPlayer extends InterfazMaestra {
         volver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MenuInicial menuInicial = new MenuInicial();
-                menuInicial.setVisible(true);
-                dispose();
+
                 musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
 
                 musicManager.stopMusic();

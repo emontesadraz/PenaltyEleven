@@ -1,8 +1,8 @@
 package com.penaltyeleven.pantallainicial.multiplayer;
-import com.penaltyeleven.InterfazMaestra;
 import com.penaltyeleven.MenuInicial;
-import com.penaltyeleven.MusicManager;
 import com.penaltyeleven.metodosexternos.Equipos;
+import com.penaltyeleven.metodosexternos.InterfazMaestra;
+import com.penaltyeleven.metodosexternos.MusicManager;
 import com.penaltyeleven.metodosexternos.OperacionesEquipos;
 
 import javax.imageio.ImageIO;

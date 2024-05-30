@@ -1,5 +1,8 @@
 package com.penaltyeleven;
 
+import com.penaltyeleven.metodosexternos.InterfazMaestra;
+import com.penaltyeleven.metodosexternos.MusicManager;
+import com.penaltyeleven.pantallainicial.Ranking;
 import com.penaltyeleven.pantallainicial.multiplayer.SelectorEquipos;
 import com.penaltyeleven.soloplayer.SoloPlayer;
 
@@ -102,9 +105,7 @@ public class MenuInicial extends InterfazMaestra {
         creditos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Creditos creditos = new Creditos();
-                creditos.setVisible(true);
-                dispose();
+
                 musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 musicManager.stopMusic();
             }
