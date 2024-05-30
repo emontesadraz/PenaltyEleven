@@ -78,8 +78,6 @@ public class JuegoMultiplayer extends InterfazMaestra {
         marcadorLabel.setFont(new Font("Rubik", Font.BOLD, 24));
         marcadorLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-
-
         // Inicializar los JLabel
         equipo1Label = new JLabel(equipoSeleccionado1.getNombreEquipo());
         equipo1Label.setBounds(50, 50, 150, 30);
