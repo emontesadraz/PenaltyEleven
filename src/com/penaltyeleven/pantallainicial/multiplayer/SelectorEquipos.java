@@ -26,50 +26,50 @@ public class SelectorEquipos extends InterfazMaestra {
     public static final Color colorBase = new Color(25, 25, 25);
     public static final Font fuente = new Font("Rubik", Font.PLAIN, 20);
     public static final Color colorTexto = new Color(255, 255, 255);
-    private final ImageIcon[][] imagenesEquipos = {
+    private final BufferedImage[][] imagenesEquipos = {
             {
-                    new ImageIcon("src/Imagenes/Escudo/Raimon.png", "Raimon"),
-                    new ImageIcon("src/Imagenes/Escudo/Occult.png", "Occult"),
-                    new ImageIcon("src/Imagenes/Escudo/Wild.png", "Wild"),
-                    new ImageIcon("src/Imagenes/Escudo/Brain.png", "Brain"),
-                    new ImageIcon("src/Imagenes/Escudo/Otaku.png", "Otaku"),
-                    new ImageIcon("src/Imagenes/Escudo/RoyalAcademy.png", "Royal Academy"),
-                    new ImageIcon("src/Imagenes/Escudo/Shuriken.png", "Shuriken"),
-                    new ImageIcon("src/Imagenes/Escudo/Farm.png", "Farm"),
-                    new ImageIcon("src/Imagenes/Escudo/Kirkwood.png", "Kirkwood"),
-                    new ImageIcon("src/Imagenes/Escudo/Zeus.png", "Zeus"),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Raimon2.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Alpino.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/TormentaDeGeminis.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/RoyalRedux.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Epsilon.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Prominence.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/PolvoDiamante.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Caos.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Genesis.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/EmperadoresOscuros.png")),
+            },
+
+            {
+                    ImageIO.read(new File("src/Imagenes/Escudo/Raimon2.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Alpino.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/TormentaDeGeminis.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/RoyalRedux.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Epsilon.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Prominence.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/PolvoDiamante.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Caos.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Genesis.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/EmperadoresOscuros.png")),
             },
             {
-                    new ImageIcon("src/Imagenes/Escudo/Raimon2.png", "Raimon 2"),
-                    new ImageIcon("src/Imagenes/Escudo/Alpino.png", "Alpino"),
-                    new ImageIcon("src/Imagenes/Escudo/TormentaDeGeminis.png", "Tormenta de Geminis"),
-                    new ImageIcon("src/Imagenes/Escudo/RoyalRedux.png", "Royal Academy Redux"),
-                    new ImageIcon("src/Imagenes/Escudo/Epsilon.png", "Épsilon"),
-                    new ImageIcon("src/Imagenes/Escudo/Prominence.png", "Prominence"),
-                    new ImageIcon("src/Imagenes/Escudo/PolvoDiamante.png", "Polvo de Diamantes"),
-                    new ImageIcon("src/Imagenes/Escudo/Caos.png", "Caos"),
-                    new ImageIcon("src/Imagenes/Escudo/Genesis.png", "Genesis"),
-                    new ImageIcon("src/Imagenes/Escudo/EmperadoresOscuros.png", "Emperadores Oscuros"),
-            },
-            {
-                    new ImageIcon("src/Imagenes/Escudo/InazumaJapon.png", "Inazuma Japón"),
-                    new ImageIcon("src/Imagenes/Escudo/NeoJapon.png", "Neo Japón"),
-                    new ImageIcon("src/Imagenes/Escudo/DragonesDeFuego.png", "Dragones de Fuego"),
-                    new ImageIcon("src/Imagenes/Escudo/KnightsOfQueen.png", "Knights of Queen"),
-                    new ImageIcon("src/Imagenes/Escudo/Emperadores.png", "Los Emperadores"),
-                    new ImageIcon("src/Imagenes/Escudo/Unicorn.png", "Unicorn"),
-                    new ImageIcon("src/Imagenes/Escudo/LosRojos.png", "Los Rojos"),
-                    new ImageIcon("src/Imagenes/Escudo/Orfeo.png", "Orfeo"),
-                    new ImageIcon("src/Imagenes/Escudo/OsReis.png", "Os Reis"),
-                    new ImageIcon("src/Imagenes/Escudo/LittleGiants.png", "Little Giants"),
+                    ImageIO.read(new File("src/Imagenes/Escudo/InazumaJapon.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/NeoJapon.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/DragonesDeFuego.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Orfeo.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Zeus.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Genesis.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/PolvoDiamante.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Caos.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Genesis.png")),
             }
-    };
+            };
     private boolean equipo1Seleccionado = false;
     private boolean equipo2Seleccionado = false;
     private Equipos equipoSeleccionado1;
-    private ImageIcon escudoEquipoSeleccionado1;
+    private BufferedImage escudoEquipoSeleccionado1;
     private Equipos equipoSeleccionado2;
-    private ImageIcon escudoEquipoSeleccionado2;
+    private BufferedImage escudoEquipoSeleccionado2;
     private JPanel panel;
     private JLabel labelEquipo1;
     private JLabel labelEquipo2;

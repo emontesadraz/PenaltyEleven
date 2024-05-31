@@ -4,10 +4,13 @@ import com.penaltyeleven.metodosexternos.Equipos;
 import com.penaltyeleven.metodosexternos.InterfazMaestra;
 import com.penaltyeleven.metodosexternos.MusicManager;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -42,20 +45,24 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private final JButton[][] botones = new JButton[3][3];
     private JLabel marcadorLabel = new JLabel("Jugador 1: 0 | Jugador 2: 0");
     private JLabel estadoLabel = new JLabel("Jugador 1 tira");
-    private java.util.List<String> canciones = Arrays.asList("Musica/Soundtrack/MusicaPartidoBasico1.wav", "Musica/Soundtrack/MusicaPartidoBasico2.wav", "Musica/Soundtrack/MusicaPartidoBasico3.wav", "Musica/Soundtrack/MusicaPartidoBasico4.wav");
+    private java.util.List<String> canciones = Arrays.asList("Musica/Soundtrack/MusicaPartidoBasico1.wav", "Musica/Soundtrack/MusicaPartidoBasico2.wav", "Musica/Soundtrack/MusicaPartidoBasico3.wav", "Musica/Soundtrack/MusicaPartidoBasico4.wav", "Musica/Soundtrack/MusicaPartidoBasico5.wav", "Musica/Soundtrack/MusicaPartidoBasico6.wav" );
     private int currentSongsIndex = 0;
 
     // Variables para el equipo y el escudo seleccionados
     private Equipos equipoSeleccionado1;
-    private ImageIcon escudoEquipoSeleccionado1;
+    private BufferedImage escudoEquipoSeleccionado1;
     private Equipos equipoSeleccionado2;
-    private ImageIcon escudoEquipoSeleccionado2;
+    private BufferedImage escudoEquipoSeleccionado2;
     private JLabel equipo1Label;
     private JLabel escudo1Label;
     private JLabel equipo2Label;
     private JLabel escudo2Label;
 
-    public JuegoMultiplayer(Equipos equipoSeleccionado1, ImageIcon escudoEquipoSeleccionado1, Equipos equipoSeleccionado2, ImageIcon escudoEquipoSeleccionado2) {
+    public JuegoMultiplayer() {
+
+    }
+
+    public JuegoMultiplayer(Equipos equipoSeleccionado1, BufferedImage escudoEquipoSeleccionado1, Equipos equipoSeleccionado2, BufferedImage escudoEquipoSeleccionado2) {
         setTitle("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1430, 870);
@@ -79,16 +86,22 @@ public class JuegoMultiplayer extends InterfazMaestra {
         marcadorLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Inicializar los JLabel
+
         equipo1Label = new JLabel(equipoSeleccionado1.getNombreEquipo());
-        equipo1Label.setBounds(50, 50, 150, 30);
         equipo1Label.setFont(new Font("Rubik", Font.PLAIN, 20));
-        escudo1Label = new JLabel();
-        escudo1Label.setIcon(escudoEquipoSeleccionado1);
-        escudo1Label.setBounds(50, 50, 10, 150);
+
+
         equipo2Label = new JLabel(equipoSeleccionado2.getNombreEquipo());
         equipo2Label.setFont(new Font("Rubik", Font.PLAIN, 20));
-        escudo2Label = new JLabel();
-        escudo2Label.setIcon(escudoEquipoSeleccionado2);
+
+        BufferedImage escudoImg1 = ImageIO.read(new File(equipo1.getImagenEquipo()));
+        JLabel escudo1 = new JLabel(new ImageIcon(escudoImg1.getScaledInstance(200, 200, Image.SCALE_DEFAULT)));
+        escudo1.setBorder(null);
+
+        //Label Escudo2
+        BufferedImage escudoImg2 = ImageIO.read(new File(escudoEquipoSeleccionado1));
+        JLabel escudo2 = new JLabel(new ImageIcon(escudoImg2.getScaledInstance(200, 200, Image.SCALE_DEFAULT)));
+        escudo2.setBorder(null);
 
         // Inicializar los botones de las supertécnicas de tiro y parada
         for (int i = 0; i < 3; i++) {
@@ -266,6 +279,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
         controlPanel.add(seguirBoton);
         controlPanel.add(panelEquipo1);
         controlPanel.add(panelEquipo2);
+
 
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
