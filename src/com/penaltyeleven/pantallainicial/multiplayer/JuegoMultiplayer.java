@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class JuegoMultiplayer extends InterfazMaestra {
 
-    private static final int NUM_PENALES = 3;
+    private static final int NUM_PENALES = 1;
     private int turno = 0;
     private int penalesRestantes1 = NUM_PENALES;
     private int penalesRestantes2 = NUM_PENALES;
@@ -46,8 +46,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private JLabel equipo2Label;
     private BufferedImage escudoEquipoSeleccionado1;
     private BufferedImage escudoEquipoSeleccionado2;
-    private JLabel escudo1Label;
-    private JLabel escudo2Label;
+    private boolean muerteSubitaMostrada = false;
 
 
     public JuegoMultiplayer(Equipos equipoSeleccionado1, BufferedImage escudoEquipoSeleccionado1, Equipos equipoSeleccionado2, BufferedImage escudoEquipoSeleccionado2) {
@@ -86,10 +85,10 @@ public class JuegoMultiplayer extends InterfazMaestra {
 
         // Inicializar los JLabel de los Equipos
         equipo1Label = new JLabel(equipoSeleccionado1.getNombreEquipo());
-        equipo1Label.setFont(new Font("Rubik", Font.PLAIN, 20));
+        equipo1Label.setFont(new Font("Rubik",Font.BOLD | Font.ITALIC, 17));
 
         equipo2Label = new JLabel(equipoSeleccionado2.getNombreEquipo());
-        equipo2Label.setFont(new Font("Rubik", Font.PLAIN, 20));
+        equipo2Label.setFont(new Font("Rubik", Font.BOLD | Font.ITALIC, 17));
 
         // Crear ImageLabel para los escudos de los equipos
         ImageLabel escudo1Label = new ImageLabel(escudoEquipoSeleccionado1Scaled);
@@ -425,7 +424,10 @@ public class JuegoMultiplayer extends InterfazMaestra {
             jugador2Gana.setVisible(true);
             dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "Muerte Súbita, que gane el mejor!", "Muerte Súbita", JOptionPane.INFORMATION_MESSAGE);
+            if (!muerteSubitaMostrada) {
+                JOptionPane.showMessageDialog(null, "Muerte Súbita, que gane el mejor!", "Muerte Súbita", JOptionPane.INFORMATION_MESSAGE);
+                muerteSubitaMostrada = true;
+            }
             muerteSubita();
             accionBoton.setEnabled(false);
         }
