@@ -65,7 +65,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
         // Panel de marcador
         JPanel marcadorPanel = new JPanel();
         marcadorPanel.setLayout(new BorderLayout());
-        marcadorPanel.setPreferredSize(new Dimension(1430, 120)); // Ajustar altura
+        marcadorPanel.setPreferredSize(new Dimension(1430, 80)); // Ajustar altura
         marcadorPanel.setBackground(new Color(0, 51, 102));
         marcadorLabel.setForeground(Color.WHITE);
         marcadorLabel.setFont(new Font("Rubik", Font.BOLD, 24));
@@ -78,14 +78,13 @@ public class JuegoMultiplayer extends InterfazMaestra {
 
         // Inicializar los JLabel
         equipo1Label = new JLabel(equipoSeleccionado1.getNombreEquipo());
-        equipo1Label.setBounds(50, 50, 150, 30);
         equipo1Label.setFont(new Font("Rubik", Font.PLAIN, 20));
         escudo1Label = new JLabel();
         escudo1Label.setIcon(escudoEquipoSeleccionado1);
-        escudo1Label.setBounds(50, 50, 10, 150);
         equipo2Label = new JLabel(equipoSeleccionado2.getNombreEquipo());
         equipo2Label.setFont(new Font("Rubik", Font.PLAIN, 20));
         escudo2Label = new JLabel();
+        escudo2Label.setBounds(100, 200, 100, 100);
         escudo2Label.setIcon(escudoEquipoSeleccionado2);
 
 
@@ -202,19 +201,18 @@ public class JuegoMultiplayer extends InterfazMaestra {
             }
         });
         // Añadir los JLabel al panelBotones
-        JPanel panelEquipo1 = new JPanel(new BorderLayout());
-        panelEquipo1.add(equipo1Label);
+        JPanel panelEquipo1 = new JPanel(new GridLayout(1,2));
         panelEquipo1.add(escudo1Label);
+        panelEquipo1.add(equipo1Label);
 
-        JPanel panelEquipo2 = new JPanel(new BorderLayout());
+        JPanel panelEquipo2 = new JPanel(new GridLayout(1,2));
         panelEquipo2.add(equipo2Label);
         panelEquipo2.add(escudo2Label);
 
-
-        JPanel controlPanel = new JPanel();
+        JPanel controlPanel = new JPanel(new GridLayout(1, 3));
+        controlPanel.add(panelEquipo1);
         controlPanel.add(accionBoton);
         controlPanel.add(seguirBoton);
-        controlPanel.add(panelEquipo1);
         controlPanel.add(panelEquipo2);
 
         JPanel mainPanel = new JPanel();
