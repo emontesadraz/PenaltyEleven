@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 
@@ -23,11 +24,11 @@ public class Jugador2Gana extends InterfazMaestra {
     public static final Color colorTexto = new Color(255, 255, 255);
     private final MusicManager musicManager = new MusicManager();
     private Equipos equipoSeleccionado1;
-    private ImageIcon escudoEquipoSeleccionado1;
+    private BufferedImage escudoEquipoSeleccionado1;
     private Equipos equipoSeleccionado2;
-    private ImageIcon escudoEquipoSeleccionado2;
+    private BufferedImage escudoEquipoSeleccionado2;
 
-    public Jugador2Gana(Equipos equipoSeleccionado1, ImageIcon escudoEquipoSeleccionado1, Equipos equipoSeleccionado2, ImageIcon escudoEquipoSeleccionado2) {
+    public Jugador2Gana(Equipos equipoSeleccionado1, BufferedImage escudoEquipoSeleccionado1, Equipos equipoSeleccionado2, BufferedImage escudoEquipoSeleccionado2) {
         setTitle("Penalty Eleven");
         setSize(1280, 720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

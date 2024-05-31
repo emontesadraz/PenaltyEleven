@@ -1,18 +1,19 @@
 package com.penaltyeleven.pantallainicial.multiplayer;
-import com.penaltyeleven.metodosexternos.InterfazMaestra;
-import com.penaltyeleven.pantallainicial.MenuInicial;
-import com.penaltyeleven.metodosexternos.MusicManager;
+
 import com.penaltyeleven.metodosexternos.Equipos;
+import com.penaltyeleven.metodosexternos.InterfazMaestra;
+import com.penaltyeleven.metodosexternos.MusicManager;
 import com.penaltyeleven.metodosexternos.OperacionesEquipos;
+import com.penaltyeleven.pantallainicial.MenuInicial;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,50 +27,50 @@ public class SelectorEquipos extends InterfazMaestra {
     public static final Color colorBase = new Color(25, 25, 25);
     public static final Font fuente = new Font("Rubik", Font.PLAIN, 20);
     public static final Color colorTexto = new Color(255, 255, 255);
-    private final ImageIcon[][] imagenesEquipos = {
+    private final BufferedImage[][] imagenesEquipos = {
             {
-                    new ImageIcon("src/Imagenes/Escudo/Raimon.png", "Raimon"),
-                    new ImageIcon("src/Imagenes/Escudo/Occult.png", "Occult"),
-                    new ImageIcon("src/Imagenes/Escudo/Wild.png", "Wild"),
-                    new ImageIcon("src/Imagenes/Escudo/Brain.png", "Brain"),
-                    new ImageIcon("src/Imagenes/Escudo/Otaku.png", "Otaku"),
-                    new ImageIcon("src/Imagenes/Escudo/RoyalAcademy.png", "Royal Academy"),
-                    new ImageIcon("src/Imagenes/Escudo/Shuriken.png", "Shuriken"),
-                    new ImageIcon("src/Imagenes/Escudo/Farm.png", "Farm"),
-                    new ImageIcon("src/Imagenes/Escudo/Kirkwood.png", "Kirkwood"),
-                    new ImageIcon("src/Imagenes/Escudo/Zeus.png", "Zeus"),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Raimon.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Occult.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Wild.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Brain.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Otaku.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/RoyalAcademy.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Shuriken.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Farm.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Kirkwood.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Zeus.png")),
             },
             {
-                    new ImageIcon("src/Imagenes/Escudo/Raimon2.png", "Raimon 2"),
-                    new ImageIcon("src/Imagenes/Escudo/Alpino.png", "Alpino"),
-                    new ImageIcon("src/Imagenes/Escudo/TormentaDeGeminis.png", "Tormenta de Geminis"),
-                    new ImageIcon("src/Imagenes/Escudo/RoyalRedux.png", "Royal Academy Redux"),
-                    new ImageIcon("src/Imagenes/Escudo/Epsilon.png", "Épsilon"),
-                    new ImageIcon("src/Imagenes/Escudo/Prominence.png", "Prominence"),
-                    new ImageIcon("src/Imagenes/Escudo/PolvoDiamante.png", "Polvo de Diamantes"),
-                    new ImageIcon("src/Imagenes/Escudo/Caos.png", "Caos"),
-                    new ImageIcon("src/Imagenes/Escudo/Genesis.png", "Genesis"),
-                    new ImageIcon("src/Imagenes/Escudo/EmperadoresOscuros.png", "Emperadores Oscuros"),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Raimon2.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Alpino.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/TormentaDeGeminis.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/RoyalRedux.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Epsilon.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Prominence.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/PolvoDiamante.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Caos.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Genesis.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/EmperadoresOscuros.png")),
             },
             {
-                    new ImageIcon("src/Imagenes/Escudo/InazumaJapon.png", "Inazuma Japón"),
-                    new ImageIcon("src/Imagenes/Escudo/NeoJapon.png", "Neo Japón"),
-                    new ImageIcon("src/Imagenes/Escudo/DragonesDeFuego.png", "Dragones de Fuego"),
-                    new ImageIcon("src/Imagenes/Escudo/KnightsOfQueen.png", "Knights of Queen"),
-                    new ImageIcon("src/Imagenes/Escudo/Emperadores.png", "Los Emperadores"),
-                    new ImageIcon("src/Imagenes/Escudo/Unicorn.png", "Unicorn"),
-                    new ImageIcon("src/Imagenes/Escudo/LosRojos.png", "Los Rojos"),
-                    new ImageIcon("src/Imagenes/Escudo/Orfeo.png", "Orfeo"),
-                    new ImageIcon("src/Imagenes/Escudo/OsReis.png", "Os Reis"),
-                    new ImageIcon("src/Imagenes/Escudo/LittleGiants.png", "Little Giants"),
+                    ImageIO.read(new File("src/Imagenes/Escudo/InazumaJapon.png")),
+                    ImageIO.read(new File("src/imagenes/Escudo/NeoJapon.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/DragonesDeFuego.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/KnightsOfQueen.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Emperadores.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Unicorn.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/LosRojos.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Orfeo.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/OsReis.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/LittleGiants.png")),
             }
     };
     private boolean equipo1Seleccionado = false;
     private boolean equipo2Seleccionado = false;
     private Equipos equipoSeleccionado1;
-    private ImageIcon escudoEquipoSeleccionado1;
+    private BufferedImage escudoEquipoSeleccionado1;
     private Equipos equipoSeleccionado2;
-    private ImageIcon escudoEquipoSeleccionado2;
+    private BufferedImage escudoEquipoSeleccionado2;
     private JPanel panel;
     private JLabel labelEquipo1;
     private JLabel labelEquipo2;
@@ -83,6 +84,7 @@ public class SelectorEquipos extends InterfazMaestra {
     /**
      * Constructor for the com.penaltyeleven.pantallainicial.SelectorEquipos class.
      * It initializes the team selector interface.
+     *
      * @throws IOException if there is an error reading an image file.
      */
     public SelectorEquipos() throws IOException {
@@ -112,8 +114,7 @@ public class SelectorEquipos extends InterfazMaestra {
         labelEquipo1.setBounds(80, 170, 340, 45);
         labelEquipo1.setHorizontalAlignment(JLabel.CENTER);
 
-        // JLabel para la imagen del equipo 1
-        JLabel imagenEquipo1 = new JLabel(imagenesEquipos[indiceEquipo1][temporadaActual]);
+        ImageLabel imagenEquipo1 = new ImageLabel(imagenesEquipos[indiceEquipo1][temporadaActual]);
         imagenEquipo1.setBounds(150, 250, 200, 200);
 
         // JLabel para el equipo 2
@@ -127,7 +128,7 @@ public class SelectorEquipos extends InterfazMaestra {
         labelEquipo2.setHorizontalAlignment(JLabel.CENTER);
 
         // JLabel para la imagen del equipo 2
-        JLabel imagenEquipo2 = new JLabel(imagenesEquipos[indiceEquipo2][temporadaActual]);
+        ImageLabel imagenEquipo2 = new ImageLabel(imagenesEquipos[indiceEquipo2][temporadaActual]);
         imagenEquipo2.setBounds(950, 250, 200, 200);
 
         // JLabel imagen versus
@@ -240,7 +241,7 @@ public class SelectorEquipos extends InterfazMaestra {
                 musicManager.playSound("Musica/SoundEffect/SonidoJugar.wav", 0.7f);
                 if (eq1 && eq2) {
                     JuegoMultiplayer juegoMultiplayer;
-                    juegoMultiplayer = new JuegoMultiplayer(equipoSeleccionado1,escudoEquipoSeleccionado1,equipoSeleccionado2,escudoEquipoSeleccionado2);
+                    juegoMultiplayer = new JuegoMultiplayer(equipoSeleccionado1, escudoEquipoSeleccionado1, equipoSeleccionado2, escudoEquipoSeleccionado2);
                     juegoMultiplayer.setVisible(true);
                     dispose();
                     musicManager.stopMusic();
@@ -274,7 +275,8 @@ public class SelectorEquipos extends InterfazMaestra {
                     // Asegúrate de que el índice esté dentro de los límites de la matriz
                     if (indiceEquipo2 < imagenesEquipos[temporadaActual].length) {
                         labelEquipo2.setText(temporadas.get(temporadaActual).get(indiceEquipo2).getNombreEquipo());
-                        imagenEquipo2.setIcon(imagenesEquipos[temporadaActual][indiceEquipo2]);
+                        imagenEquipo2.image = scaleImage(imagenesEquipos[temporadaActual][indiceEquipo2], 200, 200);
+                        imagenEquipo2.repaint();
                     }
                 }
             }
@@ -290,7 +292,8 @@ public class SelectorEquipos extends InterfazMaestra {
                     // Asegúrate de que el índice esté dentro de los límites de la matriz
                     if (indiceEquipo2 < imagenesEquipos[temporadaActual].length) {
                         labelEquipo2.setText(temporadas.get(temporadaActual).get(indiceEquipo2).getNombreEquipo());
-                        imagenEquipo2.setIcon(imagenesEquipos[temporadaActual][indiceEquipo2]);
+                        imagenEquipo2.image = scaleImage(imagenesEquipos[temporadaActual][indiceEquipo2], 200, 200);
+                        imagenEquipo2.repaint();
                     }
                 }
             }
@@ -306,7 +309,8 @@ public class SelectorEquipos extends InterfazMaestra {
                     // Asegúrate de que el índice esté dentro de los límites de la matriz
                     if (indiceEquipo1 < imagenesEquipos[temporadaActual].length) {
                         labelEquipo1.setText(temporadas.get(temporadaActual).get(indiceEquipo1).getNombreEquipo());
-                        imagenEquipo1.setIcon(imagenesEquipos[temporadaActual][indiceEquipo1]);
+                        imagenEquipo1.image = scaleImage(imagenesEquipos[temporadaActual][indiceEquipo1], 200, 200);
+                        imagenEquipo1.repaint();
                     }
                 }
             }
@@ -322,7 +326,8 @@ public class SelectorEquipos extends InterfazMaestra {
                     // Asegúrate de que el índice esté dentro de los límites de la matriz
                     if (indiceEquipo1 < imagenesEquipos[temporadaActual].length) {
                         labelEquipo1.setText(temporadas.get(temporadaActual).get(indiceEquipo1).getNombreEquipo());
-                        imagenEquipo1.setIcon(imagenesEquipos[temporadaActual][indiceEquipo1]);
+                        imagenEquipo1.image = scaleImage(imagenesEquipos[temporadaActual][indiceEquipo1], 200, 200);
+                        imagenEquipo1.repaint();
                     }
                 }
             }
@@ -338,7 +343,8 @@ public class SelectorEquipos extends InterfazMaestra {
                     indiceEquipo1 = 0;
                     labelEquipo1.setText(temporadas.get(temporadaActual).get(indiceEquipo1).getNombreEquipo());
                     // Actualiza los íconos de los equipos
-                    imagenEquipo1.setIcon(imagenesEquipos[temporadaActual][indiceEquipo1]);
+                    imagenEquipo1.image = scaleImage(imagenesEquipos[temporadaActual][indiceEquipo1], 200, 200);
+                    imagenEquipo1.repaint();
                 }
             }
         });
@@ -352,7 +358,8 @@ public class SelectorEquipos extends InterfazMaestra {
                     indiceEquipo2 = 0;
                     labelEquipo2.setText(temporadas.get(temporadaActual).get(indiceEquipo2).getNombreEquipo());
                     // Actualiza los íconos de los equipos
-                    imagenEquipo2.setIcon(imagenesEquipos[temporadaActual][indiceEquipo2]);
+                    imagenEquipo2.image = scaleImage(imagenesEquipos[temporadaActual][indiceEquipo2], 200, 200);
+                    imagenEquipo2.repaint();
                 }
             }
         });
@@ -361,10 +368,36 @@ public class SelectorEquipos extends InterfazMaestra {
         musicManager.playMusic("Musica/Soundtrack/SelectorEquipos.wav", 0.7f);
     }
 
+    public BufferedImage scaleImage(BufferedImage source, int width, int height) {
+        Image tmp = source.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        BufferedImage scaled = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = scaled.createGraphics();
+        g2d.drawImage(tmp, 0, 0, null);
+        g2d.dispose();
+        return scaled;
+    }
+    public class ImageLabel extends JLabel {
+        private BufferedImage image;
+
+        public ImageLabel(BufferedImage image) {
+            this.image = image;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            // Calcula la posición x e y para centrar la imagen
+            int x = (this.getWidth() - image.getWidth()) / 2;
+            int y = (this.getHeight() - image.getHeight()) / 2;
+            g.drawImage(image, x, y, this);
+        }
+    }
+
 
     /**
      * Main method for the com.penaltyeleven.pantallainicial.SelectorEquipos class.
      * It creates a new team selector interface.
+     *
      * @param args the command line arguments.
      * @throws IOException if there is an error reading an image file.
      */

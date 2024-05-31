@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -40,15 +41,16 @@ public class JuegoMultiplayer extends InterfazMaestra {
 
     // Variables para el equipo y el escudo seleccionados
     private Equipos equipoSeleccionado1;
-    private ImageIcon escudoEquipoSeleccionado1;
     private Equipos equipoSeleccionado2;
-    private ImageIcon escudoEquipoSeleccionado2;
     private JLabel equipo1Label;
-    private JLabel escudo1Label;
     private JLabel equipo2Label;
+    private BufferedImage escudoEquipoSeleccionado1;
+    private BufferedImage escudoEquipoSeleccionado2;
+    private JLabel escudo1Label;
     private JLabel escudo2Label;
 
-    public JuegoMultiplayer(Equipos equipoSeleccionado1, ImageIcon escudoEquipoSeleccionado1, Equipos equipoSeleccionado2, ImageIcon escudoEquipoSeleccionado2) {
+
+    public JuegoMultiplayer(Equipos equipoSeleccionado1, BufferedImage escudoEquipoSeleccionado1, Equipos equipoSeleccionado2, BufferedImage escudoEquipoSeleccionado2) {
         setTitle("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1430, 870);
@@ -74,18 +76,26 @@ public class JuegoMultiplayer extends InterfazMaestra {
         // Panel para los botones y etiquetas en el marcador
         JPanel botonesPanel = new JPanel();
         botonesPanel.setOpaque(false);
-        botonesPanel.setLayout(new GridLayout(2, 3, 10, 0));
+        botonesPanel.setLayout(new GridLayout(2, 3));
 
-        // Inicializar los JLabel
+        // Escalar las imágenes
+        int desiredWidth = 100; // Ajusta esto a la anchura deseada
+        int desiredHeight = 100; // Ajusta esto a la altura deseada
+        BufferedImage escudoEquipoSeleccionado1Scaled = scaleImage(escudoEquipoSeleccionado1, desiredWidth, desiredHeight);
+        BufferedImage escudoEquipoSeleccionado2Scaled = scaleImage(escudoEquipoSeleccionado2, desiredWidth, desiredHeight);
+
+        // Inicializar los JLabel de los Equipos
         equipo1Label = new JLabel(equipoSeleccionado1.getNombreEquipo());
         equipo1Label.setFont(new Font("Rubik", Font.PLAIN, 20));
-        escudo1Label = new JLabel();
-        escudo1Label.setIcon(escudoEquipoSeleccionado1);
+
         equipo2Label = new JLabel(equipoSeleccionado2.getNombreEquipo());
         equipo2Label.setFont(new Font("Rubik", Font.PLAIN, 20));
-        escudo2Label = new JLabel();
-        escudo2Label.setBounds(100, 200, 100, 100);
-        escudo2Label.setIcon(escudoEquipoSeleccionado2);
+
+        // Crear ImageLabel para los escudos de los equipos
+        ImageLabel escudo1Label = new ImageLabel(escudoEquipoSeleccionado1Scaled);
+        escudo1Label.setPreferredSize(new Dimension(desiredWidth, desiredHeight));
+        ImageLabel escudo2Label = new ImageLabel(escudoEquipoSeleccionado2Scaled);
+        escudo2Label.setPreferredSize(new Dimension(desiredWidth, desiredHeight));
 
 
         marcadorPanel.add(marcadorLabel, BorderLayout.CENTER);
@@ -445,5 +455,28 @@ public class JuegoMultiplayer extends InterfazMaestra {
                 dispose();
             }
         }
+    }
+    public class ImageLabel extends JLabel {
+        private BufferedImage image;
+
+        public ImageLabel(BufferedImage image) {
+            this.image = image;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            if (image != null) {
+                g.drawImage(image, 0, 0, this);
+            }
+        }
+    }
+    public BufferedImage scaleImage(BufferedImage source, int width, int height) {
+        Image tmp = source.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        BufferedImage scaled = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = scaled.createGraphics();
+        g2d.drawImage(tmp, 0, 0, null);
+        g2d.dispose();
+        return scaled;
     }
 }
