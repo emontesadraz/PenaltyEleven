@@ -4,9 +4,21 @@ import javax.sound.sampled.*;
 import java.io.IOException;
 import java.net.URL;
 
+/**
+ * Clase que permite reproducir sonidos y música en un juego.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
 public class MusicManager {
     private Clip musicClip;
 
+    /**
+     * Reproduce un sonido.
+     *
+     * @param soundFile Archivo de sonido a reproducir.
+     * @param volume Volumen del sonido (0.0 - 1.0).
+     */
     public void playSound(String soundFile, float volume) {
         try {
             // Abrir un audio input stream
@@ -33,6 +45,12 @@ public class MusicManager {
         }
     }
 
+    /**
+     * Reproduce música.
+     *
+     * @param musicFile Archivo de música a reproducir.
+     * @param volume Volumen de la música (0.0 - 1.0).
+     */
     public void playMusic(String musicFile, float volume) {
         try {
             if (musicClip != null && musicClip.isRunning()) {
@@ -52,17 +70,12 @@ public class MusicManager {
         }
     }
 
+    /**
+     * Detiene la reproducción de la música.
+     */
     public void stopMusic() {
         if (musicClip != null && musicClip.isRunning()) {
             musicClip.stop();
         }
-    }
-
-    public Clip getMusicClip() {
-        return musicClip;
-    }
-
-    public void setMusicClip(Clip musicClip) {
-        this.musicClip = musicClip;
     }
 }

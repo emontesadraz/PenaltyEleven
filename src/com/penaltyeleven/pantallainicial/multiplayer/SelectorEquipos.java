@@ -368,6 +368,14 @@ public class SelectorEquipos extends InterfazMaestra {
         musicManager.playMusic("Musica/Soundtrack/SelectorEquipos.wav", 0.7f);
     }
 
+    /**
+     * Scales an image to the specified width and height.
+     *
+     * @param source the image to scale.
+     * @param width the width of the scaled image.
+     * @param height the height of the scaled image.
+     * @return the scaled image.
+     */
     public BufferedImage scaleImage(BufferedImage source, int width, int height) {
         Image tmp = source.getScaledInstance(width, height, Image.SCALE_SMOOTH);
         BufferedImage scaled = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -376,6 +384,10 @@ public class SelectorEquipos extends InterfazMaestra {
         g2d.dispose();
         return scaled;
     }
+
+    /**
+     * Clase para mostrar una imagen en un JLabel.
+     */
     public class ImageLabel extends JLabel {
         private BufferedImage image;
 
@@ -391,18 +403,5 @@ public class SelectorEquipos extends InterfazMaestra {
             int y = (this.getHeight() - image.getHeight()) / 2;
             g.drawImage(image, x, y, this);
         }
-    }
-
-
-    /**
-     * Main method for the com.penaltyeleven.pantallainicial.SelectorEquipos class.
-     * It creates a new team selector interface.
-     *
-     * @param args the command line arguments.
-     * @throws IOException if there is an error reading an image file.
-     */
-    public static void main(String[] args) throws IOException {
-        SelectorEquipos selectorEquipos = new SelectorEquipos();
-        selectorEquipos.setVisible(true);
     }
 }

@@ -12,6 +12,10 @@ import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * Clase que representa la pantalla de juego en modo multijugador.
+ * @version 1.0, 2021-08-10
+ */
 public class JuegoMultiplayer extends InterfazMaestra {
 
     private static final int NUM_PENALES = 1;
@@ -48,7 +52,13 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private BufferedImage escudoEquipoSeleccionado2;
     private boolean muerteSubitaMostrada = false;
 
-
+    /**
+     * Constructor de la clase JuegoMultiplayer.
+     * @param equipoSeleccionado1 Equipo seleccionado por el jugador 1.
+     * @param escudoEquipoSeleccionado1 Escudo del equipo seleccionado por el jugador 1.
+     * @param equipoSeleccionado2 Equipo seleccionado por el jugador 2.
+     * @param escudoEquipoSeleccionado2 Escudo del equipo seleccionado por el jugador 2.
+     */
     public JuegoMultiplayer(Equipos equipoSeleccionado1, BufferedImage escudoEquipoSeleccionado1, Equipos equipoSeleccionado2, BufferedImage escudoEquipoSeleccionado2) {
         setTitle("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,7 +95,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
 
         // Inicializar los JLabel de los Equipos
         equipo1Label = new JLabel(equipoSeleccionado1.getNombreEquipo());
-        equipo1Label.setFont(new Font("Rubik",Font.BOLD | Font.ITALIC, 17));
+        equipo1Label.setFont(new Font("Rubik", Font.BOLD | Font.ITALIC, 17));
 
         equipo2Label = new JLabel(equipoSeleccionado2.getNombreEquipo());
         equipo2Label.setFont(new Font("Rubik", Font.BOLD | Font.ITALIC, 17));
@@ -210,11 +220,11 @@ public class JuegoMultiplayer extends InterfazMaestra {
             }
         });
         // Añadir los JLabel al panelBotones
-        JPanel panelEquipo1 = new JPanel(new GridLayout(1,2));
+        JPanel panelEquipo1 = new JPanel(new GridLayout(1, 2));
         panelEquipo1.add(escudo1Label);
         panelEquipo1.add(equipo1Label);
 
-        JPanel panelEquipo2 = new JPanel(new GridLayout(1,2));
+        JPanel panelEquipo2 = new JPanel(new GridLayout(1, 2));
         panelEquipo2.add(equipo2Label);
         panelEquipo2.add(escudo2Label);
 
@@ -241,13 +251,16 @@ public class JuegoMultiplayer extends InterfazMaestra {
         add(estadoLabel, BorderLayout.SOUTH);
 
 
-
         playNextSong();
 
         setVisible(true);
     }
 
-
+    /**
+     * Método que marca la casilla seleccionada para el tiro.
+     * @param x
+     * @param y
+     */
     private void marcarTiro(int x, int y) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -263,6 +276,11 @@ public class JuegoMultiplayer extends InterfazMaestra {
         super.dispose();
     }
 
+    /**
+     * Método que selecciona la casilla de la portería para la parada.
+     * @param x
+     * @param y
+     */
     private void seleccionarParada(int x, int y) {
         if (seleccionPorteroCount < 2) {
             botones[x][y].setBackground(Color.GREEN);
@@ -277,10 +295,15 @@ public class JuegoMultiplayer extends InterfazMaestra {
         }
     }
 
+    /**
+     * Método que oculta el tiro seleccionado.
+     */
     private void ocultarTiro() {
         botones[tiroActual[0]][tiroActual[1]].setBackground(Color.WHITE);
     }
-
+    /**
+     * Método que procesa el turno del jugador.
+     */
     private void procesarTurno() {
         boolean parada = false;
         if ((tiroActual[0] == porteroSeleccion[0] && tiroActual[1] == porteroSeleccion[1]) ||
@@ -364,7 +387,9 @@ public class JuegoMultiplayer extends InterfazMaestra {
             }
         }
     }
-
+    /**
+     * Método que muestra los resultados del tiro.
+     */
     private void mostrarResultados() {
         accionBoton.setEnabled(false);
         botones[tiroActual[0]][tiroActual[1]].setBackground(Color.RED);
@@ -374,7 +399,10 @@ public class JuegoMultiplayer extends InterfazMaestra {
         setBotonesContentAreaFilled(true);
         seguirBoton.setVisible(true);
     }
-
+    /**
+     * Método que establece si los botones deben tener el área de contenido rellena.
+     * @param filled
+     */
     private void setBotonesContentAreaFilled(boolean filled) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -383,13 +411,16 @@ public class JuegoMultiplayer extends InterfazMaestra {
         }
     }
 
-
-
-
+    /**
+     * Método que actualiza el marcador.
+     */
     private void actualizarMarcador() {
         marcadorLabel.setText("Jugador 1: " + aciertos2 + " | Jugador 2: " + aciertos1);
     }
 
+    /**
+     * Método que resetea los botones.
+     */
     private void resetearBotones() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -398,6 +429,9 @@ public class JuegoMultiplayer extends InterfazMaestra {
         }
     }
 
+    /**
+     * Metodo que reproduce la siguiente canción.
+     */
     private void playNextSong() {
         if (canciones.isEmpty()) {
             return;
@@ -414,6 +448,9 @@ public class JuegoMultiplayer extends InterfazMaestra {
         musicManager.playMusic(song, 0.5f);
     }
 
+    /**
+     * Método que determina al ganador del juego.
+     */
     private void determinarGanador() {
         if (aciertos2 > aciertos1) {
             Jugador1Gana jugador1Gana = new Jugador1Gana(equipoSeleccionado1, escudoEquipoSeleccionado1, equipoSeleccionado2, escudoEquipoSeleccionado2);
@@ -433,7 +470,9 @@ public class JuegoMultiplayer extends InterfazMaestra {
         }
         accionBoton.setEnabled(false);
     }
-
+    /**
+     * Método que determina al ganador en caso de muerte súbita.
+     */
     private void muerteSubita() {
         penalesRestantes1 = 1;
         penalesRestantes2 = 1;
@@ -458,6 +497,10 @@ public class JuegoMultiplayer extends InterfazMaestra {
             }
         }
     }
+
+    /**
+     * Clase que extiende a JLabel para mostrar una imagen.
+     */
     public class ImageLabel extends JLabel {
         private BufferedImage image;
 
@@ -473,6 +516,14 @@ public class JuegoMultiplayer extends InterfazMaestra {
             }
         }
     }
+
+    /**
+     * Método que escala una imagen.
+     * @param source
+     * @param width
+     * @param height
+     * @return
+     */
     public BufferedImage scaleImage(BufferedImage source, int width, int height) {
         Image tmp = source.getScaledInstance(width, height, Image.SCALE_SMOOTH);
         BufferedImage scaled = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);

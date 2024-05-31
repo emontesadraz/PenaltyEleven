@@ -9,12 +9,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Clase que muestra la pantalla de elección de modo de juego para un solo jugador.
+ */
 public class SoloPlayer extends InterfazMaestra {
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     public static final Font fuenteBoton = new Font("Rubik", Font.BOLD, 20);
     public static final Color colorTexto = new Color(255, 255, 255);
     private final MusicManager musicManager = new MusicManager();
 
+    /**
+     * Constructor de la clase SoloPlayer.
+     */
     public SoloPlayer() {
 
         //Ventana

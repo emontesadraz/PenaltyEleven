@@ -14,6 +14,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 
+/**
+ * Clase que muestra la pantalla de victoria del jugador 2 en el modo multijugador.
+ */
 public class Jugador2Gana extends InterfazMaestra {
     private JTextArea nombreField;
     private JLabel mensajeGanador;
@@ -28,6 +31,13 @@ public class Jugador2Gana extends InterfazMaestra {
     private Equipos equipoSeleccionado2;
     private BufferedImage escudoEquipoSeleccionado2;
 
+    /**
+     * Constructor de la clase Jugador2Gana.
+     * @param equipoSeleccionado1 Equipo seleccionado por el jugador 1.
+     * @param escudoEquipoSeleccionado1 Escudo del equipo seleccionado por el jugador 1.
+     * @param equipoSeleccionado2 Equipo seleccionado por el jugador 2.
+     * @param escudoEquipoSeleccionado2 Escudo del equipo seleccionado por el jugador 2.
+     */
     public Jugador2Gana(Equipos equipoSeleccionado1, BufferedImage escudoEquipoSeleccionado1, Equipos equipoSeleccionado2, BufferedImage escudoEquipoSeleccionado2) {
         setTitle("Penalty Eleven");
         setSize(1280, 720);

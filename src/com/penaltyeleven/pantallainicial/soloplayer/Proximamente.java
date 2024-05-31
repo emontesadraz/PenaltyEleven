@@ -13,6 +13,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
+/**
+ * Clase que muestra la pantalla de elección de temporada para el modo de juego de un solo jugador.
+ */
 public class Proximamente extends InterfazMaestra {
     private final JLabel comingSoon;
     private final JButton volver;
@@ -20,6 +23,9 @@ public class Proximamente extends InterfazMaestra {
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     private final MusicManager musicManager = new MusicManager();
 
+    /**
+     * Constructor de la clase ElegirTemporada.
+     */
     public Proximamente() {
 
         //Ventana

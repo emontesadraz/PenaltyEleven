@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * Clase que muestra el ranking de los jugadores.
+ */
 public class Ranking extends InterfazMaestra {
     private MusicManager musicManager = new MusicManager();
     private JButton volver, fondo;
@@ -17,6 +20,9 @@ public class Ranking extends InterfazMaestra {
     public static final Font fuente = new Font("Rubik", Font.PLAIN, 20);
     public static final Color colorTexto = new Color(255, 255, 255);
 
+    /**
+     * Constructor de la clase.
+     */
     public Ranking() {
         setSize(1280, 720);
         setTitle("Penalty Eleven");
@@ -78,6 +84,9 @@ public class Ranking extends InterfazMaestra {
         musicManager.playMusic("Musica/Soundtrack/Ranking.wav", 0.7f);
     }
 
+    /**
+     * Actualiza el ranking de los jugadores.
+     */
     public void updateRanking() {
         DatabaseHandler dbHandler = new DatabaseHandler();
         List<User> users = dbHandler.getUsersRanked();
@@ -100,6 +109,20 @@ public class Ranking extends InterfazMaestra {
         rankingPanel.repaint();
     }
 
+    /**
+     * Método principal.
+     * @param b  if {@code true}, makes the {@code Window} visible,
+     * otherwise hides the {@code Window}.
+     * If the {@code Window} and/or its owner
+     * are not yet displayable, both are made displayable.  The
+     * {@code Window} will be validated prior to being made visible.
+     * If the {@code Window} is already visible, this will bring the
+     * {@code Window} to the front.<p>
+     * If {@code false}, hides this {@code Window}, its subcomponents, and all
+     * of its owned children.
+     * The {@code Window} and its subcomponents can be made visible again
+     * with a call to {@code #setVisible(true)}.
+     */
     @Override
     public void setVisible(boolean b) {
         super.setVisible(b);
@@ -107,9 +130,4 @@ public class Ranking extends InterfazMaestra {
             updateRanking();
         }
     }
-
-    public static void main(String[] args) {
-        new Ranking().setVisible(true);
-    }
-
 }
