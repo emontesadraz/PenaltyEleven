@@ -9,7 +9,7 @@ import java.net.URL;
 public class InterfazMaestra extends JFrame {
     public static final MusicManager musicManager = new MusicManager();
 
-    //Metodo para crear el fondo de la ventana
+//Metodo para crear el fondo de la ventana
     public static void crearFondo(JButton fondo, String rutaFondo) {
         // Crear un botón para el fondo
         fondo.setBounds(0, 0, 1280, 720);
@@ -25,7 +25,7 @@ public class InterfazMaestra extends JFrame {
         fondo.setIcon(icono);
     }
 
-    //Metodo para crear un botón
+//Metodo para crear un botón
     public static void crearBoton(JButton boton, String texto, int posX, int posY, int ancho, int alto, Color colorFondoBotones, Color colorTextoBotones, Font fuenteBoton, String rutaSoundEfectHover, float volumenSoundEfectHover) {
         boton.setText(texto);
         boton.setBounds(posX, posY, ancho, alto);
@@ -39,7 +39,6 @@ public class InterfazMaestra extends JFrame {
                 boton.setBackground(colorFondoBotones.darker());
                 musicManager.playSound(rutaSoundEfectHover, volumenSoundEfectHover);
             }
-
             @Override
             public void mouseExited(MouseEvent e) {
                 boton.setBackground(colorFondoBotones);
@@ -47,14 +46,14 @@ public class InterfazMaestra extends JFrame {
         });
     }
 
-    //Metodo para crear una ventana
-    public void crearVentana(String titulo, int width, int height) {
+//Metodo para crear una ventana
+    public void crearVentana(String titulo,int width, int height) {
         setTitle(titulo);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(width, height);
         setLocationRelativeTo(null);
         setResizable(false);
         // Icono
-        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
+        setIconImage(new ImageIcon("src/Imagenes/Foto/Logo.png").getImage());
     }
 }

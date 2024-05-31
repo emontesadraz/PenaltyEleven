@@ -4,6 +4,7 @@ import com.penaltyeleven.metodosexternos.InterfazMaestra;
 import com.penaltyeleven.metodosexternos.MusicManager;
 import com.penaltyeleven.pantallainicial.soloplayer.lobby.LobbyIE1;
 import com.penaltyeleven.pantallainicial.soloplayer.lobby.LobbyIE2;
+import com.penaltyeleven.pantallainicial.soloplayer.lobby.LobbyIE3;
 
 import javax.swing.*;
 import java.awt.*;
@@ -83,7 +84,9 @@ public class ElegirTemporada extends InterfazMaestra {
         temp3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Abrir ventana de Temporada3
+                LobbyIE3 lobbyIE3 = new LobbyIE3();
+                lobbyIE3.setVisible(true);
+                dispose();
 
                 musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
                 musicManager.stopMusic();
