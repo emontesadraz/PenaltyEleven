@@ -31,14 +31,14 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private int seleccionPorteroCount = 0;
 
     public static final Color colorBaseBotones = new Color(25, 25, 25);
-    public static final Font fuenteBoton = new Font("Rubik", Font.PLAIN, 20);
+    public static final Font fuenteBoton = new Font("Rubik", Font.PLAIN, 30);
     public static final Color colorTexto = new Color(255, 255, 255);
     private final MusicManager musicManager = new MusicManager();
 
     private JButton accionBoton = new JButton();
     private JButton seguirBoton = new JButton("Seguir");
     private final JButton[][] botones = new JButton[3][3];
-    private JLabel marcadorLabel = new JLabel("Jugador 1: 0 | Jugador 2: 0");
+    private JLabel marcadorLabel = new JLabel(" 0  --  0 ");
     private JLabel estadoLabel = new JLabel("Jugador 1 tira");
     private java.util.List<String> canciones = Arrays.asList("Musica/Soundtrack/MusicaPartidoBasico1.wav", "Musica/Soundtrack/MusicaPartidoBasico2.wav", "Musica/Soundtrack/MusicaPartidoBasico3.wav", "Musica/Soundtrack/MusicaPartidoBasico4.wav", "Musica/Soundtrack/MusicaPartidoBasico5.wav", "Musica/Soundtrack/MusicaPartidoBasico6.wav","Musica/Soundtrack/PartidoVsZeus.wav");
     private int currentSongsIndex = 0;
@@ -77,9 +77,9 @@ public class JuegoMultiplayer extends InterfazMaestra {
         JPanel marcadorPanel = new JPanel();
         marcadorPanel.setLayout(new BorderLayout());
         marcadorPanel.setPreferredSize(new Dimension(1430, 80)); // Ajustar altura
-        marcadorPanel.setBackground(new Color(0, 0, 0));
+        marcadorPanel.setBackground(new Color(25,25,25));
         marcadorLabel.setForeground(Color.WHITE);
-        marcadorLabel.setFont(new Font("Rubik", Font.BOLD, 24));
+        marcadorLabel.setFont(new Font("Rubik", Font.BOLD, 30));
         marcadorLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Panel para los botones y etiquetas en el marcador
@@ -88,17 +88,17 @@ public class JuegoMultiplayer extends InterfazMaestra {
         botonesPanel.setLayout(new GridLayout(2, 3));
 
         // Escalar las imágenes
-        int desiredWidth = 100; // Ajusta esto a la anchura deseada
-        int desiredHeight = 100; // Ajusta esto a la altura deseada
+        int desiredWidth = 105; // Ajusta esto a la anchura deseada
+        int desiredHeight = 105; // Ajusta esto a la altura deseada
         BufferedImage escudoEquipoSeleccionado1Scaled = scaleImage(escudoEquipoSeleccionado1, desiredWidth, desiredHeight);
         BufferedImage escudoEquipoSeleccionado2Scaled = scaleImage(escudoEquipoSeleccionado2, desiredWidth, desiredHeight);
 
         // Inicializar los JLabel de los Equipos
         equipo1Label = new JLabel(equipoSeleccionado1.getNombreEquipo());
-        equipo1Label.setFont(new Font("Rubik", Font.BOLD | Font.ITALIC, 17));
+        equipo1Label.setFont(new Font("Rubik", Font.BOLD | Font.ITALIC, 20));
 
         equipo2Label = new JLabel(equipoSeleccionado2.getNombreEquipo());
-        equipo2Label.setFont(new Font("Rubik", Font.BOLD | Font.ITALIC, 17));
+        equipo2Label.setFont(new Font("Rubik", Font.BOLD | Font.ITALIC, 20));
 
         // Crear ImageLabel para los escudos de los equipos
         ImageLabel escudo1Label = new ImageLabel(escudoEquipoSeleccionado1Scaled);
@@ -221,17 +221,23 @@ public class JuegoMultiplayer extends InterfazMaestra {
         });
         // Añadir los JLabel al panelBotones
         JPanel panelEquipo1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panelEquipo1.setBackground(new Color(255,255,255));
         panelEquipo1.add(escudo1Label);
         panelEquipo1.add(equipo1Label);
 
         JPanel panelEquipo2 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        panelEquipo2.setBackground(new Color(255,255,255));
         panelEquipo2.add(equipo2Label);
         panelEquipo2.add(escudo2Label);
 
+        JPanel panelBotones = new JPanel(new GridLayout(1, 2));
+        panelBotones.add(accionBoton, BorderLayout.WEST);
+        panelBotones.add(seguirBoton, BorderLayout.EAST);
+
         JPanel controlPanel = new JPanel(new GridLayout(1, 3));
+        controlPanel.setBackground(new Color(25,25,25));
         controlPanel.add(panelEquipo1);
-        controlPanel.add(accionBoton);
-        controlPanel.add(seguirBoton);
+        controlPanel.add(panelBotones);
         controlPanel.add(panelEquipo2);
 
         JPanel mainPanel = new JPanel();
@@ -346,8 +352,8 @@ public class JuegoMultiplayer extends InterfazMaestra {
         dialog.setModal(false);
         dialog.setVisible(true);
 
-        // Crear un Timer para cerrar el JDialog después de 1200 ms
-        Timer timer = new Timer(1200, new ActionListener() {
+        // Crear un Timer para cerrar el JDialog después de 900 ms
+        Timer timer = new Timer(1100, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dialog.dispose();
