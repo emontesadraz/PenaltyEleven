@@ -142,12 +142,11 @@ classDiagram
         +void setPuntos(int puntos)
     }
     class MusicManager {
-        -String currentSong
-        -float volume
-        +MusicManager()
-        +void playMusic(String song, float volume)
-        +void stopMusic()
-        +void setVolume(float volume)
+        -float musicVolume
+        -Clip musicClip
+        +void setMusicVolume(float volume)
+        +void playComments(String path, float volume)
+        +void playMusic(String musicFile, float volume)
     }
     class OperacionesEquipos {
         -Equipos equipo
