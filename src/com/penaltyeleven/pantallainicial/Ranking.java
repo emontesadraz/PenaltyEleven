@@ -19,6 +19,9 @@ public class Ranking extends InterfazMaestra {
     public static final Color colorBase = new Color(25, 25, 25);
     public static final Font fuente = new Font("Rubik", Font.PLAIN, 20);
     public static final Color colorTexto = new Color(255, 255, 255);
+    public static final Color colorDorado = new Color(255, 215, 0);
+    public static final Color colorPlateado = new Color(192, 192, 192);
+    public static final Color colorBronce = new Color(234, 145, 60);
 
     /**
      * Constructor de la clase.
@@ -41,14 +44,14 @@ public class Ranking extends InterfazMaestra {
         // Aquí creamos el fondo
         crearFondo(fondo,"Imagenes/Fondo/axelblaze.png");
 
-        //Aquí creamos el boton volver
-        crearBoton(volver, "Volver", 40, 600, 220, 50, colorBase,colorTexto,fuente,"Musica/SoundEffect/SonidoSeleccion.wav",0.5f);
-
+        // Aquí creamos el botón volver
+        crearBoton(volver, "Volver", 40, 600, 220, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.5f);
 
         // Crear un área de texto para mostrar el ranking
         rankingPanel = new JPanel();
         rankingPanel.setBounds(100, 150, 280, 500); // Ajusta estos valores según tus necesidades
         rankingPanel.setOpaque(false);
+        rankingPanel.setLayout(new BoxLayout(rankingPanel, BoxLayout.Y_AXIS));
 
         // Crear un título para el ranking
         puesto1 = new JLabel("Tabla de Campeones Máximos");
@@ -59,8 +62,7 @@ public class Ranking extends InterfazMaestra {
         puesto1.setVerticalAlignment(JLabel.TOP);
         puesto1.setOpaque(false);
 
-
-        //Añadir botones al panel
+        // Añadir botones al panel
         panel.add(volver);
         panel.add(rankingPanel);
         panel.add(puesto1);
@@ -76,11 +78,9 @@ public class Ranking extends InterfazMaestra {
             musicManager.stopMusic();
         });
 
-
         updateRanking();
 
-
-        //Controles música
+        // Controles música
         musicManager.playMusic("Musica/Soundtrack/Ranking.wav", 0.7f);
     }
 
@@ -94,13 +94,32 @@ public class Ranking extends InterfazMaestra {
         // Limpia el JPanel
         rankingPanel.removeAll();
 
-        for (User user : users) {
-            String formattedName = String.format("%s: %d\n", user.getNombre(), user.getPuntuacion()); // Agrega 4 espacios al principio
+        // Limitar el número de usuarios a mostrar a 10
+        int maxUsersToShow = Math.min(users.size(), 10);
+
+        // Itera a través de los usuarios y agrega etiquetas al rankingPanel
+        for (int i = 0; i < maxUsersToShow; i++) {
+            User user = users.get(i);
+            String formattedName = String.format("%d. %s: %d", i + 1, user.getNombre(), user.getPuntuacion());
             JLabel userLabel = new JLabel(formattedName);
-            userLabel.setBackground(new Color(255, 255, 255));
-            userLabel.setOpaque(true);
-            userLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Alinea el texto a la izquierda
-            userLabel.setFont(new Font("Rubik", Font.BOLD, 20));
+            userLabel.setOpaque(false);
+            userLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+            // Ajustar el tamaño de fuente basado en la posición
+            if (i == 0) {
+                userLabel.setFont(new Font("Rubik", Font.BOLD, 30));
+                userLabel.setForeground(colorDorado);
+            } else if (i == 1) {
+                userLabel.setFont(new Font("Rubik", Font.BOLD, 26));
+                userLabel.setForeground(colorPlateado);
+            } else if (i == 2) {
+                userLabel.setFont(new Font("Rubik", Font.BOLD, 24));
+                userLabel.setForeground(colorBronce);
+            } else {
+                userLabel.setFont(new Font("Rubik", Font.BOLD, 20));
+                userLabel.setForeground(Color.BLACK);
+            }
+
             rankingPanel.add(userLabel);
         }
 
@@ -121,7 +140,7 @@ public class Ranking extends InterfazMaestra {
      * If {@code false}, hides this {@code Window}, its subcomponents, and all
      * of its owned children.
      * The {@code Window} and its subcomponents can be made visible again
-     * with a call to {@code #setVisible(true)}.
+     * with a call to {@code #setVisible(boolean)}.
      */
     @Override
     public void setVisible(boolean b) {
