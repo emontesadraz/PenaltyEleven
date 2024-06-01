@@ -38,7 +38,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private JButton accionBoton = new JButton();
     private JButton seguirBoton = new JButton("Seguir");
     private final JButton[][] botones = new JButton[3][3];
-    private JLabel marcadorLabel = new JLabel(" 0  --  0 ");
+    private JLabel marcadorLabel = new JLabel(" 0   -   0 ");
     private JLabel estadoLabel = new JLabel("Jugador 1 tira");
     private java.util.List<String> canciones = Arrays.asList("Musica/Soundtrack/MusicaPartidoBasico1.wav", "Musica/Soundtrack/MusicaPartidoBasico2.wav", "Musica/Soundtrack/MusicaPartidoBasico3.wav", "Musica/Soundtrack/MusicaPartidoBasico4.wav", "Musica/Soundtrack/MusicaPartidoBasico5.wav", "Musica/Soundtrack/MusicaPartidoBasico6.wav","Musica/Soundtrack/PartidoVsZeus.wav");
     private int currentSongsIndex = 0;
@@ -73,20 +73,6 @@ public class JuegoMultiplayer extends InterfazMaestra {
         this.equipoSeleccionado2 = equipoSeleccionado2;
         this.escudoEquipoSeleccionado2 = escudoEquipoSeleccionado2;
 
-        // Panel de marcador
-        JPanel marcadorPanel = new JPanel();
-        marcadorPanel.setLayout(new BorderLayout());
-        marcadorPanel.setPreferredSize(new Dimension(1430, 80)); // Ajustar altura
-        marcadorPanel.setBackground(new Color(25,25,25));
-        marcadorLabel.setForeground(Color.WHITE);
-        marcadorLabel.setFont(new Font("Rubik", Font.BOLD, 30));
-        marcadorLabel.setHorizontalAlignment(SwingConstants.CENTER);
-
-        // Panel para los botones y etiquetas en el marcador
-        JPanel botonesPanel = new JPanel();
-        botonesPanel.setOpaque(false);
-        botonesPanel.setLayout(new GridLayout(2, 3));
-
         // Escalar las imágenes
         int desiredWidth = 105; // Ajusta esto a la anchura deseada
         int desiredHeight = 105; // Ajusta esto a la altura deseada
@@ -105,10 +91,6 @@ public class JuegoMultiplayer extends InterfazMaestra {
         escudo1Label.setPreferredSize(new Dimension(desiredWidth, desiredHeight));
         ImageLabel escudo2Label = new ImageLabel(escudoEquipoSeleccionado2Scaled);
         escudo2Label.setPreferredSize(new Dimension(desiredWidth, desiredHeight));
-
-
-        marcadorPanel.add(marcadorLabel, BorderLayout.CENTER);
-        marcadorPanel.add(botonesPanel, BorderLayout.SOUTH);
 
         // Panel de la portería
         JPanel porteriaPanel = new JPanel() {
@@ -143,7 +125,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
                     }
                 });
                 // Establecemos las coordenadas y el tamaño de cada botón
-                int anchoBoton = 479; // ajusta este valor según tus necesidades
+                int anchoBoton = 472; // ajusta este valor según tus necesidades
                 int altoBoton = 210; // ajusta este valor según tus necesidades
                 botones[i][j].setBounds(j * anchoBoton, i * altoBoton, anchoBoton, altoBoton);
                 porteriaPanel.add(botones[i][j]);
@@ -219,26 +201,43 @@ public class JuegoMultiplayer extends InterfazMaestra {
                 tiroActual[1] = -1;
             }
         });
-        // Añadir los JLabel al panelBotones
-        JPanel panelEquipo1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        panelEquipo1.setBackground(new Color(255,255,255));
-        panelEquipo1.add(escudo1Label);
-        panelEquipo1.add(equipo1Label);
 
-        JPanel panelEquipo2 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        panelEquipo2.setBackground(new Color(255,255,255));
-        panelEquipo2.add(equipo2Label);
-        panelEquipo2.add(escudo2Label);
+        // Panel de marcador
+        JPanel marcadorPanel = new JPanel(new GridLayout(1, 3));
+        marcadorPanel.setPreferredSize(new Dimension(1430, 110)); // Ajustar altura
+        marcadorPanel.setBackground(new Color(25,25,25));
+        marcadorLabel.setForeground(Color.WHITE);
+        marcadorLabel.setFont(new Font("Impact", Font.PLAIN, 75));
 
+        JPanel marcadorPanelIzq = new JPanel(new GridLayout(1,2));
+        marcadorPanelIzq.add(escudo1Label, BorderLayout.WEST);
+        marcadorPanelIzq.add(equipo1Label);
+
+        JPanel marcadorPanelCentro = new JPanel(new BorderLayout());
+        marcadorPanelCentro.add(marcadorLabel, BorderLayout.CENTER);
+
+        JPanel marcadorPanelDer = new JPanel(new GridLayout(1,2));
+        marcadorPanelDer.add(escudo2Label);
+        marcadorPanelDer.add(equipo2Label, BorderLayout.EAST);
+
+        marcadorPanel.add(marcadorPanelIzq, FlowLayout.LEFT);
+        marcadorPanel.add(marcadorPanelCentro, BorderLayout.CENTER);
+        marcadorPanel.add(marcadorPanelDer, BorderLayout.EAST);
+
+        // Panel para los botones y etiquetas en el marcador
+        JPanel botonesPanel = new JPanel();
+        botonesPanel.setOpaque(false);
+        botonesPanel.setLayout(new GridLayout(2, 3));
+
+        // Panel de botones
         JPanel panelBotones = new JPanel(new GridLayout(1, 2));
         panelBotones.add(accionBoton, BorderLayout.WEST);
         panelBotones.add(seguirBoton, BorderLayout.EAST);
 
         JPanel controlPanel = new JPanel(new GridLayout(1, 3));
         controlPanel.setBackground(new Color(25,25,25));
-        controlPanel.add(panelEquipo1);
+
         controlPanel.add(panelBotones);
-        controlPanel.add(panelEquipo2);
 
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
@@ -421,7 +420,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
      * Método que actualiza el marcador.
      */
     private void actualizarMarcador() {
-        marcadorLabel.setText("Jugador 1: " + aciertos2 + " | Jugador 2: " + aciertos1);
+        marcadorLabel.setText(aciertos2 + "  -  " + aciertos1);
     }
 
     /**
