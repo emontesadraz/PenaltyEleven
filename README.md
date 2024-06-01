@@ -2,8 +2,9 @@
 
 ## Desarrollado por:
 
-- [Esteban Miguel Montes Adraz]
-- [Pedro Piñeiro Ordax]
+- [Esteban Miguel Montes Adraz](https://github.com/emontesadraz)
+
+- [Pedro Piñeiro Ordax](https://github.com/PedroPineiro)
 
 ### Descripción
 
