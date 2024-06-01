@@ -18,7 +18,7 @@ import java.util.Random;
  */
 public class JuegoMultiplayer extends InterfazMaestra {
 
-    private static final int NUM_PENALES = 1;
+    private static final int NUM_PENALES = 5;
     private int turno = 0;
     private int penalesRestantes1 = NUM_PENALES;
     private int penalesRestantes2 = NUM_PENALES;
@@ -42,6 +42,8 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private JLabel estadoLabel = new JLabel("Jugador 1 tira");
     private java.util.List<String> canciones = Arrays.asList("Musica/Soundtrack/MusicaPartidoBasico1.wav", "Musica/Soundtrack/MusicaPartidoBasico2.wav", "Musica/Soundtrack/MusicaPartidoBasico3.wav", "Musica/Soundtrack/MusicaPartidoBasico4.wav", "Musica/Soundtrack/MusicaPartidoBasico5.wav", "Musica/Soundtrack/MusicaPartidoBasico6.wav");
     private int currentSongsIndex = 0;
+    private java.util.List<String> audioGoles = Arrays.asList("src/Musica/Comentaristas/Gol1.wav", "src/Musica/Comentaristas/Gol2.wav", "src/Musica/Comentaristas/Gol3.wav", "src/Musica/Comentaristas/Gol4.wav", "src/Musica/Comentaristas/Gol5.wav");
+    private java.util.List<String> audioParadas = Arrays.asList("src/Musica/Comentaristas/Parada1.wav", "src/Musica/Comentaristas/Parada2.wav", "src/Musica/Comentaristas/Parada3.wav", "src/Musica/Comentaristas/Parada4.wav", "src/Musica/Comentaristas/Parada5.wav");
 
     // Variables para el equipo y el escudo seleccionados
     private Equipos equipoSeleccionado1;
@@ -333,8 +335,10 @@ public class JuegoMultiplayer extends InterfazMaestra {
         ImageIcon imageIcon;
         if (parada) {
             imageIcon = new ImageIcon("src/Imagenes/Parada.png");
+            playSaves();
         } else {
             imageIcon = new ImageIcon("src/Imagenes/Gol.png");
+            playGoals();
         }
         JLabel label = new JLabel(imageIcon);
 
@@ -445,7 +449,20 @@ public class JuegoMultiplayer extends InterfazMaestra {
 
         String song = canciones.get(currentSongsIndex);
         musicManager.stopMusic();
-        musicManager.playMusic(song, 0.5f);
+        musicManager.playMusic(song, 0.3f);
+
+    }
+    private void playGoals(){
+        Random random = new Random();
+        int index = random.nextInt(audioGoles.size());
+        musicManager.playComments(audioGoles.get(index), 1f);
+    }
+
+
+    private void playSaves(){
+        Random random = new Random();
+        int index = random.nextInt(audioParadas.size());
+        musicManager.playComments(audioParadas.get(index), 1f);
     }
 
     /**

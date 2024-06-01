@@ -1,6 +1,7 @@
 package com.penaltyeleven.metodosexternos;
 
 import javax.sound.sampled.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -45,6 +46,24 @@ public class MusicManager {
         }
     }
 
+    public void playComments(String path, float volume) {
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(path).getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+
+            // Verificar si el control Master Gain está disponible
+            if (clip.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
+                FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+                gainControl.setValue(volume); // Reduce el volumen en un número de decibelios.
+            }
+
+            clip.start();
+        } catch(Exception ex) {
+            System.out.println("Error al reproducir el sonido.");
+            ex.printStackTrace();
+        }
+    }
     /**
      * Reproduce música.
      *
