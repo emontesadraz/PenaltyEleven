@@ -212,7 +212,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
         JPanel marcadorPanelIzq = new JPanel(new GridLayout(1,2));
         marcadorPanelIzq.add(escudo1Label, BorderLayout.WEST);
         marcadorPanelIzq.add(equipo1Label);
-
+ //a
         JPanel marcadorPanelCentro = new JPanel(new BorderLayout());
         marcadorPanelCentro.add(marcadorLabel, BorderLayout.CENTER);
 
