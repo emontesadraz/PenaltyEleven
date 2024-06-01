@@ -42,8 +42,8 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private JLabel estadoLabel = new JLabel("Jugador 1 tira");
     private java.util.List<String> canciones = Arrays.asList("Musica/Soundtrack/MusicaPartidoBasico1.wav", "Musica/Soundtrack/MusicaPartidoBasico2.wav", "Musica/Soundtrack/MusicaPartidoBasico3.wav", "Musica/Soundtrack/MusicaPartidoBasico4.wav", "Musica/Soundtrack/MusicaPartidoBasico5.wav", "Musica/Soundtrack/MusicaPartidoBasico6.wav");
     private int currentSongsIndex = 0;
-    private java.util.List<String> audioGoles = Arrays.asList("src/Musica/Comentaristas/Gol1.wav", "src/Musica/Comentaristas/Gol2.wav", "src/Musica/Comentaristas/Gol3.wav", "src/Musica/Comentaristas/Gol4.wav", "src/Musica/Comentaristas/Gol5.wav");
-    private java.util.List<String> audioParadas = Arrays.asList("src/Musica/Comentaristas/Parada1.wav", "src/Musica/Comentaristas/Parada2.wav", "src/Musica/Comentaristas/Parada3.wav", "src/Musica/Comentaristas/Parada4.wav", "src/Musica/Comentaristas/Parada5.wav");
+    private java.util.List<String> audioGoles = Arrays.asList("src/Musica/Comentaristas/gol1.wav", "src/Musica/Comentaristas/gol2.wav", "src/Musica/Comentaristas/gol3.wav", "src/Musica/Comentaristas/gol4.wav", "src/Musica/Comentaristas/gol5.wav", "src/Musica/Comentaristas/gol6.wav", "src/Musica/Comentaristas/gol7.wav", "src/Musica/Comentaristas/gol8.wav", "src/Musica/Comentaristas/gol9.wav", "src/Musica/Comentaristas/gol10.wav");
+    private java.util.List<String> audioParadas = Arrays.asList("src/Musica/Comentaristas/parada1.wav", "src/Musica/Comentaristas/parada2.wav", "src/Musica/Comentaristas/parada3.wav", "src/Musica/Comentaristas/parada4.wav", "src/Musica/Comentaristas/parada5.wav", "src/Musica/Comentaristas/parada6.wav", "src/Musica/Comentaristas/parada7.wav", "src/Musica/Comentaristas/parada8.wav", "src/Musica/Comentaristas/parada9.wav", "src/Musica/Comentaristas/parada10.wav");
 
     // Variables para el equipo y el escudo seleccionados
     private Equipos equipoSeleccionado1;
@@ -334,10 +334,10 @@ public class JuegoMultiplayer extends InterfazMaestra {
         // Crear el ImageIcon y el JLabel
         ImageIcon imageIcon;
         if (parada) {
-            imageIcon = new ImageIcon("src/Imagenes/Parada.png");
+            imageIcon = new ImageIcon("src/Imagenes/Foto/parada.jpg");
             playSaves();
         } else {
-            imageIcon = new ImageIcon("src/Imagenes/Gol.png");
+            imageIcon = new ImageIcon("src/Imagenes/Foto/gol.png");
             playGoals();
         }
         JLabel label = new JLabel(imageIcon);

@@ -50,7 +50,7 @@ public class MenuInicial extends InterfazMaestra {
 
 // Fondo
         JButton fondo = new JButton();
-        crearFondo(fondo, "Imagenes/Fondo/FondoMenuInicial.png");
+        crearFondo(fondo, "Imagenes/Fondo/MenuInicial.png");
 
 // Añadir los botones al panel
         panel.add(soloPlayer);
