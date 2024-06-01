@@ -77,7 +77,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
         JPanel marcadorPanel = new JPanel();
         marcadorPanel.setLayout(new BorderLayout());
         marcadorPanel.setPreferredSize(new Dimension(1430, 80)); // Ajustar altura
-        marcadorPanel.setBackground(new Color(0, 51, 102));
+        marcadorPanel.setBackground(new Color(0, 0, 0));
         marcadorLabel.setForeground(Color.WHITE);
         marcadorLabel.setFont(new Font("Rubik", Font.BOLD, 24));
         marcadorLabel.setHorizontalAlignment(SwingConstants.CENTER);
