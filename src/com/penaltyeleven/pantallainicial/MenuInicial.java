@@ -11,6 +11,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+ * Clase que muestra el menú inicial del juego.
+ */
 public class MenuInicial extends InterfazMaestra {
     public static JPanel panel;
     public static final Color colorBaseBotones = new Color(25, 25, 25);
@@ -18,6 +21,9 @@ public class MenuInicial extends InterfazMaestra {
     public static final Color colorTexto = new Color(255, 255, 255);
     private final MusicManager musicManager = new MusicManager();
 
+    /**
+     * Constructor de la clase.
+     */
     public MenuInicial() {
 
 //Ventana
@@ -44,7 +50,7 @@ public class MenuInicial extends InterfazMaestra {
 
 // Fondo
         JButton fondo = new JButton();
-        crearFondo(fondo, "Imagenes/Fondo/FondoMenuInicial.png");
+        crearFondo(fondo, "Imagenes/Fondo/MenuInicial.png");
 
 // Añadir los botones al panel
         panel.add(soloPlayer);

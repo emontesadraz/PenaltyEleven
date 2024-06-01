@@ -8,12 +8,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * Clase que representa la pantalla de juego en modo multijugador.
+ * @version 1.0, 2021-08-10
+ */
 public class JuegoMultiplayer extends InterfazMaestra {
 
-    private static final int NUM_PENALES = 3;
+    private static final int NUM_PENALES = 1;
     private int turno = 0;
     private int penalesRestantes1 = NUM_PENALES;
     private int penalesRestantes2 = NUM_PENALES;
@@ -24,13 +29,6 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private boolean seleccionPortero = false;
     private int[] porteroSeleccion = new int[4];
     private int seleccionPorteroCount = 0;
-    private JButton[][] botonesTiro1 = new JButton[1][3];
-    private JButton[][] botonesParada1 = new JButton[1][3];
-    private JButton[][] botonesTiro2 = new JButton[1][3];
-    private JButton[][] botonesParada2 = new JButton[1][3];
-    CardLayout cardLayout = new CardLayout();
-    JPanel panelBotones = new JPanel(cardLayout);
-    private int tiroSeleccionado = -1; // Nueva variable de instancia
 
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     public static final Font fuenteBoton = new Font("Rubik", Font.PLAIN, 20);
@@ -42,20 +40,28 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private final JButton[][] botones = new JButton[3][3];
     private JLabel marcadorLabel = new JLabel("Jugador 1: 0 | Jugador 2: 0");
     private JLabel estadoLabel = new JLabel("Jugador 1 tira");
-    private java.util.List<String> canciones = Arrays.asList("Musica/Soundtrack/MusicaPartidoBasico1.wav", "Musica/Soundtrack/MusicaPartidoBasico2.wav", "Musica/Soundtrack/MusicaPartidoBasico3.wav", "Musica/Soundtrack/MusicaPartidoBasico4.wav");
+    private java.util.List<String> canciones = Arrays.asList("Musica/Soundtrack/MusicaPartidoBasico1.wav", "Musica/Soundtrack/MusicaPartidoBasico2.wav", "Musica/Soundtrack/MusicaPartidoBasico3.wav", "Musica/Soundtrack/MusicaPartidoBasico4.wav", "Musica/Soundtrack/MusicaPartidoBasico5.wav", "Musica/Soundtrack/MusicaPartidoBasico6.wav");
     private int currentSongsIndex = 0;
+    private java.util.List<String> audioGoles = Arrays.asList("src/Musica/Comentaristas/gol1.wav", "src/Musica/Comentaristas/gol2.wav", "src/Musica/Comentaristas/gol3.wav", "src/Musica/Comentaristas/gol4.wav", "src/Musica/Comentaristas/gol5.wav", "src/Musica/Comentaristas/gol6.wav", "src/Musica/Comentaristas/gol7.wav", "src/Musica/Comentaristas/gol8.wav", "src/Musica/Comentaristas/gol9.wav", "src/Musica/Comentaristas/gol10.wav");
+    private java.util.List<String> audioParadas = Arrays.asList("src/Musica/Comentaristas/parada1.wav", "src/Musica/Comentaristas/parada2.wav", "src/Musica/Comentaristas/parada3.wav", "src/Musica/Comentaristas/parada4.wav", "src/Musica/Comentaristas/parada5.wav", "src/Musica/Comentaristas/parada6.wav", "src/Musica/Comentaristas/parada7.wav", "src/Musica/Comentaristas/parada8.wav", "src/Musica/Comentaristas/parada9.wav", "src/Musica/Comentaristas/parada10.wav");
 
     // Variables para el equipo y el escudo seleccionados
     private Equipos equipoSeleccionado1;
-    private ImageIcon escudoEquipoSeleccionado1;
     private Equipos equipoSeleccionado2;
-    private ImageIcon escudoEquipoSeleccionado2;
     private JLabel equipo1Label;
-    private JLabel escudo1Label;
     private JLabel equipo2Label;
-    private JLabel escudo2Label;
+    private BufferedImage escudoEquipoSeleccionado1;
+    private BufferedImage escudoEquipoSeleccionado2;
+    private boolean muerteSubitaMostrada = false;
 
-    public JuegoMultiplayer(Equipos equipoSeleccionado1, ImageIcon escudoEquipoSeleccionado1, Equipos equipoSeleccionado2, ImageIcon escudoEquipoSeleccionado2) {
+    /**
+     * Constructor de la clase JuegoMultiplayer.
+     * @param equipoSeleccionado1 Equipo seleccionado por el jugador 1.
+     * @param escudoEquipoSeleccionado1 Escudo del equipo seleccionado por el jugador 1.
+     * @param equipoSeleccionado2 Equipo seleccionado por el jugador 2.
+     * @param escudoEquipoSeleccionado2 Escudo del equipo seleccionado por el jugador 2.
+     */
+    public JuegoMultiplayer(Equipos equipoSeleccionado1, BufferedImage escudoEquipoSeleccionado1, Equipos equipoSeleccionado2, BufferedImage escudoEquipoSeleccionado2) {
         setTitle("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1430, 870);
@@ -72,67 +78,39 @@ public class JuegoMultiplayer extends InterfazMaestra {
         // Panel de marcador
         JPanel marcadorPanel = new JPanel();
         marcadorPanel.setLayout(new BorderLayout());
-        marcadorPanel.setPreferredSize(new Dimension(1430, 120)); // Ajustar altura
+        marcadorPanel.setPreferredSize(new Dimension(1430, 80)); // Ajustar altura
         marcadorPanel.setBackground(new Color(0, 51, 102));
         marcadorLabel.setForeground(Color.WHITE);
         marcadorLabel.setFont(new Font("Rubik", Font.BOLD, 24));
         marcadorLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        // Inicializar los JLabel
+        // Panel para los botones y etiquetas en el marcador
+        JPanel botonesPanel = new JPanel();
+        botonesPanel.setOpaque(false);
+        botonesPanel.setLayout(new GridLayout(2, 3));
+
+        // Escalar las imágenes
+        int desiredWidth = 100; // Ajusta esto a la anchura deseada
+        int desiredHeight = 100; // Ajusta esto a la altura deseada
+        BufferedImage escudoEquipoSeleccionado1Scaled = scaleImage(escudoEquipoSeleccionado1, desiredWidth, desiredHeight);
+        BufferedImage escudoEquipoSeleccionado2Scaled = scaleImage(escudoEquipoSeleccionado2, desiredWidth, desiredHeight);
+
+        // Inicializar los JLabel de los Equipos
         equipo1Label = new JLabel(equipoSeleccionado1.getNombreEquipo());
-        equipo1Label.setBounds(50, 50, 150, 30);
-        equipo1Label.setFont(new Font("Rubik", Font.PLAIN, 20));
-        escudo1Label = new JLabel();
-        escudo1Label.setIcon(escudoEquipoSeleccionado1);
-        escudo1Label.setBounds(50, 50, 10, 150);
+        equipo1Label.setFont(new Font("Rubik", Font.BOLD | Font.ITALIC, 17));
+
         equipo2Label = new JLabel(equipoSeleccionado2.getNombreEquipo());
-        equipo2Label.setFont(new Font("Rubik", Font.PLAIN, 20));
-        escudo2Label = new JLabel();
-        escudo2Label.setIcon(escudoEquipoSeleccionado2);
+        equipo2Label.setFont(new Font("Rubik", Font.BOLD | Font.ITALIC, 17));
 
-        // Inicializar los botones de las supertécnicas de tiro y parada
-        for (int i = 0; i < 3; i++) {
-            botonesTiro1[0][i] = new JButton();
-            botonesParada1[0][i] = new JButton();
-            botonesTiro2[0][i] = new JButton();
-            botonesParada2[0][i] = new JButton();
-        }
-
-        // Añadir cada conjunto de botones al panel con un nombre único
-        JPanel panelTiro1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JPanel panelParada1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JPanel panelTiro2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JPanel panelParada2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        for (int i = 0; i < 3; i++) {
-            panelTiro1.add(botonesTiro1[0][i]);
-            panelParada1.add(botonesParada1[0][i]);
-            panelTiro2.add(botonesTiro2[0][i]);
-            panelParada2.add(botonesParada2[0][i]);
-        }
-        panelBotones.add(panelTiro1, "Tiro1");
-        panelBotones.add(panelParada1, "Parada1");
-        panelBotones.add(panelTiro2, "Tiro2");
-        panelBotones.add(panelParada2, "Parada2");
-
-        for (int i = 0; i < 3; i++) {
-            final int tiroIndex = i + 1;
-            botonesTiro1[0][i].addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    tiroSeleccionado = tiroIndex;
-                    // No procesar el turno inmediatamente
-                }
-            });
-            botonesTiro2[0][i].addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    tiroSeleccionado = tiroIndex;
-                    // No procesar el turno inmediatamente
-                }
-            });
-        }
+        // Crear ImageLabel para los escudos de los equipos
+        ImageLabel escudo1Label = new ImageLabel(escudoEquipoSeleccionado1Scaled);
+        escudo1Label.setPreferredSize(new Dimension(desiredWidth, desiredHeight));
+        ImageLabel escudo2Label = new ImageLabel(escudoEquipoSeleccionado2Scaled);
+        escudo2Label.setPreferredSize(new Dimension(desiredWidth, desiredHeight));
 
 
         marcadorPanel.add(marcadorLabel, BorderLayout.CENTER);
-        marcadorPanel.add(panelBotones, BorderLayout.SOUTH);
+        marcadorPanel.add(botonesPanel, BorderLayout.SOUTH);
 
         // Panel de la portería
         JPanel porteriaPanel = new JPanel() {
@@ -188,8 +166,6 @@ public class JuegoMultiplayer extends InterfazMaestra {
                             seleccionPortero = true;
                             accionBoton.setText("Parar");
                             ocultarTiro();
-                            // Mostrar botones de parada del jugador 2
-                            cardLayout.show(panelBotones, "Parada2");
                         }
                     } else {
                         if (seleccionPorteroCount < 2) {
@@ -201,8 +177,6 @@ public class JuegoMultiplayer extends InterfazMaestra {
                             procesarTurno();
                             accionBoton.setText("Tirar");
                             mostrarResultados();
-                            // Mostrar botones de tiro del jugador 1
-                            cardLayout.show(panelBotones, "Tiro1");
                         }
                     }
                 } else {
@@ -214,8 +188,6 @@ public class JuegoMultiplayer extends InterfazMaestra {
                             seleccionPortero = true;
                             accionBoton.setText("Parar");
                             ocultarTiro();
-                            // Mostrar botones de parada del jugador 1
-                            cardLayout.show(panelBotones, "Parada1");
                         }
                     } else {
                         if (seleccionPorteroCount < 2) {
@@ -227,8 +199,6 @@ public class JuegoMultiplayer extends InterfazMaestra {
                             procesarTurno();
                             accionBoton.setText("Tirar");
                             mostrarResultados();
-                            // Mostrar botones de tiro del jugador 2
-                            cardLayout.show(panelBotones, "Tiro2");
                         }
                     }
                 }
@@ -252,19 +222,18 @@ public class JuegoMultiplayer extends InterfazMaestra {
             }
         });
         // Añadir los JLabel al panelBotones
-        JPanel panelEquipo1 = new JPanel(new BorderLayout());
-        panelEquipo1.add(equipo1Label);
+        JPanel panelEquipo1 = new JPanel(new GridLayout(1, 2));
         panelEquipo1.add(escudo1Label);
+        panelEquipo1.add(equipo1Label);
 
-        JPanel panelEquipo2 = new JPanel(new BorderLayout());
+        JPanel panelEquipo2 = new JPanel(new GridLayout(1, 2));
         panelEquipo2.add(equipo2Label);
         panelEquipo2.add(escudo2Label);
 
-
-        JPanel controlPanel = new JPanel();
+        JPanel controlPanel = new JPanel(new GridLayout(1, 3));
+        controlPanel.add(panelEquipo1);
         controlPanel.add(accionBoton);
         controlPanel.add(seguirBoton);
-        controlPanel.add(panelEquipo1);
         controlPanel.add(panelEquipo2);
 
         JPanel mainPanel = new JPanel();
@@ -283,14 +252,17 @@ public class JuegoMultiplayer extends InterfazMaestra {
         add(mainPanel, BorderLayout.CENTER);
         add(estadoLabel, BorderLayout.SOUTH);
 
-        actualizarBotonesTecnicas();
 
         playNextSong();
 
         setVisible(true);
     }
 
-
+    /**
+     * Método que marca la casilla seleccionada para el tiro.
+     * @param x
+     * @param y
+     */
     private void marcarTiro(int x, int y) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -306,6 +278,11 @@ public class JuegoMultiplayer extends InterfazMaestra {
         super.dispose();
     }
 
+    /**
+     * Método que selecciona la casilla de la portería para la parada.
+     * @param x
+     * @param y
+     */
     private void seleccionarParada(int x, int y) {
         if (seleccionPorteroCount < 2) {
             botones[x][y].setBackground(Color.GREEN);
@@ -320,28 +297,27 @@ public class JuegoMultiplayer extends InterfazMaestra {
         }
     }
 
+    /**
+     * Método que oculta el tiro seleccionado.
+     */
     private void ocultarTiro() {
         botones[tiroActual[0]][tiroActual[1]].setBackground(Color.WHITE);
     }
-
+    /**
+     * Método que procesa el turno del jugador.
+     */
     private void procesarTurno() {
         boolean parada = false;
-        if (seleccionPorteroCount == 2) { // Verificar si el jugador 2 ha intentado parar el tiro
-            if (tiroSeleccionado == 1 && ((tiroActual[0] == porteroSeleccion[0] && tiroActual[1] == porteroSeleccion[1]) ||
-                    (tiroActual[0] == porteroSeleccion[2] && tiroActual[1] == porteroSeleccion[3]))) {
-                parada = true;
-            } else if (tiroSeleccionado == 2 && tiroActual[0] == porteroSeleccion[2] && tiroActual[1] == porteroSeleccion[3]) {
-                parada = true;
-            } else if (tiroSeleccionado == 3 && tiroActual[0] == porteroSeleccion[2] && tiroActual[1] == porteroSeleccion[3]) {
-                parada = true;
-            }
+        if ((tiroActual[0] == porteroSeleccion[0] && tiroActual[1] == porteroSeleccion[1]) ||
+                (tiroActual[0] == porteroSeleccion[2] && tiroActual[1] == porteroSeleccion[3])) {
+            parada = true;
         }
         // Incrementar los goles del jugador correspondiente si no hay parada
         if (!parada) {
             if (jugador1Tira) {
-                aciertos1++; // Incrementar el marcador del jugador 1
+                aciertos1++;
             } else {
-                aciertos2++; // Incrementar el marcador del jugador 2
+                aciertos2++;
             }
         }
 
@@ -358,9 +334,11 @@ public class JuegoMultiplayer extends InterfazMaestra {
         // Crear el ImageIcon y el JLabel
         ImageIcon imageIcon;
         if (parada) {
-            imageIcon = new ImageIcon("src/Imagenes/Parada.png");
+            imageIcon = new ImageIcon("src/Imagenes/Foto/parada.jpg");
+            playSaves();
         } else {
-            imageIcon = new ImageIcon("src/Imagenes/Gol.png");
+            imageIcon = new ImageIcon("src/Imagenes/Foto/gol.png");
+            playGoals();
         }
         JLabel label = new JLabel(imageIcon);
 
@@ -413,7 +391,9 @@ public class JuegoMultiplayer extends InterfazMaestra {
             }
         }
     }
-
+    /**
+     * Método que muestra los resultados del tiro.
+     */
     private void mostrarResultados() {
         accionBoton.setEnabled(false);
         botones[tiroActual[0]][tiroActual[1]].setBackground(Color.RED);
@@ -423,7 +403,10 @@ public class JuegoMultiplayer extends InterfazMaestra {
         setBotonesContentAreaFilled(true);
         seguirBoton.setVisible(true);
     }
-
+    /**
+     * Método que establece si los botones deben tener el área de contenido rellena.
+     * @param filled
+     */
     private void setBotonesContentAreaFilled(boolean filled) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -432,56 +415,27 @@ public class JuegoMultiplayer extends InterfazMaestra {
         }
     }
 
-
-    private void actualizarBotonesTecnicas() {
-        if (jugador1Tira) {
-            if (!seleccionPortero) {
-                // Es el turno del jugador 1 para tirar
-                String[] tecnicasTiro1 = {equipoSeleccionado1.getTiro1(), equipoSeleccionado1.getTiro2(), equipoSeleccionado1.getTiro3()};
-                for (int i = 0; i < 3; i++) {
-                    botonesTiro1[0][i].setText(tecnicasTiro1[i]);
-                }
-                cardLayout.show(panelBotones, "Tiro1");
-            } else {
-                // Es el turno del jugador 1 para parar
-                String[] tecnicasParada1 = {equipoSeleccionado1.getParada1(), equipoSeleccionado1.getParada2(), equipoSeleccionado1.getParada3()};
-                for (int i = 0; i < 3; i++) {
-                    botonesParada1[0][i].setText(tecnicasParada1[i]);
-                }
-                cardLayout.show(panelBotones, "Parada1");
-            }
-        } else {
-            if (!seleccionPortero) {
-                // Es el turno del jugador 2 para tirar
-                String[] tecnicasTiro2 = {equipoSeleccionado2.getTiro1(), equipoSeleccionado2.getTiro2(), equipoSeleccionado2.getTiro3()};
-                for (int i = 0; i < 3; i++) {
-                    botonesTiro2[0][i].setText(tecnicasTiro2[i]);
-                }
-                cardLayout.show(panelBotones, "Tiro2");
-            } else {
-                // Es el turno del jugador 2 para parar
-                String[] tecnicasParada2 = {equipoSeleccionado2.getParada1(), equipoSeleccionado2.getParada2(), equipoSeleccionado2.getParada3()};
-                for (int i = 0; i < 3; i++) {
-                    botonesParada2[0][i].setText(tecnicasParada2[i]);
-                }
-                cardLayout.show(panelBotones, "Parada2");
-            }
-        }
-    }
-
+    /**
+     * Método que actualiza el marcador.
+     */
     private void actualizarMarcador() {
         marcadorLabel.setText("Jugador 1: " + aciertos2 + " | Jugador 2: " + aciertos1);
     }
 
+    /**
+     * Método que resetea los botones.
+     */
     private void resetearBotones() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 botones[i][j].setBackground(Color.WHITE);
             }
         }
-        actualizarBotonesTecnicas();
     }
 
+    /**
+     * Metodo que reproduce la siguiente canción.
+     */
     private void playNextSong() {
         if (canciones.isEmpty()) {
             return;
@@ -495,9 +449,25 @@ public class JuegoMultiplayer extends InterfazMaestra {
 
         String song = canciones.get(currentSongsIndex);
         musicManager.stopMusic();
-        musicManager.playMusic(song, 0.5f);
+        musicManager.playMusic(song, 0.17f);
+
+    }
+    private void playGoals(){
+        Random random = new Random();
+        int index = random.nextInt(audioGoles.size());
+        musicManager.playComments(audioGoles.get(index), 1f);
     }
 
+
+    private void playSaves(){
+        Random random = new Random();
+        int index = random.nextInt(audioParadas.size());
+        musicManager.playComments(audioParadas.get(index), 1f);
+    }
+
+    /**
+     * Método que determina al ganador del juego.
+     */
     private void determinarGanador() {
         if (aciertos2 > aciertos1) {
             Jugador1Gana jugador1Gana = new Jugador1Gana(equipoSeleccionado1, escudoEquipoSeleccionado1, equipoSeleccionado2, escudoEquipoSeleccionado2);
@@ -508,13 +478,18 @@ public class JuegoMultiplayer extends InterfazMaestra {
             jugador2Gana.setVisible(true);
             dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "Muerte Súbita, que gane el mejor!", "Muerte Súbita", JOptionPane.INFORMATION_MESSAGE);
+            if (!muerteSubitaMostrada) {
+                JOptionPane.showMessageDialog(null, "Muerte Súbita, que gane el mejor!", "Muerte Súbita", JOptionPane.INFORMATION_MESSAGE);
+                muerteSubitaMostrada = true;
+            }
             muerteSubita();
             accionBoton.setEnabled(false);
         }
         accionBoton.setEnabled(false);
     }
-
+    /**
+     * Método que determina al ganador en caso de muerte súbita.
+     */
     private void muerteSubita() {
         penalesRestantes1 = 1;
         penalesRestantes2 = 1;
@@ -538,5 +513,40 @@ public class JuegoMultiplayer extends InterfazMaestra {
                 dispose();
             }
         }
+    }
+
+    /**
+     * Clase que extiende a JLabel para mostrar una imagen.
+     */
+    public class ImageLabel extends JLabel {
+        private BufferedImage image;
+
+        public ImageLabel(BufferedImage image) {
+            this.image = image;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            if (image != null) {
+                g.drawImage(image, 0, 0, this);
+            }
+        }
+    }
+
+    /**
+     * Método que escala una imagen.
+     * @param source
+     * @param width
+     * @param height
+     * @return
+     */
+    public BufferedImage scaleImage(BufferedImage source, int width, int height) {
+        Image tmp = source.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        BufferedImage scaled = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = scaled.createGraphics();
+        g2d.drawImage(tmp, 0, 0, null);
+        g2d.dispose();
+        return scaled;
     }
 }

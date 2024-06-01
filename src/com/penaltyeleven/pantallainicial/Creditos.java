@@ -6,6 +6,9 @@ import com.penaltyeleven.metodosexternos.MusicManager;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Clase que muestra los créditos del juego.
+ */
 public class Creditos extends InterfazMaestra {
     private JPanel panel;
     private JLabel creditos;
@@ -14,6 +17,9 @@ public class Creditos extends InterfazMaestra {
     public static final Color colorTexto = new Color(255, 255, 255);
     private MusicManager musicManager = new MusicManager();
 
+    /**
+     * Constructor de la clase.
+     */
     public Creditos() {
 
 //Ventana
@@ -38,7 +44,7 @@ public class Creditos extends InterfazMaestra {
         crearBoton(volver, "Volver", 40, 600, 220, 50, colorBaseBotones, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
 
 // Fondo
-        crearFondo(fondo, "Imagenes/Fondo/Creditos.png");
+        crearFondo(fondo, "Imagenes/Fondo/Creditos2.png");
 
 // Añadir botones al panel
         panel.add(volver);

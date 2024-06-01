@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Clase que muestra la pantalla de elección de temporada para el modo de juego de un solo jugador.
+ */
 public class JuegoSoloplayer extends InterfazMaestra {
     private final MusicManager musicManager = new MusicManager();
     private static final int NUM_PENALES = 5;
@@ -27,6 +30,9 @@ public class JuegoSoloplayer extends InterfazMaestra {
     private JLabel marcadorLabel = new JLabel("Jugador 1: 0 | Jugador 2: 0");
     private JLabel estadoLabel = new JLabel("Jugador 1 tira");
 
+    /**
+     * Constructor de la clase JuegoSoloplayer.
+     */
     public JuegoSoloplayer() {
         setTitle("Penalty Eleven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -124,6 +130,12 @@ public class JuegoSoloplayer extends InterfazMaestra {
         setVisible(true);
     }
 
+    /**
+     * Método que marca el tiro seleccionado por el jugador.
+     *
+     * @param x Coordenada x del tiro.
+     * @param y Coordenada y del tiro.
+     */
     private void marcarTiro(int x, int y) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -132,7 +144,12 @@ public class JuegoSoloplayer extends InterfazMaestra {
         }
         botones[x][y].setBackground(Color.YELLOW);
     }
-
+    /**
+     * Método que selecciona la parada del portero.
+     *
+     * @param x Coordenada x de la parada.
+     * @param y Coordenada y de la parada.
+     */
     private void seleccionarParada(int x, int y) {
         if (seleccionPorteroCount < 2) {
             botones[x][y].setBackground(Color.GREEN);
@@ -146,11 +163,16 @@ public class JuegoSoloplayer extends InterfazMaestra {
             seleccionPorteroCount++;
         }
     }
-
+    /**
+     * Método que oculta el tiro seleccionado por el jugador.
+     */
     private void ocultarTiro() {
         botones[tiroActual[0]][tiroActual[1]].setBackground(Color.WHITE);
     }
 
+    /**
+     * Método que procesa el turno actual.
+     */
     private void procesarTurno() {
         boolean parada = false;
         if ((tiroActual[0] == porteroSeleccion[0] && tiroActual[1] == porteroSeleccion[1]) ||
@@ -190,10 +212,16 @@ public class JuegoSoloplayer extends InterfazMaestra {
         }
     }
 
+    /**
+     * Método que actualiza el marcador de aciertos.
+     */
     private void actualizarMarcador() {
         marcadorLabel.setText("Jugador 1: " + aciertos1 + " | Jugador 2: " + aciertos2);
     }
 
+    /**
+     * Método que determina al ganador del juego.
+     */
     private void determinarGanador() {
         if (aciertos1 > aciertos2) {
             estadoLabel.setText("Jugador 1 gana");
@@ -205,10 +233,6 @@ public class JuegoSoloplayer extends InterfazMaestra {
             accionBoton.setEnabled(false);
         }
         accionBoton.setEnabled(false);
-    }
-
-    public static void main(String[] args) {
-        new JuegoSoloplayer();
     }
 }
 

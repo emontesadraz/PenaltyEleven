@@ -10,12 +10,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Clase que muestra la pantalla de lobby del modo un jugador.
+ */
 public class LobbyIE1 extends InterfazMaestra {
     public static final Color colorBaseBotones = new Color(25, 25, 25);
     public static final Font fuenteBoton = new Font("Rubik", Font.PLAIN, 20);
     public static final Color colorTexto = new Color(255, 255, 255);
     private final MusicManager musicManager = new MusicManager();
 
+    /**
+     * Constructor de la clase LobbyIE1.
+     */
     public LobbyIE1() {
 
         //Ventana
