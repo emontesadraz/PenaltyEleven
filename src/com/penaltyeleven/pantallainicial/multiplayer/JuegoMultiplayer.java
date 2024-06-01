@@ -82,11 +82,11 @@ public class JuegoMultiplayer extends InterfazMaestra {
         // Inicializar los JLabel de los Equipos
         equipo1Label = new JLabel(equipoSeleccionado1.getNombreEquipo());
         equipo1Label.setForeground(new Color(255,255,255));
-        equipo1Label.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 25));
+        equipo1Label.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 30));
 
         equipo2Label = new JLabel(equipoSeleccionado2.getNombreEquipo());
         equipo2Label.setForeground(new Color(255,255,255));
-        equipo2Label.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 25));
+        equipo2Label.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 30));
 
         // Crear ImageLabel para los escudos de los equipos
         ImageLabel escudo1Label = new ImageLabel(escudoEquipoSeleccionado1Scaled);
@@ -128,7 +128,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
                 });
                 // Establecemos las coordenadas y el tamaño de cada botón
                 int anchoBoton = 472; // ajusta este valor según tus necesidades
-                int altoBoton = 210; // ajusta este valor según tus necesidades
+                int altoBoton = 231; // ajusta este valor según tus necesidades
                 botones[i][j].setBounds(j * anchoBoton, i * altoBoton, anchoBoton, altoBoton);
                 porteriaPanel.add(botones[i][j]);
             }
@@ -225,12 +225,6 @@ public class JuegoMultiplayer extends InterfazMaestra {
         marcadorPanel.add(panelEquipo1, BorderLayout.WEST);
         marcadorPanel.add(panelEquipo2, BorderLayout.EAST);
 
-
-        // Panel para los botones y etiquetas en el marcador
-        JPanel botonesPanel = new JPanel();
-        botonesPanel.setOpaque(false);
-        botonesPanel.setLayout(new GridLayout(1, 3));
-
         //Marcador
         marcadorLabel.setForeground(new Color(255,255,255));
         marcadorLabel.setFont(new Font("Impact", Font.PLAIN, 70));
@@ -240,33 +234,30 @@ public class JuegoMultiplayer extends InterfazMaestra {
         //Situar en el medio de arriba
         marcadorLabel.setBounds(0, 0, 1430, 100);
 
-        // Panel de botones
-        JPanel panelBotones = new JPanel(new GridLayout(1, 2));
-        panelBotones.add(accionBoton, BorderLayout.WEST);
-        panelBotones.add(seguirBoton, BorderLayout.EAST);
+        // Estado label
+        estadoLabel.setForeground(new Color(255,255,255));
+        estadoLabel.setBackground(new Color(25,25,25));
+        estadoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        estadoLabel.setFont(new Font("Rubik", Font.PLAIN, 25));
 
-        JPanel controlPanel = new JPanel(new GridLayout(1, 3));
+        //Panel de control
+        JPanel controlPanel = new JPanel();
+        controlPanel.setLayout(new GridLayout(1,3));
+        accionBoton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+        seguirBoton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+        controlPanel.add(accionBoton, BorderLayout.WEST);
+        controlPanel.add(estadoLabel, BorderLayout.CENTER);
+        controlPanel.add(seguirBoton, BorderLayout.EAST);
         controlPanel.setBackground(new Color(25,25,25));
-        controlPanel.add(panelBotones);
+
 
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(porteriaPanel, BorderLayout.CENTER);
-        mainPanel.add(controlPanel, BorderLayout.SOUTH);
         mainPanel.add(marcadorLabel, BorderLayout.NORTH);
-
         mainPanel.add(marcadorPanel, BorderLayout.NORTH);
-
-
-        // Ajustar la etiqueta de estado para el pie de página
-        estadoLabel.setForeground(Color.BLACK);
-        estadoLabel.setBackground(Color.WHITE);
-        estadoLabel.setOpaque(true);
-        estadoLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        estadoLabel.setFont(new Font("Rubik", Font.PLAIN, 18));
-
+        mainPanel.add(controlPanel, BorderLayout.SOUTH);
         add(mainPanel, BorderLayout.CENTER);
-        add(estadoLabel, BorderLayout.SOUTH);
 
 
         playNextSong();
