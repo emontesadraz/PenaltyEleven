@@ -10,9 +10,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 
+/**
+ * Clase que muestra la pantalla de victoria del jugador 2 en el modo multijugador.
+ */
 public class Jugador2Gana extends InterfazMaestra {
     private JTextArea nombreField;
     private JLabel mensajeGanador;
@@ -23,11 +27,18 @@ public class Jugador2Gana extends InterfazMaestra {
     public static final Color colorTexto = new Color(255, 255, 255);
     private final MusicManager musicManager = new MusicManager();
     private Equipos equipoSeleccionado1;
-    private ImageIcon escudoEquipoSeleccionado1;
+    private BufferedImage escudoEquipoSeleccionado1;
     private Equipos equipoSeleccionado2;
-    private ImageIcon escudoEquipoSeleccionado2;
+    private BufferedImage escudoEquipoSeleccionado2;
 
-    public Jugador2Gana(Equipos equipoSeleccionado1, ImageIcon escudoEquipoSeleccionado1, Equipos equipoSeleccionado2, ImageIcon escudoEquipoSeleccionado2) {
+    /**
+     * Constructor de la clase Jugador2Gana.
+     * @param equipoSeleccionado1 Equipo seleccionado por el jugador 1.
+     * @param escudoEquipoSeleccionado1 Escudo del equipo seleccionado por el jugador 1.
+     * @param equipoSeleccionado2 Equipo seleccionado por el jugador 2.
+     * @param escudoEquipoSeleccionado2 Escudo del equipo seleccionado por el jugador 2.
+     */
+    public Jugador2Gana(Equipos equipoSeleccionado1, BufferedImage escudoEquipoSeleccionado1, Equipos equipoSeleccionado2, BufferedImage escudoEquipoSeleccionado2) {
         setTitle("Penalty Eleven");
         setSize(1280, 720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -128,7 +139,7 @@ public class Jugador2Gana extends InterfazMaestra {
         reiniciarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               JuegoMultiplayer juegoMultiplayer = new JuegoMultiplayer(equipoSeleccionado1,escudoEquipoSeleccionado1,equipoSeleccionado2,escudoEquipoSeleccionado2);
+                JuegoMultiplayer juegoMultiplayer = new JuegoMultiplayer(equipoSeleccionado1,escudoEquipoSeleccionado1,equipoSeleccionado2,escudoEquipoSeleccionado2);
                 juegoMultiplayer.setVisible(true);
                 dispose();
 

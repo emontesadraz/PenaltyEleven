@@ -1,18 +1,19 @@
 package com.penaltyeleven.pantallainicial.multiplayer;
-import com.penaltyeleven.metodosexternos.InterfazMaestra;
-import com.penaltyeleven.pantallainicial.MenuInicial;
-import com.penaltyeleven.metodosexternos.MusicManager;
+
 import com.penaltyeleven.metodosexternos.Equipos;
+import com.penaltyeleven.metodosexternos.InterfazMaestra;
+import com.penaltyeleven.metodosexternos.MusicManager;
 import com.penaltyeleven.metodosexternos.OperacionesEquipos;
+import com.penaltyeleven.pantallainicial.MenuInicial;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,18 +29,17 @@ public class SelectorEquipos extends InterfazMaestra {
     public static final Color colorTexto = new Color(255, 255, 255);
     private final BufferedImage[][] imagenesEquipos = {
             {
-                    ImageIO.read(new File("src/Imagenes/Escudo/Raimon2.png")),
-                    ImageIO.read(new File("src/Imagenes/Escudo/Alpino.png")),
-                    ImageIO.read(new File("src/Imagenes/Escudo/TormentaDeGeminis.png")),
-                    ImageIO.read(new File("src/Imagenes/Escudo/RoyalRedux.png")),
-                    ImageIO.read(new File("src/Imagenes/Escudo/Epsilon.png")),
-                    ImageIO.read(new File("src/Imagenes/Escudo/Prominence.png")),
-                    ImageIO.read(new File("src/Imagenes/Escudo/PolvoDiamante.png")),
-                    ImageIO.read(new File("src/Imagenes/Escudo/Caos.png")),
-                    ImageIO.read(new File("src/Imagenes/Escudo/Genesis.png")),
-                    ImageIO.read(new File("src/Imagenes/Escudo/EmperadoresOscuros.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Raimon.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Occult.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Wild.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Brain.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Otaku.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/RoyalAcademy.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Shuriken.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Farm.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Kirkwood.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Zeus.png")),
             },
-
             {
                     ImageIO.read(new File("src/Imagenes/Escudo/Raimon2.png")),
                     ImageIO.read(new File("src/Imagenes/Escudo/Alpino.png")),
@@ -54,16 +54,17 @@ public class SelectorEquipos extends InterfazMaestra {
             },
             {
                     ImageIO.read(new File("src/Imagenes/Escudo/InazumaJapon.png")),
-                    ImageIO.read(new File("src/Imagenes/Escudo/NeoJapon.png")),
+                    ImageIO.read(new File("src/imagenes/Escudo/NeoJapon.png")),
                     ImageIO.read(new File("src/Imagenes/Escudo/DragonesDeFuego.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/KnightsOfQueen.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Emperadores.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/Unicorn.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/LosRojos.png")),
                     ImageIO.read(new File("src/Imagenes/Escudo/Orfeo.png")),
-                    ImageIO.read(new File("src/Imagenes/Escudo/Zeus.png")),
-                    ImageIO.read(new File("src/Imagenes/Escudo/Genesis.png")),
-                    ImageIO.read(new File("src/Imagenes/Escudo/PolvoDiamante.png")),
-                    ImageIO.read(new File("src/Imagenes/Escudo/Caos.png")),
-                    ImageIO.read(new File("src/Imagenes/Escudo/Genesis.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/OsReis.png")),
+                    ImageIO.read(new File("src/Imagenes/Escudo/LittleGiants.png")),
             }
-            };
+    };
     private boolean equipo1Seleccionado = false;
     private boolean equipo2Seleccionado = false;
     private Equipos equipoSeleccionado1;
@@ -83,6 +84,7 @@ public class SelectorEquipos extends InterfazMaestra {
     /**
      * Constructor for the com.penaltyeleven.pantallainicial.SelectorEquipos class.
      * It initializes the team selector interface.
+     *
      * @throws IOException if there is an error reading an image file.
      */
     public SelectorEquipos() throws IOException {
@@ -112,8 +114,7 @@ public class SelectorEquipos extends InterfazMaestra {
         labelEquipo1.setBounds(80, 170, 340, 45);
         labelEquipo1.setHorizontalAlignment(JLabel.CENTER);
 
-        // JLabel para la imagen del equipo 1
-        JLabel imagenEquipo1 = new JLabel(imagenesEquipos[indiceEquipo1][temporadaActual]);
+        ImageLabel imagenEquipo1 = new ImageLabel(imagenesEquipos[indiceEquipo1][temporadaActual]);
         imagenEquipo1.setBounds(150, 250, 200, 200);
 
         // JLabel para el equipo 2
@@ -127,7 +128,7 @@ public class SelectorEquipos extends InterfazMaestra {
         labelEquipo2.setHorizontalAlignment(JLabel.CENTER);
 
         // JLabel para la imagen del equipo 2
-        JLabel imagenEquipo2 = new JLabel(imagenesEquipos[indiceEquipo2][temporadaActual]);
+        ImageLabel imagenEquipo2 = new ImageLabel(imagenesEquipos[indiceEquipo2][temporadaActual]);
         imagenEquipo2.setBounds(950, 250, 200, 200);
 
         // JLabel imagen versus
@@ -240,7 +241,7 @@ public class SelectorEquipos extends InterfazMaestra {
                 musicManager.playSound("Musica/SoundEffect/SonidoJugar.wav", 0.7f);
                 if (eq1 && eq2) {
                     JuegoMultiplayer juegoMultiplayer;
-                    juegoMultiplayer = new JuegoMultiplayer(equipoSeleccionado1,escudoEquipoSeleccionado1,equipoSeleccionado2,escudoEquipoSeleccionado2);
+                    juegoMultiplayer = new JuegoMultiplayer(equipoSeleccionado1, escudoEquipoSeleccionado1, equipoSeleccionado2, escudoEquipoSeleccionado2);
                     juegoMultiplayer.setVisible(true);
                     dispose();
                     musicManager.stopMusic();
@@ -274,7 +275,8 @@ public class SelectorEquipos extends InterfazMaestra {
                     // Asegúrate de que el índice esté dentro de los límites de la matriz
                     if (indiceEquipo2 < imagenesEquipos[temporadaActual].length) {
                         labelEquipo2.setText(temporadas.get(temporadaActual).get(indiceEquipo2).getNombreEquipo());
-                        imagenEquipo2.setIcon(imagenesEquipos[temporadaActual][indiceEquipo2]);
+                        imagenEquipo2.image = scaleImage(imagenesEquipos[temporadaActual][indiceEquipo2], 200, 200);
+                        imagenEquipo2.repaint();
                     }
                 }
             }
@@ -290,7 +292,8 @@ public class SelectorEquipos extends InterfazMaestra {
                     // Asegúrate de que el índice esté dentro de los límites de la matriz
                     if (indiceEquipo2 < imagenesEquipos[temporadaActual].length) {
                         labelEquipo2.setText(temporadas.get(temporadaActual).get(indiceEquipo2).getNombreEquipo());
-                        imagenEquipo2.setIcon(imagenesEquipos[temporadaActual][indiceEquipo2]);
+                        imagenEquipo2.image = scaleImage(imagenesEquipos[temporadaActual][indiceEquipo2], 200, 200);
+                        imagenEquipo2.repaint();
                     }
                 }
             }
@@ -306,7 +309,8 @@ public class SelectorEquipos extends InterfazMaestra {
                     // Asegúrate de que el índice esté dentro de los límites de la matriz
                     if (indiceEquipo1 < imagenesEquipos[temporadaActual].length) {
                         labelEquipo1.setText(temporadas.get(temporadaActual).get(indiceEquipo1).getNombreEquipo());
-                        imagenEquipo1.setIcon(imagenesEquipos[temporadaActual][indiceEquipo1]);
+                        imagenEquipo1.image = scaleImage(imagenesEquipos[temporadaActual][indiceEquipo1], 200, 200);
+                        imagenEquipo1.repaint();
                     }
                 }
             }
@@ -322,7 +326,8 @@ public class SelectorEquipos extends InterfazMaestra {
                     // Asegúrate de que el índice esté dentro de los límites de la matriz
                     if (indiceEquipo1 < imagenesEquipos[temporadaActual].length) {
                         labelEquipo1.setText(temporadas.get(temporadaActual).get(indiceEquipo1).getNombreEquipo());
-                        imagenEquipo1.setIcon(imagenesEquipos[temporadaActual][indiceEquipo1]);
+                        imagenEquipo1.image = scaleImage(imagenesEquipos[temporadaActual][indiceEquipo1], 200, 200);
+                        imagenEquipo1.repaint();
                     }
                 }
             }
@@ -338,7 +343,8 @@ public class SelectorEquipos extends InterfazMaestra {
                     indiceEquipo1 = 0;
                     labelEquipo1.setText(temporadas.get(temporadaActual).get(indiceEquipo1).getNombreEquipo());
                     // Actualiza los íconos de los equipos
-                    imagenEquipo1.setIcon(imagenesEquipos[temporadaActual][indiceEquipo1]);
+                    imagenEquipo1.image = scaleImage(imagenesEquipos[temporadaActual][indiceEquipo1], 200, 200);
+                    imagenEquipo1.repaint();
                 }
             }
         });
@@ -352,7 +358,8 @@ public class SelectorEquipos extends InterfazMaestra {
                     indiceEquipo2 = 0;
                     labelEquipo2.setText(temporadas.get(temporadaActual).get(indiceEquipo2).getNombreEquipo());
                     // Actualiza los íconos de los equipos
-                    imagenEquipo2.setIcon(imagenesEquipos[temporadaActual][indiceEquipo2]);
+                    imagenEquipo2.image = scaleImage(imagenesEquipos[temporadaActual][indiceEquipo2], 200, 200);
+                    imagenEquipo2.repaint();
                 }
             }
         });
@@ -361,15 +368,40 @@ public class SelectorEquipos extends InterfazMaestra {
         musicManager.playMusic("Musica/Soundtrack/SelectorEquipos.wav", 0.7f);
     }
 
+    /**
+     * Scales an image to the specified width and height.
+     *
+     * @param source the image to scale.
+     * @param width the width of the scaled image.
+     * @param height the height of the scaled image.
+     * @return the scaled image.
+     */
+    public BufferedImage scaleImage(BufferedImage source, int width, int height) {
+        Image tmp = source.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        BufferedImage scaled = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = scaled.createGraphics();
+        g2d.drawImage(tmp, 0, 0, null);
+        g2d.dispose();
+        return scaled;
+    }
 
     /**
-     * Main method for the com.penaltyeleven.pantallainicial.SelectorEquipos class.
-     * It creates a new team selector interface.
-     * @param args the command line arguments.
-     * @throws IOException if there is an error reading an image file.
+     * Clase para mostrar una imagen en un JLabel.
      */
-    public static void main(String[] args) throws IOException {
-        SelectorEquipos selectorEquipos = new SelectorEquipos();
-        selectorEquipos.setVisible(true);
+    public class ImageLabel extends JLabel {
+        private BufferedImage image;
+
+        public ImageLabel(BufferedImage image) {
+            this.image = image;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            // Calcula la posición x e y para centrar la imagen
+            int x = (this.getWidth() - image.getWidth()) / 2;
+            int y = (this.getHeight() - image.getHeight()) / 2;
+            g.drawImage(image, x, y, this);
+        }
     }
 }
