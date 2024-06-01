@@ -78,10 +78,10 @@ public class Jugador1Gana extends InterfazMaestra {
         JButton salirButton = new JButton();
 
         // Creamos los botones
-        crearBoton(confirmarButton, "Confirmar", 520, 360, 200, 50, colorBaseBotones, Color.BLACK, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.5f);
-        crearBoton(reiniciarButton, "Reiniciar", 520, 500, 200, 50, colorBaseBotones, Color.BLACK, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.5f);
-        crearBoton(selectorEquipos, "Escoger equipos", 520, 550, 200, 50, colorBaseBotones, Color.BLACK, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.5f);
-        crearBoton(salirButton, "Salir", 520, 600, 200, 50, colorBaseBotones, Color.BLACK, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.5f);
+        crearBoton(confirmarButton, "Confirmar", 520, 360, 200, 50, colorBaseBotones, Color.WHITE, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.5f);
+        crearBoton(reiniciarButton, "Reiniciar", 520, 500, 200, 50, colorBaseBotones, Color.WHITE, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.5f);
+        crearBoton(selectorEquipos, "Escoger equipos", 520, 550, 200, 50, colorBaseBotones, Color.WHITE, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.5f);
+        crearBoton(salirButton, "Salir", 520, 600, 200, 50, colorBaseBotones, Color.WHITE, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.5f);
 
 
         add(nombreField);
