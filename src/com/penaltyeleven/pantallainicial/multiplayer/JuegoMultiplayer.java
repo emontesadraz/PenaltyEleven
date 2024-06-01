@@ -18,7 +18,7 @@ import java.util.Random;
  */
 public class JuegoMultiplayer extends InterfazMaestra {
 
-    private static final int NUM_PENALES = 5;
+    private static final int NUM_PENALES = 1;
     private int turno = 0;
     private int penalesRestantes1 = NUM_PENALES;
     private int penalesRestantes2 = NUM_PENALES;
@@ -449,7 +449,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
 
         String song = canciones.get(currentSongsIndex);
         musicManager.stopMusic();
-        musicManager.playMusic(song, 0.3f);
+        musicManager.playMusic(song, 0.17f);
 
     }
     private void playGoals(){
