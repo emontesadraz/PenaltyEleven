@@ -220,11 +220,11 @@ public class JuegoMultiplayer extends InterfazMaestra {
             }
         });
         // Añadir los JLabel al panelBotones
-        JPanel panelEquipo1 = new JPanel(new GridLayout(1, 2));
+        JPanel panelEquipo1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panelEquipo1.add(escudo1Label);
         panelEquipo1.add(equipo1Label);
 
-        JPanel panelEquipo2 = new JPanel(new GridLayout(1, 2));
+        JPanel panelEquipo2 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         panelEquipo2.add(equipo2Label);
         panelEquipo2.add(escudo2Label);
 
