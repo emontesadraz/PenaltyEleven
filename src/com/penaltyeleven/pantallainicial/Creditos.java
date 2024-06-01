@@ -38,7 +38,7 @@ public class Creditos extends InterfazMaestra {
         crearBoton(volver, "Volver", 40, 600, 220, 50, colorBaseBotones, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
 
 // Fondo
-        crearFondo(fondo, "Imagenes/Fondo/Creditos.png");
+        crearFondo(fondo, "Imagenes/Fondo/Creditos2.png");
 
 // Añadir botones al panel
         panel.add(volver);

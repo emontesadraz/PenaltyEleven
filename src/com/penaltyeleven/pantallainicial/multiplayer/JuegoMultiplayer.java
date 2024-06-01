@@ -40,7 +40,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private final JButton[][] botones = new JButton[3][3];
     private JLabel marcadorLabel = new JLabel("Jugador 1: 0 | Jugador 2: 0");
     private JLabel estadoLabel = new JLabel("Jugador 1 tira");
-    private java.util.List<String> canciones = Arrays.asList("Musica/Soundtrack/MusicaPartidoBasico1.wav", "Musica/Soundtrack/MusicaPartidoBasico2.wav", "Musica/Soundtrack/MusicaPartidoBasico3.wav", "Musica/Soundtrack/MusicaPartidoBasico4.wav", "Musica/Soundtrack/MusicaPartidoBasico5.wav", "Musica/Soundtrack/MusicaPartidoBasico6.wav","PartidoVsZeus.wav");
+    private java.util.List<String> canciones = Arrays.asList("Musica/Soundtrack/MusicaPartidoBasico1.wav", "Musica/Soundtrack/MusicaPartidoBasico2.wav", "Musica/Soundtrack/MusicaPartidoBasico3.wav", "Musica/Soundtrack/MusicaPartidoBasico4.wav", "Musica/Soundtrack/MusicaPartidoBasico5.wav", "Musica/Soundtrack/MusicaPartidoBasico6.wav","Musica/Soundtrack/PartidoVsZeus.wav");
     private int currentSongsIndex = 0;
 
     // Variables para el equipo y el escudo seleccionados
@@ -332,9 +332,9 @@ public class JuegoMultiplayer extends InterfazMaestra {
         // Crear el ImageIcon y el JLabel
         ImageIcon imageIcon;
         if (parada) {
-            imageIcon = new ImageIcon("src/Imagenes/Parada.png");
+            imageIcon = new ImageIcon("src/Imagenes/Foto/parada.jpg");
         } else {
-            imageIcon = new ImageIcon("src/Imagenes/Gol.png");
+            imageIcon = new ImageIcon("src/Imagenes/Foto/gol.png");
         }
         JLabel label = new JLabel(imageIcon);
 
@@ -346,8 +346,8 @@ public class JuegoMultiplayer extends InterfazMaestra {
         dialog.setModal(false);
         dialog.setVisible(true);
 
-        // Crear un Timer para cerrar el JDialog después de 2 segundos
-        Timer timer = new Timer(1500, new ActionListener() {
+        // Crear un Timer para cerrar el JDialog después de 1200 ms
+        Timer timer = new Timer(1200, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dialog.dispose();
