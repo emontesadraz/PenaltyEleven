@@ -74,17 +74,19 @@ public class JuegoMultiplayer extends InterfazMaestra {
         this.escudoEquipoSeleccionado2 = escudoEquipoSeleccionado2;
 
         // Escalar las imágenes
-        int desiredWidth = 105; // Ajusta esto a la anchura deseada
-        int desiredHeight = 105; // Ajusta esto a la altura deseada
+        int desiredWidth = 100; // Ajusta esto a la anchura deseada
+        int desiredHeight = 100; // Ajusta esto a la altura deseada
         BufferedImage escudoEquipoSeleccionado1Scaled = scaleImage(escudoEquipoSeleccionado1, desiredWidth, desiredHeight);
         BufferedImage escudoEquipoSeleccionado2Scaled = scaleImage(escudoEquipoSeleccionado2, desiredWidth, desiredHeight);
 
         // Inicializar los JLabel de los Equipos
         equipo1Label = new JLabel(equipoSeleccionado1.getNombreEquipo());
-        equipo1Label.setFont(new Font("Rubik", Font.BOLD | Font.ITALIC, 20));
+        equipo1Label.setForeground(new Color(255,255,255));
+        equipo1Label.setFont(new Font("Rubik", Font.BOLD | Font.ITALIC, 25));
 
         equipo2Label = new JLabel(equipoSeleccionado2.getNombreEquipo());
-        equipo2Label.setFont(new Font("Rubik", Font.BOLD | Font.ITALIC, 20));
+        equipo2Label.setForeground(new Color(255,255,255));
+        equipo2Label.setFont(new Font("Rubik", Font.BOLD | Font.ITALIC, 25));
 
         // Crear ImageLabel para los escudos de los equipos
         ImageLabel escudo1Label = new ImageLabel(escudoEquipoSeleccionado1Scaled);
@@ -202,27 +204,21 @@ public class JuegoMultiplayer extends InterfazMaestra {
             }
         });
 
-        // Panel de marcador
-        JPanel marcadorPanel = new JPanel(new GridLayout(1, 3));
-        marcadorPanel.setPreferredSize(new Dimension(1430, 110)); // Ajustar altura
+        // Panel para el marcador
+        JPanel marcadorPanel = new JPanel();
+        marcadorPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         marcadorPanel.setBackground(new Color(25,25,25));
-        marcadorLabel.setForeground(Color.WHITE);
-        marcadorLabel.setFont(new Font("Impact", Font.PLAIN, 75));
+        marcadorLabel.setForeground(new Color(255,255,255));
+        marcadorLabel.setFont(new Font("Impact", Font.PLAIN, 70));
 
-        JPanel marcadorPanelIzq = new JPanel(new GridLayout(1,2));
-        marcadorPanelIzq.add(escudo1Label, BorderLayout.WEST);
-        marcadorPanelIzq.add(equipo1Label);
- //a
-        JPanel marcadorPanelCentro = new JPanel(new BorderLayout());
-        marcadorPanelCentro.add(marcadorLabel, BorderLayout.CENTER);
 
-        JPanel marcadorPanelDer = new JPanel(new GridLayout(1,2));
-        marcadorPanelDer.add(escudo2Label);
-        marcadorPanelDer.add(equipo2Label, BorderLayout.EAST);
 
-        marcadorPanel.add(marcadorPanelIzq, FlowLayout.LEFT);
-        marcadorPanel.add(marcadorPanelCentro, BorderLayout.CENTER);
-        marcadorPanel.add(marcadorPanelDer, BorderLayout.EAST);
+        marcadorPanel.add(escudo1Label, FlowLayout.LEFT);
+        marcadorPanel.add(equipo1Label, BorderLayout.WEST);
+        marcadorPanel.add(marcadorLabel, BorderLayout.CENTER);
+        marcadorPanel.add(equipo2Label, BorderLayout.EAST);
+        marcadorPanel.add(escudo2Label, BorderLayout.EAST);
+
 
         // Panel para los botones y etiquetas en el marcador
         JPanel botonesPanel = new JPanel();
