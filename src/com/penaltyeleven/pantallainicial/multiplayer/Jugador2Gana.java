@@ -35,13 +35,7 @@ public class Jugador2Gana extends InterfazMaestra {
      * @param escudoEquipoSeleccionado2 Escudo del equipo seleccionado por el jugador 2.
      */
     public Jugador2Gana(Equipos equipoSeleccionado1, BufferedImage escudoEquipoSeleccionado1, Equipos equipoSeleccionado2, BufferedImage escudoEquipoSeleccionado2) {
-        setTitle("Penalty Eleven");
-        setSize(1280, 720);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setLayout(null);
-        setResizable(false);
-        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
+        crearVentana("Penalty Eleven", 1280, 720);
 
         this.equipoSeleccionado1 = equipoSeleccionado1;
         this.escudoEquipoSeleccionado1 = escudoEquipoSeleccionado1;
@@ -51,7 +45,7 @@ public class Jugador2Gana extends InterfazMaestra {
 
         // Editamos el campo de texto a nuestro gusto
         nombreField = new JTextArea("Por favor, introduce tu nombre");
-        nombreField.setBounds(450, 310, 350, 50);
+        nombreField.setBounds(440, 315, 370, 31);
         nombreField.setAlignmentX(JTextArea.CENTER_ALIGNMENT);
         nombreField.setAlignmentY(JTextArea.CENTER_ALIGNMENT);
         nombreField.setFont(fuente);
@@ -78,11 +72,10 @@ public class Jugador2Gana extends InterfazMaestra {
         JButton salirButton = new JButton();
 
         // Creamos los botones
-        crearBoton(confirmarButton, "Confirmar", 520, 360, 200, 50, colorBaseBotones, Color.WHITE, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.5f);
-        crearBoton(reiniciarButton, "Reiniciar", 520, 500, 200, 50, colorBaseBotones, Color.WHITE, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.5f);
-        crearBoton(selectorEquipos, "Escoger equipos", 520, 550, 200, 50, colorBaseBotones, Color.WHITE, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.5f);
-        crearBoton(salirButton, "Salir", 520, 600, 200, 50, colorBaseBotones, Color.WHITE, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.5f);
-
+        crearBoton(confirmarButton, "Confirmar", 520, 360, 200, 45, colorBaseBotones, Color.WHITE, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.5f);
+        crearBoton(reiniciarButton, "Reiniciar", 520, 470, 200, 45, colorBaseBotones, Color.WHITE, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.5f);
+        crearBoton(selectorEquipos, "Escoger equipos", 495, 530, 250, 45, colorBaseBotones, Color.WHITE, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.5f);
+        crearBoton(salirButton, "Salir", 520, 590, 200, 45, colorBaseBotones, Color.WHITE, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.5f);
 
         add(nombreField);
         add(confirmarButton);
@@ -151,4 +144,5 @@ public class Jugador2Gana extends InterfazMaestra {
         musicManager.playMusic("Musica/Soundtrack/Victoria.wav", 0.7f);
 
     }
+
 }
