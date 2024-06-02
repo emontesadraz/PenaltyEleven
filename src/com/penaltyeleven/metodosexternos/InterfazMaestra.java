@@ -57,7 +57,7 @@ public class InterfazMaestra extends JFrame {
         // Cambiar color de los botones al pasar el ratón por encima
         boton.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
-                boton.setBackground(colorFondoBotones.darker());
+                boton.setBackground(Color.BLACK);
                 musicManager.playSound(rutaSoundEfectHover, volumenSoundEfectHover);
             }
 

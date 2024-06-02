@@ -221,8 +221,6 @@ public class SelectorEquipos extends InterfazMaestra {
         seleccionarTemporada1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // ... código existente ...
-
                 // Actualizar el JLabel
                 temporadaEquipo1Label.setText("Temporada " + (temporadaActual1 + 1));
             }
@@ -231,8 +229,6 @@ public class SelectorEquipos extends InterfazMaestra {
         seleccionarTemporada2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // ... código existente ...
-
                 // Actualizar el JLabel
                 temporadaEquipo2Label.setText("Temporada " + (temporadaActual2 + 1));
             }
