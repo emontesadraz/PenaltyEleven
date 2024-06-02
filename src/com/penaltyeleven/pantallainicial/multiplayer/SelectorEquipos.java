@@ -76,8 +76,7 @@ public class SelectorEquipos extends InterfazMaestra {
     private JLabel labelEquipo2;
     int indiceEquipo1 = 0;
     int indiceEquipo2 = 0;
-    int temporadaActual1 = 0;
-    int temporadaActual2 = 0;
+    int temporadaActual = 0;
     boolean eq1 = false;
     boolean eq2 = false;
     List<List<Equipos>> temporadas;
@@ -106,7 +105,7 @@ public class SelectorEquipos extends InterfazMaestra {
         add(panel);
 
         // JLabel para el equipo 1
-        labelEquipo1 = new JLabel(temporadas.get(temporadaActual1).get(indiceEquipo1).getNombreEquipo());
+        labelEquipo1 = new JLabel(temporadas.get(temporadaActual).get(indiceEquipo1).getNombreEquipo());
         labelEquipo1.setFont(new Font("Trebuchet MS", Font.BOLD, 30));
         labelEquipo1.setOpaque(true);
         labelEquipo1.setForeground(colorBase);
@@ -115,11 +114,11 @@ public class SelectorEquipos extends InterfazMaestra {
         labelEquipo1.setBounds(80, 170, 340, 45);
         labelEquipo1.setHorizontalAlignment(JLabel.CENTER);
 
-        ImageLabel imagenEquipo1 = new ImageLabel(imagenesEquipos[indiceEquipo1][temporadaActual1]);
+        ImageLabel imagenEquipo1 = new ImageLabel(imagenesEquipos[indiceEquipo1][temporadaActual]);
         imagenEquipo1.setBounds(150, 250, 200, 200);
 
         // JLabel para el equipo 2
-        labelEquipo2 = new JLabel(temporadas.get(temporadaActual2).get(indiceEquipo2).getNombreEquipo());
+        labelEquipo2 = new JLabel(temporadas.get(temporadaActual).get(indiceEquipo2).getNombreEquipo());
         labelEquipo2.setFont(new Font("Trebuchet MS", Font.BOLD, 30));
         labelEquipo2.setOpaque(true);
         labelEquipo2.setForeground(colorBase);
@@ -129,7 +128,7 @@ public class SelectorEquipos extends InterfazMaestra {
         labelEquipo2.setHorizontalAlignment(JLabel.CENTER);
 
         // JLabel para la imagen del equipo 2
-        ImageLabel imagenEquipo2 = new ImageLabel(imagenesEquipos[indiceEquipo2][temporadaActual2]);
+        ImageLabel imagenEquipo2 = new ImageLabel(imagenesEquipos[indiceEquipo2][temporadaActual]);
         imagenEquipo2.setBounds(950, 250, 200, 200);
 
         // JLabel imagen versus
@@ -158,125 +157,12 @@ public class SelectorEquipos extends InterfazMaestra {
         crearBoton(seleccionarEqu2, "Seleccionar", 950, 60, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(jugar, "Jugar", 550, 500, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(atras, "Atrás", 550, 600, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(flechaIzquierda, "<", 100, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(flechaDerecha, ">", 350, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(flechaIzquierda2, "<", 900, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(flechaDerecha2, ">", 1150, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(flechaIzquierda, "<", 900, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(flechaDerecha, ">", 1150, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(flechaIzquierda2, "<", 100, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(flechaDerecha2, ">", 350, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(seleccionarTemporada1, "Cambiar Temporada", 100, 580, 300, 40, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(seleccionarTemporada2, "Cambiar Temporada", 900, 580, 300, 40, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-
-        // Asignar actions listeners para los botones de flechas y temporadas
-        flechaIzquierda.addActionListener(e -> {
-                musicManager.playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
-                cambiarEquipo(labelEquipo1, imagenEquipo1, -1, true);
-                });
-        flechaDerecha.addActionListener(e -> {
-                musicManager.playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
-                cambiarEquipo(labelEquipo1, imagenEquipo1, 1, true);
-                });
-        flechaIzquierda2.addActionListener(e -> {
-                musicManager.playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
-                cambiarEquipo(labelEquipo2, imagenEquipo2, -1, false);
-                });
-        flechaDerecha2.addActionListener(e -> {
-                musicManager.playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
-                cambiarEquipo(labelEquipo2, imagenEquipo2, 1, false);
-                });
-        seleccionarTemporada1.addActionListener(e -> {
-                musicManager.playSound("Musica/SoundEffect/SonidoPagina.wav", 0.7f);
-                cambiarTemporada(labelEquipo1, imagenEquipo1, true);
-                });
-        seleccionarTemporada2.addActionListener(e -> {
-                musicManager.playSound("Musica/SoundEffect/SonidoPagina.wav", 0.7f);
-                cambiarTemporada(labelEquipo2, imagenEquipo2, false);
-                });
-
-        // Seleccionar equipo 1
-        seleccionarEqu1.addActionListener(e -> {
-            if (!equipo1Seleccionado) {
-                musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
-                eq1 = true;
-                equipoSeleccionado1 = temporadas.get(temporadaActual1).get(indiceEquipo1);
-                escudoEquipoSeleccionado1 = imagenesEquipos[temporadaActual1][indiceEquipo1];
-                labelEquipo1.setBackground(Color.GREEN);
-                equipo1Seleccionado = true;
-                seleccionarEqu1.setText("Seleccionado");
-                flechaIzquierda.setEnabled(false);
-                flechaDerecha.setEnabled(false);
-                seleccionarTemporada1.setEnabled(false);
-                if (eq2) {
-                    jugar.setEnabled(true);
-                }
-            } else {
-                musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
-                eq1 = false;
-                equipoSeleccionado1 = null;
-                escudoEquipoSeleccionado1 = null;
-                labelEquipo1.setBackground(Color.WHITE);
-                equipo1Seleccionado = false;
-                seleccionarEqu1.setText("Seleccionar");
-                flechaIzquierda.setEnabled(true);
-                flechaDerecha.setEnabled(true);
-                seleccionarTemporada1.setEnabled(true);
-                jugar.setEnabled(false);
-            }
-        });
-
-// Seleccionar equipo 2
-        seleccionarEqu2.addActionListener(e -> {
-            if (!equipo2Seleccionado) {
-                musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
-                eq2 = true;
-                equipoSeleccionado2 = temporadas.get(temporadaActual2).get(indiceEquipo2);
-                escudoEquipoSeleccionado2 = imagenesEquipos[temporadaActual2][indiceEquipo2];
-                labelEquipo2.setBackground(Color.GREEN);
-                equipo2Seleccionado = true;
-                seleccionarEqu2.setText("Seleccionado");
-                flechaIzquierda2.setEnabled(false);
-                flechaDerecha2.setEnabled(false);
-                seleccionarTemporada2.setEnabled(false);
-                if (eq1) {
-                    jugar.setEnabled(true);
-                }
-            } else {
-                musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
-                eq2 = false;
-                equipoSeleccionado2 = null;
-                escudoEquipoSeleccionado2 = null;
-                labelEquipo2.setBackground(Color.WHITE);
-                equipo2Seleccionado = false;
-                seleccionarEqu2.setText("Seleccionar");
-                flechaIzquierda2.setEnabled(true);
-                flechaDerecha2.setEnabled(true);
-                seleccionarTemporada2.setEnabled(true);
-                jugar.setEnabled(false);
-            }
-        });
-
-
-        // Jugar
-        jugar.addActionListener(e -> {
-            if (eq1 && eq2) {
-                musicManager.playSound("Musica/SoundEffect/SonidoJugar.wav", 0.7f);
-                musicManager.stopMusic();
-                JuegoMultiplayer juegoMultiplayer = new JuegoMultiplayer(equipoSeleccionado1, escudoEquipoSeleccionado1, equipoSeleccionado2, escudoEquipoSeleccionado2);
-                juegoMultiplayer.setVisible(true);
-                dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "No se puede jugar hasta que ambos equipos estén seleccionados", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        });
-        // Inicialmente, el botón de jugar está desactivado
-        jugar.setEnabled(false);
-
-        // Atrás
-        atras.addActionListener(e -> {
-            musicManager.playSound("Musica/SoundEffect/SonidoAtras.wav", 0.7f);
-            musicManager.stopMusic();
-            MenuInicial menuInicial = new MenuInicial();
-            menuInicial.setVisible(true);
-            dispose();
-        });
 
         // Fondo
         crearFondo(fondo, "Imagenes/Fondo/SelectorEquipos.jpg");
@@ -306,76 +192,190 @@ public class SelectorEquipos extends InterfazMaestra {
         // Añadir panel al JFrame
         add(panel);
 
-        // Controles de la música
-        musicManager.playMusic("Musica/Soundtrack/SelectorEquiposMultiPlayer.wav", 0.5f);
-
-    }
-
-    /**
-     * Cambia el equipo mostrado en el JLabel y la imagen correspondiente.
-     *
-     * @param label El JLabel del equipo a cambiar.
-     * @param imagen El ImageLabel de la imagen del equipo a cambiar.
-     * @param cambio El cambio en el índice del equipo (-1 para anterior, 1 para siguiente).
-     * @param esEquipo1 Si es el equipo 1 (true) o el equipo 2 (false).
-     */
-    private void cambiarEquipo(JLabel label, ImageLabel imagen, int cambio, boolean esEquipo1) {
-        if (esEquipo1) {
-            indiceEquipo1 = (indiceEquipo1 + cambio + temporadas.get(temporadaActual1).size()) % temporadas.get(temporadaActual1).size();
-            label.setText(temporadas.get(temporadaActual1).get(indiceEquipo1).getNombreEquipo());
-            imagen.updateImage(imagenesEquipos[temporadaActual1][indiceEquipo1]);
-        } else {
-            indiceEquipo2 = (indiceEquipo2 + cambio + temporadas.get(temporadaActual2).size()) % temporadas.get(temporadaActual2).size();
-            label.setText(temporadas.get(temporadaActual2).get(indiceEquipo2).getNombreEquipo());
-            imagen.updateImage(imagenesEquipos[temporadaActual2][indiceEquipo2]);
-        }
-    }
-
-    /**
-     * Cambia la temporada del equipo mostrado en el JLabel y la imagen correspondiente.
-     *
-     * @param label El JLabel del equipo a cambiar.
-     * @param imagen El ImageLabel de la imagen del equipo a cambiar.
-     * @param esEquipo1 Si es el equipo 1 (true) o el equipo 2 (false).
-     */
-    private void cambiarTemporada(JLabel label, ImageLabel imagen, boolean esEquipo1) {
-        if (esEquipo1) {
-            temporadaActual1 = (temporadaActual1 + 1) % imagenesEquipos.length;
-            indiceEquipo1 = 0; // Resetear al primer equipo de la nueva temporada
-            label.setText(temporadas.get(temporadaActual1).get(indiceEquipo1).getNombreEquipo());
-            imagen.updateImage(imagenesEquipos[temporadaActual1][indiceEquipo1]);
-        } else {
-            temporadaActual2 = (temporadaActual2 + 1) % imagenesEquipos.length;
-            indiceEquipo2 = 0; // Resetear al primer equipo de la nueva temporada
-            label.setText(temporadas.get(temporadaActual2).get(indiceEquipo2).getNombreEquipo());
-            imagen.updateImage(imagenesEquipos[temporadaActual2][indiceEquipo2]);
-        }
-    }
-
-    /**
-     * Clase para mostrar una imagen en un JLabel.
-     */
-    public class ImageLabel extends JLabel {
-        private BufferedImage image;
-
-        public ImageLabel(BufferedImage image) {
-            this.image = scaleImage(image, 200, 200);
-        }
-
-        public void updateImage(BufferedImage newImage) {
-            this.image = scaleImage(newImage, 200, 200);
-            this.repaint();
-        }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            if (image != null) {
-                g.drawImage(image, 0, 0, this);
+        // Acciones de los botones
+        // Accion del boton seleccionarEqu1
+        seleccionarEqu1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Reproducir sonido
+                musicManager.playSound("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
+                if (seleccionarEqu1.getText().equals("Seleccionar")) {
+                    seleccionarEqu1.setText("Seleccionado");
+                    equipoSeleccionado1 = temporadas.get(temporadaActual).get(indiceEquipo1);
+                    escudoEquipoSeleccionado1 = imagenesEquipos[temporadaActual][indiceEquipo1];
+                } else {
+                    seleccionarEqu1.setText("Seleccionar");
+                    equipoSeleccionado1 = null;
+                    escudoEquipoSeleccionado1 = null;
+                }
+                equipo1Seleccionado = !equipo1Seleccionado;
+                eq1 = !eq1;
             }
-        }
+        });
+
+        // Accion del boton seleccionarEqu2
+        seleccionarEqu2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Reproducir sonido
+                musicManager.playSound("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
+                if (seleccionarEqu2.getText().equals("Seleccionar")) {
+                    seleccionarEqu2.setText("Seleccionado");
+                    equipoSeleccionado2 = temporadas.get(temporadaActual).get(indiceEquipo2);
+                    escudoEquipoSeleccionado2 = imagenesEquipos[temporadaActual][indiceEquipo2];
+                } else {
+                    seleccionarEqu2.setText("Seleccionar");
+                    equipoSeleccionado2 = null;
+                    escudoEquipoSeleccionado2 = null;
+                }
+                equipo2Seleccionado = !equipo2Seleccionado;
+                eq2 = !eq2;
+            }
+        });
+
+        // Accion del boton jugar
+        jugar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Reproducir sonido
+                musicManager.playSound("Musica/SoundEffect/SonidoJugar.wav", 0.7f);
+                if (eq1 && eq2) {
+                    JuegoMultiplayer juegoMultiplayer;
+                    juegoMultiplayer = new JuegoMultiplayer(equipoSeleccionado1, escudoEquipoSeleccionado1, equipoSeleccionado2, escudoEquipoSeleccionado2);
+                    juegoMultiplayer.setVisible(true);
+                    dispose();
+                    musicManager.stopMusic();
+                } else {
+                    // Mostrar un mensaje de error si los equipos no están seleccionados
+                    JOptionPane.showMessageDialog(null, "Debes seleccionar ambos equipos antes de jugar.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        // Accion del boton atras
+        atras.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Reproducir sonido
+                musicManager.playSound("Musica/SoundEffect/SonidoAtras.wav", 0.7f);
+                musicManager.stopMusic();
+                dispose();
+                MenuInicial menuInicial = new MenuInicial();
+                menuInicial.setVisible(true);
+            }
+        });
+
+        // Accion del boton flechaIzquierda
+        flechaIzquierda.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                musicManager.playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
+                if (!eq2 && indiceEquipo2 > 0) {
+                    indiceEquipo2--;
+                    // Asegúrate de que el índice esté dentro de los límites de la matriz
+                    if (indiceEquipo2 < imagenesEquipos[temporadaActual].length) {
+                        labelEquipo2.setText(temporadas.get(temporadaActual).get(indiceEquipo2).getNombreEquipo());
+                        imagenEquipo2.image = scaleImage(imagenesEquipos[temporadaActual][indiceEquipo2], 200, 200);
+                        imagenEquipo2.repaint();
+                    }
+                }
+            }
+        });
+
+        // Accion del boton flechaDerecha
+        flechaDerecha.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                musicManager.playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
+                if (!eq2 && indiceEquipo2 < temporadas.get(temporadaActual).size() - 1) {
+                    indiceEquipo2++;
+                    // Asegúrate de que el índice esté dentro de los límites de la matriz
+                    if (indiceEquipo2 < imagenesEquipos[temporadaActual].length) {
+                        labelEquipo2.setText(temporadas.get(temporadaActual).get(indiceEquipo2).getNombreEquipo());
+                        imagenEquipo2.image = scaleImage(imagenesEquipos[temporadaActual][indiceEquipo2], 200, 200);
+                        imagenEquipo2.repaint();
+                    }
+                }
+            }
+        });
+
+        // Accion del boton flechaIzquierda2
+        flechaIzquierda2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                musicManager.playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
+                if (!eq1 && indiceEquipo1 > 0) {
+                    indiceEquipo1--;
+                    // Asegúrate de que el índice esté dentro de los límites de la matriz
+                    if (indiceEquipo1 < imagenesEquipos[temporadaActual].length) {
+                        labelEquipo1.setText(temporadas.get(temporadaActual).get(indiceEquipo1).getNombreEquipo());
+                        imagenEquipo1.image = scaleImage(imagenesEquipos[temporadaActual][indiceEquipo1], 200, 200);
+                        imagenEquipo1.repaint();
+                    }
+                }
+            }
+        });
+
+        // Accion del boton flechaDerecha2
+        flechaDerecha2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                musicManager.playSound("Musica/SoundEffect/SonidoFlechas.wav", 0.7f);
+                if (!eq1 && indiceEquipo1 < temporadas.get(temporadaActual).size() - 1) {
+                    indiceEquipo1++;
+                    // Asegúrate de que el índice esté dentro de los límites de la matriz
+                    if (indiceEquipo1 < imagenesEquipos[temporadaActual].length) {
+                        labelEquipo1.setText(temporadas.get(temporadaActual).get(indiceEquipo1).getNombreEquipo());
+                        imagenEquipo1.image = scaleImage(imagenesEquipos[temporadaActual][indiceEquipo1], 200, 200);
+                        imagenEquipo1.repaint();
+                    }
+                }
+            }
+        });
+
+        // Accion del boton seleccionarTemporada
+        seleccionarTemporada1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!equipo1Seleccionado) {
+                    musicManager.playSound("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
+                    temporadaActual = (temporadaActual + 1) % temporadas.size();
+                    indiceEquipo1 = 0;
+                    labelEquipo1.setText(temporadas.get(temporadaActual).get(indiceEquipo1).getNombreEquipo());
+                    // Actualiza los íconos de los equipos
+                    imagenEquipo1.image = scaleImage(imagenesEquipos[temporadaActual][indiceEquipo1], 200, 200);
+                    imagenEquipo1.repaint();
+                }
+            }
+        });
+        // Accion del boton seleccionarTemporada2
+        seleccionarTemporada2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!equipo2Seleccionado) {
+                    musicManager.playSound("Musica/SoundEffect/SonidoBotones.wav", 0.7f);
+                    temporadaActual = (temporadaActual + 1) % temporadas.size();
+                    indiceEquipo2 = 0;
+                    labelEquipo2.setText(temporadas.get(temporadaActual).get(indiceEquipo2).getNombreEquipo());
+                    // Actualiza los íconos de los equipos
+                    imagenEquipo2.image = scaleImage(imagenesEquipos[temporadaActual][indiceEquipo2], 200, 200);
+                    imagenEquipo2.repaint();
+                }
+            }
+        });
+
+        // Controles de la música
+        musicManager.playMusic("Musica/Soundtrack/SelectorEquipos.wav", 0.7f);
     }
 
+    /**
+     * Scales an image to the specified width and height.
+     *
+     * @param source the image to scale.
+     * @param width the width of the scaled image.
+     * @param height the height of the scaled image.
+     * @return the scaled image.
+     */
     public BufferedImage scaleImage(BufferedImage source, int width, int height) {
         Image tmp = source.getScaledInstance(width, height, Image.SCALE_SMOOTH);
         BufferedImage scaled = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -386,12 +386,22 @@ public class SelectorEquipos extends InterfazMaestra {
     }
 
     /**
-     * Main method to run the SelectorEquipos class.
-     *
-     * @param args Command line arguments (not used).
-     * @throws IOException if there is an error reading an image file.
+     * Clase para mostrar una imagen en un JLabel.
      */
-    public static void main(String[] args) throws IOException {
-        new SelectorEquipos();
+    public class ImageLabel extends JLabel {
+        private BufferedImage image;
+
+        public ImageLabel(BufferedImage image) {
+            this.image = image;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            // Calcula la posición x e y para centrar la imagen
+            int x = (this.getWidth() - image.getWidth()) / 2;
+            int y = (this.getHeight() - image.getHeight()) / 2;
+            g.drawImage(image, x, y, this);
+        }
     }
 }

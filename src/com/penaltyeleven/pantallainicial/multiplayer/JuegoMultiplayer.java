@@ -18,7 +18,7 @@ import java.util.Random;
  */
 public class JuegoMultiplayer extends InterfazMaestra {
 
-    private static final int NUM_PENALES = 5;
+    private static final int NUM_PENALES = 1;
     private int turno = 0;
     private int penalesRestantes1 = NUM_PENALES;
     private int penalesRestantes2 = NUM_PENALES;
@@ -31,16 +31,16 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private int seleccionPorteroCount = 0;
 
     public static final Color colorBaseBotones = new Color(25, 25, 25);
-    public static final Font fuenteBoton = new Font("Rubik", Font.PLAIN, 30);
+    public static final Font fuenteBoton = new Font("Rubik", Font.PLAIN, 20);
     public static final Color colorTexto = new Color(255, 255, 255);
     private final MusicManager musicManager = new MusicManager();
 
     private JButton accionBoton = new JButton();
     private JButton seguirBoton = new JButton("Seguir");
     private final JButton[][] botones = new JButton[3][3];
-    private JLabel marcadorLabel = new JLabel(" 0   -   0 ");
+    private JLabel marcadorLabel = new JLabel("Jugador 1: 0 | Jugador 2: 0");
     private JLabel estadoLabel = new JLabel("Jugador 1 tira");
-    private java.util.List<String> canciones = Arrays.asList("Musica/Soundtrack/MusicaPartidoBasico1.wav", "Musica/Soundtrack/MusicaPartidoBasico2.wav", "Musica/Soundtrack/MusicaPartidoBasico3.wav", "Musica/Soundtrack/MusicaPartidoBasico4.wav", "Musica/Soundtrack/MusicaPartidoBasico5.wav", "Musica/Soundtrack/MusicaPartidoBasico6.wav","Musica/Soundtrack/PartidoVsZeus.wav");
+    private java.util.List<String> canciones = Arrays.asList("Musica/Soundtrack/MusicaPartidoBasico1.wav", "Musica/Soundtrack/MusicaPartidoBasico2.wav", "Musica/Soundtrack/MusicaPartidoBasico3.wav", "Musica/Soundtrack/MusicaPartidoBasico4.wav", "Musica/Soundtrack/MusicaPartidoBasico5.wav", "Musica/Soundtrack/MusicaPartidoBasico6.wav");
     private int currentSongsIndex = 0;
     private java.util.List<String> audioGoles = Arrays.asList("src/Musica/Comentaristas/gol1.wav", "src/Musica/Comentaristas/gol2.wav", "src/Musica/Comentaristas/gol3.wav", "src/Musica/Comentaristas/gol4.wav", "src/Musica/Comentaristas/gol5.wav", "src/Musica/Comentaristas/gol6.wav", "src/Musica/Comentaristas/gol7.wav", "src/Musica/Comentaristas/gol8.wav", "src/Musica/Comentaristas/gol9.wav", "src/Musica/Comentaristas/gol10.wav");
     private java.util.List<String> audioParadas = Arrays.asList("src/Musica/Comentaristas/parada1.wav", "src/Musica/Comentaristas/parada2.wav", "src/Musica/Comentaristas/parada3.wav", "src/Musica/Comentaristas/parada4.wav", "src/Musica/Comentaristas/parada5.wav", "src/Musica/Comentaristas/parada6.wav", "src/Musica/Comentaristas/parada7.wav", "src/Musica/Comentaristas/parada8.wav", "src/Musica/Comentaristas/parada9.wav", "src/Musica/Comentaristas/parada10.wav");
@@ -75,6 +75,20 @@ public class JuegoMultiplayer extends InterfazMaestra {
         this.equipoSeleccionado2 = equipoSeleccionado2;
         this.escudoEquipoSeleccionado2 = escudoEquipoSeleccionado2;
 
+        // Panel de marcador
+        JPanel marcadorPanel = new JPanel();
+        marcadorPanel.setLayout(new BorderLayout());
+        marcadorPanel.setPreferredSize(new Dimension(1430, 80)); // Ajustar altura
+        marcadorPanel.setBackground(new Color(0, 51, 102));
+        marcadorLabel.setForeground(Color.WHITE);
+        marcadorLabel.setFont(new Font("Rubik", Font.BOLD, 24));
+        marcadorLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // Panel para los botones y etiquetas en el marcador
+        JPanel botonesPanel = new JPanel();
+        botonesPanel.setOpaque(false);
+        botonesPanel.setLayout(new GridLayout(2, 3));
+
         // Escalar las imágenes
         int desiredWidth = 100; // Ajusta esto a la anchura deseada
         int desiredHeight = 100; // Ajusta esto a la altura deseada
@@ -83,18 +97,20 @@ public class JuegoMultiplayer extends InterfazMaestra {
 
         // Inicializar los JLabel de los Equipos
         equipo1Label = new JLabel(equipoSeleccionado1.getNombreEquipo());
-        equipo1Label.setForeground(new Color(255,255,255));
-        equipo1Label.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 30));
+        equipo1Label.setFont(new Font("Rubik", Font.BOLD | Font.ITALIC, 17));
 
         equipo2Label = new JLabel(equipoSeleccionado2.getNombreEquipo());
-        equipo2Label.setForeground(new Color(255,255,255));
-        equipo2Label.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 30));
+        equipo2Label.setFont(new Font("Rubik", Font.BOLD | Font.ITALIC, 17));
 
         // Crear ImageLabel para los escudos de los equipos
         ImageLabel escudo1Label = new ImageLabel(escudoEquipoSeleccionado1Scaled);
         escudo1Label.setPreferredSize(new Dimension(desiredWidth, desiredHeight));
         ImageLabel escudo2Label = new ImageLabel(escudoEquipoSeleccionado2Scaled);
         escudo2Label.setPreferredSize(new Dimension(desiredWidth, desiredHeight));
+
+
+        marcadorPanel.add(marcadorLabel, BorderLayout.CENTER);
+        marcadorPanel.add(botonesPanel, BorderLayout.SOUTH);
 
         // Panel de la portería
         JPanel porteriaPanel = new JPanel() {
@@ -129,8 +145,8 @@ public class JuegoMultiplayer extends InterfazMaestra {
                     }
                 });
                 // Establecemos las coordenadas y el tamaño de cada botón
-                int anchoBoton = 472; // ajusta este valor según tus necesidades
-                int altoBoton = 231; // ajusta este valor según tus necesidades
+                int anchoBoton = 479; // ajusta este valor según tus necesidades
+                int altoBoton = 210; // ajusta este valor según tus necesidades
                 botones[i][j].setBounds(j * anchoBoton, i * altoBoton, anchoBoton, altoBoton);
                 porteriaPanel.add(botones[i][j]);
             }
@@ -205,61 +221,36 @@ public class JuegoMultiplayer extends InterfazMaestra {
                 tiroActual[1] = -1;
             }
         });
-
-        // Panel para el marcador
-        JPanel marcadorPanel = new JPanel(new GridLayout(1, 2, 0, 5));
-        marcadorPanel.setBackground(new Color(25,25,25));
-        marcadorLabel.setForeground(new Color(255,255,255));
-        marcadorLabel.setFont(new Font("Impact", Font.PLAIN, 70));
-
-        JPanel panelEquipo1 = new JPanel(new FlowLayout(FlowLayout.LEFT, 40, 0));
-        panelEquipo1.setBackground(new Color(25,25,25));
-        panelEquipo1.setForeground(new Color(255,255,255));
+        // Añadir los JLabel al panelBotones
+        JPanel panelEquipo1 = new JPanel(new GridLayout(1, 2));
         panelEquipo1.add(escudo1Label);
         panelEquipo1.add(equipo1Label);
 
-        JPanel panelEquipo2 = new JPanel(new FlowLayout(FlowLayout.RIGHT, 40, 0));
-        panelEquipo2.setBackground(new Color(25,25,25));
-        panelEquipo2.setForeground(new Color(255,255,255));
+        JPanel panelEquipo2 = new JPanel(new GridLayout(1, 2));
         panelEquipo2.add(equipo2Label);
         panelEquipo2.add(escudo2Label);
 
-        marcadorPanel.add(panelEquipo1, BorderLayout.WEST);
-        marcadorPanel.add(panelEquipo2, BorderLayout.EAST);
-
-        //Marcador
-        marcadorLabel.setForeground(new Color(255,255,255));
-        marcadorLabel.setFont(new Font("Impact", Font.PLAIN, 70));
-        marcadorLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        marcadorLabel.setVerticalAlignment(SwingConstants.CENTER);
-        marcadorLabel.setBackground(new Color(25,25,25));
-        //Situar en el medio de arriba
-        marcadorLabel.setBounds(0, 0, 1430, 100);
-
-        // Estado label
-        estadoLabel.setForeground(new Color(255,255,255));
-        estadoLabel.setBackground(new Color(25,25,25));
-        estadoLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        estadoLabel.setFont(new Font("Rubik", Font.PLAIN, 25));
-
-        //Panel de control
-        JPanel controlPanel = new JPanel();
-        controlPanel.setLayout(new GridLayout(1,3));
-        accionBoton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
-        seguirBoton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
-        controlPanel.add(accionBoton, BorderLayout.WEST);
-        controlPanel.add(estadoLabel, BorderLayout.CENTER);
-        controlPanel.add(seguirBoton, BorderLayout.EAST);
-        controlPanel.setBackground(new Color(25,25,25));
-
+        JPanel controlPanel = new JPanel(new GridLayout(1, 3));
+        controlPanel.add(panelEquipo1);
+        controlPanel.add(accionBoton);
+        controlPanel.add(seguirBoton);
+        controlPanel.add(panelEquipo2);
 
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(porteriaPanel, BorderLayout.CENTER);
-        mainPanel.add(marcadorLabel, BorderLayout.NORTH);
-        mainPanel.add(marcadorPanel, BorderLayout.NORTH);
         mainPanel.add(controlPanel, BorderLayout.SOUTH);
+        mainPanel.add(marcadorPanel, BorderLayout.NORTH);
+
+        // Ajustar la etiqueta de estado para el pie de página
+        estadoLabel.setForeground(Color.BLACK);
+        estadoLabel.setBackground(Color.WHITE);
+        estadoLabel.setOpaque(true);
+        estadoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        estadoLabel.setFont(new Font("Rubik", Font.PLAIN, 18));
+
         add(mainPanel, BorderLayout.CENTER);
+        add(estadoLabel, BorderLayout.SOUTH);
 
 
         playNextSong();
@@ -359,8 +350,8 @@ public class JuegoMultiplayer extends InterfazMaestra {
         dialog.setModal(false);
         dialog.setVisible(true);
 
-        // Crear un Timer para cerrar el JDialog después de 1s
-        Timer timer = new Timer(1000, new ActionListener() {
+        // Crear un Timer para cerrar el JDialog después de 2 segundos
+        Timer timer = new Timer(1500, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dialog.dispose();
@@ -428,7 +419,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
      * Método que actualiza el marcador.
      */
     private void actualizarMarcador() {
-        marcadorLabel.setText(aciertos2 + "  -  " + aciertos1);
+        marcadorLabel.setText("Jugador 1: " + aciertos2 + " | Jugador 2: " + aciertos1);
     }
 
     /**
@@ -458,20 +449,20 @@ public class JuegoMultiplayer extends InterfazMaestra {
 
         String song = canciones.get(currentSongsIndex);
         musicManager.stopMusic();
-        musicManager.playMusic(song, 0.4f);
-    }
+        musicManager.playMusic(song, 0.17f);
 
+    }
     private void playGoals(){
         Random random = new Random();
         int index = random.nextInt(audioGoles.size());
-        musicManager.playComments(audioGoles.get(index), 2f);
+        musicManager.playComments(audioGoles.get(index), 1f);
     }
 
 
     private void playSaves(){
         Random random = new Random();
         int index = random.nextInt(audioParadas.size());
-        musicManager.playComments(audioParadas.get(index), 2f);
+        musicManager.playComments(audioParadas.get(index), 1f);
     }
 
     /**

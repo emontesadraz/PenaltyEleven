@@ -329,15 +329,4 @@ public class SelectorEquiposSolo extends InterfazMaestra {
         // Controles de la música
         musicManager.playMusic("Musica/Soundtrack/SelectorEquipos.wav", 0.7f);
     }
-
-    /**
-     * Main method for the com.penaltyeleven.pantallainicial.SelectorEquipos class.
-     * It creates a new team selector interface.
-     * @param args the command line arguments.
-     * @throws IOException if there is an error reading an image file.
-     */
-    public static void main(String[] args) throws IOException {
-        SelectorEquipos selectorEquipos = new SelectorEquipos();
-        selectorEquipos.setVisible(true);
-    }
 }

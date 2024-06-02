@@ -3,13 +3,24 @@ package com.penaltyeleven.metodosexternos;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase que contiene los métodos para agregar los equipos de la serie Inazuma Eleven
+ * a una lista de equipos.
+ * @version 1.0, 2021-08-10
+ */
 public class OperacionesEquipos extends Equipos {
     private List<Equipos> equipos = new ArrayList<Equipos>();
 
+    /**
+     * Constructor de la clase OperacionesEquipos que agrega los equipos a la lista.
+     */
     public OperacionesEquipos() {
         agregarEquipo();
     }
 
+    /**
+     * Método que agrega los equipos a la lista.
+     */
     public void agregarEquipo() {
         //Temporada 1
         Equipos equipo1 = new Equipos("Instituto Raimon", "Imagenes/Escudo/Raimon.png", "Tornado de Fuego", "Super Relámpago", "Fénix", "Despeje de Fuego", "Mano Celestial", "Mano Mágica");
@@ -80,6 +91,10 @@ public class OperacionesEquipos extends Equipos {
 
 
 
+    /**
+     * Método que retorna la lista de equipos.
+     * @return equipos Lista de equipos.
+     */
     public List<Equipos> getEquipos() {
         return equipos;
     }

@@ -6,6 +6,9 @@ import com.penaltyeleven.metodosexternos.MusicManager;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Clase que muestra los créditos del juego.
+ */
 public class Creditos extends InterfazMaestra {
     private JPanel panel;
     private JLabel creditos;
@@ -14,6 +17,9 @@ public class Creditos extends InterfazMaestra {
     public static final Color colorTexto = new Color(255, 255, 255);
     private MusicManager musicManager = new MusicManager();
 
+    /**
+     * Constructor de la clase.
+     */
     public Creditos() {
 
 //Ventana
