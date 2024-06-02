@@ -89,7 +89,7 @@ public class Proximamente extends InterfazMaestra {
             @Override
             public void mouseEntered(MouseEvent e) {
                 musicManager.playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                volver.setBackground(colorBaseBotones.darker());
+                volver.setBackground(Color.BLACK);
             }
 
             @Override

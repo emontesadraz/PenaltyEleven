@@ -148,7 +148,7 @@ public class ElegirTemporada extends InterfazMaestra {
             @Override
             public void mouseEntered(MouseEvent e) {
                 musicManager.playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                temp1.setBackground(colorBaseBotones.darker());
+                temp1.setBackground(Color.BLACK);
             }
 
             @Override
@@ -161,7 +161,7 @@ public class ElegirTemporada extends InterfazMaestra {
             @Override
             public void mouseEntered(MouseEvent e) {
                 musicManager.playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                temp2.setBackground(colorBaseBotones.darker());
+                temp2.setBackground(Color.BLACK);
             }
 
             @Override
@@ -174,7 +174,7 @@ public class ElegirTemporada extends InterfazMaestra {
             @Override
             public void mouseEntered(MouseEvent e) {
                 musicManager.playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                temp3.setBackground(colorBaseBotones.darker());
+                temp3.setBackground(Color.BLACK);
             }
 
             @Override
@@ -187,7 +187,7 @@ public class ElegirTemporada extends InterfazMaestra {
             @Override
             public void mouseEntered(MouseEvent e) {
                 musicManager.playSound("Musica/SoundEffect/SonidoSeleccion.wav", 0.7f);
-                volver.setBackground(colorBaseBotones.darker());
+                volver.setBackground(Color.BLACK);
             }
 
             @Override
