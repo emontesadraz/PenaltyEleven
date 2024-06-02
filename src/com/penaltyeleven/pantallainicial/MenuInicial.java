@@ -44,7 +44,7 @@ public class MenuInicial extends InterfazMaestra {
 // Crear botones
         crearBoton(soloPlayer, "Un Jugador", 175, 275, 340, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(multiPlayer, "Multijugador", 175, 355, 340, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(ranking, "Ranking de Goleadores", 175, 435, 340, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(ranking, "Ranking", 175, 435, 340, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(creditos, "Créditos", 175, 515, 340, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(salir, "Salir", 175, 595, 340, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
 
