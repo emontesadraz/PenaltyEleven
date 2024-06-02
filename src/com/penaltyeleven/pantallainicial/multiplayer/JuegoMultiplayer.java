@@ -18,7 +18,7 @@ import java.util.Random;
  */
 public class JuegoMultiplayer extends InterfazMaestra {
 
-    private static final int NUM_PENALES = 1;
+    private static final int NUM_PENALES = 5;
     private int turno = 0;
     private int penalesRestantes1 = NUM_PENALES;
     private int penalesRestantes2 = NUM_PENALES;
@@ -42,6 +42,8 @@ public class JuegoMultiplayer extends InterfazMaestra {
     private JLabel estadoLabel = new JLabel("Jugador 1 tira");
     private java.util.List<String> canciones = Arrays.asList("Musica/Soundtrack/MusicaPartidoBasico1.wav", "Musica/Soundtrack/MusicaPartidoBasico2.wav", "Musica/Soundtrack/MusicaPartidoBasico3.wav", "Musica/Soundtrack/MusicaPartidoBasico4.wav", "Musica/Soundtrack/MusicaPartidoBasico5.wav", "Musica/Soundtrack/MusicaPartidoBasico6.wav","Musica/Soundtrack/PartidoVsZeus.wav");
     private int currentSongsIndex = 0;
+    private java.util.List<String> audioGoles = Arrays.asList("src/Musica/Comentaristas/gol1.wav", "src/Musica/Comentaristas/gol2.wav", "src/Musica/Comentaristas/gol3.wav", "src/Musica/Comentaristas/gol4.wav", "src/Musica/Comentaristas/gol5.wav", "src/Musica/Comentaristas/gol6.wav", "src/Musica/Comentaristas/gol7.wav", "src/Musica/Comentaristas/gol8.wav", "src/Musica/Comentaristas/gol9.wav", "src/Musica/Comentaristas/gol10.wav");
+    private java.util.List<String> audioParadas = Arrays.asList("src/Musica/Comentaristas/parada1.wav", "src/Musica/Comentaristas/parada2.wav", "src/Musica/Comentaristas/parada3.wav", "src/Musica/Comentaristas/parada4.wav", "src/Musica/Comentaristas/parada5.wav", "src/Musica/Comentaristas/parada6.wav", "src/Musica/Comentaristas/parada7.wav", "src/Musica/Comentaristas/parada8.wav", "src/Musica/Comentaristas/parada9.wav", "src/Musica/Comentaristas/parada10.wav");
 
     // Variables para el equipo y el escudo seleccionados
     private Equipos equipoSeleccionado1;
@@ -342,8 +344,10 @@ public class JuegoMultiplayer extends InterfazMaestra {
         ImageIcon imageIcon;
         if (parada) {
             imageIcon = new ImageIcon("src/Imagenes/Foto/parada.jpg");
+            playSaves();
         } else {
             imageIcon = new ImageIcon("src/Imagenes/Foto/gol.png");
+            playGoals();
         }
         JLabel label = new JLabel(imageIcon);
 
@@ -355,8 +359,8 @@ public class JuegoMultiplayer extends InterfazMaestra {
         dialog.setModal(false);
         dialog.setVisible(true);
 
-        // Crear un Timer para cerrar el JDialog después de 900 ms
-        Timer timer = new Timer(1100, new ActionListener() {
+        // Crear un Timer para cerrar el JDialog después de 1s
+        Timer timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dialog.dispose();
@@ -454,7 +458,20 @@ public class JuegoMultiplayer extends InterfazMaestra {
 
         String song = canciones.get(currentSongsIndex);
         musicManager.stopMusic();
-        musicManager.playMusic(song, 0.5f);
+        musicManager.playMusic(song, 0.4f);
+    }
+
+    private void playGoals(){
+        Random random = new Random();
+        int index = random.nextInt(audioGoles.size());
+        musicManager.playComments(audioGoles.get(index), 2f);
+    }
+
+
+    private void playSaves(){
+        Random random = new Random();
+        int index = random.nextInt(audioParadas.size());
+        musicManager.playComments(audioParadas.get(index), 2f);
     }
 
     /**
