@@ -325,7 +325,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
         }
 
         // Si la diferencia de goles es 3 o más, determinar al ganador
-        if (Math.abs(aciertos1 - aciertos2) >= 3) {
+        if (Math.abs(aciertos1 - aciertos2) >= 4) {
             determinarGanador();
             return;
         }
