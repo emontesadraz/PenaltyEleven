@@ -105,7 +105,7 @@ public class ElegirTemporada extends InterfazMaestra {
                 SoloPlayer soloPlayer = new SoloPlayer();
                 soloPlayer.setVisible(true);
                 dispose();
-                musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
+                musicManager.playSound("Musica/SoundEffect/SonidoAtras.wav", 0.7f);
                 musicManager.stopMusic();
             }
         });
