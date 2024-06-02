@@ -136,7 +136,7 @@ public class Jugador2Gana extends InterfazMaestra {
                 menuInicial.setVisible(true);
                 dispose();
 
-                musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.5f);
+                musicManager.playSound("Musica/SoundEffect/SonidoAtras.wav", 0.5f);
                 musicManager.stopMusic();
             }
         });

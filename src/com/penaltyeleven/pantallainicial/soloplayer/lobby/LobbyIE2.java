@@ -62,7 +62,7 @@ public class LobbyIE2 extends InterfazMaestra {
                 proximamente.setVisible(true);
                 dispose();
 
-                musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
+                musicManager.playSound("Musica/SoundEffect/SonidoJugar.wav", 0.7f);
                 musicManager.stopMusic();
             }
         });
@@ -74,7 +74,7 @@ public class LobbyIE2 extends InterfazMaestra {
                 ElegirTemporada elegirTemporada = new ElegirTemporada();
                 elegirTemporada.setVisible(true);
                 dispose();
-                musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
+                musicManager.playSound("Musica/SoundEffect/SonidoAtras.wav", 0.7f);
                 musicManager.stopMusic();
             }
         });

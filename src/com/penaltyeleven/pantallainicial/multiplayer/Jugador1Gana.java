@@ -105,7 +105,7 @@ public class Jugador1Gana extends InterfazMaestra {
         reiniciarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               JuegoMultiplayer juegoMultiplayer = new JuegoMultiplayer(equipoSeleccionado1,escudoEquipoSeleccionado1,equipoSeleccionado2,escudoEquipoSeleccionado2);
+                JuegoMultiplayer juegoMultiplayer = new JuegoMultiplayer(equipoSeleccionado1,escudoEquipoSeleccionado1,equipoSeleccionado2,escudoEquipoSeleccionado2);
                 juegoMultiplayer.setVisible(true);
                 dispose();
 
@@ -136,7 +136,7 @@ public class Jugador1Gana extends InterfazMaestra {
                 menuInicial.setVisible(true);
                 dispose();
 
-                musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.5f);
+                musicManager.playSound("Musica/SoundEffect/SonidoAtras.wav", 0.5f);
                 musicManager.stopMusic();
             }
         });

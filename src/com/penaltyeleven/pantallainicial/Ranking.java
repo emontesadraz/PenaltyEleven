@@ -15,6 +15,7 @@ public class Ranking extends InterfazMaestra {
     private MusicManager musicManager = new MusicManager();
     private JButton volver, fondo;
     private JPanel rankingPanel;
+    private JLabel puesto1;
     public static final Color colorBase = new Color(25, 25, 25);
     public static final Font fuente = new Font("Rubik", Font.PLAIN, 20);
     public static final Color colorTexto = new Color(255, 255, 255);
@@ -48,14 +49,23 @@ public class Ranking extends InterfazMaestra {
 
         // Crear un área de texto para mostrar el ranking
         rankingPanel = new JPanel();
-        rankingPanel.setBounds(100, 170, 280, 500); // Ajusta estos valores según tus necesidades
+        rankingPanel.setBounds(100, 150, 280, 500); // Ajusta estos valores según tus necesidades
         rankingPanel.setOpaque(false);
         rankingPanel.setLayout(new BoxLayout(rankingPanel, BoxLayout.Y_AXIS));
 
+        // Crear un título para el ranking
+        puesto1 = new JLabel("Tabla de Campeones Máximos");
+        puesto1.setBounds(100, 100, 500, 50); // Ajusta estos valores según tus necesidades
+        puesto1.setFont(new Font("Rubik", Font.BOLD, 30));
+        puesto1.setForeground(Color.BLACK);
+        puesto1.setHorizontalAlignment(JLabel.LEFT);
+        puesto1.setVerticalAlignment(JLabel.TOP);
+        puesto1.setOpaque(false);
 
         // Añadir botones al panel
         panel.add(volver);
         panel.add(rankingPanel);
+        panel.add(puesto1);
         panel.add(fondo);
         add(panel);
 

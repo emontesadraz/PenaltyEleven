@@ -122,7 +122,7 @@ public class MenuInicial extends InterfazMaestra {
         salir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                musicManager.playSound("Musica/SoundEffect/SonidoElegir1.wav", 0.7f);
+                musicManager.playSound("Musica/SoundEffect/SonidoAtras.wav", 0.7f);
                 System.exit(0);
             }
         });
