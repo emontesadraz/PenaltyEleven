@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="PenaltyEleven:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/PenaltyEleven_jar</output-path>
-    <root id="archive" name="PenaltyEleven.jar">
-      <element id="module-output" name="PenaltyEleven" />
-    </root>
-  </artifact>
-</component>
