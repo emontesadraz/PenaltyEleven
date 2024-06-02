@@ -452,7 +452,7 @@ public class JuegoMultiplayer extends InterfazMaestra {
 
         String song = canciones.get(currentSongsIndex);
         musicManager.stopMusic();
-        musicManager.playMusic(song, 0.4f);
+        musicManager.playMusic(song, 0.15f);
     }
 
     private void playGoals(){
