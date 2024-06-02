@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$USER_HOME$/Downloads/postgres_localhost-2024_05_27_13_24_26-dump.sql" dialect="PostgreSQL" />
+  </component>
+</project>
