@@ -421,6 +421,15 @@ public class SelectorEquipos extends InterfazMaestra {
         }
     }
 
+
+    /**
+     * Escala una imagen a un tamaño específico.
+     *
+     * @param source La imagen original.
+     * @param width El ancho deseado.
+     * @param height La altura deseada.
+     * @return La imagen escalada.
+     */
     public BufferedImage scaleImage(BufferedImage source, int width, int height) {
         Image tmp = source.getScaledInstance(width, height, Image.SCALE_SMOOTH);
         BufferedImage scaled = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -428,15 +437,5 @@ public class SelectorEquipos extends InterfazMaestra {
         g2d.drawImage(tmp, 0, 0, null);
         g2d.dispose();
         return scaled;
-    }
-
-    /**
-     * Main method to run the SelectorEquipos class.
-     *
-     * @param args Command line arguments (not used).
-     * @throws IOException if there is an error reading an image file.
-     */
-    public static void main(String[] args) throws IOException {
-        new SelectorEquipos();
     }
 }
