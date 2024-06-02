@@ -68,6 +68,8 @@ public class Proximamente extends InterfazMaestra {
         comingSoon.setBackground(colorBaseBotones);
         volver.setBackground(colorBaseBotones);
 
+        volver.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+
         //Cambiar tamaño y posición
         comingSoon.setBounds(120, 270, 480, 45);
         volver.setBounds(60, 620, 200, 50);

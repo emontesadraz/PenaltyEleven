@@ -117,11 +117,17 @@ public class ElegirTemporada extends InterfazMaestra {
         volver.setBackground(colorBaseBotones);
         fondo.setBackground(colorBaseBotones);
 
+        //Border de los botones
+        temp1.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        temp2.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        temp3.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        volver.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+
         //Cambiar tamaño y posición de los botones
-        temp1.setBounds(120, 275, 460, 45);
-        temp2.setBounds(120, 355, 460, 45);
-        temp3.setBounds(120, 435, 460, 45);
-        volver.setBounds(120, 515, 460, 45);
+        temp1.setBounds(160, 210, 320, 45);
+        temp2.setBounds(160, 305, 320, 45);
+        temp3.setBounds(160, 400, 320, 45);
+        volver.setBounds(160, 495, 320, 45);
 
         //Cambiar la fuente de los botones
         Font fuenteBoton = new Font("Rubik", Font.BOLD, 20);

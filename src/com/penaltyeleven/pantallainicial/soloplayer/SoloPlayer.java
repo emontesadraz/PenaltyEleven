@@ -41,10 +41,13 @@ public class SoloPlayer extends InterfazMaestra {
         JButton fondo = new JButton();
 
         //Crear botones
-        crearBoton(modoHistoria, "Modo Historia", 120, 275, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(juegoLibre, "Juego Libre", 120, 355, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(volver, "Volver", 120, 435, 460, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(modoHistoria, "Modo Historia", 160, 230, 320, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(juegoLibre, "Juego Libre", 160, 325, 320, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(volver, "Volver", 160, 420, 320, 45, colorBaseBotones, colorTexto, fuenteBoton, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
 
+        modoHistoria.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        juegoLibre.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        volver.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
 
         // Fondo
         crearFondo(fondo, "Imagenes/Fondo/markevans.png");

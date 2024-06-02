@@ -52,6 +52,7 @@ public class InterfazMaestra extends JFrame {
         boton.setBackground(colorFondoBotones);
         boton.setForeground(colorTextoBotones);
         boton.setFont(fuenteBoton);
+        boton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
 
         // Cambiar color de los botones al pasar el ratón por encima
         boton.addMouseListener(new MouseAdapter() {
