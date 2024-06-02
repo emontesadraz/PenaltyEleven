@@ -26,12 +26,7 @@ public class Ranking extends InterfazMaestra {
      * Constructor de la clase.
      */
     public Ranking() {
-        setSize(1280, 720);
-        setTitle("Penalty Eleven");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setIconImage(new ImageIcon("src/Imagenes/Logo.png").getImage());
+        crearVentana("Penalty Eleven", 1280, 720);
 
         // Crear botones
         volver = new JButton();
