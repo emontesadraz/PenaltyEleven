@@ -74,6 +74,8 @@ public class SelectorEquipos extends InterfazMaestra {
     private JPanel panel;
     private JLabel labelEquipo1;
     private JLabel labelEquipo2;
+    private JLabel temporadaEquipo1Label;
+    private JLabel temporadaEquipo2Label;
     int indiceEquipo1 = 0;
     int indiceEquipo2 = 0;
     int temporadaActual1 = 0;
@@ -112,11 +114,11 @@ public class SelectorEquipos extends InterfazMaestra {
         labelEquipo1.setForeground(colorBase);
         labelEquipo1.setBackground(Color.WHITE);
         labelEquipo1.setBorder(BorderFactory.createLineBorder(Color.black, 3));
-        labelEquipo1.setBounds(80, 170, 340, 45);
+        labelEquipo1.setBounds(80, 190, 340, 45);
         labelEquipo1.setHorizontalAlignment(JLabel.CENTER);
 
         ImageLabel imagenEquipo1 = new ImageLabel(imagenesEquipos[indiceEquipo1][temporadaActual1]);
-        imagenEquipo1.setBounds(150, 250, 200, 200);
+        imagenEquipo1.setBounds(150, 270, 200, 200);
 
         // JLabel para el equipo 2
         labelEquipo2 = new JLabel(temporadas.get(temporadaActual2).get(indiceEquipo2).getNombreEquipo());
@@ -125,12 +127,12 @@ public class SelectorEquipos extends InterfazMaestra {
         labelEquipo2.setForeground(colorBase);
         labelEquipo2.setBackground(Color.WHITE);
         labelEquipo2.setBorder(BorderFactory.createLineBorder(Color.black, 3));
-        labelEquipo2.setBounds(880, 170, 340, 45);
+        labelEquipo2.setBounds(880, 190, 340, 45);
         labelEquipo2.setHorizontalAlignment(JLabel.CENTER);
 
         // JLabel para la imagen del equipo 2
         ImageLabel imagenEquipo2 = new ImageLabel(imagenesEquipos[indiceEquipo2][temporadaActual2]);
-        imagenEquipo2.setBounds(950, 250, 200, 200);
+        imagenEquipo2.setBounds(950, 270, 200, 200);
 
         // JLabel imagen versus
         BufferedImage vs = ImageIO.read(new File("src/Imagenes/Foto/versus.png"));
@@ -154,16 +156,16 @@ public class SelectorEquipos extends InterfazMaestra {
 
 
         // Crear botones
-        crearBoton(seleccionarEqu1, "Seleccionar", 150, 60, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(seleccionarEqu2, "Seleccionar", 950, 60, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(seleccionarEqu1, "Seleccionar", 150, 50, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(seleccionarEqu2, "Seleccionar", 950, 50, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(jugar, "Jugar", 550, 500, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(atras, "Atrás", 550, 600, 200, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(flechaIzquierda, "<", 100, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
         crearBoton(flechaDerecha, ">", 350, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(flechaIzquierda2, "<", 900, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(flechaDerecha2, ">", 1150, 500, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(seleccionarTemporada1, "Cambiar Temporada", 100, 580, 300, 40, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
-        crearBoton(seleccionarTemporada2, "Cambiar Temporada", 900, 580, 300, 40, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(flechaIzquierda2, "<", 900, 510, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(flechaDerecha2, ">", 1150, 510, 50, 50, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(seleccionarTemporada1, "Cambiar Temporada", 100, 585, 300, 45, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
+        crearBoton(seleccionarTemporada2, "Cambiar Temporada", 900, 585, 300, 45, colorBase, colorTexto, fuente, "Musica/SoundEffect/SonidoSeleccion.wav", 0.6f);
 
         // Asignar actions listeners para los botones de flechas y temporadas
         flechaIzquierda.addActionListener(e -> {
@@ -185,10 +187,55 @@ public class SelectorEquipos extends InterfazMaestra {
         seleccionarTemporada1.addActionListener(e -> {
             musicManager.playSound("Musica/SoundEffect/SonidoPagina.wav", 0.7f);
             cambiarTemporada(labelEquipo1, imagenEquipo1, true);
+            // Actualizar el JLabel después de cambiar la temporada
+            temporadaEquipo1Label.setText("Temporada " + (temporadaActual1 + 1));
         });
+
         seleccionarTemporada2.addActionListener(e -> {
             musicManager.playSound("Musica/SoundEffect/SonidoPagina.wav", 0.7f);
             cambiarTemporada(labelEquipo2, imagenEquipo2, false);
+            // Actualizar el JLabel después de cambiar la temporada
+            temporadaEquipo2Label.setText("Temporada " + (temporadaActual2 + 1));
+        });
+
+// Inicializar los JLabels en el constructor
+        temporadaEquipo1Label = new JLabel("Temporada " + (temporadaActual1 + 1));
+        temporadaEquipo1Label.setBounds(130, 145, 240, 40);
+        temporadaEquipo1Label.setBackground(Color.WHITE);
+        temporadaEquipo1Label.setOpaque(true);
+        temporadaEquipo1Label.setBorder(BorderFactory.createLineBorder(colorBase, 3));
+        temporadaEquipo1Label.setHorizontalAlignment(JLabel.CENTER);
+        temporadaEquipo1Label.setForeground(colorBase);
+        temporadaEquipo1Label.setFont(new Font("Rubik", Font.PLAIN, 25));
+
+        temporadaEquipo2Label = new JLabel("Temporada " + (temporadaActual2 + 1));
+        temporadaEquipo2Label.setBounds(930, 145, 240, 40);
+        temporadaEquipo2Label.setBackground(Color.WHITE);
+        temporadaEquipo2Label.setOpaque(true);
+        temporadaEquipo2Label.setBorder(BorderFactory.createLineBorder(colorBase, 3));
+        temporadaEquipo2Label.setHorizontalAlignment(JLabel.CENTER);
+        temporadaEquipo2Label.setForeground(colorBase);
+        temporadaEquipo2Label.setFont(new Font("Rubik", Font.PLAIN, 25));
+
+// Actualizar el texto de los JLabels en los oyentes de acción
+        seleccionarTemporada1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // ... código existente ...
+
+                // Actualizar el JLabel
+                temporadaEquipo1Label.setText("Temporada " + (temporadaActual1 + 1));
+            }
+        });
+
+        seleccionarTemporada2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // ... código existente ...
+
+                // Actualizar el JLabel
+                temporadaEquipo2Label.setText("Temporada " + (temporadaActual2 + 1));
+            }
         });
 
         // Seleccionar equipo 1
@@ -294,6 +341,8 @@ public class SelectorEquipos extends InterfazMaestra {
         panel.add(seleccionarTemporada2);
 
         // Añadir labels al panel
+        panel.add(temporadaEquipo1Label);
+        panel.add(temporadaEquipo2Label);
         panel.add(labelEquipo1);
         panel.add(labelEquipo2);
         panel.add(imagenEquipo1);
