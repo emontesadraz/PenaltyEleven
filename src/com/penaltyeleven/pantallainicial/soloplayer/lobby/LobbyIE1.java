@@ -75,7 +75,7 @@ public class LobbyIE1 extends InterfazMaestra {
 
 
         // Controles de la música
-        musicManager.playMusic("Musica/Soundtrack/SoloPlayer1.wav", 0.5f);
+        musicManager.playMusic("Musica/Soundtrack/LobbyIE1.wav", 0.5f);
 
     }
 

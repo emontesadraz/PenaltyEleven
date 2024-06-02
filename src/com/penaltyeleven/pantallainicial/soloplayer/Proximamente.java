@@ -67,8 +67,8 @@ public class Proximamente extends InterfazMaestra {
         volver.setBounds(60, 620, 200, 50);
 
         //Cambiar la fuente
-        Font fuenteBoton = new Font("Action Man", Font.BOLD, 20);
-        comingSoon.setFont(new Font("Action Man", Font.BOLD, 60));
+        Font fuenteBoton = new Font("Rubik", Font.BOLD, 20);
+        comingSoon.setFont(new Font("Rubik", Font.BOLD, 50));
         volver.setFont(fuenteBoton);
 
         //Cambiar color de texto de los botones

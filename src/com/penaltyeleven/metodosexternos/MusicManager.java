@@ -1,12 +1,25 @@
 package com.penaltyeleven.metodosexternos;
 
 import javax.sound.sampled.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
+/**
+ * Clase que permite reproducir sonidos y música en un juego.
+ *
+ * @version 1.0
+ * @since 1.0
+ */
 public class MusicManager {
     private Clip musicClip;
 
+    /**
+     * Reproduce un sonido.
+     *
+     * @param soundFile Archivo de sonido a reproducir.
+     * @param volume Volumen del sonido (0.0 - 1.0).
+     */
     public void playSound(String soundFile, float volume) {
         try {
             // Abrir un audio input stream
@@ -33,6 +46,30 @@ public class MusicManager {
         }
     }
 
+    public void playComments(String path, float volume) {
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(path).getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+
+            // Verificar si el control Master Gain está disponible
+            if (clip.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
+                FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+                gainControl.setValue(volume); // Reduce el volumen en un número de decibelios.
+            }
+
+            clip.start();
+        } catch(Exception ex) {
+            System.out.println("Error al reproducir el sonido.");
+            ex.printStackTrace();
+        }
+    }
+    /**
+     * Reproduce música.
+     *
+     * @param musicFile Archivo de música a reproducir.
+     * @param volume Volumen de la música (0.0 - 1.0).
+     */
     public void playMusic(String musicFile, float volume) {
         try {
             if (musicClip != null && musicClip.isRunning()) {
@@ -52,17 +89,12 @@ public class MusicManager {
         }
     }
 
+    /**
+     * Detiene la reproducción de la música.
+     */
     public void stopMusic() {
         if (musicClip != null && musicClip.isRunning()) {
             musicClip.stop();
         }
-    }
-
-    public Clip getMusicClip() {
-        return musicClip;
-    }
-
-    public void setMusicClip(Clip musicClip) {
-        this.musicClip = musicClip;
     }
 }
